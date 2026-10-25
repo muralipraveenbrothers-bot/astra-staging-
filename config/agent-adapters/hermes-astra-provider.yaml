@@ -1,0 +1,14 @@
+model:
+  default: auto
+  provider: custom:astra
+  base_url: http://127.0.0.1:3000/v1
+  context_length: 1048576
+custom_providers:
+  - name: astra
+    base_url: http://127.0.0.1:3000/v1
+    key_env: ASTRA_ADAPTER_API_KEY
+    api_mode: chat_completions
+    model: auto
+    models:
+      auto:
+        context_length: 1048576

@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CACHE_ROOT="${BIOMCP_CACHE_DIR:-${REPO_ROOT}/.cache/biomcp-specs}"
+XDG_CACHE_ROOT="${CACHE_ROOT}/xdg-cache"
+XDG_CONFIG_ROOT="${CACHE_ROOT}/config"
+ mkdir -p "$CACHE_ROOT" "$XDG_CACHE_ROOT" "$XDG_CONFIG_ROOT"
+
+export BIOMCP_CACHE_DIR="$CACHE_ROOT"
+export XDG_CACHE_HOME="$XDG_CACHE_ROOT"
+export XDG_CONFIG_HOME="$XDG_CONFIG_ROOT"
+export RUST_LOG="${RUST_LOG:-error}"
+
+preserve_umls_key=0
+if [[ "${1:-}" == "--with-umls-key" ]]; then
+  if [[ -z "${UMLS_API_KEY:-}" ]]; then
+    printf 'error: UMLS_API_KEY is required for --with-umls-key\n' >&2
+    exit 2
+  fi
+  preserve_umls_key=1
+  shift
+fi
+
+unset NCBI_API_KEY
+unset S2_API_KEY
+unset OPENFDA_API_KEY
+unset NCI_API_KEY
+unset ONCOKB_TOKEN
+unset DISGENET_API_KEY
+unset ALPHAGENOME_API_KEY
+if [[ "$preserve_umls_key" != 1 ]]; then
+  unset UMLS_API_KEY
+fi
+
+if [[ "${BIOMCP_SPEC_CACHE_HIT:-}" == "1" && -z "${BIOMCP_CACHE_MODE:-}" ]]; then
+  export BIOMCP_CACHE_MODE=infinite
+fi
+
+if [[ -n "${BIOMCP_BIN:-}" ]]; then
+  exec "${BIOMCP_BIN}" "$@"
+fi
+
+FALLBACK_BIN="$(command -v biomcp || true)"
+if [[ -n "$FALLBACK_BIN" ]]; then
+  printf 'error: BIOMCP_BIN is unset; rejected PATH biomcp candidate: %s; set BIOMCP_BIN to select a binary\n' "$FALLBACK_BIN" >&2
+else
+  printf 'error: BIOMCP_BIN is unset; no repo-selected biomcp binary is available; set BIOMCP_BIN to select a binary\n' >&2
+fi
+exit 1

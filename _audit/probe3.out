@@ -1,0 +1,7 @@
+REMEMBER_CORO<<<True
+RECALL_CORO<<<True
+FORGET_CORO<<<True
+IMPROVE_CORO<<<True
+DATAITEM_FIELDS<<<data,label,external_metadata,system_metadata,data_id
+RECALLRESP_FIELDS<<<
+USABLE_IN_LOOP<<<True

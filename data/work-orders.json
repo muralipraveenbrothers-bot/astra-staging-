@@ -1,0 +1,207 @@
+{
+  "orders": [
+    {
+      "id": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "patientName": "Rajesh Kumar",
+      "bed": "Bed 4",
+      "ward": "General Ward",
+      "department": "Lab",
+      "serviceCode": "CBP",
+      "serviceName": "Complete Blood Picture (CBP)",
+      "priority": "ROUTINE",
+      "status": "ACKNOWLEDGED",
+      "slaMinutes": 30,
+      "createdAt": "2026-10-13T09:33:09.956Z",
+      "updatedAt": "2026-10-13T09:33:10.181Z",
+      "events": [
+        {
+          "at": "2026-10-13T09:33:09.966Z",
+          "actor": "Dr. Murali",
+          "role": "doctor",
+          "from": "DRAFT",
+          "to": "REQUESTED",
+          "note": "Order Complete Blood Picture (CBP) for Rajesh Kumar (Bed 4)"
+        },
+        {
+          "at": "2026-10-13T09:33:10.057Z",
+          "actor": "system",
+          "role": "auto-validate",
+          "from": "REQUESTED",
+          "to": "VALIDATED",
+          "note": "Clinical order validated"
+        },
+        {
+          "at": "2026-10-13T09:33:10.136Z",
+          "actor": "system",
+          "role": "auto-route",
+          "from": "VALIDATED",
+          "to": "BILL_REQUIRED",
+          "note": "Billing task -> Priya Billing"
+        },
+        {
+          "at": "2026-10-13T09:33:10.137Z",
+          "actor": "Priya Billing",
+          "role": "billing",
+          "from": "BILL_REQUIRED",
+          "to": "BILL_CREATED",
+          "note": "No discount, Rs.300"
+        },
+        {
+          "at": "2026-10-13T09:33:10.138Z",
+          "actor": "Priya Billing",
+          "role": "billing",
+          "from": "BILL_CREATED",
+          "to": "PAYMENT_PENDING",
+          "note": "Bill sent to reception/patient"
+        },
+        {
+          "at": "2026-10-13T09:33:10.157Z",
+          "actor": "Reception",
+          "role": "reception",
+          "from": "PAYMENT_PENDING",
+          "to": "PAID",
+          "note": "Payment received. Ref: CASH-8804"
+        },
+        {
+          "at": "2026-10-13T09:33:10.158Z",
+          "actor": "system",
+          "role": "auto-release",
+          "from": "PAID",
+          "to": "RELEASED",
+          "note": "Order released - department notified"
+        },
+        {
+          "at": "2026-10-13T09:33:10.181Z",
+          "actor": "Suresh Tech",
+          "role": "lab-tech",
+          "from": "RELEASED",
+          "to": "ACKNOWLEDGED",
+          "note": "Staff acknowledged - starting work"
+        }
+      ],
+      "assignedTo": "STF-2026-00001",
+      "assignedName": "Suresh Tech",
+      "amount": 300,
+      "discount": 0,
+      "billId": "BILL-WO-2026-00007",
+      "paidAt": "2026-10-13T09:33:10.148Z",
+      "acknowledgedAt": "2026-10-13T09:33:10.180Z"
+    }
+  ],
+  "staff": [
+    {
+      "employeeId": "LAB-001",
+      "name": "Suresh Tech",
+      "designation": "Lab Technician",
+      "department": "Lab",
+      "workAreas": [
+        "Lab",
+        "Pharmacy"
+      ],
+      "shift": "General",
+      "language": "Telugu",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": true,
+      "notifyTelegram": false,
+      "phone": "9123400001",
+      "id": "STF-2026-00001",
+      "createdAt": "2026-10-13T09:33:09.953Z"
+    },
+    {
+      "employeeId": "BIL-001",
+      "name": "Priya Billing",
+      "designation": "Billing Officer",
+      "department": "Billing",
+      "workAreas": [
+        "Billing",
+        "Reception"
+      ],
+      "shift": "General",
+      "language": "Telugu",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": true,
+      "notifyTelegram": true,
+      "phone": "9123400002",
+      "id": "STF-2026-00002",
+      "createdAt": "2026-10-13T09:33:09.954Z"
+    },
+    {
+      "employeeId": "XRAY-001",
+      "name": "Kumar Radio",
+      "designation": "Radiographer",
+      "department": "X-Ray",
+      "workAreas": [
+        "X-Ray",
+        "Radiology",
+        "CT"
+      ],
+      "shift": "General",
+      "language": "Hindi",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": false,
+      "notifyTelegram": true,
+      "phone": "9123400003",
+      "id": "STF-2026-00003",
+      "createdAt": "2026-10-13T09:33:09.955Z"
+    },
+    {
+      "employeeId": "PHAR-001",
+      "name": "Anita Pharma",
+      "designation": "Pharmacist",
+      "department": "Pharmacy",
+      "workAreas": [
+        "Pharmacy",
+        "Stores"
+      ],
+      "shift": "Morning",
+      "language": "English",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": true,
+      "notifyTelegram": false,
+      "phone": "9123400004",
+      "id": "STF-2026-00004",
+      "createdAt": "2026-10-13T09:33:09.955Z"
+    },
+    {
+      "employeeId": "WARD-001",
+      "name": "Kavitha Nurse",
+      "designation": "Staff Nurse",
+      "department": "Ward",
+      "workAreas": [
+        "Ward",
+        "Dressing Room",
+        "OT Clinic",
+        "Bed Sheet Changing"
+      ],
+      "shift": "General",
+      "language": "Telugu",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": true,
+      "notifyTelegram": false,
+      "phone": "9123400005",
+      "id": "STF-2026-00005",
+      "createdAt": "2026-10-13T09:33:09.955Z"
+    },
+    {
+      "employeeId": "CLN-001",
+      "name": "Ravi Housekeep",
+      "designation": "Housekeeping",
+      "department": "Housekeeping",
+      "workAreas": [
+        "Housekeeping",
+        "Ward Cleaning",
+        "Bed Sheet Changing"
+      ],
+      "shift": "Morning",
+      "language": "Telugu",
+      "status": "AVAILABLE",
+      "notifyWhatsApp": true,
+      "notifyTelegram": false,
+      "phone": "9123400006",
+      "id": "STF-2026-00006",
+      "createdAt": "2026-10-13T09:33:09.955Z"
+    }
+  ],
+  "seq": 7
+}

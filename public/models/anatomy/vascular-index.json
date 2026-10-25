@@ -1,0 +1,9466 @@
+[
+  {
+    "name": "Septal branches of anterior interventricular artery",
+    "parent": "Anterior interventricular artery",
+    "centre": [
+      0.05,
+      1.2884,
+      0.0578
+    ],
+    "size": [
+      0.0123,
+      0.0391,
+      0.0321
+    ]
+  },
+  {
+    "name": "Anterior interventricular artery",
+    "parent": "Left coronary artery",
+    "centre": [
+      0.0547,
+      1.2844,
+      0.051
+    ],
+    "size": [
+      0.0392,
+      0.082,
+      0.0565
+    ]
+  },
+  {
+    "name": "Circumflex artery of heart",
+    "parent": "Left coronary artery",
+    "centre": [
+      0.0576,
+      1.2879,
+      0.0175
+    ],
+    "size": [
+      0.0451,
+      0.0749,
+      0.0575
+    ]
+  },
+  {
+    "name": "Left coronary artery",
+    "parent": null,
+    "centre": [
+      0.0286,
+      1.3274,
+      0.0228
+    ],
+    "size": [
+      0.0153,
+      0.0108,
+      0.0071
+    ]
+  },
+  {
+    "name": "Right inferolateral branch of right coronary artery",
+    "parent": "Right coronary artery",
+    "centre": [
+      0.0489,
+      1.248,
+      0.0164
+    ],
+    "size": [
+      0.0558,
+      0.0202,
+      0.0523
+    ]
+  },
+  {
+    "name": "Right coronary artery",
+    "parent": null,
+    "centre": [
+      0.0177,
+      1.2871,
+      0.0384
+    ],
+    "size": [
+      0.0806,
+      0.0933,
+      0.0858
+    ]
+  },
+  {
+    "name": "Left atrium",
+    "parent": null,
+    "centre": [
+      0.0209,
+      1.3005,
+      0.0115
+    ],
+    "size": [
+      0.0894,
+      0.0752,
+      0.0863
+    ]
+  },
+  {
+    "name": "Inferior papillary muscle of left ventricle",
+    "parent": "Left ventricle",
+    "centre": [
+      0.0633,
+      1.2667,
+      0.0289
+    ],
+    "size": [
+      0.0295,
+      0.0311,
+      0.0437
+    ]
+  },
+  {
+    "name": "Left ventricle",
+    "parent": null,
+    "centre": [
+      0.0424,
+      1.2817,
+      0.0281
+    ],
+    "size": [
+      0.08,
+      0.0901,
+      0.0876
+    ]
+  },
+  {
+    "name": "Right atrium",
+    "parent": null,
+    "centre": [
+      -0.0144,
+      1.2956,
+      0.0294
+    ],
+    "size": [
+      0.045,
+      0.0997,
+      0.0745
+    ]
+  },
+  {
+    "name": "Anterior papillary muscle of right ventricle",
+    "parent": "Right ventricle",
+    "centre": [
+      0.0312,
+      1.2575,
+      0.0661
+    ],
+    "size": [
+      0.0364,
+      0.0303,
+      0.0223
+    ]
+  },
+  {
+    "name": "Inferior papillary muscle of right ventricle",
+    "parent": "Right ventricle",
+    "centre": [
+      0.0233,
+      1.2486,
+      0.0499
+    ],
+    "size": [
+      0.0306,
+      0.0149,
+      0.0296
+    ]
+  },
+  {
+    "name": "Septal papillary muscle of right ventricle",
+    "parent": "Right ventricle",
+    "centre": [
+      0.024,
+      1.2912,
+      0.0393
+    ],
+    "size": [
+      0.0201,
+      0.0278,
+      0.0159
+    ]
+  },
+  {
+    "name": "Right ventricle",
+    "parent": null,
+    "centre": [
+      0.0198,
+      1.2853,
+      0.0477
+    ],
+    "size": [
+      0.083,
+      0.0928,
+      0.0671
+    ]
+  },
+  {
+    "name": "Inferior leaflet of right atrioventricular valve",
+    "parent": null,
+    "centre": [
+      -0.0007,
+      1.2659,
+      0.0326
+    ],
+    "size": [
+      0.0366,
+      0.0285,
+      0.0326
+    ]
+  },
+  {
+    "name": "Posterior leaflet of left atrioventricular valve",
+    "parent": null,
+    "centre": [
+      0.0401,
+      1.2796,
+      0.0067
+    ],
+    "size": [
+      0.051,
+      0.0332,
+      0.0392
+    ]
+  },
+  {
+    "name": "Septal leaflet of right atrioventricular valve",
+    "parent": null,
+    "centre": [
+      0.0125,
+      1.289,
+      0.0287
+    ],
+    "size": [
+      0.0372,
+      0.0241,
+      0.025
+    ]
+  },
+  {
+    "name": "Left coronary leaflet",
+    "parent": null,
+    "centre": [
+      0.0207,
+      1.3179,
+      0.0218
+    ],
+    "size": [
+      0.018,
+      0.0176,
+      0.0212
+    ]
+  },
+  {
+    "name": "Non-coronary leaflet",
+    "parent": null,
+    "centre": [
+      0.0098,
+      1.3146,
+      0.0195
+    ],
+    "size": [
+      0.0206,
+      0.0208,
+      0.0201
+    ]
+  },
+  {
+    "name": "Right coronary leaflet",
+    "parent": null,
+    "centre": [
+      0.0122,
+      1.3158,
+      0.0312
+    ],
+    "size": [
+      0.0225,
+      0.0218,
+      0.0149
+    ]
+  },
+  {
+    "name": "Anterior semilunar leaflet of pulmonary valve",
+    "parent": null,
+    "centre": [
+      0.0337,
+      1.3182,
+      0.0534
+    ],
+    "size": [
+      0.0185,
+      0.0172,
+      0.0208
+    ]
+  },
+  {
+    "name": "Left semilunar leaflet of pulmonary valve",
+    "parent": null,
+    "centre": [
+      0.0337,
+      1.3185,
+      0.0383
+    ],
+    "size": [
+      0.0178,
+      0.0171,
+      0.0152
+    ]
+  },
+  {
+    "name": "Right semilunar leaflet of pulmonary valve",
+    "parent": null,
+    "centre": [
+      0.0194,
+      1.3219,
+      0.0485
+    ],
+    "size": [
+      0.0195,
+      0.0178,
+      0.0249
+    ]
+  },
+  {
+    "name": "Anterior basal segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.103,
+      1.2315,
+      -0.0377
+    ],
+    "size": [
+      0.0407,
+      0.0778,
+      0.0704
+    ]
+  },
+  {
+    "name": "Lateral basal segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0928,
+      1.2598,
+      0.0119
+    ],
+    "size": [
+      0.0701,
+      0.1284,
+      0.0979
+    ]
+  },
+  {
+    "name": "Medial basal segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0614,
+      1.2877,
+      -0.0472
+    ],
+    "size": [
+      0.0249,
+      0.0635,
+      0.0276
+    ]
+  },
+  {
+    "name": "Posterior basal segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0501,
+      1.2543,
+      -0.0524
+    ],
+    "size": [
+      0.0521,
+      0.138,
+      0.0476
+    ]
+  },
+  {
+    "name": "Superior segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0682,
+      1.3235,
+      -0.0465
+    ],
+    "size": [
+      0.0623,
+      0.0584,
+      0.0307
+    ]
+  },
+  {
+    "name": "Anterior segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0622,
+      1.3429,
+      0.0156
+    ],
+    "size": [
+      0.0712,
+      0.0519,
+      0.0939
+    ]
+  },
+  {
+    "name": "Apical segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0429,
+      1.3837,
+      -0.0195
+    ],
+    "size": [
+      0.0442,
+      0.0826,
+      0.0379
+    ]
+  },
+  {
+    "name": "Inferior lingular artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0802,
+      1.2884,
+      0.0239
+    ],
+    "size": [
+      0.0502,
+      0.086,
+      0.1141
+    ]
+  },
+  {
+    "name": "Posterior segmental artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0617,
+      1.3676,
+      -0.0396
+    ],
+    "size": [
+      0.0486,
+      0.0562,
+      0.0522
+    ]
+  },
+  {
+    "name": "Superior lingular artery of left lung",
+    "parent": "Left pulmonary artery",
+    "centre": [
+      0.0842,
+      1.3115,
+      0.0198
+    ],
+    "size": [
+      0.0599,
+      0.044,
+      0.1082
+    ]
+  },
+  {
+    "name": "Left pulmonary artery",
+    "parent": null,
+    "centre": [
+      0.0562,
+      1.3129,
+      -0.0199
+    ],
+    "size": [
+      0.0674,
+      0.0919,
+      0.0398
+    ]
+  },
+  {
+    "name": "Bifurcation of pulmonary trunk",
+    "parent": "Pulmonary trunk",
+    "centre": [
+      0.0254,
+      1.3452,
+      0.0136
+    ],
+    "size": [
+      0.04,
+      0.0298,
+      0.0448
+    ]
+  },
+  {
+    "name": "Pulmonary trunk",
+    "parent": null,
+    "centre": [
+      0.0277,
+      1.3406,
+      0.0443
+    ],
+    "size": [
+      0.0312,
+      0.0329,
+      0.0378
+    ]
+  },
+  {
+    "name": "Anterior basal segmental artery of right lung",
+    "parent": "Inferior lobar artery of right lung",
+    "centre": [
+      -0.0879,
+      1.2418,
+      -0.0342
+    ],
+    "size": [
+      0.0702,
+      0.0932,
+      0.0371
+    ]
+  },
+  {
+    "name": "Lateral basal segmental artery of right lung",
+    "parent": "Inferior lobar artery of right lung",
+    "centre": [
+      -0.0896,
+      1.2683,
+      -0.0051
+    ],
+    "size": [
+      0.0769,
+      0.0742,
+      0.0476
+    ]
+  },
+  {
+    "name": "Medial basal segmental artery of right lung",
+    "parent": "Inferior lobar artery of right lung",
+    "centre": [
+      -0.0478,
+      1.2331,
+      -0.0539
+    ],
+    "size": [
+      0.0252,
+      0.0586,
+      0.0103
+    ]
+  },
+  {
+    "name": "Posterior basal segmental artery of right lung",
+    "parent": "Inferior lobar artery of right lung",
+    "centre": [
+      -0.0618,
+      1.2378,
+      -0.0537
+    ],
+    "size": [
+      0.0212,
+      0.1006,
+      0.0438
+    ]
+  },
+  {
+    "name": "Superior segmental artery of right lung",
+    "parent": "Inferior lobar artery of right lung",
+    "centre": [
+      -0.0691,
+      1.3053,
+      -0.0468
+    ],
+    "size": [
+      0.0565,
+      0.0796,
+      0.0619
+    ]
+  },
+  {
+    "name": "Inferior lobar artery of right lung",
+    "parent": "Right pulmonary artery",
+    "centre": [
+      -0.052,
+      1.3016,
+      -0.0252
+    ],
+    "size": [
+      0.0182,
+      0.0383,
+      0.0296
+    ]
+  },
+  {
+    "name": "Lateral segmental artery of right lung",
+    "parent": "Middle lobar artery of right lung",
+    "centre": [
+      -0.0796,
+      1.2955,
+      0.0145
+    ],
+    "size": [
+      0.0776,
+      0.0566,
+      0.0613
+    ]
+  },
+  {
+    "name": "Medial segmental artery of right lung",
+    "parent": "Middle lobar artery of right lung",
+    "centre": [
+      -0.0545,
+      1.2931,
+      0.0397
+    ],
+    "size": [
+      0.0455,
+      0.0785,
+      0.0967
+    ]
+  },
+  {
+    "name": "Middle lobar artery of right lung",
+    "parent": "Right pulmonary artery",
+    "centre": [
+      -0.0419,
+      1.3246,
+      -0.0111
+    ],
+    "size": [
+      0.0258,
+      0.0267,
+      0.0231
+    ]
+  },
+  {
+    "name": "Anterior segmental artery of right lung",
+    "parent": "Superior lobar artery of right lung",
+    "centre": [
+      -0.0489,
+      1.3514,
+      0.0256
+    ],
+    "size": [
+      0.0661,
+      0.0426,
+      0.0692
+    ]
+  },
+  {
+    "name": "Apical segmental artery of right lung",
+    "parent": "Superior lobar artery of right lung",
+    "centre": [
+      -0.045,
+      1.3858,
+      -0.0199
+    ],
+    "size": [
+      0.0504,
+      0.0749,
+      0.085
+    ]
+  },
+  {
+    "name": "Posterior segmental artery of right lung",
+    "parent": "Superior lobar artery of right lung",
+    "centre": [
+      -0.0641,
+      1.3378,
+      -0.0349
+    ],
+    "size": [
+      0.0683,
+      0.0211,
+      0.063
+    ]
+  },
+  {
+    "name": "Superior lobar artery of right lung",
+    "parent": "Right pulmonary artery",
+    "centre": [
+      -0.0054,
+      1.3429,
+      0.0013
+    ],
+    "size": [
+      0.0369,
+      0.025,
+      0.022
+    ]
+  },
+  {
+    "name": "Right pulmonary artery",
+    "parent": null,
+    "centre": [
+      -0.0119,
+      1.3378,
+      -0.0014
+    ],
+    "size": [
+      0.0523,
+      0.0278,
+      0.0264
+    ]
+  },
+  {
+    "name": "Gastroduodenal artery",
+    "parent": "Common hepatic artery",
+    "centre": [
+      -0.0275,
+      1.1388,
+      0.0737
+    ],
+    "size": [
+      0.0147,
+      0.0195,
+      0.0294
+    ]
+  },
+  {
+    "name": "Proper hepatic artery",
+    "parent": "Common hepatic artery",
+    "centre": [
+      -0.0664,
+      1.1586,
+      0.06
+    ],
+    "size": [
+      0.0921,
+      0.0285,
+      0.0282
+    ]
+  },
+  {
+    "name": "Common hepatic artery",
+    "parent": "Coeliac trunk",
+    "centre": [
+      -0.0063,
+      1.1519,
+      0.0458
+    ],
+    "size": [
+      0.0323,
+      0.0162,
+      0.0318
+    ]
+  },
+  {
+    "name": "Left gastric artery",
+    "parent": "Coeliac trunk",
+    "centre": [
+      0.0126,
+      1.1661,
+      0.0431
+    ],
+    "size": [
+      0.018,
+      0.0244,
+      0.027
+    ]
+  },
+  {
+    "name": "Splenic artery",
+    "parent": "Coeliac trunk",
+    "centre": [
+      0.0516,
+      1.1566,
+      0.0092
+    ],
+    "size": [
+      0.0947,
+      0.0245,
+      0.0535
+    ]
+  },
+  {
+    "name": "Coeliac trunk",
+    "parent": "Abdominal aorta",
+    "centre": [
+      0.0084,
+      1.1476,
+      0.0234
+    ],
+    "size": [
+      0.011,
+      0.0243,
+      0.0215
+    ]
+  },
+  {
+    "name": "Ascending branch of left colic artery",
+    "parent": "Left colic artery",
+    "centre": [
+      0.0427,
+      1.078,
+      0.024
+    ],
+    "size": [
+      0.0245,
+      0.0527,
+      0.0153
+    ]
+  },
+  {
+    "name": "Descending branch of left colic artery",
+    "parent": "Left colic artery",
+    "centre": [
+      0.0489,
+      1.0318,
+      0.0221
+    ],
+    "size": [
+      0.0403,
+      0.0482,
+      0.0188
+    ]
+  },
+  {
+    "name": "Left colic artery",
+    "parent": "Inferior mesenteric artery",
+    "centre": [
+      0.0227,
+      1.0503,
+      0.0339
+    ],
+    "size": [
+      0.0187,
+      0.0076,
+      0.0095
+    ]
+  },
+  {
+    "name": "Sigmoid arteries",
+    "parent": "Inferior mesenteric artery",
+    "centre": [
+      0.0376,
+      0.9948,
+      0.0253
+    ],
+    "size": [
+      0.066,
+      0.0873,
+      0.0219
+    ]
+  },
+  {
+    "name": "Superior anorectal artery",
+    "parent": "Inferior mesenteric artery",
+    "centre": [
+      -0.0093,
+      0.902,
+      -0.0185
+    ],
+    "size": [
+      0.0312,
+      0.1457,
+      0.0713
+    ]
+  },
+  {
+    "name": "Inferior mesenteric artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      0.0115,
+      1.0178,
+      0.0269
+    ],
+    "size": [
+      0.0143,
+      0.0874,
+      0.0226
+    ]
+  },
+  {
+    "name": "Inferior phrenic artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      -0.0396,
+      1.2097,
+      0.027
+    ],
+    "size": [
+      0.0889,
+      0.1107,
+      0.1003
+    ]
+  },
+  {
+    "name": "Anterior branch of renal artery.l",
+    "parent": "Left renal artery",
+    "centre": [
+      0.0449,
+      1.12,
+      -0.0039
+    ],
+    "size": [
+      0.033,
+      0.0159,
+      0.0262
+    ]
+  },
+  {
+    "name": "Inferior suprarenal artery.l",
+    "parent": "Left renal artery",
+    "centre": [
+      0.0468,
+      1.1465,
+      -0.0114
+    ],
+    "size": [
+      0.0497,
+      0.0629,
+      0.039
+    ]
+  },
+  {
+    "name": "Intrarenal arteries of left kidney",
+    "parent": "Left renal artery",
+    "centre": [
+      0.0618,
+      1.1104,
+      -0.0176
+    ],
+    "size": [
+      0.0398,
+      0.0793,
+      0.018
+    ]
+  },
+  {
+    "name": "Posterior branch of renal artery.l",
+    "parent": "Left renal artery",
+    "centre": [
+      0.0427,
+      1.1155,
+      -0.0103
+    ],
+    "size": [
+      0.0286,
+      0.007,
+      0.039
+    ]
+  },
+  {
+    "name": "Left renal artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      0.0187,
+      1.1166,
+      0.0139
+    ],
+    "size": [
+      0.0275,
+      0.01,
+      0.0208
+    ]
+  },
+  {
+    "name": "Left testicular artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      0.0396,
+      0.9066,
+      0.0166
+    ],
+    "size": [
+      0.0551,
+      0.3571,
+      0.0687
+    ]
+  },
+  {
+    "name": "Lumbar arteries.r",
+    "parent": "Abdominal aorta",
+    "centre": [
+      -0.0412,
+      1.0731,
+      -0.0134
+    ],
+    "size": [
+      0.0993,
+      0.0945,
+      0.0825
+    ]
+  },
+  {
+    "name": "Lumbar arteries.l",
+    "parent": "Abdominal aorta",
+    "centre": [
+      0.0469,
+      1.0731,
+      -0.0161
+    ],
+    "size": [
+      0.088,
+      0.0947,
+      0.0771
+    ]
+  },
+  {
+    "name": "Anterior branch of renal artery.r",
+    "parent": "Right renal artery",
+    "centre": [
+      -0.0415,
+      1.1067,
+      0.0008
+    ],
+    "size": [
+      0.0239,
+      0.0094,
+      0.0132
+    ]
+  },
+  {
+    "name": "Inferior suprarenal artery.r",
+    "parent": "Right renal artery",
+    "centre": [
+      -0.043,
+      1.1324,
+      -0.0068
+    ],
+    "size": [
+      0.0274,
+      0.0533,
+      0.0236
+    ]
+  },
+  {
+    "name": "Intrarenal arteries of right kidney",
+    "parent": "Right renal artery",
+    "centre": [
+      -0.0532,
+      1.0945,
+      -0.0097
+    ],
+    "size": [
+      0.041,
+      0.079,
+      0.0184
+    ]
+  },
+  {
+    "name": "Posterior branch of renal artery.r",
+    "parent": "Right renal artery",
+    "centre": [
+      -0.051,
+      1.1024,
+      -0.0069
+    ],
+    "size": [
+      0.0441,
+      0.0142,
+      0.0279
+    ]
+  },
+  {
+    "name": "Right renal artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      -0.0111,
+      1.1136,
+      0.0114
+    ],
+    "size": [
+      0.0418,
+      0.0198,
+      0.0191
+    ]
+  },
+  {
+    "name": "Right testicular artery.r",
+    "parent": "Abdominal aorta",
+    "centre": [
+      -0.031,
+      0.9145,
+      0.0166
+    ],
+    "size": [
+      0.0723,
+      0.3729,
+      0.0687
+    ]
+  },
+  {
+    "name": "Appendicular artery",
+    "parent": "Ileocolic artery",
+    "centre": [
+      -0.0388,
+      0.9803,
+      0.0074
+    ],
+    "size": [
+      0.0339,
+      0.0654,
+      0.0372
+    ]
+  },
+  {
+    "name": "Colic branch of ileocolic artery",
+    "parent": "Ileocolic artery",
+    "centre": [
+      -0.0502,
+      1.0489,
+      0.0256
+    ],
+    "size": [
+      0.0475,
+      0.0337,
+      0.0205
+    ]
+  },
+  {
+    "name": "Ileal branch of ileocolic artery",
+    "parent": "Ileocolic artery",
+    "centre": [
+      -0.0412,
+      1.0212,
+      0.0294
+    ],
+    "size": [
+      0.0241,
+      0.0196,
+      0.0116
+    ]
+  },
+  {
+    "name": "Ileocolic artery",
+    "parent": "Superior mesenteric artery",
+    "centre": [
+      -0.0187,
+      1.0431,
+      0.0391
+    ],
+    "size": [
+      0.0255,
+      0.0282,
+      0.0137
+    ]
+  },
+  {
+    "name": "Anterior inferior pancreaticoduodenal artery",
+    "parent": "Inferior pancreaticoduodenal artery",
+    "centre": [
+      -0.0029,
+      1.119,
+      0.0516
+    ],
+    "size": [
+      0.1306,
+      0.042,
+      0.0598
+    ]
+  },
+  {
+    "name": "Inferior pancreaticoduodenal artery",
+    "parent": "Superior mesenteric artery",
+    "centre": [
+      -0.0046,
+      1.1063,
+      0.0405
+    ],
+    "size": [
+      0.0065,
+      0.0027,
+      0.0102
+    ]
+  },
+  {
+    "name": "Marginal artery",
+    "parent": "Superior mesenteric artery",
+    "centre": [
+      -0.0032,
+      1.0734,
+      0.0155
+    ],
+    "size": [
+      0.1361,
+      0.1343,
+      0.021
+    ]
+  },
+  {
+    "name": "Middle colic artery",
+    "parent": "Superior mesenteric artery",
+    "centre": [
+      -0.0365,
+      1.0982,
+      0.0366
+    ],
+    "size": [
+      0.0618,
+      0.0314,
+      0.0278
+    ]
+  },
+  {
+    "name": "Right colic artery",
+    "parent": "Superior mesenteric artery",
+    "centre": [
+      -0.038,
+      1.0753,
+      0.0361
+    ],
+    "size": [
+      0.0618,
+      0.0299,
+      0.031
+    ]
+  },
+  {
+    "name": "Superior mesenteric artery",
+    "parent": "Abdominal aorta",
+    "centre": [
+      -0.0021,
+      1.0568,
+      0.0389
+    ],
+    "size": [
+      0.1404,
+      0.1456,
+      0.0497
+    ]
+  },
+  {
+    "name": "Abdominal aorta",
+    "parent": null,
+    "centre": [
+      0.0077,
+      1.1196,
+      0.0106
+    ],
+    "size": [
+      0.0229,
+      0.1819,
+      0.0596
+    ]
+  },
+  {
+    "name": "Brachiocephalic trunk",
+    "parent": "Aortic arch",
+    "centre": [
+      -0.001,
+      1.3985,
+      0.0145
+    ],
+    "size": [
+      0.036,
+      0.0335,
+      0.0155
+    ]
+  },
+  {
+    "name": "Aortic arch",
+    "parent": null,
+    "centre": [
+      0.0119,
+      1.3761,
+      -0.0004
+    ],
+    "size": [
+      0.0397,
+      0.0415,
+      0.0852
+    ]
+  },
+  {
+    "name": "Inferior epigastric artery.l",
+    "parent": "External iliac artery.l",
+    "centre": [
+      0.0397,
+      0.997,
+      0.0524
+    ],
+    "size": [
+      0.0296,
+      0.1875,
+      0.0876
+    ]
+  },
+  {
+    "name": "External iliac artery.l",
+    "parent": "Common iliac artery.l",
+    "centre": [
+      0.0414,
+      0.9393,
+      0.014
+    ],
+    "size": [
+      0.0349,
+      0.0955,
+      0.0374
+    ]
+  },
+  {
+    "name": "Inferior gluteal artery.l",
+    "parent": "Anterior division of internal iliac artery.l",
+    "centre": [
+      0.0502,
+      0.8681,
+      -0.0407
+    ],
+    "size": [
+      0.041,
+      0.1159,
+      0.0499
+    ]
+  },
+  {
+    "name": "Deep artery of penis.l",
+    "parent": "Internal pudendal artery.l",
+    "centre": [
+      0.0053,
+      0.8002,
+      0.0662
+    ],
+    "size": [
+      0.005,
+      0.0537,
+      0.0544
+    ]
+  },
+  {
+    "name": "Dorsal artery of penis.l",
+    "parent": "Internal pudendal artery.l",
+    "centre": [
+      0.0202,
+      0.8036,
+      0.031
+    ],
+    "size": [
+      0.0343,
+      0.0502,
+      0.1335
+    ]
+  },
+  {
+    "name": "Internal pudendal artery.l",
+    "parent": "Anterior division of internal iliac artery.l",
+    "centre": [
+      0.0399,
+      0.87,
+      -0.0357
+    ],
+    "size": [
+      0.0202,
+      0.1121,
+      0.0398
+    ]
+  },
+  {
+    "name": "Anterior division of internal iliac artery.l",
+    "parent": "Internal iliac artery.l",
+    "centre": [
+      0.0321,
+      0.9334,
+      -0.0136
+    ],
+    "size": [
+      0.006,
+      0.0189,
+      0.011
+    ]
+  },
+  {
+    "name": "Iliacus branch of iliolumbar artery.l",
+    "parent": "Iliolumbar artery.l",
+    "centre": [
+      0.0798,
+      0.9826,
+      0.0043
+    ],
+    "size": [
+      0.0885,
+      0.0476,
+      0.0915
+    ]
+  },
+  {
+    "name": "Lumbar branch of iliolumbar artery.l",
+    "parent": "Iliolumbar artery.l",
+    "centre": [
+      0.0484,
+      0.9653,
+      -0.0045
+    ],
+    "size": [
+      0.0276,
+      0.0194,
+      0.044
+    ]
+  },
+  {
+    "name": "Spinal branch of iliolumbar artery.l",
+    "parent": "Iliolumbar artery.l",
+    "centre": [
+      0.027,
+      0.9646,
+      -0.0309
+    ],
+    "size": [
+      0.0227,
+      0.0047,
+      0.0056
+    ]
+  },
+  {
+    "name": "Iliolumbar artery.l",
+    "parent": "Posterior division of internal iliac artery.l",
+    "centre": [
+      0.0345,
+      0.9506,
+      -0.0213
+    ],
+    "size": [
+      0.0088,
+      0.0268,
+      0.0183
+    ]
+  },
+  {
+    "name": "Superior gluteal artery.l",
+    "parent": "Posterior division of internal iliac artery.l",
+    "centre": [
+      0.0538,
+      0.933,
+      -0.0442
+    ],
+    "size": [
+      0.0484,
+      0.0441,
+      0.058
+    ]
+  },
+  {
+    "name": "Posterior division of internal iliac artery.l",
+    "parent": "Internal iliac artery.l",
+    "centre": [
+      0.0321,
+      0.9384,
+      -0.0131
+    ],
+    "size": [
+      0.0061,
+      0.0087,
+      0.0101
+    ]
+  },
+  {
+    "name": "Internal iliac artery.l",
+    "parent": "Common iliac artery.l",
+    "centre": [
+      0.0308,
+      0.9631,
+      0.0018
+    ],
+    "size": [
+      0.0138,
+      0.0479,
+      0.0291
+    ]
+  },
+  {
+    "name": "Common iliac artery.l",
+    "parent": null,
+    "centre": [
+      0.0152,
+      1.0057,
+      0.023
+    ],
+    "size": [
+      0.0375,
+      0.0537,
+      0.0348
+    ]
+  },
+  {
+    "name": "Inferior epigastric artery.r",
+    "parent": "External iliac artery.r",
+    "centre": [
+      -0.0397,
+      0.997,
+      0.0524
+    ],
+    "size": [
+      0.0296,
+      0.1875,
+      0.0876
+    ]
+  },
+  {
+    "name": "External iliac artery.r",
+    "parent": "Common iliac artery.r",
+    "centre": [
+      -0.0414,
+      0.9393,
+      0.014
+    ],
+    "size": [
+      0.0349,
+      0.0955,
+      0.0374
+    ]
+  },
+  {
+    "name": "Inferior gluteal artery.r",
+    "parent": "Anterior division of internal iliac artery.r",
+    "centre": [
+      -0.0502,
+      0.8681,
+      -0.0407
+    ],
+    "size": [
+      0.041,
+      0.1159,
+      0.0499
+    ]
+  },
+  {
+    "name": "Deep artery of penis.r",
+    "parent": "Internal pudendal artery.r",
+    "centre": [
+      -0.0053,
+      0.8002,
+      0.0662
+    ],
+    "size": [
+      0.005,
+      0.0537,
+      0.0544
+    ]
+  },
+  {
+    "name": "Dorsal artery of penis.r",
+    "parent": "Internal pudendal artery.r",
+    "centre": [
+      -0.0202,
+      0.8036,
+      0.031
+    ],
+    "size": [
+      0.0343,
+      0.0502,
+      0.1335
+    ]
+  },
+  {
+    "name": "Internal pudendal artery.r",
+    "parent": "Anterior division of internal iliac artery.r",
+    "centre": [
+      -0.0399,
+      0.87,
+      -0.0357
+    ],
+    "size": [
+      0.0202,
+      0.1121,
+      0.0398
+    ]
+  },
+  {
+    "name": "Obturator artery.l",
+    "parent": "Anterior division of internal iliac artery.r",
+    "centre": [
+      0.0468,
+      0.8748,
+      -0.0126
+    ],
+    "size": [
+      0.0163,
+      0.0436,
+      0.0509
+    ]
+  },
+  {
+    "name": "Obturator artery.r",
+    "parent": "Anterior division of internal iliac artery.r",
+    "centre": [
+      -0.0468,
+      0.8748,
+      -0.0126
+    ],
+    "size": [
+      0.0163,
+      0.0436,
+      0.0509
+    ]
+  },
+  {
+    "name": "Anterior division of internal iliac artery.r",
+    "parent": "Internal iliac artery.r",
+    "centre": [
+      -0.0321,
+      0.9334,
+      -0.0136
+    ],
+    "size": [
+      0.006,
+      0.0189,
+      0.011
+    ]
+  },
+  {
+    "name": "Iliacus branch of iliolumbar artery.r",
+    "parent": "Iliolumbar artery.r",
+    "centre": [
+      -0.0798,
+      0.9826,
+      0.0043
+    ],
+    "size": [
+      0.0885,
+      0.0476,
+      0.0915
+    ]
+  },
+  {
+    "name": "Lumbar branch of iliolumbar artery.r",
+    "parent": "Iliolumbar artery.r",
+    "centre": [
+      -0.0484,
+      0.9653,
+      -0.0045
+    ],
+    "size": [
+      0.0276,
+      0.0194,
+      0.044
+    ]
+  },
+  {
+    "name": "Spinal branch of iliolumbar artery.r",
+    "parent": "Iliolumbar artery.r",
+    "centre": [
+      -0.027,
+      0.9646,
+      -0.0309
+    ],
+    "size": [
+      0.0227,
+      0.0047,
+      0.0056
+    ]
+  },
+  {
+    "name": "Iliolumbar artery.r",
+    "parent": "Posterior division of internal iliac artery.r",
+    "centre": [
+      -0.0345,
+      0.9506,
+      -0.0213
+    ],
+    "size": [
+      0.0088,
+      0.0268,
+      0.0183
+    ]
+  },
+  {
+    "name": "Superior gluteal artery.r",
+    "parent": "Posterior division of internal iliac artery.r",
+    "centre": [
+      -0.0538,
+      0.933,
+      -0.0442
+    ],
+    "size": [
+      0.0484,
+      0.0441,
+      0.058
+    ]
+  },
+  {
+    "name": "Posterior division of internal iliac artery.r",
+    "parent": "Internal iliac artery.r",
+    "centre": [
+      -0.0321,
+      0.9384,
+      -0.0131
+    ],
+    "size": [
+      0.0061,
+      0.0087,
+      0.0101
+    ]
+  },
+  {
+    "name": "Internal iliac artery.r",
+    "parent": "Common iliac artery.r",
+    "centre": [
+      -0.0308,
+      0.9631,
+      0.0018
+    ],
+    "size": [
+      0.0138,
+      0.0479,
+      0.0291
+    ]
+  },
+  {
+    "name": "Common iliac artery.r",
+    "parent": null,
+    "centre": [
+      -0.0098,
+      1.0056,
+      0.023
+    ],
+    "size": [
+      0.0482,
+      0.0537,
+      0.0348
+    ]
+  },
+  {
+    "name": "Median sacral artery",
+    "parent": null,
+    "centre": [
+      0,
+      0.9485,
+      -0.0276
+    ],
+    "size": [
+      0.002,
+      0.1535,
+      0.0976
+    ]
+  },
+  {
+    "name": "Ascending aorta",
+    "parent": null,
+    "centre": [
+      0.0112,
+      1.3358,
+      0.0243
+    ],
+    "size": [
+      0.0416,
+      0.0555,
+      0.0399
+    ]
+  },
+  {
+    "name": "Posterior intercostal arteries.l",
+    "parent": "Thoracic aorta",
+    "centre": [
+      0.0735,
+      1.2347,
+      0.0076
+    ],
+    "size": [
+      0.1285,
+      0.3336,
+      0.1963
+    ]
+  },
+  {
+    "name": "Posterior intercostal arteries.r",
+    "parent": "Thoracic aorta",
+    "centre": [
+      -0.0578,
+      1.2347,
+      0.0076
+    ],
+    "size": [
+      0.1598,
+      0.3336,
+      0.1963
+    ]
+  },
+  {
+    "name": "Subcostal artery.l",
+    "parent": "Thoracic aorta",
+    "centre": [
+      0.0355,
+      1.1117,
+      -0.0269
+    ],
+    "size": [
+      0.0765,
+      0.0815,
+      0.0741
+    ]
+  },
+  {
+    "name": "Subcostal artery.r",
+    "parent": "Thoracic aorta",
+    "centre": [
+      -0.0346,
+      1.1118,
+      -0.0286
+    ],
+    "size": [
+      0.0782,
+      0.0818,
+      0.0707
+    ]
+  },
+  {
+    "name": "Superior phrenic arteries",
+    "parent": "Thoracic aorta",
+    "centre": [
+      -0.0702,
+      1.192,
+      0.0042
+    ],
+    "size": [
+      0.096,
+      0.1465,
+      0.0973
+    ]
+  },
+  {
+    "name": "Thoracic aorta",
+    "parent": null,
+    "centre": [
+      0.0152,
+      1.2853,
+      -0.0253
+    ],
+    "size": [
+      0.0316,
+      0.1604,
+      0.0484
+    ]
+  },
+  {
+    "name": "Anterior spinal artery.l",
+    "parent": null,
+    "centre": [
+      0.0069,
+      1.5517,
+      -0.0196
+    ],
+    "size": [
+      0.0145,
+      0.0274,
+      0.0086
+    ]
+  },
+  {
+    "name": "Anterior spinal artery.r",
+    "parent": null,
+    "centre": [
+      -0.0069,
+      1.5517,
+      -0.0196
+    ],
+    "size": [
+      0.0145,
+      0.0274,
+      0.0086
+    ]
+  },
+  {
+    "name": "Anterior communicating artery",
+    "parent": null,
+    "centre": [
+      -0.0001,
+      1.6098,
+      0.0233
+    ],
+    "size": [
+      0.0067,
+      0.0013,
+      0.0018
+    ]
+  },
+  {
+    "name": "Posterior communicating artery.l",
+    "parent": null,
+    "centre": [
+      0.0081,
+      1.6053,
+      0.0152
+    ],
+    "size": [
+      0.0072,
+      0.0036,
+      0.0126
+    ]
+  },
+  {
+    "name": "Posterior communicating artery.r",
+    "parent": null,
+    "centre": [
+      -0.0081,
+      1.6053,
+      0.0152
+    ],
+    "size": [
+      0.0072,
+      0.0036,
+      0.0126
+    ]
+  },
+  {
+    "name": "Deep external pudendal artery.l",
+    "parent": "Femoral artery.l",
+    "centre": [
+      0.0463,
+      0.83,
+      0.0478
+    ],
+    "size": [
+      0.0321,
+      0.0142,
+      0.0093
+    ]
+  },
+  {
+    "name": "Descending branch of lateral circumflex femoral artery.l",
+    "parent": "Lateral circumflex femoral artery.l",
+    "centre": [
+      0.1023,
+      0.6667,
+      0.0095
+    ],
+    "size": [
+      0.0487,
+      0.3315,
+      0.0356
+    ]
+  },
+  {
+    "name": "Lateral circumflex femoral artery.l",
+    "parent": "Deep femoral artery.l",
+    "centre": [
+      0.1072,
+      0.8381,
+      -0.0039
+    ],
+    "size": [
+      0.0712,
+      0.0477,
+      0.0649
+    ]
+  },
+  {
+    "name": "Medial circumflex femoral artery.l",
+    "parent": "Deep femoral artery.l",
+    "centre": [
+      0.0896,
+      0.8412,
+      0.0005
+    ],
+    "size": [
+      0.035,
+      0.0451,
+      0.0524
+    ]
+  },
+  {
+    "name": "Perforating femoral arteries.l",
+    "parent": "Deep femoral artery.l",
+    "centre": [
+      0.1013,
+      0.7036,
+      0.0041
+    ],
+    "size": [
+      0.0515,
+      0.1822,
+      0.0216
+    ]
+  },
+  {
+    "name": "Deep femoral artery.l",
+    "parent": "Femoral artery.l",
+    "centre": [
+      0.0734,
+      0.7209,
+      0.0092
+    ],
+    "size": [
+      0.0425,
+      0.2598,
+      0.0784
+    ]
+  },
+  {
+    "name": "Dorsal digital arteries of foot.l",
+    "parent": "Dorsal metatarsal arteries.l",
+    "centre": [
+      0.1149,
+      0.025,
+      0.0584
+    ],
+    "size": [
+      0.063,
+      0.0265,
+      0.1464
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal arteries.l",
+    "parent": "Arcuate artery.l",
+    "centre": [
+      0.1011,
+      0.0407,
+      0.0387
+    ],
+    "size": [
+      0.0405,
+      0.0433,
+      0.0884
+    ]
+  },
+  {
+    "name": "Arcuate artery.l",
+    "parent": "Dorsalis pedis artery.l",
+    "centre": [
+      0.095,
+      0.052,
+      0.0036
+    ],
+    "size": [
+      0.0304,
+      0.0301,
+      0.0367
+    ]
+  },
+  {
+    "name": "Deep plantar artery.l",
+    "parent": "Dorsalis pedis artery.l",
+    "centre": [
+      0.0838,
+      0.0487,
+      0.0267
+    ],
+    "size": [
+      0.009,
+      0.018,
+      0.0214
+    ]
+  },
+  {
+    "name": "Lateral tarsal artery.l",
+    "parent": "Dorsalis pedis artery.l",
+    "centre": [
+      0.09,
+      0.0614,
+      -0.0179
+    ],
+    "size": [
+      0.0387,
+      0.0493,
+      0.0091
+    ]
+  },
+  {
+    "name": "Dorsalis pedis artery.l",
+    "parent": "Anterior tibial artery.l",
+    "centre": [
+      0.077,
+      0.0684,
+      0.0166
+    ],
+    "size": [
+      0.0138,
+      0.0337,
+      0.0658
+    ]
+  },
+  {
+    "name": "Anterior tibial artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0891,
+      0.2362,
+      -0.0314
+    ],
+    "size": [
+      0.0381,
+      0.3036,
+      0.0465
+    ]
+  },
+  {
+    "name": "Inferior lateral genicular artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0963,
+      0.4423,
+      -0.0315
+    ],
+    "size": [
+      0.0438,
+      0.0269,
+      0.0708
+    ]
+  },
+  {
+    "name": "Inferior medial genicular artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0554,
+      0.427,
+      -0.0287
+    ],
+    "size": [
+      0.0383,
+      0.0271,
+      0.0752
+    ]
+  },
+  {
+    "name": "Middle genicular artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0763,
+      0.4761,
+      -0.0527
+    ],
+    "size": [
+      0.0532,
+      0.0257,
+      0.0175
+    ]
+  },
+  {
+    "name": "Patellar anastomosis.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0862,
+      0.4376,
+      -0.0061
+    ],
+    "size": [
+      0.0613,
+      0.1279,
+      0.0637
+    ]
+  },
+  {
+    "name": "Calcaneal branches of posterior tibial artery.l",
+    "parent": "Posterior tibial artery.l",
+    "centre": [
+      0.0588,
+      0.0444,
+      -0.0645
+    ],
+    "size": [
+      0.0092,
+      0.0117,
+      0.0222
+    ]
+  },
+  {
+    "name": "Calcaneal branches of fibular artery.l",
+    "parent": "Fibular artery.l",
+    "centre": [
+      0.0813,
+      0.0495,
+      -0.0692
+    ],
+    "size": [
+      0.0086,
+      0.0108,
+      0.0072
+    ]
+  },
+  {
+    "name": "Fibular artery.l",
+    "parent": "Posterior tibial artery.l",
+    "centre": [
+      0.1015,
+      0.2149,
+      -0.0622
+    ],
+    "size": [
+      0.0233,
+      0.3205,
+      0.0291
+    ]
+  },
+  {
+    "name": "Proper plantar digital arteries.l",
+    "parent": "Common plantar digital arteries.l",
+    "centre": [
+      0.1135,
+      0.0147,
+      0.0601
+    ],
+    "size": [
+      0.0604,
+      0.0131,
+      0.1436
+    ]
+  },
+  {
+    "name": "Common plantar digital arteries.l",
+    "parent": "Plantar metatarsal arteries.l",
+    "centre": [
+      0.1031,
+      0.0189,
+      0.0627
+    ],
+    "size": [
+      0.0397,
+      0.0139,
+      0.0408
+    ]
+  },
+  {
+    "name": "Perforating branches of plantar metatarsal arteries.l",
+    "parent": "Plantar metatarsal arteries.l",
+    "centre": [
+      0.101,
+      0.0296,
+      0.0388
+    ],
+    "size": [
+      0.0401,
+      0.0277,
+      0.0658
+    ]
+  },
+  {
+    "name": "Plantar metatarsal arteries.l",
+    "parent": "Plantar arch.l",
+    "centre": [
+      0.0992,
+      0.0292,
+      0.0313
+    ],
+    "size": [
+      0.0325,
+      0.0273,
+      0.0654
+    ]
+  },
+  {
+    "name": "Plantar arch.l",
+    "parent": "Lateral plantar artery.l",
+    "centre": [
+      0.0819,
+      0.0314,
+      0.0031
+    ],
+    "size": [
+      0.0443,
+      0.023,
+      0.0298
+    ]
+  },
+  {
+    "name": "Lateral plantar artery.l",
+    "parent": "Posterior tibial artery.l",
+    "centre": [
+      0.0835,
+      0.0302,
+      -0.0209
+    ],
+    "size": [
+      0.0407,
+      0.0204,
+      0.0205
+    ]
+  },
+  {
+    "name": "Superficial branch of medial plantar artery.l",
+    "parent": "Medial plantar artery.l",
+    "centre": [
+      0.0611,
+      0.0293,
+      0.0416
+    ],
+    "size": [
+      0.0047,
+      0.0184,
+      0.0636
+    ]
+  },
+  {
+    "name": "Medial plantar artery.l",
+    "parent": "Posterior tibial artery.l",
+    "centre": [
+      0.0635,
+      0.0402,
+      -0.0104
+    ],
+    "size": [
+      0.0089,
+      0.0069,
+      0.0412
+    ]
+  },
+  {
+    "name": "Posterior tibial artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0746,
+      0.2068,
+      -0.046
+    ],
+    "size": [
+      0.0438,
+      0.3365,
+      0.0315
+    ]
+  },
+  {
+    "name": "Superior lateral genicular artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0958,
+      0.5036,
+      -0.0156
+    ],
+    "size": [
+      0.0475,
+      0.0497,
+      0.0401
+    ]
+  },
+  {
+    "name": "Superior medial genicular artery.l",
+    "parent": "Popliteal artery.l",
+    "centre": [
+      0.0595,
+      0.4976,
+      -0.0118
+    ],
+    "size": [
+      0.0363,
+      0.1444,
+      0.0522
+    ]
+  },
+  {
+    "name": "Popliteal artery.l",
+    "parent": "Femoral artery.l",
+    "centre": [
+      0.0781,
+      0.4696,
+      -0.0397
+    ],
+    "size": [
+      0.0351,
+      0.192,
+      0.0577
+    ]
+  },
+  {
+    "name": "Superficial epigastric artery.l",
+    "parent": "Femoral artery.l",
+    "centre": [
+      0.0603,
+      0.9575,
+      0.0726
+    ],
+    "size": [
+      0.0295,
+      0.2204,
+      0.0557
+    ]
+  },
+  {
+    "name": "Superficial external pudendal artery.l",
+    "parent": "Femoral artery.l",
+    "centre": [
+      0.0291,
+      0.7959,
+      0.0564
+    ],
+    "size": [
+      0.0479,
+      0.1173,
+      0.0222
+    ]
+  },
+  {
+    "name": "Femoral artery.l",
+    "parent": null,
+    "centre": [
+      0.0614,
+      0.7289,
+      0.0164
+    ],
+    "size": [
+      0.032,
+      0.3384,
+      0.0696
+    ]
+  },
+  {
+    "name": "Deep external pudendal artery.r",
+    "parent": "Femoral artery.r",
+    "centre": [
+      -0.0463,
+      0.83,
+      0.0478
+    ],
+    "size": [
+      0.0321,
+      0.0142,
+      0.0093
+    ]
+  },
+  {
+    "name": "Descending branch of lateral circumflex femoral artery",
+    "parent": "Lateral circumflex femoral artery.r",
+    "centre": [
+      -0.1023,
+      0.6667,
+      0.0095
+    ],
+    "size": [
+      0.0487,
+      0.3315,
+      0.0356
+    ]
+  },
+  {
+    "name": "Lateral circumflex femoral artery.r",
+    "parent": "Deep femoral artery.r",
+    "centre": [
+      -0.1072,
+      0.8381,
+      -0.0039
+    ],
+    "size": [
+      0.0712,
+      0.0477,
+      0.0649
+    ]
+  },
+  {
+    "name": "Medial circumflex femoral artery.r",
+    "parent": "Deep femoral artery.r",
+    "centre": [
+      -0.0896,
+      0.8412,
+      0.0005
+    ],
+    "size": [
+      0.035,
+      0.0451,
+      0.0524
+    ]
+  },
+  {
+    "name": "Perforating femoral arteries.r",
+    "parent": "Deep femoral artery.r",
+    "centre": [
+      -0.1013,
+      0.7036,
+      0.0041
+    ],
+    "size": [
+      0.0515,
+      0.1822,
+      0.0216
+    ]
+  },
+  {
+    "name": "Deep femoral artery.r",
+    "parent": "Femoral artery.r",
+    "centre": [
+      -0.0734,
+      0.7209,
+      0.0092
+    ],
+    "size": [
+      0.0425,
+      0.2598,
+      0.0784
+    ]
+  },
+  {
+    "name": "Dorsal digital arteries of foot.r",
+    "parent": "Dorsal metatarsal arteries.r",
+    "centre": [
+      -0.1149,
+      0.025,
+      0.0584
+    ],
+    "size": [
+      0.063,
+      0.0265,
+      0.1464
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal arteries.r",
+    "parent": "Arcuate artery.r",
+    "centre": [
+      -0.1011,
+      0.0407,
+      0.0387
+    ],
+    "size": [
+      0.0405,
+      0.0433,
+      0.0884
+    ]
+  },
+  {
+    "name": "Arcuate artery.r",
+    "parent": "Dorsalis pedis artery.r",
+    "centre": [
+      -0.095,
+      0.052,
+      0.0036
+    ],
+    "size": [
+      0.0304,
+      0.0301,
+      0.0367
+    ]
+  },
+  {
+    "name": "Deep plantar artery.r",
+    "parent": "Dorsalis pedis artery.r",
+    "centre": [
+      -0.0838,
+      0.0487,
+      0.0267
+    ],
+    "size": [
+      0.009,
+      0.018,
+      0.0214
+    ]
+  },
+  {
+    "name": "Lateral tarsal artery.r",
+    "parent": "Dorsalis pedis artery.r",
+    "centre": [
+      -0.09,
+      0.0614,
+      -0.0179
+    ],
+    "size": [
+      0.0387,
+      0.0493,
+      0.0091
+    ]
+  },
+  {
+    "name": "Dorsalis pedis artery.r",
+    "parent": "Anterior tibial artery.r",
+    "centre": [
+      -0.077,
+      0.0684,
+      0.0166
+    ],
+    "size": [
+      0.0138,
+      0.0337,
+      0.0658
+    ]
+  },
+  {
+    "name": "Anterior tibial artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0891,
+      0.2362,
+      -0.0314
+    ],
+    "size": [
+      0.0381,
+      0.3036,
+      0.0465
+    ]
+  },
+  {
+    "name": "Inferior lateral genicular artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0963,
+      0.4423,
+      -0.0315
+    ],
+    "size": [
+      0.0438,
+      0.0269,
+      0.0708
+    ]
+  },
+  {
+    "name": "Inferior medial genicular artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0554,
+      0.427,
+      -0.0287
+    ],
+    "size": [
+      0.0383,
+      0.0271,
+      0.0752
+    ]
+  },
+  {
+    "name": "Middle genicular artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0763,
+      0.4761,
+      -0.0527
+    ],
+    "size": [
+      0.0532,
+      0.0257,
+      0.0175
+    ]
+  },
+  {
+    "name": "Patellar anastomosis.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0862,
+      0.4376,
+      -0.0061
+    ],
+    "size": [
+      0.0613,
+      0.1279,
+      0.0637
+    ]
+  },
+  {
+    "name": "Calcaneal branches of posterior tibial artery.r",
+    "parent": "Posterior tibial artery.r",
+    "centre": [
+      -0.0588,
+      0.0444,
+      -0.0645
+    ],
+    "size": [
+      0.0092,
+      0.0117,
+      0.0222
+    ]
+  },
+  {
+    "name": "Calcaneal branches of fibular artery.r",
+    "parent": "Fibular artery.r",
+    "centre": [
+      -0.0813,
+      0.0495,
+      -0.0692
+    ],
+    "size": [
+      0.0086,
+      0.0108,
+      0.0072
+    ]
+  },
+  {
+    "name": "Fibular artery.r",
+    "parent": "Posterior tibial artery.r",
+    "centre": [
+      -0.1015,
+      0.2149,
+      -0.0622
+    ],
+    "size": [
+      0.0233,
+      0.3205,
+      0.0291
+    ]
+  },
+  {
+    "name": "Proper plantar digital arteries.r",
+    "parent": "Common plantar digital arteries.r",
+    "centre": [
+      -0.1135,
+      0.0147,
+      0.0601
+    ],
+    "size": [
+      0.0604,
+      0.0131,
+      0.1436
+    ]
+  },
+  {
+    "name": "Common plantar digital arteries.r",
+    "parent": "Plantar metatarsal arteries.r",
+    "centre": [
+      -0.1031,
+      0.0189,
+      0.0627
+    ],
+    "size": [
+      0.0397,
+      0.0139,
+      0.0408
+    ]
+  },
+  {
+    "name": "Perforating branches of plantar metatarsal arteries.r",
+    "parent": "Plantar metatarsal arteries.r",
+    "centre": [
+      -0.101,
+      0.0296,
+      0.0388
+    ],
+    "size": [
+      0.0401,
+      0.0277,
+      0.0658
+    ]
+  },
+  {
+    "name": "Plantar metatarsal arteries.r",
+    "parent": "Plantar arch.r",
+    "centre": [
+      -0.0992,
+      0.0292,
+      0.0313
+    ],
+    "size": [
+      0.0325,
+      0.0273,
+      0.0654
+    ]
+  },
+  {
+    "name": "Plantar arch.r",
+    "parent": "Lateral plantar artery.r",
+    "centre": [
+      -0.0819,
+      0.0314,
+      0.0031
+    ],
+    "size": [
+      0.0443,
+      0.023,
+      0.0298
+    ]
+  },
+  {
+    "name": "Lateral plantar artery.r",
+    "parent": "Posterior tibial artery.r",
+    "centre": [
+      -0.0835,
+      0.0302,
+      -0.0209
+    ],
+    "size": [
+      0.0407,
+      0.0204,
+      0.0205
+    ]
+  },
+  {
+    "name": "Superficial branch of medial plantar artery.r",
+    "parent": "Medial plantar artery.r",
+    "centre": [
+      -0.0611,
+      0.0293,
+      0.0416
+    ],
+    "size": [
+      0.0047,
+      0.0184,
+      0.0636
+    ]
+  },
+  {
+    "name": "Medial plantar artery.r",
+    "parent": "Posterior tibial artery.r",
+    "centre": [
+      -0.0635,
+      0.0402,
+      -0.0104
+    ],
+    "size": [
+      0.0089,
+      0.0069,
+      0.0412
+    ]
+  },
+  {
+    "name": "Posterior tibial artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0746,
+      0.2068,
+      -0.046
+    ],
+    "size": [
+      0.0438,
+      0.3365,
+      0.0315
+    ]
+  },
+  {
+    "name": "Superior lateral genicular artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0958,
+      0.5036,
+      -0.0156
+    ],
+    "size": [
+      0.0475,
+      0.0497,
+      0.0401
+    ]
+  },
+  {
+    "name": "Superior medial genicular artery.r",
+    "parent": "Popliteal artery.r",
+    "centre": [
+      -0.0595,
+      0.4976,
+      -0.0118
+    ],
+    "size": [
+      0.0363,
+      0.1444,
+      0.0522
+    ]
+  },
+  {
+    "name": "Popliteal artery.r",
+    "parent": "Femoral artery.r",
+    "centre": [
+      -0.0781,
+      0.4696,
+      -0.0397
+    ],
+    "size": [
+      0.0351,
+      0.192,
+      0.0577
+    ]
+  },
+  {
+    "name": "Superficial epigastric artery.r",
+    "parent": "Femoral artery.r",
+    "centre": [
+      -0.0603,
+      0.9575,
+      0.0726
+    ],
+    "size": [
+      0.0295,
+      0.2204,
+      0.0557
+    ]
+  },
+  {
+    "name": "Superficial external pudendal artery.r",
+    "parent": "Femoral artery.r",
+    "centre": [
+      -0.0291,
+      0.7959,
+      0.0564
+    ],
+    "size": [
+      0.0479,
+      0.1173,
+      0.0222
+    ]
+  },
+  {
+    "name": "Femoral artery.r",
+    "parent": null,
+    "centre": [
+      -0.0614,
+      0.7289,
+      0.0164
+    ],
+    "size": [
+      0.032,
+      0.3384,
+      0.0696
+    ]
+  },
+  {
+    "name": "Ascending pharyngeal artery.l",
+    "parent": "External carotid artery.l",
+    "centre": [
+      0.027,
+      1.5366,
+      0.0271
+    ],
+    "size": [
+      0.0283,
+      0.0298,
+      0.0486
+    ]
+  },
+  {
+    "name": "Angular artery.l",
+    "parent": "Facial artery.l",
+    "centre": [
+      0.0154,
+      1.6088,
+      0.0778
+    ],
+    "size": [
+      0.0304,
+      0.113,
+      0.0202
+    ]
+  },
+  {
+    "name": "Inferior labial artery.l",
+    "parent": "Facial artery.l",
+    "centre": [
+      0.0184,
+      1.5239,
+      0.071
+    ],
+    "size": [
+      0.0308,
+      0.0238,
+      0.0203
+    ]
+  },
+  {
+    "name": "Submental artery.l",
+    "parent": "Facial artery.l",
+    "centre": [
+      0.0171,
+      1.505,
+      0.0543
+    ],
+    "size": [
+      0.0306,
+      0.015,
+      0.0367
+    ]
+  },
+  {
+    "name": "Superior labial artery.l",
+    "parent": "Facial artery.l",
+    "centre": [
+      0.0227,
+      1.5432,
+      0.0767
+    ],
+    "size": [
+      0.0219,
+      0.0019,
+      0.0234
+    ]
+  },
+  {
+    "name": "Facial artery.l",
+    "parent": "External carotid artery.l",
+    "centre": [
+      0.0348,
+      1.531,
+      0.0369
+    ],
+    "size": [
+      0.0116,
+      0.045,
+      0.0655
+    ]
+  },
+  {
+    "name": "Anterior deep temporal artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0444,
+      1.5941,
+      0.0339
+    ],
+    "size": [
+      0.0222,
+      0.0443,
+      0.0137
+    ]
+  },
+  {
+    "name": "?x.l",
+    "parent": "Artery of pterygoid canal.l",
+    "centre": [
+      0.0032,
+      1.5708,
+      0.0569
+    ],
+    "size": [
+      0.0055,
+      0.0085,
+      0.0487
+    ]
+  },
+  {
+    "name": "Artery of pterygoid canal.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0213,
+      1.5734,
+      0.0354
+    ],
+    "size": [
+      0.0252,
+      0.0063,
+      0.0086
+    ]
+  },
+  {
+    "name": "Buccal artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.032,
+      1.5579,
+      0.0478
+    ],
+    "size": [
+      0.0049,
+      0.0299,
+      0.0356
+    ]
+  },
+  {
+    "name": "Greater palatine artery.l",
+    "parent": "Descending palatine artery.l",
+    "centre": [
+      0.0093,
+      1.5505,
+      0.0616
+    ],
+    "size": [
+      0.0147,
+      0.0142,
+      0.035
+    ]
+  },
+  {
+    "name": "Descending palatine artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0235,
+      1.5642,
+      0.0391
+    ],
+    "size": [
+      0.0168,
+      0.0202,
+      0.0134
+    ]
+  },
+  {
+    "name": "Mental branch of inferior alveolar artery.l",
+    "parent": "Inferior alveolar artery.l",
+    "centre": [
+      0.0117,
+      1.5111,
+      0.0761
+    ],
+    "size": [
+      0.0071,
+      0.0046,
+      0.004
+    ]
+  },
+  {
+    "name": "Mylohyoid branch of inferior alveolar artery.l",
+    "parent": "Inferior alveolar artery.l",
+    "centre": [
+      0.0337,
+      1.5348,
+      0.02
+    ],
+    "size": [
+      0.0068,
+      0.0194,
+      0.0028
+    ]
+  },
+  {
+    "name": "Inferior alveolar artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0268,
+      1.5361,
+      0.0412
+    ],
+    "size": [
+      0.0241,
+      0.0591,
+      0.0669
+    ]
+  },
+  {
+    "name": "Infra-orbital artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0266,
+      1.5675,
+      0.0591
+    ],
+    "size": [
+      0.0063,
+      0.0163,
+      0.0271
+    ]
+  },
+  {
+    "name": "Accessory branch of middle meningeal artery.l",
+    "parent": "Middle meningeal artery.l",
+    "centre": [
+      0.0293,
+      1.5787,
+      0.0128
+    ],
+    "size": [
+      0.0161,
+      0.023,
+      0.0049
+    ]
+  },
+  {
+    "name": "Middle meningeal artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0312,
+      1.5779,
+      0.0097
+    ],
+    "size": [
+      0.0126,
+      0.024,
+      0.0052
+    ]
+  },
+  {
+    "name": "Posterior deep temporal artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0492,
+      1.596,
+      0.0228
+    ],
+    "size": [
+      0.0253,
+      0.0469,
+      0.0087
+    ]
+  },
+  {
+    "name": "Posterior septal branches of sphenopalatine artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0045,
+      1.5573,
+      0.0599
+    ],
+    "size": [
+      0.0092,
+      0.0274,
+      0.042
+    ]
+  },
+  {
+    "name": "Posterior superior alveolar artery.l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.0296,
+      1.5657,
+      0.0385
+    ],
+    "size": [
+      0.0097,
+      0.0136,
+      0.0171
+    ]
+  },
+  {
+    "name": "Posterior lateral nasal branches of sphenopalatine artery..l",
+    "parent": "Maxillary artery.l",
+    "centre": [
+      0.009,
+      1.5786,
+      0.0598
+    ],
+    "size": [
+      0.0158,
+      0.0386,
+      0.0385
+    ]
+  },
+  {
+    "name": "Maxillary artery.l",
+    "parent": "External carotid artery.l",
+    "centre": [
+      0.0352,
+      1.5612,
+      0.0313
+    ],
+    "size": [
+      0.0191,
+      0.0298,
+      0.06
+    ]
+  },
+  {
+    "name": "Occipital artery.l",
+    "parent": "External carotid artery.l",
+    "centre": [
+      0.0471,
+      1.6161,
+      -0.0497
+    ],
+    "size": [
+      0.0322,
+      0.1269,
+      0.107
+    ]
+  },
+  {
+    "name": "Frontal branch of superficial temporal artery.l",
+    "parent": "Superficial temporal artery.l",
+    "centre": [
+      0.0413,
+      1.6349,
+      0.0641
+    ],
+    "size": [
+      0.0333,
+      0.0249,
+      0.0424
+    ]
+  },
+  {
+    "name": "Transverse facial artery.l",
+    "parent": "Superficial temporal artery.l",
+    "centre": [
+      0.0431,
+      1.5706,
+      0.0379
+    ],
+    "size": [
+      0.0444,
+      0.0197,
+      0.0731
+    ]
+  },
+  {
+    "name": "Superficial temporal artery.l",
+    "parent": "External carotid artery.l",
+    "centre": [
+      0.0578,
+      1.6222,
+      -0.0012
+    ],
+    "size": [
+      0.0333,
+      0.1256,
+      0.1113
+    ]
+  },
+  {
+    "name": "External carotid artery.l",
+    "parent": "Left common carotid artery",
+    "centre": [
+      0.0369,
+      1.5233,
+      0.0017
+    ],
+    "size": [
+      0.0181,
+      0.0753,
+      0.0105
+    ]
+  },
+  {
+    "name": "Distal lateral striate branches.l",
+    "parent": "Middle cerebral artery (M1-segment).l",
+    "centre": [
+      0.0223,
+      1.6164,
+      0.026
+    ],
+    "size": [
+      0.0117,
+      0.0132,
+      0.0115
+    ]
+  },
+  {
+    "name": "Anterior temporal branch.l",
+    "parent": "Insular branches of middle cerebral artery (M2-segment).l",
+    "centre": [
+      0.0572,
+      1.6094,
+      0.0072
+    ],
+    "size": [
+      0.022,
+      0.0365,
+      0.0424
+    ]
+  },
+  {
+    "name": "Artery of precentral sulcus.l",
+    "parent": "Insular branches of middle cerebral artery (M2-segment).l",
+    "centre": [
+      0.0422,
+      1.6602,
+      0.0163
+    ],
+    "size": [
+      0.0385,
+      0.071,
+      0.0351
+    ]
+  },
+  {
+    "name": "Artery of central sulcus.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0396,
+      1.6586,
+      -0.0091
+    ],
+    "size": [
+      0.0497,
+      0.0744,
+      0.0523
+    ]
+  },
+  {
+    "name": "Parietal branches of middle cerebral artery.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0543,
+      1.6568,
+      -0.0373
+    ],
+    "size": [
+      0.0334,
+      0.0409,
+      0.0315
+    ]
+  },
+  {
+    "name": "Postcentral arterial branch.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0451,
+      1.6599,
+      -0.0256
+    ],
+    "size": [
+      0.0461,
+      0.0558,
+      0.0495
+    ]
+  },
+  {
+    "name": "Posterior parietal artery.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0515,
+      1.6516,
+      -0.0531
+    ],
+    "size": [
+      0.0265,
+      0.0382,
+      0.0435
+    ]
+  },
+  {
+    "name": "Posterior temporal branch.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0591,
+      1.6157,
+      -0.0503
+    ],
+    "size": [
+      0.0195,
+      0.0409,
+      0.0384
+    ]
+  },
+  {
+    "name": "Temporal branches of middle cerebral artery.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0619,
+      1.6154,
+      -0.0196
+    ],
+    "size": [
+      0.0182,
+      0.0449,
+      0.0455
+    ]
+  },
+  {
+    "name": "Branch to angular gyrus.l",
+    "parent": "Temporo-occipital branch.l",
+    "centre": [
+      0.0602,
+      1.6278,
+      -0.062
+    ],
+    "size": [
+      0.0023,
+      0.0119,
+      0.0061
+    ]
+  },
+  {
+    "name": "Temporo-occipital branch.l",
+    "parent": "Middle cerebral artery (M3 segment).l",
+    "centre": [
+      0.0377,
+      1.6181,
+      -0.0754
+    ],
+    "size": [
+      0.0448,
+      0.0456,
+      0.0421
+    ]
+  },
+  {
+    "name": "Middle cerebral artery (M3 segment).l",
+    "parent": "Insular branches of middle cerebral artery (M2-segment).l",
+    "centre": [
+      0.0534,
+      1.6298,
+      -0.019
+    ],
+    "size": [
+      0.0144,
+      0.0165,
+      0.0716
+    ]
+  },
+  {
+    "name": "Lateral frontobasal artery.l",
+    "parent": "Prefrontal artery.l",
+    "centre": [
+      0.0331,
+      1.6358,
+      0.0473
+    ],
+    "size": [
+      0.0444,
+      0.0407,
+      0.0591
+    ]
+  },
+  {
+    "name": "Prefrontal artery.l",
+    "parent": "Insular branches of middle cerebral artery (M2-segment).l",
+    "centre": [
+      0.0466,
+      1.6531,
+      0.0343
+    ],
+    "size": [
+      0.0288,
+      0.0551,
+      0.0311
+    ]
+  },
+  {
+    "name": "Insular branches of middle cerebral artery (M2-segment).l",
+    "parent": "Middle cerebral artery (M1-segment).l",
+    "centre": [
+      0.0426,
+      1.6212,
+      0.0179
+    ],
+    "size": [
+      0.0127,
+      0.0121,
+      0.0062
+    ]
+  },
+  {
+    "name": "Proximal lateral striate branches.l",
+    "parent": "Middle cerebral artery (M1-segment).l",
+    "centre": [
+      0.0126,
+      1.6155,
+      0.0222
+    ],
+    "size": [
+      0.0069,
+      0.0122,
+      0.0049
+    ]
+  },
+  {
+    "name": "Middle cerebral artery (M1-segment).l",
+    "parent": "Internal carotid artery.l",
+    "centre": [
+      0.0237,
+      1.6099,
+      0.0217
+    ],
+    "size": [
+      0.0295,
+      0.0148,
+      0.0093
+    ]
+  },
+  {
+    "name": "Anterior septal branches of anterior ethmoidal artery.l",
+    "parent": "Anterior ethmoidal artery.l",
+    "centre": [
+      0.0022,
+      1.5849,
+      0.0537
+    ],
+    "size": [
+      0.0017,
+      0.0216,
+      0.0212
+    ]
+  },
+  {
+    "name": "Anterior ethmoidal artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0074,
+      1.5925,
+      0.0655
+    ],
+    "size": [
+      0.0109,
+      0.0131,
+      0.0263
+    ]
+  },
+  {
+    "name": "Central retinal artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0283,
+      1.5906,
+      0.0509
+    ],
+    "size": [
+      0.0295,
+      0.0251,
+      0.0339
+    ]
+  },
+  {
+    "name": "Lacrimal artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0281,
+      1.6035,
+      0.0497
+    ],
+    "size": [
+      0.029,
+      0.0072,
+      0.0316
+    ]
+  },
+  {
+    "name": "Septal branches of posterior ethmoidal artery.l",
+    "parent": "Posterior ethmoidal artery.l",
+    "centre": [
+      0.0054,
+      1.5838,
+      0.0392
+    ],
+    "size": [
+      0.0089,
+      0.0255,
+      0.0098
+    ]
+  },
+  {
+    "name": "Posterior ethmoidal artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0138,
+      1.5972,
+      0.0446
+    ],
+    "size": [
+      0.0082,
+      0.0062,
+      0.0026
+    ]
+  },
+  {
+    "name": "Long posterior ciliary arteries.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0212,
+      1.6031,
+      0.045
+    ],
+    "size": [
+      0.015,
+      0.009,
+      0.0223
+    ]
+  },
+  {
+    "name": "Short posterior ciliary arteries.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0194,
+      1.5994,
+      0.0382
+    ],
+    "size": [
+      0.0114,
+      0.0033,
+      0.0085
+    ]
+  },
+  {
+    "name": "Supra-orbital artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0265,
+      1.6228,
+      0.0659
+    ],
+    "size": [
+      0.019,
+      0.0457,
+      0.0413
+    ]
+  },
+  {
+    "name": "Supratrochlear artery.l",
+    "parent": "Ophthalmic artery.l",
+    "centre": [
+      0.0126,
+      1.6093,
+      0.0602
+    ],
+    "size": [
+      0.0053,
+      0.0216,
+      0.0524
+    ]
+  },
+  {
+    "name": "Ophthalmic artery.l",
+    "parent": "Internal carotid artery.l",
+    "centre": [
+      0.0148,
+      1.6005,
+      0.0382
+    ],
+    "size": [
+      0.0077,
+      0.0043,
+      0.032
+    ]
+  },
+  {
+    "name": "Internal carotid artery.l",
+    "parent": "Left common carotid artery",
+    "centre": [
+      0.0229,
+      1.5448,
+      0.0112
+    ],
+    "size": [
+      0.0277,
+      0.1183,
+      0.0306
+    ]
+  },
+  {
+    "name": "Left common carotid artery",
+    "parent": null,
+    "centre": [
+      0.0238,
+      1.4409,
+      0.0028
+    ],
+    "size": [
+      0.0228,
+      0.0914,
+      0.0141
+    ]
+  },
+  {
+    "name": "Anterior circumflex humeral artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.1672,
+      1.3758,
+      -0.0091
+    ],
+    "size": [
+      0.0485,
+      0.0634,
+      0.0346
+    ]
+  },
+  {
+    "name": "Middle collateral artery.l",
+    "parent": "Deep brachial artery.l",
+    "centre": [
+      0.2162,
+      1.1555,
+      -0.0495
+    ],
+    "size": [
+      0.0266,
+      0.076,
+      0.0112
+    ]
+  },
+  {
+    "name": "Radial collateral artery.l",
+    "parent": "Deep brachial artery.l",
+    "centre": [
+      0.2283,
+      1.1216,
+      -0.0299
+    ],
+    "size": [
+      0.0509,
+      0.1437,
+      0.0462
+    ]
+  },
+  {
+    "name": "Deep brachial artery.l",
+    "parent": "Brachial artery.l",
+    "centre": [
+      0.188,
+      1.2237,
+      -0.0349
+    ],
+    "size": [
+      0.0351,
+      0.063,
+      0.0239
+    ]
+  },
+  {
+    "name": "Inferior ulnar collateral artery.l",
+    "parent": "Brachial artery.l",
+    "centre": [
+      0.2026,
+      1.1133,
+      -0.0237
+    ],
+    "size": [
+      0.0047,
+      0.0633,
+      0.0265
+    ]
+  },
+  {
+    "name": "Palmar metacarpal arteries.l",
+    "parent": "Deep palmar arch.l",
+    "centre": [
+      0.2692,
+      0.8165,
+      0.0283
+    ],
+    "size": [
+      0.0421,
+      0.0402,
+      0.0253
+    ]
+  },
+  {
+    "name": "Deep palmar arch.l",
+    "parent": "Radial artery.l",
+    "centre": [
+      0.2692,
+      0.8468,
+      0.0215
+    ],
+    "size": [
+      0.039,
+      0.0272,
+      0.0152
+    ]
+  },
+  {
+    "name": "Dorsal digital arteries of hand.l",
+    "parent": "Dorsal metacarpal arteries.l",
+    "centre": [
+      0.2773,
+      0.7627,
+      0.0546
+    ],
+    "size": [
+      0.1029,
+      0.111,
+      0.0723
+    ]
+  },
+  {
+    "name": "Dorsal metacarpal arteries.l",
+    "parent": "Dorsal carpal anastomosis.l",
+    "centre": [
+      0.2661,
+      0.8114,
+      0.0225
+    ],
+    "size": [
+      0.0631,
+      0.0662,
+      0.029
+    ]
+  },
+  {
+    "name": "Dorsal carpal anastomosis.l",
+    "parent": "Radial artery.l",
+    "centre": [
+      0.2746,
+      0.841,
+      0.0119
+    ],
+    "size": [
+      0.0249,
+      0.0085,
+      0.0082
+    ]
+  },
+  {
+    "name": "Palmar carpal branch of radial artery.l",
+    "parent": "Radial artery.l",
+    "centre": [
+      0.2599,
+      0.8771,
+      0.0239
+    ],
+    "size": [
+      0.0273,
+      0.0029,
+      0.0055
+    ]
+  },
+  {
+    "name": "Radial artery.l",
+    "parent": "Brachial artery.l",
+    "centre": [
+      0.2552,
+      0.9673,
+      0.0049
+    ],
+    "size": [
+      0.0648,
+      0.2465,
+      0.0397
+    ]
+  },
+  {
+    "name": "Superior ulnar collateral artery.l",
+    "parent": "Brachial artery.l",
+    "centre": [
+      0.1924,
+      1.1326,
+      -0.0342
+    ],
+    "size": [
+      0.0222,
+      0.1199,
+      0.0242
+    ]
+  },
+  {
+    "name": "(Ulnar recurrent artery).l",
+    "parent": "Ulnar artery.l",
+    "centre": [
+      0.2133,
+      1.0609,
+      -0.0204
+    ],
+    "size": [
+      0.0222,
+      0.0253,
+      0.0173
+    ]
+  },
+  {
+    "name": "Posterior interosseous artery.l",
+    "parent": "Common interosseous artery.l",
+    "centre": [
+      0.242,
+      0.9691,
+      0.0013
+    ],
+    "size": [
+      0.0189,
+      0.1235,
+      0.0278
+    ]
+  },
+  {
+    "name": "Recurrent interosseous artery.l",
+    "parent": "Common interosseous artery.l",
+    "centre": [
+      0.2338,
+      1.0782,
+      -0.0311
+    ],
+    "size": [
+      0.0132,
+      0.0799,
+      0.0478
+    ]
+  },
+  {
+    "name": "Common interosseous artery.l",
+    "parent": "Ulnar artery.l",
+    "centre": [
+      0.232,
+      1.0347,
+      -0.0089
+    ],
+    "size": [
+      0.005,
+      0.0092,
+      0.0038
+    ]
+  },
+  {
+    "name": "Dorsal carpal branch of ulnar artery.l",
+    "parent": "Ulnar artery.l",
+    "centre": [
+      0.2502,
+      0.8483,
+      0.0178
+    ],
+    "size": [
+      0.0243,
+      0.0246,
+      0.0195
+    ]
+  },
+  {
+    "name": "Proper palmar digital arteries.l",
+    "parent": "Common palmar digital arteries.l",
+    "centre": [
+      0.2785,
+      0.7883,
+      0.0584
+    ],
+    "size": [
+      0.107,
+      0.1608,
+      0.0714
+    ]
+  },
+  {
+    "name": "Common palmar digital arteries.l",
+    "parent": "Superficial palmar arch.l",
+    "centre": [
+      0.2738,
+      0.7993,
+      0.0395
+    ],
+    "size": [
+      0.0566,
+      0.0451,
+      0.0195
+    ]
+  },
+  {
+    "name": "Superficial palmar arch.l",
+    "parent": "Ulnar artery.l",
+    "centre": [
+      0.262,
+      0.843,
+      0.0273
+    ],
+    "size": [
+      0.0352,
+      0.0708,
+      0.0138
+    ]
+  },
+  {
+    "name": "Ulnar artery.l",
+    "parent": "Brachial artery.l",
+    "centre": [
+      0.2369,
+      0.975,
+      0.0058
+    ],
+    "size": [
+      0.0339,
+      0.231,
+      0.0449
+    ]
+  },
+  {
+    "name": "Brachial artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.1796,
+      1.2279,
+      -0.018
+    ],
+    "size": [
+      0.0939,
+      0.2764,
+      0.0182
+    ]
+  },
+  {
+    "name": "Lateral thoracic artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.1193,
+      1.2905,
+      0.0309
+    ],
+    "size": [
+      0.0224,
+      0.2112,
+      0.0722
+    ]
+  },
+  {
+    "name": "Posterior circumflex humeral artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.1633,
+      1.367,
+      -0.0225
+    ],
+    "size": [
+      0.0559,
+      0.01,
+      0.0244
+    ]
+  },
+  {
+    "name": "Circumflex scapular artery.l",
+    "parent": "Subscapular artery.l",
+    "centre": [
+      0.1368,
+      1.3544,
+      -0.0348
+    ],
+    "size": [
+      0.014,
+      0.0194,
+      0.0406
+    ]
+  },
+  {
+    "name": "Thoracodorsal artery.l",
+    "parent": "Subscapular artery.l",
+    "centre": [
+      0.1338,
+      1.3141,
+      -0.024
+    ],
+    "size": [
+      0.0092,
+      0.0763,
+      0.0198
+    ]
+  },
+  {
+    "name": "Subscapular artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.1327,
+      1.3587,
+      -0.0128
+    ],
+    "size": [
+      0.0063,
+      0.0141,
+      0.0059
+    ]
+  },
+  {
+    "name": "Pectoral branches of thoraco-acromial artery.l",
+    "parent": "Thoraco-acromial artery.l",
+    "centre": [
+      0.1101,
+      1.3365,
+      0.0269
+    ],
+    "size": [
+      0.034,
+      0.1218,
+      0.0488
+    ]
+  },
+  {
+    "name": "Thoraco-acromial artery.l",
+    "parent": "Axillary artery.l",
+    "centre": [
+      0.0947,
+      1.4002,
+      -0.0002
+    ],
+    "size": [
+      0.0047,
+      0.0104,
+      0.0118
+    ]
+  },
+  {
+    "name": "Axillary artery.l",
+    "parent": "Left subclavian artery",
+    "centre": [
+      0.1077,
+      1.3889,
+      -0.0072
+    ],
+    "size": [
+      0.0583,
+      0.0509,
+      0.0132
+    ]
+  },
+  {
+    "name": "Deep cervical artery.l",
+    "parent": "Costocervical trunk.l",
+    "centre": [
+      0.0409,
+      1.4599,
+      -0.029
+    ],
+    "size": [
+      0.0169,
+      0.0802,
+      0.0378
+    ]
+  },
+  {
+    "name": "First posterior intercostal artery.l",
+    "parent": "Supreme intercostal artery.l",
+    "centre": [
+      0.042,
+      1.393,
+      0.0142
+    ],
+    "size": [
+      0.052,
+      0.0563,
+      0.067
+    ]
+  },
+  {
+    "name": "Second posterior intercostal artery.l",
+    "parent": "Supreme intercostal artery.l",
+    "centre": [
+      0.0532,
+      1.382,
+      0.0134
+    ],
+    "size": [
+      0.0822,
+      0.0786,
+      0.1024
+    ]
+  },
+  {
+    "name": "Supreme intercostal artery.l",
+    "parent": "Costocervical trunk.l",
+    "centre": [
+      0.048,
+      1.4205,
+      -0.0147
+    ],
+    "size": [
+      0.006,
+      0.0026,
+      0.0089
+    ]
+  },
+  {
+    "name": "Costocervical trunk.l",
+    "parent": "Left subclavian artery",
+    "centre": [
+      0.0479,
+      1.4216,
+      -0.0057
+    ],
+    "size": [
+      0.0045,
+      0.0036,
+      0.0101
+    ]
+  },
+  {
+    "name": "Musculophrenic artery.l",
+    "parent": "Internal thoracic artery.l",
+    "centre": [
+      0.0642,
+      1.1605,
+      0.0516
+    ],
+    "size": [
+      0.0997,
+      0.1786,
+      0.1049
+    ]
+  },
+  {
+    "name": "Superior epigastric artery.l",
+    "parent": "Internal thoracic artery.l",
+    "centre": [
+      0.0174,
+      1.1685,
+      0.1007
+    ],
+    "size": [
+      0.0169,
+      0.1621,
+      0.0151
+    ]
+  },
+  {
+    "name": "Internal thoracic artery.l",
+    "parent": "Left subclavian artery",
+    "centre": [
+      0.0284,
+      1.3354,
+      0.0501
+    ],
+    "size": [
+      0.0288,
+      0.1727,
+      0.1039
+    ]
+  },
+  {
+    "name": "Inferior thyroid artery.l",
+    "parent": "Thyrocervical trunk.l",
+    "centre": [
+      0.0361,
+      1.4484,
+      0.0038
+    ],
+    "size": [
+      0.0147,
+      0.0341,
+      0.0077
+    ]
+  },
+  {
+    "name": "Suprascapular artery.l",
+    "parent": "Thyrocervical trunk.l",
+    "centre": [
+      0.0926,
+      1.3987,
+      -0.0438
+    ],
+    "size": [
+      0.1027,
+      0.0695,
+      0.0961
+    ]
+  },
+  {
+    "name": "(Deep branch of transverse cervical artery).l",
+    "parent": "Transverse cervical artery.l",
+    "centre": [
+      0.0809,
+      1.347,
+      -0.0513
+    ],
+    "size": [
+      0.0514,
+      0.1783,
+      0.1004
+    ]
+  },
+  {
+    "name": "(Superficial branch of transverse cervical artery).l",
+    "parent": "Transverse cervical artery.l",
+    "centre": [
+      0.0664,
+      1.3557,
+      -0.0883
+    ],
+    "size": [
+      0.0295,
+      0.1305,
+      0.0488
+    ]
+  },
+  {
+    "name": "Transverse cervical artery.l",
+    "parent": "Thyrocervical trunk.l",
+    "centre": [
+      0.0514,
+      1.4539,
+      -0.0063
+    ],
+    "size": [
+      0.0206,
+      0.0488,
+      0.0232
+    ]
+  },
+  {
+    "name": "Thyrocervical trunk.l",
+    "parent": "Left subclavian artery",
+    "centre": [
+      0.0413,
+      1.4265,
+      0.0003
+    ],
+    "size": [
+      0.0026,
+      0.0122,
+      0.0037
+    ]
+  },
+  {
+    "name": "Posterior inferior cerebellar artery.l",
+    "parent": "Vertebral artery.l",
+    "centre": [
+      0.0286,
+      1.576,
+      -0.044
+    ],
+    "size": [
+      0.0468,
+      0.0286,
+      0.06
+    ]
+  },
+  {
+    "name": "Vertebral artery.l",
+    "parent": "Left subclavian artery",
+    "centre": [
+      0.0206,
+      1.4997,
+      -0.0155
+    ],
+    "size": [
+      0.0431,
+      0.1589,
+      0.0304
+    ]
+  },
+  {
+    "name": "Left subclavian artery",
+    "parent": null,
+    "centre": [
+      0.0499,
+      1.4081,
+      -0.0023
+    ],
+    "size": [
+      0.0615,
+      0.0383,
+      0.0131
+    ]
+  },
+  {
+    "name": "Ascending pharyngeal artery.r",
+    "parent": "External carotid artery.r",
+    "centre": [
+      -0.027,
+      1.5366,
+      0.0271
+    ],
+    "size": [
+      0.0283,
+      0.0298,
+      0.0486
+    ]
+  },
+  {
+    "name": "Angular artery.r",
+    "parent": "Facial artery.r",
+    "centre": [
+      -0.0154,
+      1.6088,
+      0.0778
+    ],
+    "size": [
+      0.0304,
+      0.113,
+      0.0202
+    ]
+  },
+  {
+    "name": "Inferior labial artery.r",
+    "parent": "Facial artery.r",
+    "centre": [
+      -0.0184,
+      1.5239,
+      0.071
+    ],
+    "size": [
+      0.0308,
+      0.0238,
+      0.0203
+    ]
+  },
+  {
+    "name": "Submental artery.r",
+    "parent": "Facial artery.r",
+    "centre": [
+      -0.0171,
+      1.505,
+      0.0543
+    ],
+    "size": [
+      0.0306,
+      0.015,
+      0.0367
+    ]
+  },
+  {
+    "name": "Superior labial artery.r",
+    "parent": "Facial artery.r",
+    "centre": [
+      -0.0227,
+      1.5432,
+      0.0767
+    ],
+    "size": [
+      0.0219,
+      0.0019,
+      0.0234
+    ]
+  },
+  {
+    "name": "Facial artery.r",
+    "parent": "External carotid artery.r",
+    "centre": [
+      -0.0348,
+      1.531,
+      0.0369
+    ],
+    "size": [
+      0.0116,
+      0.045,
+      0.0655
+    ]
+  },
+  {
+    "name": "Anterior deep temporal artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0444,
+      1.5941,
+      0.0339
+    ],
+    "size": [
+      0.0222,
+      0.0443,
+      0.0137
+    ]
+  },
+  {
+    "name": "?x.r",
+    "parent": "Artery of pterygoid canal.r",
+    "centre": [
+      -0.0032,
+      1.5708,
+      0.0569
+    ],
+    "size": [
+      0.0055,
+      0.0085,
+      0.0487
+    ]
+  },
+  {
+    "name": "Artery of pterygoid canal.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0213,
+      1.5734,
+      0.0354
+    ],
+    "size": [
+      0.0252,
+      0.0063,
+      0.0086
+    ]
+  },
+  {
+    "name": "Buccal artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.032,
+      1.5579,
+      0.0478
+    ],
+    "size": [
+      0.0049,
+      0.0299,
+      0.0356
+    ]
+  },
+  {
+    "name": "Greater palatine artery.r",
+    "parent": "Descending palatine artery.r",
+    "centre": [
+      -0.0093,
+      1.5505,
+      0.0616
+    ],
+    "size": [
+      0.0147,
+      0.0142,
+      0.035
+    ]
+  },
+  {
+    "name": "Descending palatine artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0235,
+      1.5642,
+      0.0391
+    ],
+    "size": [
+      0.0168,
+      0.0202,
+      0.0134
+    ]
+  },
+  {
+    "name": "Mental branch of inferior alveolar artery.r",
+    "parent": "Inferior alveolar artery.r",
+    "centre": [
+      -0.0117,
+      1.5111,
+      0.0761
+    ],
+    "size": [
+      0.0071,
+      0.0046,
+      0.004
+    ]
+  },
+  {
+    "name": "Mylohyoid branch of inferior alveolar artery.r",
+    "parent": "Inferior alveolar artery.r",
+    "centre": [
+      -0.0337,
+      1.5348,
+      0.02
+    ],
+    "size": [
+      0.0068,
+      0.0194,
+      0.0028
+    ]
+  },
+  {
+    "name": "Inferior alveolar artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0268,
+      1.5361,
+      0.0412
+    ],
+    "size": [
+      0.0241,
+      0.0591,
+      0.0669
+    ]
+  },
+  {
+    "name": "Infra-orbital artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0266,
+      1.5675,
+      0.0591
+    ],
+    "size": [
+      0.0063,
+      0.0163,
+      0.0271
+    ]
+  },
+  {
+    "name": "Accessory branch of middle meningeal artery.r",
+    "parent": "Middle meningeal artery.r",
+    "centre": [
+      -0.0293,
+      1.5787,
+      0.0128
+    ],
+    "size": [
+      0.0161,
+      0.023,
+      0.0049
+    ]
+  },
+  {
+    "name": "Middle meningeal artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0312,
+      1.5779,
+      0.0097
+    ],
+    "size": [
+      0.0126,
+      0.024,
+      0.0052
+    ]
+  },
+  {
+    "name": "Posterior deep temporal artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0492,
+      1.596,
+      0.0228
+    ],
+    "size": [
+      0.0253,
+      0.0469,
+      0.0087
+    ]
+  },
+  {
+    "name": "Posterior septal branches of sphenopalatine artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0045,
+      1.5573,
+      0.0599
+    ],
+    "size": [
+      0.0092,
+      0.0274,
+      0.042
+    ]
+  },
+  {
+    "name": "Posterior superior alveolar artery.r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.0296,
+      1.5657,
+      0.0385
+    ],
+    "size": [
+      0.0097,
+      0.0136,
+      0.0171
+    ]
+  },
+  {
+    "name": "Posterior lateral nasal branches of sphenopalatine artery..r",
+    "parent": "Maxillary artery.r",
+    "centre": [
+      -0.009,
+      1.5786,
+      0.0598
+    ],
+    "size": [
+      0.0158,
+      0.0386,
+      0.0385
+    ]
+  },
+  {
+    "name": "Maxillary artery.r",
+    "parent": "External carotid artery.r",
+    "centre": [
+      -0.0352,
+      1.5612,
+      0.0313
+    ],
+    "size": [
+      0.0191,
+      0.0298,
+      0.06
+    ]
+  },
+  {
+    "name": "Occipital artery.r",
+    "parent": "External carotid artery.r",
+    "centre": [
+      -0.0471,
+      1.6161,
+      -0.0497
+    ],
+    "size": [
+      0.0322,
+      0.1269,
+      0.107
+    ]
+  },
+  {
+    "name": "Frontal branch of superficial temporal artery.r",
+    "parent": "Superficial temporal artery.r",
+    "centre": [
+      -0.0413,
+      1.6349,
+      0.0641
+    ],
+    "size": [
+      0.0333,
+      0.0249,
+      0.0424
+    ]
+  },
+  {
+    "name": "Transverse facial artery.r",
+    "parent": "Superficial temporal artery.r",
+    "centre": [
+      -0.0431,
+      1.5706,
+      0.0379
+    ],
+    "size": [
+      0.0444,
+      0.0197,
+      0.0731
+    ]
+  },
+  {
+    "name": "Superficial temporal artery.r",
+    "parent": "External carotid artery.r",
+    "centre": [
+      -0.0578,
+      1.6222,
+      -0.0012
+    ],
+    "size": [
+      0.0333,
+      0.1256,
+      0.1113
+    ]
+  },
+  {
+    "name": "External carotid artery.r",
+    "parent": "Right common carotid artery",
+    "centre": [
+      -0.0369,
+      1.5233,
+      0.0017
+    ],
+    "size": [
+      0.0181,
+      0.0753,
+      0.0105
+    ]
+  },
+  {
+    "name": "Frontal branches of callosomarginal artery.l",
+    "parent": "Callosomarginal artery.l",
+    "centre": [
+      0.0076,
+      1.6702,
+      0.0506
+    ],
+    "size": [
+      0.0139,
+      0.0231,
+      0.0109
+    ]
+  },
+  {
+    "name": "Callosomarginal artery.l",
+    "parent": "Anterior cerebral artery.l",
+    "centre": [
+      0.0107,
+      1.6575,
+      0.0406
+    ],
+    "size": [
+      0.0214,
+      0.0779,
+      0.053
+    ]
+  },
+  {
+    "name": "Orbitofrontal branches of anterior cerebral artery.l",
+    "parent": "Anterior cerebral artery.l",
+    "centre": [
+      0.0081,
+      1.6181,
+      0.0566
+    ],
+    "size": [
+      0.0147,
+      0.0208,
+      0.0436
+    ]
+  },
+  {
+    "name": "Pericallosal artery.l",
+    "parent": "Anterior cerebral artery.l",
+    "centre": [
+      0.0147,
+      1.6584,
+      -0.0118
+    ],
+    "size": [
+      0.0312,
+      0.0844,
+      0.1064
+    ]
+  },
+  {
+    "name": "Anterior cerebral artery.l",
+    "parent": "Internal carotid artery.r",
+    "centre": [
+      0.008,
+      1.6122,
+      0.0291
+    ],
+    "size": [
+      0.0098,
+      0.0154,
+      0.015
+    ]
+  },
+  {
+    "name": "Frontal branches of callosomarginal artery.r",
+    "parent": "Callosomarginal artery.r",
+    "centre": [
+      -0.0076,
+      1.6702,
+      0.0506
+    ],
+    "size": [
+      0.0139,
+      0.0231,
+      0.0109
+    ]
+  },
+  {
+    "name": "Callosomarginal artery.r",
+    "parent": "Anterior cerebral artery.r",
+    "centre": [
+      -0.0107,
+      1.6575,
+      0.0406
+    ],
+    "size": [
+      0.0214,
+      0.0779,
+      0.053
+    ]
+  },
+  {
+    "name": "Orbitofrontal branches of anterior cerebral artery.r",
+    "parent": "Anterior cerebral artery.r",
+    "centre": [
+      -0.0081,
+      1.6181,
+      0.0566
+    ],
+    "size": [
+      0.0147,
+      0.0208,
+      0.0436
+    ]
+  },
+  {
+    "name": "Pericallosal artery.r",
+    "parent": "Anterior cerebral artery.r",
+    "centre": [
+      -0.0147,
+      1.6584,
+      -0.0118
+    ],
+    "size": [
+      0.0312,
+      0.0844,
+      0.1064
+    ]
+  },
+  {
+    "name": "Anterior cerebral artery.r",
+    "parent": "Internal carotid artery.r",
+    "centre": [
+      -0.008,
+      1.6122,
+      0.0291
+    ],
+    "size": [
+      0.0098,
+      0.0154,
+      0.015
+    ]
+  },
+  {
+    "name": "Distal lateral striate branches.r",
+    "parent": "Middle cerebral artery (M1-segment).r",
+    "centre": [
+      -0.0223,
+      1.6164,
+      0.026
+    ],
+    "size": [
+      0.0117,
+      0.0132,
+      0.0115
+    ]
+  },
+  {
+    "name": "Anterior temporal branch.r",
+    "parent": "Insular branches of middle cerebral artery (M2).r",
+    "centre": [
+      -0.0572,
+      1.6094,
+      0.0072
+    ],
+    "size": [
+      0.022,
+      0.0365,
+      0.0424
+    ]
+  },
+  {
+    "name": "Artery of precentral sulcus.r",
+    "parent": "Insular branches of middle cerebral artery (M2).r",
+    "centre": [
+      -0.0422,
+      1.6602,
+      0.0163
+    ],
+    "size": [
+      0.0385,
+      0.071,
+      0.0351
+    ]
+  },
+  {
+    "name": "Artery of central sulcus.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0396,
+      1.6586,
+      -0.0091
+    ],
+    "size": [
+      0.0497,
+      0.0744,
+      0.0523
+    ]
+  },
+  {
+    "name": "Parietal branches of middle cerebral artery.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0543,
+      1.6568,
+      -0.0373
+    ],
+    "size": [
+      0.0334,
+      0.0409,
+      0.0315
+    ]
+  },
+  {
+    "name": "Postcentral arterial branch.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0451,
+      1.6599,
+      -0.0256
+    ],
+    "size": [
+      0.0461,
+      0.0558,
+      0.0495
+    ]
+  },
+  {
+    "name": "Posterior parietal artery.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0515,
+      1.6516,
+      -0.0531
+    ],
+    "size": [
+      0.0265,
+      0.0382,
+      0.0435
+    ]
+  },
+  {
+    "name": "Posterior temporal branch.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0591,
+      1.6157,
+      -0.0503
+    ],
+    "size": [
+      0.0195,
+      0.0409,
+      0.0384
+    ]
+  },
+  {
+    "name": "Temporal branches of middle cerebral artery.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0619,
+      1.6154,
+      -0.0196
+    ],
+    "size": [
+      0.0182,
+      0.0449,
+      0.0455
+    ]
+  },
+  {
+    "name": "Branch to angular gyrus.r",
+    "parent": "Temporo-occipital branch.r",
+    "centre": [
+      -0.0602,
+      1.6278,
+      -0.062
+    ],
+    "size": [
+      0.0023,
+      0.0119,
+      0.0061
+    ]
+  },
+  {
+    "name": "Temporo-occipital branch.r",
+    "parent": "Middle cerebral artery (M3-segment).r",
+    "centre": [
+      -0.0377,
+      1.6181,
+      -0.0754
+    ],
+    "size": [
+      0.0448,
+      0.0456,
+      0.0421
+    ]
+  },
+  {
+    "name": "Middle cerebral artery (M3-segment).r",
+    "parent": "Insular branches of middle cerebral artery (M2).r",
+    "centre": [
+      -0.0534,
+      1.6298,
+      -0.019
+    ],
+    "size": [
+      0.0144,
+      0.0165,
+      0.0716
+    ]
+  },
+  {
+    "name": "Lateral frontobasal artery.r",
+    "parent": "Prefrontal artery.r",
+    "centre": [
+      -0.0331,
+      1.6358,
+      0.0473
+    ],
+    "size": [
+      0.0444,
+      0.0407,
+      0.0591
+    ]
+  },
+  {
+    "name": "Prefrontal artery.r",
+    "parent": "Insular branches of middle cerebral artery (M2).r",
+    "centre": [
+      -0.0466,
+      1.6531,
+      0.0343
+    ],
+    "size": [
+      0.0288,
+      0.0551,
+      0.0311
+    ]
+  },
+  {
+    "name": "Insular branches of middle cerebral artery (M2).r",
+    "parent": "Middle cerebral artery (M1-segment).r",
+    "centre": [
+      -0.0426,
+      1.6212,
+      0.0179
+    ],
+    "size": [
+      0.0127,
+      0.0121,
+      0.0062
+    ]
+  },
+  {
+    "name": "Proximal lateral striate branches.r",
+    "parent": "Middle cerebral artery (M1-segment).r",
+    "centre": [
+      -0.0126,
+      1.6155,
+      0.0222
+    ],
+    "size": [
+      0.0069,
+      0.0122,
+      0.0049
+    ]
+  },
+  {
+    "name": "Middle cerebral artery (M1-segment).r",
+    "parent": "Internal carotid artery.r",
+    "centre": [
+      -0.0237,
+      1.6099,
+      0.0217
+    ],
+    "size": [
+      0.0295,
+      0.0148,
+      0.0093
+    ]
+  },
+  {
+    "name": "Anterior septal branches of anterior ethmoidal artery.r",
+    "parent": "Anterior ethmoidal artery.r",
+    "centre": [
+      -0.0022,
+      1.5849,
+      0.0537
+    ],
+    "size": [
+      0.0017,
+      0.0216,
+      0.0212
+    ]
+  },
+  {
+    "name": "Anterior ethmoidal artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0074,
+      1.5925,
+      0.0655
+    ],
+    "size": [
+      0.0109,
+      0.0131,
+      0.0263
+    ]
+  },
+  {
+    "name": "Central retinal artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0283,
+      1.5906,
+      0.0509
+    ],
+    "size": [
+      0.0295,
+      0.0251,
+      0.0339
+    ]
+  },
+  {
+    "name": "Lacrimal artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0281,
+      1.6035,
+      0.0497
+    ],
+    "size": [
+      0.029,
+      0.0072,
+      0.0316
+    ]
+  },
+  {
+    "name": "Septal branches of posterior ethmoidal artery.r",
+    "parent": "Posterior ethmoidal artery.r",
+    "centre": [
+      -0.0054,
+      1.5838,
+      0.0392
+    ],
+    "size": [
+      0.0089,
+      0.0255,
+      0.0098
+    ]
+  },
+  {
+    "name": "Posterior ethmoidal artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0138,
+      1.5972,
+      0.0446
+    ],
+    "size": [
+      0.0082,
+      0.0062,
+      0.0026
+    ]
+  },
+  {
+    "name": "Long posterior ciliary arteries.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0212,
+      1.6031,
+      0.045
+    ],
+    "size": [
+      0.015,
+      0.009,
+      0.0223
+    ]
+  },
+  {
+    "name": "Short posterior ciliary arteries.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0194,
+      1.5994,
+      0.0382
+    ],
+    "size": [
+      0.0114,
+      0.0033,
+      0.0085
+    ]
+  },
+  {
+    "name": "Supra-orbital artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0265,
+      1.6228,
+      0.0659
+    ],
+    "size": [
+      0.019,
+      0.0457,
+      0.0413
+    ]
+  },
+  {
+    "name": "Supratrochlear artery.r",
+    "parent": "Ophthalmic artery.r",
+    "centre": [
+      -0.0126,
+      1.6093,
+      0.0602
+    ],
+    "size": [
+      0.0053,
+      0.0216,
+      0.0524
+    ]
+  },
+  {
+    "name": "Ophthalmic artery.r",
+    "parent": "Internal carotid artery.r",
+    "centre": [
+      -0.0148,
+      1.6005,
+      0.0382
+    ],
+    "size": [
+      0.0077,
+      0.0043,
+      0.032
+    ]
+  },
+  {
+    "name": "Internal carotid artery.r",
+    "parent": "Right common carotid artery",
+    "centre": [
+      -0.0229,
+      1.5448,
+      0.0112
+    ],
+    "size": [
+      0.0277,
+      0.1183,
+      0.0306
+    ]
+  },
+  {
+    "name": "Right common carotid artery",
+    "parent": null,
+    "centre": [
+      -0.0229,
+      1.4482,
+      0.0085
+    ],
+    "size": [
+      0.0246,
+      0.0767,
+      0.0252
+    ]
+  },
+  {
+    "name": "Anterior circumflex humeral artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.1672,
+      1.3758,
+      -0.0091
+    ],
+    "size": [
+      0.0485,
+      0.0634,
+      0.0346
+    ]
+  },
+  {
+    "name": "Middle collateral artery.r",
+    "parent": "Deep brachial artery.r",
+    "centre": [
+      -0.2162,
+      1.1555,
+      -0.0495
+    ],
+    "size": [
+      0.0266,
+      0.076,
+      0.0112
+    ]
+  },
+  {
+    "name": "Radial collateral artery.r",
+    "parent": "Deep brachial artery.r",
+    "centre": [
+      -0.2283,
+      1.1216,
+      -0.0299
+    ],
+    "size": [
+      0.0509,
+      0.1437,
+      0.0462
+    ]
+  },
+  {
+    "name": "Deep brachial artery.r",
+    "parent": "Brachial artery.r",
+    "centre": [
+      -0.188,
+      1.2237,
+      -0.0349
+    ],
+    "size": [
+      0.0351,
+      0.063,
+      0.0239
+    ]
+  },
+  {
+    "name": "Inferior ulnar collateral artery.r",
+    "parent": "Brachial artery.r",
+    "centre": [
+      -0.2026,
+      1.1133,
+      -0.0237
+    ],
+    "size": [
+      0.0047,
+      0.0633,
+      0.0265
+    ]
+  },
+  {
+    "name": "Palmar metacarpal arteries.r",
+    "parent": "Deep palmar arch.r",
+    "centre": [
+      -0.2692,
+      0.8165,
+      0.0283
+    ],
+    "size": [
+      0.0421,
+      0.0402,
+      0.0253
+    ]
+  },
+  {
+    "name": "Deep palmar arch.r",
+    "parent": "Radial artery.r",
+    "centre": [
+      -0.2692,
+      0.8468,
+      0.0215
+    ],
+    "size": [
+      0.039,
+      0.0272,
+      0.0152
+    ]
+  },
+  {
+    "name": "Dorsal digital arteries of hand.r",
+    "parent": "Dorsal metacarpal arteries.r",
+    "centre": [
+      -0.2773,
+      0.7627,
+      0.0546
+    ],
+    "size": [
+      0.1029,
+      0.111,
+      0.0723
+    ]
+  },
+  {
+    "name": "Dorsal metacarpal arteries.r",
+    "parent": "Dorsal carpal anastomosis.r",
+    "centre": [
+      -0.2661,
+      0.8114,
+      0.0225
+    ],
+    "size": [
+      0.0631,
+      0.0662,
+      0.029
+    ]
+  },
+  {
+    "name": "Dorsal carpal anastomosis.r",
+    "parent": "Radial artery.r",
+    "centre": [
+      -0.2746,
+      0.841,
+      0.0119
+    ],
+    "size": [
+      0.0249,
+      0.0085,
+      0.0082
+    ]
+  },
+  {
+    "name": "Palmar carpal branch of radial artery.r",
+    "parent": "Radial artery.r",
+    "centre": [
+      -0.2599,
+      0.8771,
+      0.0239
+    ],
+    "size": [
+      0.0273,
+      0.0029,
+      0.0055
+    ]
+  },
+  {
+    "name": "Radial artery.r",
+    "parent": "Brachial artery.r",
+    "centre": [
+      -0.2552,
+      0.9673,
+      0.0049
+    ],
+    "size": [
+      0.0648,
+      0.2465,
+      0.0397
+    ]
+  },
+  {
+    "name": "Superior ulnar collateral artery.r",
+    "parent": "Brachial artery.r",
+    "centre": [
+      -0.1924,
+      1.1326,
+      -0.0342
+    ],
+    "size": [
+      0.0222,
+      0.1199,
+      0.0242
+    ]
+  },
+  {
+    "name": "(Ulnar recurrent artery).r",
+    "parent": "Ulnar artery.r",
+    "centre": [
+      -0.2133,
+      1.0609,
+      -0.0204
+    ],
+    "size": [
+      0.0222,
+      0.0253,
+      0.0173
+    ]
+  },
+  {
+    "name": "Posterior interosseous artery.r",
+    "parent": "Common interosseous artery.r",
+    "centre": [
+      -0.242,
+      0.9691,
+      0.0013
+    ],
+    "size": [
+      0.0189,
+      0.1235,
+      0.0278
+    ]
+  },
+  {
+    "name": "Recurrent interosseous artery.r",
+    "parent": "Common interosseous artery.r",
+    "centre": [
+      -0.2338,
+      1.0782,
+      -0.0311
+    ],
+    "size": [
+      0.0132,
+      0.0799,
+      0.0478
+    ]
+  },
+  {
+    "name": "Common interosseous artery.r",
+    "parent": "Ulnar artery.r",
+    "centre": [
+      -0.232,
+      1.0347,
+      -0.0089
+    ],
+    "size": [
+      0.005,
+      0.0092,
+      0.0038
+    ]
+  },
+  {
+    "name": "Dorsal carpal branch of ulnar artery.r",
+    "parent": "Ulnar artery.r",
+    "centre": [
+      -0.2502,
+      0.8483,
+      0.0178
+    ],
+    "size": [
+      0.0243,
+      0.0246,
+      0.0195
+    ]
+  },
+  {
+    "name": "Proper palmar digital arteries.r",
+    "parent": "Common palmar digital arteries.r",
+    "centre": [
+      -0.2785,
+      0.7883,
+      0.0584
+    ],
+    "size": [
+      0.107,
+      0.1608,
+      0.0714
+    ]
+  },
+  {
+    "name": "Common palmar digital arteries.r",
+    "parent": "Superficial palmar arch.r",
+    "centre": [
+      -0.2738,
+      0.7993,
+      0.0395
+    ],
+    "size": [
+      0.0566,
+      0.0451,
+      0.0195
+    ]
+  },
+  {
+    "name": "Superficial palmar arch.r",
+    "parent": "Ulnar artery.r",
+    "centre": [
+      -0.262,
+      0.843,
+      0.0273
+    ],
+    "size": [
+      0.0352,
+      0.0708,
+      0.0138
+    ]
+  },
+  {
+    "name": "Ulnar artery.r",
+    "parent": "Brachial artery.r",
+    "centre": [
+      -0.2369,
+      0.975,
+      0.0058
+    ],
+    "size": [
+      0.0339,
+      0.231,
+      0.0449
+    ]
+  },
+  {
+    "name": "Brachial artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.1796,
+      1.2279,
+      -0.018
+    ],
+    "size": [
+      0.0939,
+      0.2764,
+      0.0182
+    ]
+  },
+  {
+    "name": "Lateral thoracic artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.1193,
+      1.2905,
+      0.0309
+    ],
+    "size": [
+      0.0224,
+      0.2112,
+      0.0722
+    ]
+  },
+  {
+    "name": "Posterior circumflex humeral artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.1633,
+      1.367,
+      -0.0225
+    ],
+    "size": [
+      0.0559,
+      0.01,
+      0.0244
+    ]
+  },
+  {
+    "name": "Circumflex scapular artery.r",
+    "parent": "Subscapular artery.r",
+    "centre": [
+      -0.1368,
+      1.3544,
+      -0.0348
+    ],
+    "size": [
+      0.014,
+      0.0194,
+      0.0406
+    ]
+  },
+  {
+    "name": "Thoracodorsal artery.r",
+    "parent": "Subscapular artery.r",
+    "centre": [
+      -0.1338,
+      1.3141,
+      -0.024
+    ],
+    "size": [
+      0.0092,
+      0.0763,
+      0.0198
+    ]
+  },
+  {
+    "name": "Subscapular artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.1327,
+      1.3587,
+      -0.0128
+    ],
+    "size": [
+      0.0063,
+      0.0141,
+      0.0059
+    ]
+  },
+  {
+    "name": "Pectoral branches of thoraco-acromial artery.r",
+    "parent": "Thoraco-acromial artery.r",
+    "centre": [
+      -0.1101,
+      1.3365,
+      0.0269
+    ],
+    "size": [
+      0.034,
+      0.1218,
+      0.0488
+    ]
+  },
+  {
+    "name": "Thoraco-acromial artery.r",
+    "parent": "Axillary artery.r",
+    "centre": [
+      -0.0947,
+      1.4002,
+      -0.0002
+    ],
+    "size": [
+      0.0047,
+      0.0104,
+      0.0118
+    ]
+  },
+  {
+    "name": "Axillary artery.r",
+    "parent": "Right subclavian artery",
+    "centre": [
+      -0.1077,
+      1.3889,
+      -0.0072
+    ],
+    "size": [
+      0.0583,
+      0.0509,
+      0.0132
+    ]
+  },
+  {
+    "name": "Deep cervical artery.r",
+    "parent": "Costocervical trunk.r",
+    "centre": [
+      -0.0409,
+      1.4599,
+      -0.029
+    ],
+    "size": [
+      0.0169,
+      0.0802,
+      0.0378
+    ]
+  },
+  {
+    "name": "First posterior intercostal artery.r",
+    "parent": "Supreme intercostal artery.r",
+    "centre": [
+      -0.0442,
+      1.3936,
+      0.0151
+    ],
+    "size": [
+      0.0493,
+      0.0549,
+      0.0692
+    ]
+  },
+  {
+    "name": "Second posterior intercostal artery.r",
+    "parent": "Supreme intercostal artery.r",
+    "centre": [
+      -0.0552,
+      1.3841,
+      0.0145
+    ],
+    "size": [
+      0.0788,
+      0.0746,
+      0.1046
+    ]
+  },
+  {
+    "name": "Supreme intercostal artery.r",
+    "parent": "Costocervical trunk.r",
+    "centre": [
+      -0.048,
+      1.4205,
+      -0.0147
+    ],
+    "size": [
+      0.006,
+      0.0026,
+      0.0089
+    ]
+  },
+  {
+    "name": "Costocervical trunk.r",
+    "parent": "Right subclavian artery",
+    "centre": [
+      -0.0479,
+      1.4216,
+      -0.0057
+    ],
+    "size": [
+      0.0045,
+      0.0036,
+      0.0101
+    ]
+  },
+  {
+    "name": "Musculophrenic artery.r",
+    "parent": "Internal thoracic artery.r",
+    "centre": [
+      -0.0642,
+      1.1605,
+      0.0516
+    ],
+    "size": [
+      0.0997,
+      0.1786,
+      0.1049
+    ]
+  },
+  {
+    "name": "Superior epigastric artery.r",
+    "parent": "Internal thoracic artery.r",
+    "centre": [
+      -0.0174,
+      1.1685,
+      0.1007
+    ],
+    "size": [
+      0.0169,
+      0.1621,
+      0.0151
+    ]
+  },
+  {
+    "name": "Internal thoracic artery.r",
+    "parent": "Right subclavian artery",
+    "centre": [
+      -0.0284,
+      1.3354,
+      0.0501
+    ],
+    "size": [
+      0.0288,
+      0.1727,
+      0.1039
+    ]
+  },
+  {
+    "name": "Inferior thyroid artery.r",
+    "parent": "Thyrocervical trunk.r",
+    "centre": [
+      -0.0361,
+      1.4484,
+      0.0038
+    ],
+    "size": [
+      0.0147,
+      0.0341,
+      0.0077
+    ]
+  },
+  {
+    "name": "Suprascapular artery.r",
+    "parent": "Thyrocervical trunk.r",
+    "centre": [
+      -0.0926,
+      1.3987,
+      -0.0438
+    ],
+    "size": [
+      0.1027,
+      0.0695,
+      0.0961
+    ]
+  },
+  {
+    "name": "(Deep branch of transverse cervical artery).r",
+    "parent": "Transverse cervical artery.r",
+    "centre": [
+      -0.0809,
+      1.347,
+      -0.0513
+    ],
+    "size": [
+      0.0514,
+      0.1783,
+      0.1004
+    ]
+  },
+  {
+    "name": "(Superficial branch of transverse cervical artery).r",
+    "parent": "Transverse cervical artery.r",
+    "centre": [
+      -0.0664,
+      1.3557,
+      -0.0883
+    ],
+    "size": [
+      0.0295,
+      0.1305,
+      0.0488
+    ]
+  },
+  {
+    "name": "Transverse cervical artery.r",
+    "parent": "Thyrocervical trunk.r",
+    "centre": [
+      -0.0514,
+      1.4539,
+      -0.0063
+    ],
+    "size": [
+      0.0206,
+      0.0488,
+      0.0232
+    ]
+  },
+  {
+    "name": "Thyrocervical trunk.r",
+    "parent": "Right subclavian artery",
+    "centre": [
+      -0.0413,
+      1.4265,
+      0.0003
+    ],
+    "size": [
+      0.0026,
+      0.0122,
+      0.0037
+    ]
+  },
+  {
+    "name": "Anterior inferior cerebellar artery.l",
+    "parent": "Basilar artery",
+    "centre": [
+      0.0173,
+      1.5801,
+      -0.0128
+    ],
+    "size": [
+      0.0346,
+      0.0098,
+      0.0273
+    ]
+  },
+  {
+    "name": "Anterior inferior cerebellar artery.r",
+    "parent": "Basilar artery",
+    "centre": [
+      -0.0173,
+      1.5801,
+      -0.0128
+    ],
+    "size": [
+      0.0346,
+      0.0098,
+      0.0273
+    ]
+  },
+  {
+    "name": "Lateral pontine branches of basilar artery.l",
+    "parent": "Basilar artery",
+    "centre": [
+      0.0114,
+      1.5861,
+      -0.0045
+    ],
+    "size": [
+      0.0236,
+      0.0072,
+      0.0198
+    ]
+  },
+  {
+    "name": "Lateral pontine branches of basilar artery.r",
+    "parent": "Basilar artery",
+    "centre": [
+      -0.0114,
+      1.5861,
+      -0.0045
+    ],
+    "size": [
+      0.0236,
+      0.0072,
+      0.0198
+    ]
+  },
+  {
+    "name": "Medial pontine branches of basilar artery.l",
+    "parent": "Basilar artery",
+    "centre": [
+      0.0047,
+      1.592,
+      0.005
+    ],
+    "size": [
+      0.0099,
+      0.0039,
+      0.0055
+    ]
+  },
+  {
+    "name": "Medial pontine branches of basilar artery.r",
+    "parent": "Basilar artery",
+    "centre": [
+      -0.0047,
+      1.592,
+      0.005
+    ],
+    "size": [
+      0.0099,
+      0.0039,
+      0.0055
+    ]
+  },
+  {
+    "name": "Lateral occipital artery.l",
+    "parent": "Posterior cerebral artery.l",
+    "centre": [
+      0.0298,
+      1.6068,
+      -0.058
+    ],
+    "size": [
+      0.0434,
+      0.0254,
+      0.0293
+    ]
+  },
+  {
+    "name": "Medial occipital artery.l",
+    "parent": "Posterior cerebral artery.l",
+    "centre": [
+      0.0058,
+      1.6136,
+      -0.0606
+    ],
+    "size": [
+      0.0107,
+      0.0093,
+      0.0689
+    ]
+  },
+  {
+    "name": "Parieto-occipital artery.l",
+    "parent": "Posterior cerebral artery.l",
+    "centre": [
+      0.0092,
+      1.6335,
+      -0.0565
+    ],
+    "size": [
+      0.0168,
+      0.0451,
+      0.0618
+    ]
+  },
+  {
+    "name": "Posterior cerebral artery.l",
+    "parent": "Basilar artery",
+    "centre": [
+      0.0272,
+      1.6151,
+      -0.0271
+    ],
+    "size": [
+      0.0566,
+      0.0467,
+      0.0817
+    ]
+  },
+  {
+    "name": "Lateral occipital artery.r",
+    "parent": "Medial occipital artery.r",
+    "centre": [
+      -0.0298,
+      1.6068,
+      -0.058
+    ],
+    "size": [
+      0.0434,
+      0.0254,
+      0.0293
+    ]
+  },
+  {
+    "name": "Medial occipital artery.r",
+    "parent": "Posterior cerebral artery.r",
+    "centre": [
+      -0.0058,
+      1.6136,
+      -0.0606
+    ],
+    "size": [
+      0.0107,
+      0.0093,
+      0.0689
+    ]
+  },
+  {
+    "name": "Parieto-occipital artery.r",
+    "parent": "Posterior cerebral artery.r",
+    "centre": [
+      -0.0092,
+      1.6335,
+      -0.0565
+    ],
+    "size": [
+      0.0168,
+      0.0451,
+      0.0618
+    ]
+  },
+  {
+    "name": "Posterior cerebral artery.r",
+    "parent": "Basilar artery",
+    "centre": [
+      -0.0272,
+      1.6151,
+      -0.0271
+    ],
+    "size": [
+      0.0566,
+      0.0467,
+      0.0817
+    ]
+  },
+  {
+    "name": "Superior cerebellar artery.l",
+    "parent": "Basilar artery",
+    "centre": [
+      0.0222,
+      1.5984,
+      -0.0282
+    ],
+    "size": [
+      0.0463,
+      0.0308,
+      0.0748
+    ]
+  },
+  {
+    "name": "Superior cerebellar artery.r",
+    "parent": "Basilar artery",
+    "centre": [
+      -0.0222,
+      1.5984,
+      -0.0282
+    ],
+    "size": [
+      0.0463,
+      0.0308,
+      0.0748
+    ]
+  },
+  {
+    "name": "Basilar artery",
+    "parent": "Vertebral artery.r",
+    "centre": [
+      0,
+      1.5902,
+      0.003
+    ],
+    "size": [
+      0.0022,
+      0.024,
+      0.0127
+    ]
+  },
+  {
+    "name": "Posterior inferior cerebellar artery.r",
+    "parent": "Vertebral artery.r",
+    "centre": [
+      -0.0286,
+      1.576,
+      -0.044
+    ],
+    "size": [
+      0.0468,
+      0.0286,
+      0.06
+    ]
+  },
+  {
+    "name": "Vertebral artery.r",
+    "parent": "Right subclavian artery",
+    "centre": [
+      -0.0206,
+      1.4997,
+      -0.0155
+    ],
+    "size": [
+      0.0431,
+      0.1589,
+      0.0304
+    ]
+  },
+  {
+    "name": "Right subclavian artery",
+    "parent": null,
+    "centre": [
+      -0.0459,
+      1.4159,
+      0.0067
+    ],
+    "size": [
+      0.0693,
+      0.0154,
+      0.0245
+    ]
+  },
+  {
+    "name": "????????",
+    "parent": "Coronary sinus",
+    "centre": [
+      0.0183,
+      1.2745,
+      0.0491
+    ],
+    "size": [
+      0.078,
+      0.0666,
+      0.0644
+    ]
+  },
+  {
+    "name": "Great cardiac vein",
+    "parent": "Coronary sinus",
+    "centre": [
+      0.0588,
+      1.2807,
+      0.0307
+    ],
+    "size": [
+      0.0376,
+      0.0767,
+      0.0935
+    ]
+  },
+  {
+    "name": "Inferior vein of left ventricle",
+    "parent": "Coronary sinus",
+    "centre": [
+      0.0618,
+      1.2633,
+      0.0156
+    ],
+    "size": [
+      0.0373,
+      0.0359,
+      0.0616
+    ]
+  },
+  {
+    "name": "Inferior vein of left ventricle (//Posterior '')",
+    "parent": "Coronary sinus",
+    "centre": [
+      0.048,
+      1.2507,
+      0.0185
+    ],
+    "size": [
+      0.059,
+      0.0265,
+      0.0584
+    ]
+  },
+  {
+    "name": "Middle cardiac vein",
+    "parent": "Coronary sinus",
+    "centre": [
+      0.0378,
+      1.2535,
+      0.0354
+    ],
+    "size": [
+      0.0714,
+      0.033,
+      0.0501
+    ]
+  },
+  {
+    "name": "Coronary sinus",
+    "parent": null,
+    "centre": [
+      0.0218,
+      1.2725,
+      0.0001
+    ],
+    "size": [
+      0.053,
+      0.0235,
+      0.0359
+    ]
+  },
+  {
+    "name": "Inferior basal vein of left lung",
+    "parent": "Left inferior pulmonary vein",
+    "centre": [
+      0.0609,
+      1.2484,
+      -0.0454
+    ],
+    "size": [
+      0.0273,
+      0.0868,
+      0.0529
+    ]
+  },
+  {
+    "name": "Superior basal vein of left lung",
+    "parent": "Left inferior pulmonary vein",
+    "centre": [
+      0.0856,
+      1.2417,
+      -0.0237
+    ],
+    "size": [
+      0.0753,
+      0.1008,
+      0.0285
+    ]
+  },
+  {
+    "name": "Superior vein of left lung",
+    "parent": "Left inferior pulmonary vein",
+    "centre": [
+      0.0859,
+      1.2609,
+      -0.0169
+    ],
+    "size": [
+      0.0743,
+      0.1137,
+      0.1081
+    ]
+  },
+  {
+    "name": "Left inferior pulmonary vein",
+    "parent": null,
+    "centre": [
+      0.0443,
+      1.293,
+      -0.0221
+    ],
+    "size": [
+      0.0152,
+      0.0139,
+      0.0103
+    ]
+  },
+  {
+    "name": "Anterior vein of left lung",
+    "parent": "Left superior pulmonary vein",
+    "centre": [
+      0.0694,
+      1.3221,
+      0.0124
+    ],
+    "size": [
+      0.0587,
+      0.0151,
+      0.0499
+    ]
+  },
+  {
+    "name": "Apicoposterior vein of left lung",
+    "parent": "Left superior pulmonary vein",
+    "centre": [
+      0.0622,
+      1.3691,
+      -0.0035
+    ],
+    "size": [
+      0.0616,
+      0.1014,
+      0.0642
+    ]
+  },
+  {
+    "name": "Inferior lingular vein of left lung",
+    "parent": "Lingular vein of left lung",
+    "centre": [
+      0.0789,
+      1.2812,
+      0.027
+    ],
+    "size": [
+      0.0413,
+      0.0622,
+      0.0686
+    ]
+  },
+  {
+    "name": "Superior lingular vein of left lung",
+    "parent": "Lingular vein of left lung",
+    "centre": [
+      0.0773,
+      1.302,
+      0.0231
+    ],
+    "size": [
+      0.042,
+      0.0315,
+      0.0601
+    ]
+  },
+  {
+    "name": "Lingular vein of left lung",
+    "parent": "Left superior pulmonary vein",
+    "centre": [
+      0.0556,
+      1.3133,
+      -0.007
+    ],
+    "size": [
+      0.0143,
+      0.012,
+      0.0102
+    ]
+  },
+  {
+    "name": "Left superior pulmonary vein",
+    "parent": null,
+    "centre": [
+      0.0469,
+      1.3176,
+      -0.0082
+    ],
+    "size": [
+      0.0175,
+      0.0123,
+      0.0131
+    ]
+  },
+  {
+    "name": "Inferior basal vein of right lung",
+    "parent": "Right inferior pulmonary vein",
+    "centre": [
+      -0.0591,
+      1.2505,
+      -0.0448
+    ],
+    "size": [
+      0.0822,
+      0.0856,
+      0.0459
+    ]
+  },
+  {
+    "name": "Superior basal vein of right lung",
+    "parent": "Right inferior pulmonary vein",
+    "centre": [
+      -0.0609,
+      1.2686,
+      -0.0428
+    ],
+    "size": [
+      0.0978,
+      0.0652,
+      0.0519
+    ]
+  },
+  {
+    "name": "Superior vein of right lung",
+    "parent": "Right inferior pulmonary vein",
+    "centre": [
+      -0.0617,
+      1.3053,
+      -0.0492
+    ],
+    "size": [
+      0.0812,
+      0.0426,
+      0.0511
+    ]
+  },
+  {
+    "name": "Right inferior pulmonary vein",
+    "parent": null,
+    "centre": [
+      -0.0134,
+      1.2944,
+      -0.0236
+    ],
+    "size": [
+      0.0235,
+      0.0146,
+      0.0132
+    ]
+  },
+  {
+    "name": "Anterior vein of right lung",
+    "parent": "Right superior pulmonary vein",
+    "centre": [
+      -0.0397,
+      1.3433,
+      0.0183
+    ],
+    "size": [
+      0.0245,
+      0.0336,
+      0.0356
+    ]
+  },
+  {
+    "name": "Apical vein of right lung",
+    "parent": "Right superior pulmonary vein",
+    "centre": [
+      -0.034,
+      1.3693,
+      0.0058
+    ],
+    "size": [
+      0.0295,
+      0.0966,
+      0.0306
+    ]
+  },
+  {
+    "name": "Lateral vein of right lung",
+    "parent": "Right superior pulmonary vein",
+    "centre": [
+      -0.0626,
+      1.2911,
+      0.026
+    ],
+    "size": [
+      0.0883,
+      0.0462,
+      0.079
+    ]
+  },
+  {
+    "name": "Medial vein of right lung",
+    "parent": "Right superior pulmonary vein",
+    "centre": [
+      -0.0371,
+      1.2901,
+      0.0243
+    ],
+    "size": [
+      0.0372,
+      0.0522,
+      0.075
+    ]
+  },
+  {
+    "name": "Posterior vein of right lung",
+    "parent": "Right superior pulmonary vein",
+    "centre": [
+      -0.0629,
+      1.3672,
+      -0.0249
+    ],
+    "size": [
+      0.0408,
+      0.0773,
+      0.0572
+    ]
+  },
+  {
+    "name": "Right superior pulmonary vein",
+    "parent": null,
+    "centre": [
+      -0.029,
+      1.3225,
+      -0.006
+    ],
+    "size": [
+      0.0323,
+      0.0353,
+      0.0208
+    ]
+  },
+  {
+    "name": "Inferior petrosal sinus.l",
+    "parent": null,
+    "centre": [
+      0.0273,
+      1.5783,
+      -0.0073
+    ],
+    "size": [
+      0.038,
+      0.0236,
+      0.0306
+    ]
+  },
+  {
+    "name": "Anterior intercavernous sinus",
+    "parent": "Basilar venous plexus",
+    "centre": [
+      0,
+      1.6061,
+      0.0181
+    ],
+    "size": [
+      0.0092,
+      0.0047,
+      0.0029
+    ]
+  },
+  {
+    "name": "Posterior intercavernous sinus",
+    "parent": "Basilar venous plexus",
+    "centre": [
+      0,
+      1.6035,
+      0.0135
+    ],
+    "size": [
+      0.0116,
+      0.0122,
+      0.0097
+    ]
+  },
+  {
+    "name": "Basilar venous plexus",
+    "parent": "Inferior petrosal sinus.r",
+    "centre": [
+      0,
+      1.5943,
+      0.0049
+    ],
+    "size": [
+      0.0194,
+      0.0196,
+      0.0108
+    ]
+  },
+  {
+    "name": "Cavernous sinus.l",
+    "parent": "Inferior petrosal sinus.r",
+    "centre": [
+      0.0124,
+      1.5944,
+      0.0151
+    ],
+    "size": [
+      0.0147,
+      0.0189,
+      0.023
+    ]
+  },
+  {
+    "name": "Cavernous sinus.r",
+    "parent": "Inferior petrosal sinus.r",
+    "centre": [
+      -0.0124,
+      1.5944,
+      0.0151
+    ],
+    "size": [
+      0.0147,
+      0.0189,
+      0.023
+    ]
+  },
+  {
+    "name": "Inferior petrosal sinus.r",
+    "parent": null,
+    "centre": [
+      -0.0273,
+      1.5783,
+      -0.0073
+    ],
+    "size": [
+      0.038,
+      0.0236,
+      0.0306
+    ]
+  },
+  {
+    "name": "Superior petrosal sinus.l",
+    "parent": "Transverse sinus.l",
+    "centre": [
+      0.037,
+      1.5928,
+      -0.0169
+    ],
+    "size": [
+      0.0469,
+      0.0086,
+      0.0452
+    ]
+  },
+  {
+    "name": "Transverse sinus.l",
+    "parent": "Sigmoid sinus.l",
+    "centre": [
+      0.0301,
+      1.5874,
+      -0.0598
+    ],
+    "size": [
+      0.061,
+      0.0141,
+      0.0416
+    ]
+  },
+  {
+    "name": "Sigmoid sinus.l",
+    "parent": null,
+    "centre": [
+      0.0529,
+      1.5803,
+      -0.0309
+    ],
+    "size": [
+      0.0161,
+      0.0273,
+      0.0197
+    ]
+  },
+  {
+    "name": "Superior petrosal sinus.r",
+    "parent": "Transverse sinus.r",
+    "centre": [
+      -0.037,
+      1.5928,
+      -0.0169
+    ],
+    "size": [
+      0.0469,
+      0.0086,
+      0.0452
+    ]
+  },
+  {
+    "name": "Inferior sagittal sinus",
+    "parent": "Transverse sinus.r",
+    "centre": [
+      0,
+      1.6308,
+      -0.0023
+    ],
+    "size": [
+      0.002,
+      0.0442,
+      0.0847
+    ]
+  },
+  {
+    "name": "Occipital sinus",
+    "parent": "Transverse sinus.r",
+    "centre": [
+      0,
+      1.5724,
+      -0.0175
+    ],
+    "size": [
+      0.002,
+      0.0201,
+      0.0314
+    ]
+  },
+  {
+    "name": "Straight sinus",
+    "parent": "Transverse sinus.r",
+    "centre": [
+      0,
+      1.5973,
+      -0.0082
+    ],
+    "size": [
+      0.003,
+      0.0329,
+      0.0508
+    ]
+  },
+  {
+    "name": "Superior sagittal sinus",
+    "parent": "Transverse sinus.r",
+    "centre": [
+      0,
+      1.641,
+      -0.0095
+    ],
+    "size": [
+      0.004,
+      0.121,
+      0.1772
+    ]
+  },
+  {
+    "name": "Transverse sinus.r",
+    "parent": "Sigmoid sinus.r",
+    "centre": [
+      -0.0301,
+      1.5874,
+      -0.0598
+    ],
+    "size": [
+      0.061,
+      0.0141,
+      0.0416
+    ]
+  },
+  {
+    "name": "Sigmoid sinus.r",
+    "parent": null,
+    "centre": [
+      -0.0529,
+      1.5803,
+      -0.0309
+    ],
+    "size": [
+      0.0161,
+      0.0273,
+      0.0197
+    ]
+  },
+  {
+    "name": "Inferior ophthalmic vein.l",
+    "parent": null,
+    "centre": [
+      0.0179,
+      1.591,
+      0.0373
+    ],
+    "size": [
+      0.0055,
+      0.0133,
+      0.0301
+    ]
+  },
+  {
+    "name": "Inferior ophthalmic vein.r",
+    "parent": null,
+    "centre": [
+      -0.0179,
+      1.591,
+      0.0373
+    ],
+    "size": [
+      0.0055,
+      0.0133,
+      0.0301
+    ]
+  },
+  {
+    "name": "Superior ophthalmic vein.l",
+    "parent": null,
+    "centre": [
+      0.0197,
+      1.6046,
+      0.0527
+    ],
+    "size": [
+      0.0124,
+      0.0154,
+      0.0611
+    ]
+  },
+  {
+    "name": "Superior ophthalmic vein.r",
+    "parent": null,
+    "centre": [
+      -0.0197,
+      1.6046,
+      0.0527
+    ],
+    "size": [
+      0.0124,
+      0.0154,
+      0.0611
+    ]
+  },
+  {
+    "name": "Perforating veins.l",
+    "parent": "Deep femoral vein.l",
+    "centre": [
+      0.101,
+      0.7014,
+      0.0146
+    ],
+    "size": [
+      0.049,
+      0.1687,
+      0.0384
+    ]
+  },
+  {
+    "name": "Deep femoral vein.l",
+    "parent": "Femoral vein.l",
+    "centre": [
+      0.0697,
+      0.7197,
+      0.0279
+    ],
+    "size": [
+      0.0464,
+      0.2501,
+      0.0418
+    ]
+  },
+  {
+    "name": "External pudendal veins.l",
+    "parent": "Great saphenous vein.l",
+    "centre": [
+      0.0178,
+      0.7896,
+      0.0561
+    ],
+    "size": [
+      0.0369,
+      0.1018,
+      0.0228
+    ]
+  },
+  {
+    "name": "Superficial epigastric vein.l",
+    "parent": "Great saphenous vein.l",
+    "centre": [
+      0.0489,
+      0.9591,
+      0.0777
+    ],
+    "size": [
+      0.0693,
+      0.2136,
+      0.0639
+    ]
+  },
+  {
+    "name": "Great saphenous vein.l",
+    "parent": "Femoral vein.l",
+    "centre": [
+      0.0456,
+      0.4567,
+      -0.002
+    ],
+    "size": [
+      0.0526,
+      0.7969,
+      0.1192
+    ]
+  },
+  {
+    "name": "Lateral circumflex femoral veins.l",
+    "parent": "Femoral vein.l",
+    "centre": [
+      0.093,
+      0.8418,
+      0.0057
+    ],
+    "size": [
+      0.1058,
+      0.0445,
+      0.087
+    ]
+  },
+  {
+    "name": "Medial circumflex femoral veins.l",
+    "parent": "Femoral vein.l",
+    "centre": [
+      0.0773,
+      0.8496,
+      0.0099
+    ],
+    "size": [
+      0.0593,
+      0.0317,
+      0.0741
+    ]
+  },
+  {
+    "name": "Anterior tibial veins.l",
+    "parent": "Popliteal vein.l",
+    "centre": [
+      0.1015,
+      0.2648,
+      -0.0366
+    ],
+    "size": [
+      0.0268,
+      0.2913,
+      0.0473
+    ]
+  },
+  {
+    "name": "Genicular veins.l",
+    "parent": "Popliteal vein.l",
+    "centre": [
+      0.0788,
+      0.4502,
+      -0.0267
+    ],
+    "size": [
+      0.0847,
+      0.1647,
+      0.0866
+    ]
+  },
+  {
+    "name": "Fibular veins.l",
+    "parent": "Posterior tibial veins.l",
+    "centre": [
+      0.0955,
+      0.1937,
+      -0.0569
+    ],
+    "size": [
+      0.0234,
+      0.3214,
+      0.0324
+    ]
+  },
+  {
+    "name": "Plantar digital veins.l",
+    "parent": "Plantar metatarsal veins.l",
+    "centre": [
+      0.1026,
+      0.0115,
+      0.0623
+    ],
+    "size": [
+      0.0829,
+      0.016,
+      0.1479
+    ]
+  },
+  {
+    "name": "Plantar metatarsal veins.l",
+    "parent": "Plantar venous arch.l",
+    "centre": [
+      0.103,
+      0.0242,
+      0.0408
+    ],
+    "size": [
+      0.04,
+      0.0308,
+      0.0844
+    ]
+  },
+  {
+    "name": "Plantar venous arch.l",
+    "parent": "Lateral plantar veins.l",
+    "centre": [
+      0.081,
+      0.0269,
+      0.0034
+    ],
+    "size": [
+      0.0444,
+      0.0237,
+      0.0301
+    ]
+  },
+  {
+    "name": "Lateral plantar veins.l",
+    "parent": "Posterior tibial veins.l",
+    "centre": [
+      0.0829,
+      0.0255,
+      -0.0207
+    ],
+    "size": [
+      0.0397,
+      0.021,
+      0.0202
+    ]
+  },
+  {
+    "name": "Medial plantar veins.l",
+    "parent": "Posterior tibial veins.l",
+    "centre": [
+      0.0633,
+      0.0287,
+      0.0189
+    ],
+    "size": [
+      0.0094,
+      0.0209,
+      0.0998
+    ]
+  },
+  {
+    "name": "Posterior tibial veins.l",
+    "parent": "Popliteal vein.l",
+    "centre": [
+      0.0751,
+      0.2048,
+      -0.0468
+    ],
+    "size": [
+      0.053,
+      0.3415,
+      0.0322
+    ]
+  },
+  {
+    "name": "Dorsal digital veins of foot.l",
+    "parent": "Dorsal metatarsal veins.l",
+    "centre": [
+      0.1149,
+      0.0219,
+      0.0931
+    ],
+    "size": [
+      0.063,
+      0.0167,
+      0.077
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal veins.l",
+    "parent": "Dorsal venous arch of foot.l",
+    "centre": [
+      0.108,
+      0.0416,
+      0.0411
+    ],
+    "size": [
+      0.0611,
+      0.0441,
+      0.0837
+    ]
+  },
+  {
+    "name": "Intercapitular veins of foot.l",
+    "parent": "Dorsal venous arch of foot.l",
+    "centre": [
+      0.1028,
+      0.0287,
+      0.0368
+    ],
+    "size": [
+      0.0423,
+      0.0305,
+      0.0706
+    ]
+  },
+  {
+    "name": "Dorsal venous arch of foot.l",
+    "parent": "Small saphenous vein.l",
+    "centre": [
+      0.0899,
+      0.0539,
+      0.0022
+    ],
+    "size": [
+      0.0455,
+      0.02,
+      0.0647
+    ]
+  },
+  {
+    "name": "Small saphenous vein.l",
+    "parent": "Popliteal vein.l",
+    "centre": [
+      0.0907,
+      0.2623,
+      -0.0664
+    ],
+    "size": [
+      0.0351,
+      0.4564,
+      0.0754
+    ]
+  },
+  {
+    "name": "Popliteal vein.l",
+    "parent": "Femoral vein.l",
+    "centre": [
+      0.0797,
+      0.4897,
+      -0.0409
+    ],
+    "size": [
+      0.0281,
+      0.1642,
+      0.0589
+    ]
+  },
+  {
+    "name": "Femoral vein.l",
+    "parent": null,
+    "centre": [
+      0.0553,
+      0.7252,
+      0.0161
+    ],
+    "size": [
+      0.0395,
+      0.3202,
+      0.0712
+    ]
+  },
+  {
+    "name": "Perforating veins.r",
+    "parent": "Deep femoral vein.r",
+    "centre": [
+      -0.101,
+      0.7014,
+      0.0146
+    ],
+    "size": [
+      0.049,
+      0.1687,
+      0.0384
+    ]
+  },
+  {
+    "name": "Deep femoral vein.r",
+    "parent": "Femoral vein.r",
+    "centre": [
+      -0.0697,
+      0.7197,
+      0.0279
+    ],
+    "size": [
+      0.0464,
+      0.2501,
+      0.0418
+    ]
+  },
+  {
+    "name": "Superficial dorsal veins of penis",
+    "parent": "External pudendal veins.r",
+    "centre": [
+      0,
+      0.7931,
+      0.0736
+    ],
+    "size": [
+      0.002,
+      0.0767,
+      0.0515
+    ]
+  },
+  {
+    "name": "External pudendal veins.r",
+    "parent": "Great saphenous vein.r",
+    "centre": [
+      -0.0178,
+      0.7896,
+      0.0561
+    ],
+    "size": [
+      0.0369,
+      0.1018,
+      0.0228
+    ]
+  },
+  {
+    "name": "Superficial epigastric vein.r",
+    "parent": "Great saphenous vein.r",
+    "centre": [
+      -0.0489,
+      0.9591,
+      0.0777
+    ],
+    "size": [
+      0.0693,
+      0.2136,
+      0.0639
+    ]
+  },
+  {
+    "name": "Great saphenous vein.r",
+    "parent": "Femoral vein.r",
+    "centre": [
+      -0.0456,
+      0.4567,
+      -0.002
+    ],
+    "size": [
+      0.0526,
+      0.7969,
+      0.1192
+    ]
+  },
+  {
+    "name": "Lateral circumflex femoral veins.r",
+    "parent": "Femoral vein.r",
+    "centre": [
+      -0.093,
+      0.8418,
+      0.0057
+    ],
+    "size": [
+      0.1058,
+      0.0445,
+      0.087
+    ]
+  },
+  {
+    "name": "Medial circumflex femoral veins.r",
+    "parent": "Femoral vein.r",
+    "centre": [
+      -0.0773,
+      0.8496,
+      0.0099
+    ],
+    "size": [
+      0.0593,
+      0.0317,
+      0.0741
+    ]
+  },
+  {
+    "name": "Anterior tibial veins.r",
+    "parent": "Popliteal vein.r",
+    "centre": [
+      -0.1015,
+      0.2648,
+      -0.0366
+    ],
+    "size": [
+      0.0268,
+      0.2913,
+      0.0473
+    ]
+  },
+  {
+    "name": "Genicular veins.r",
+    "parent": "Popliteal vein.r",
+    "centre": [
+      -0.0788,
+      0.4502,
+      -0.0267
+    ],
+    "size": [
+      0.0847,
+      0.1647,
+      0.0866
+    ]
+  },
+  {
+    "name": "Fibular veins.r",
+    "parent": "Posterior tibial veins.r",
+    "centre": [
+      -0.0955,
+      0.1937,
+      -0.0569
+    ],
+    "size": [
+      0.0234,
+      0.3214,
+      0.0324
+    ]
+  },
+  {
+    "name": "Plantar digital veins.r",
+    "parent": "Plantar metatarsal veins.r",
+    "centre": [
+      -0.1026,
+      0.0115,
+      0.0623
+    ],
+    "size": [
+      0.0829,
+      0.016,
+      0.1479
+    ]
+  },
+  {
+    "name": "Plantar metatarsal veins.r",
+    "parent": "Plantar venous arch.r",
+    "centre": [
+      -0.103,
+      0.0242,
+      0.0408
+    ],
+    "size": [
+      0.04,
+      0.0308,
+      0.0844
+    ]
+  },
+  {
+    "name": "Plantar venous arch.r",
+    "parent": "Lateral plantar veins.r",
+    "centre": [
+      -0.081,
+      0.0269,
+      0.0034
+    ],
+    "size": [
+      0.0444,
+      0.0237,
+      0.0301
+    ]
+  },
+  {
+    "name": "Lateral plantar veins.r",
+    "parent": "Posterior tibial veins.r",
+    "centre": [
+      -0.0829,
+      0.0255,
+      -0.0207
+    ],
+    "size": [
+      0.0397,
+      0.021,
+      0.0202
+    ]
+  },
+  {
+    "name": "Medial plantar veins.r",
+    "parent": "Posterior tibial veins.r",
+    "centre": [
+      -0.0633,
+      0.0287,
+      0.0189
+    ],
+    "size": [
+      0.0094,
+      0.0209,
+      0.0998
+    ]
+  },
+  {
+    "name": "Posterior tibial veins.r",
+    "parent": "Popliteal vein.r",
+    "centre": [
+      -0.0751,
+      0.2048,
+      -0.0468
+    ],
+    "size": [
+      0.053,
+      0.3415,
+      0.0322
+    ]
+  },
+  {
+    "name": "Dorsal digital veins of foot.r",
+    "parent": "Dorsal metatarsal veins.r",
+    "centre": [
+      -0.1149,
+      0.0219,
+      0.0931
+    ],
+    "size": [
+      0.063,
+      0.0167,
+      0.077
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal veins.r",
+    "parent": "Dorsal venous arch of foot.r",
+    "centre": [
+      -0.108,
+      0.0416,
+      0.0411
+    ],
+    "size": [
+      0.0611,
+      0.0441,
+      0.0837
+    ]
+  },
+  {
+    "name": "Intercapitular veins of foot.r",
+    "parent": "Dorsal venous arch of foot.r",
+    "centre": [
+      -0.1028,
+      0.0287,
+      0.0368
+    ],
+    "size": [
+      0.0423,
+      0.0305,
+      0.0706
+    ]
+  },
+  {
+    "name": "Dorsal venous arch of foot.r",
+    "parent": "Small saphenous vein.r",
+    "centre": [
+      -0.0899,
+      0.0539,
+      0.0022
+    ],
+    "size": [
+      0.0455,
+      0.02,
+      0.0647
+    ]
+  },
+  {
+    "name": "Small saphenous vein.r",
+    "parent": "Popliteal vein.r",
+    "centre": [
+      -0.0907,
+      0.2623,
+      -0.0664
+    ],
+    "size": [
+      0.0351,
+      0.4564,
+      0.0754
+    ]
+  },
+  {
+    "name": "Popliteal vein.r",
+    "parent": "Femoral vein.r",
+    "centre": [
+      -0.0797,
+      0.4897,
+      -0.0409
+    ],
+    "size": [
+      0.0281,
+      0.1642,
+      0.0589
+    ]
+  },
+  {
+    "name": "Femoral vein.r",
+    "parent": null,
+    "centre": [
+      -0.0553,
+      0.7252,
+      0.0161
+    ],
+    "size": [
+      0.0395,
+      0.3202,
+      0.0712
+    ]
+  },
+  {
+    "name": "Hepatic portal vein",
+    "parent": null,
+    "centre": [
+      -0.0057,
+      1.1732,
+      0.0304
+    ],
+    "size": [
+      0.0089,
+      0.0512,
+      0.0056
+    ]
+  },
+  {
+    "name": "Sigmoid veins",
+    "parent": "Inferior mesenteric vein",
+    "centre": [
+      0.0377,
+      0.9947,
+      0.0245
+    ],
+    "size": [
+      0.0659,
+      0.088,
+      0.0234
+    ]
+  },
+  {
+    "name": "Inferior mesenteric vein",
+    "parent": "Splenic vein",
+    "centre": [
+      0.0191,
+      1.0613,
+      0.0256
+    ],
+    "size": [
+      0.0302,
+      0.1757,
+      0.0234
+    ]
+  },
+  {
+    "name": "Left gastro-omental vein",
+    "parent": "Splenic vein",
+    "centre": [
+      0.0606,
+      1.1385,
+      0.0364
+    ],
+    "size": [
+      0.0514,
+      0.0428,
+      0.0558
+    ]
+  },
+  {
+    "name": "Splenic vein",
+    "parent": null,
+    "centre": [
+      0.0472,
+      1.1567,
+      0.0153
+    ],
+    "size": [
+      0.1061,
+      0.025,
+      0.0484
+    ]
+  },
+  {
+    "name": "Middle colic vein",
+    "parent": "Superior mesenteric vein",
+    "centre": [
+      -0.0402,
+      1.0871,
+      0.0328
+    ],
+    "size": [
+      0.0566,
+      0.0537,
+      0.0279
+    ]
+  },
+  {
+    "name": "Right colic vein",
+    "parent": "Superior mesenteric vein",
+    "centre": [
+      -0.0502,
+      1.0399,
+      0.0227
+    ],
+    "size": [
+      0.0474,
+      0.0671,
+      0.0184
+    ]
+  },
+  {
+    "name": "Right gastro-omental vein",
+    "parent": "Superior mesenteric vein",
+    "centre": [
+      -0.0152,
+      1.1126,
+      0.0506
+    ],
+    "size": [
+      0.1028,
+      0.0441,
+      0.0586
+    ]
+  },
+  {
+    "name": "Superior mesenteric vein",
+    "parent": null,
+    "centre": [
+      -0.03,
+      1.0667,
+      0.0332
+    ],
+    "size": [
+      0.0647,
+      0.1628,
+      0.0411
+    ]
+  },
+  {
+    "name": "Hepatic veins",
+    "parent": "Inferior vena cava (thoracic part)",
+    "centre": [
+      -0.0096,
+      1.2398,
+      0.0249
+    ],
+    "size": [
+      0.0233,
+      0.0155,
+      0.0257
+    ]
+  },
+  {
+    "name": "Inferior epigastric vein.l",
+    "parent": "External iliac vein.l",
+    "centre": [
+      0.0328,
+      1.005,
+      0.0594
+    ],
+    "size": [
+      0.0288,
+      0.1998,
+      0.0734
+    ]
+  },
+  {
+    "name": "External iliac vein.l",
+    "parent": "Common iliac vein.l",
+    "centre": [
+      0.0307,
+      0.9328,
+      0.0217
+    ],
+    "size": [
+      0.0374,
+      0.1026,
+      0.0464
+    ]
+  },
+  {
+    "name": "Iliolumbar vein.l",
+    "parent": "Common iliac vein.l",
+    "centre": [
+      0.0753,
+      0.9824,
+      0.0034
+    ],
+    "size": [
+      0.0992,
+      0.052,
+      0.0904
+    ]
+  },
+  {
+    "name": "Inferior gluteal veins.l",
+    "parent": "Internal iliac vein.l",
+    "centre": [
+      0.0447,
+      0.8775,
+      -0.0392
+    ],
+    "size": [
+      0.0427,
+      0.1325,
+      0.0569
+    ]
+  },
+  {
+    "name": "Internal pudendal vein.l",
+    "parent": "Internal iliac vein.l",
+    "centre": [
+      0.0268,
+      0.8538,
+      -0.0101
+    ],
+    "size": [
+      0.0514,
+      0.0875,
+      0.091
+    ]
+  },
+  {
+    "name": "Lateral sacral veins.l",
+    "parent": "Internal iliac vein.l",
+    "centre": [
+      0.0179,
+      0.9121,
+      -0.0461
+    ],
+    "size": [
+      0.0211,
+      0.0459,
+      0.048
+    ]
+  },
+  {
+    "name": "Superior gluteal veins.l",
+    "parent": "Internal iliac vein.l",
+    "centre": [
+      0.0496,
+      0.931,
+      -0.0426
+    ],
+    "size": [
+      0.0523,
+      0.0442,
+      0.0637
+    ]
+  },
+  {
+    "name": "Internal iliac vein.l",
+    "parent": "Common iliac vein.l",
+    "centre": [
+      0.0209,
+      0.9623,
+      0.0011
+    ],
+    "size": [
+      0.0182,
+      0.0438,
+      0.0338
+    ]
+  },
+  {
+    "name": "Common iliac vein.l",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      0.0035,
+      1.0045,
+      0.0199
+    ],
+    "size": [
+      0.0411,
+      0.0546,
+      0.0272
+    ]
+  },
+  {
+    "name": "Inferior epigastric vein.r",
+    "parent": "External iliac vein.r",
+    "centre": [
+      -0.0328,
+      1.005,
+      0.0594
+    ],
+    "size": [
+      0.0288,
+      0.1998,
+      0.0734
+    ]
+  },
+  {
+    "name": "External iliac vein.r",
+    "parent": "Common iliac vein.r",
+    "centre": [
+      -0.0307,
+      0.9328,
+      0.0217
+    ],
+    "size": [
+      0.0374,
+      0.1026,
+      0.0464
+    ]
+  },
+  {
+    "name": "Iliolumbar vein.r",
+    "parent": "Common iliac vein.r",
+    "centre": [
+      -0.0753,
+      0.9824,
+      0.0034
+    ],
+    "size": [
+      0.0992,
+      0.052,
+      0.0904
+    ]
+  },
+  {
+    "name": "Deep dorsal vein of penis",
+    "parent": "Internal iliac vein.r",
+    "centre": [
+      0,
+      0.795,
+      0.0644
+    ],
+    "size": [
+      0.0054,
+      0.0728,
+      0.0596
+    ]
+  },
+  {
+    "name": "Inferior gluteal veins.r",
+    "parent": "Internal iliac vein.r",
+    "centre": [
+      -0.0447,
+      0.8775,
+      -0.0392
+    ],
+    "size": [
+      0.0427,
+      0.1325,
+      0.0569
+    ]
+  },
+  {
+    "name": "Internal pudendal vein.r",
+    "parent": "Internal iliac vein.r",
+    "centre": [
+      -0.0268,
+      0.8538,
+      -0.0101
+    ],
+    "size": [
+      0.0514,
+      0.0875,
+      0.091
+    ]
+  },
+  {
+    "name": "Lateral sacral veins.r",
+    "parent": "Internal iliac vein.r",
+    "centre": [
+      -0.0179,
+      0.9121,
+      -0.0461
+    ],
+    "size": [
+      0.0211,
+      0.0459,
+      0.048
+    ]
+  },
+  {
+    "name": "Superior gluteal veins.r",
+    "parent": "Internal iliac vein.r",
+    "centre": [
+      -0.0496,
+      0.931,
+      -0.0426
+    ],
+    "size": [
+      0.0523,
+      0.0442,
+      0.0637
+    ]
+  },
+  {
+    "name": "Internal iliac vein.r",
+    "parent": "Common iliac vein.r",
+    "centre": [
+      -0.0209,
+      0.9623,
+      0.0011
+    ],
+    "size": [
+      0.0182,
+      0.0438,
+      0.0338
+    ]
+  },
+  {
+    "name": "Common iliac vein.r",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      -0.0122,
+      1.0044,
+      0.02
+    ],
+    "size": [
+      0.0239,
+      0.0546,
+      0.0271
+    ]
+  },
+  {
+    "name": "Intrarenal veins of left kidney",
+    "parent": "Left renal vein",
+    "centre": [
+      0.0521,
+      1.1109,
+      -0.0153
+    ],
+    "size": [
+      0.058,
+      0.0773,
+      0.0309
+    ]
+  },
+  {
+    "name": "Left testicular vein",
+    "parent": "Left renal vein",
+    "centre": [
+      0.0396,
+      0.9164,
+      0.0163
+    ],
+    "size": [
+      0.0594,
+      0.3767,
+      0.0692
+    ]
+  },
+  {
+    "name": "Left renal vein",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      0.0075,
+      1.1061,
+      0.017
+    ],
+    "size": [
+      0.0405,
+      0.0134,
+      0.0371
+    ]
+  },
+  {
+    "name": "Lumbar veins.l",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      0.0553,
+      1.0755,
+      -0.0243
+    ],
+    "size": [
+      0.0705,
+      0.0953,
+      0.0577
+    ]
+  },
+  {
+    "name": "Lumbar veins.r",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      -0.0503,
+      1.0755,
+      -0.0206
+    ],
+    "size": [
+      0.08,
+      0.0949,
+      0.0643
+    ]
+  },
+  {
+    "name": "Intrarenal veins of right kidney",
+    "parent": "Right renal vein",
+    "centre": [
+      -0.0494,
+      1.0944,
+      -0.01
+    ],
+    "size": [
+      0.0481,
+      0.0775,
+      0.0194
+    ]
+  },
+  {
+    "name": "Right renal vein",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      -0.019,
+      1.1027,
+      0.0103
+    ],
+    "size": [
+      0.0213,
+      0.013,
+      0.0274
+    ]
+  },
+  {
+    "name": "Right testicular vein",
+    "parent": "Inferior vena cava (abdominal part)",
+    "centre": [
+      -0.0396,
+      0.9116,
+      0.0163
+    ],
+    "size": [
+      0.0593,
+      0.3673,
+      0.0692
+    ]
+  },
+  {
+    "name": "Inferior vena cava (abdominal part)",
+    "parent": "Inferior vena cava (thoracic part)",
+    "centre": [
+      -0.0095,
+      1.1022,
+      0.0201
+    ],
+    "size": [
+      0.0185,
+      0.143,
+      0.0289
+    ]
+  },
+  {
+    "name": "Inferior vena cava (thoracic part)",
+    "parent": null,
+    "centre": [
+      -0.0135,
+      1.2169,
+      0.0168
+    ],
+    "size": [
+      0.0259,
+      0.0928,
+      0.0339
+    ]
+  },
+  {
+    "name": "Maxillary veins.l",
+    "parent": "Retromandibular vein.l",
+    "centre": [
+      0.0363,
+      1.5499,
+      0.0366
+    ],
+    "size": [
+      0.016,
+      0.0113,
+      0.0624
+    ]
+  },
+  {
+    "name": "Superficial temporal veins.l",
+    "parent": "Retromandibular vein.l",
+    "centre": [
+      0.0636,
+      1.6169,
+      0.0005
+    ],
+    "size": [
+      0.0307,
+      0.1095,
+      0.0429
+    ]
+  },
+  {
+    "name": "Retromandibular vein.l",
+    "parent": "Anterior division of retromandibular vein.l",
+    "centre": [
+      0.045,
+      1.5559,
+      0.0066
+    ],
+    "size": [
+      0.0098,
+      0.0148,
+      0.0027
+    ]
+  },
+  {
+    "name": "Anterior division of retromandibular vein.l",
+    "parent": "Common facial vein.l",
+    "centre": [
+      0.0372,
+      1.5391,
+      0.0081
+    ],
+    "size": [
+      0.0101,
+      0.0208,
+      0.0052
+    ]
+  },
+  {
+    "name": "Angular vein.l",
+    "parent": "Facial vein.l",
+    "centre": [
+      0.0186,
+      1.5876,
+      0.0771
+    ],
+    "size": [
+      0.0218,
+      0.0713,
+      0.0168
+    ]
+  },
+  {
+    "name": "Inferior labial veins.l",
+    "parent": "Facial vein.l",
+    "centre": [
+      0.0193,
+      1.5136,
+      0.0652
+    ],
+    "size": [
+      0.0326,
+      0.0329,
+      0.0319
+    ]
+  },
+  {
+    "name": "Submental vein.l",
+    "parent": "Facial vein.l",
+    "centre": [
+      0.0173,
+      1.5031,
+      0.0608
+    ],
+    "size": [
+      0.0276,
+      0.014,
+      0.0388
+    ]
+  },
+  {
+    "name": "Superior labial vein.l",
+    "parent": "Facial vein.l",
+    "centre": [
+      0.0228,
+      1.5411,
+      0.0769
+    ],
+    "size": [
+      0.0221,
+      0.0035,
+      0.023
+    ]
+  },
+  {
+    "name": "Facial vein.l",
+    "parent": "Common facial vein.l",
+    "centre": [
+      0.0328,
+      1.5303,
+      0.0398
+    ],
+    "size": [
+      0.0099,
+      0.0456,
+      0.0617
+    ]
+  },
+  {
+    "name": "Common facial vein.l",
+    "parent": "Internal jugular vein.l",
+    "centre": [
+      0.0309,
+      1.5262,
+      0.0059
+    ],
+    "size": [
+      0.0069,
+      0.0084,
+      0.0087
+    ]
+  },
+  {
+    "name": "Lingual vein.l",
+    "parent": "Internal jugular vein.l",
+    "centre": [
+      0.0238,
+      1.5334,
+      0.0294
+    ],
+    "size": [
+      0.0162,
+      0.0128,
+      0.046
+    ]
+  },
+  {
+    "name": "Superior thyroid vein.l",
+    "parent": "Internal jugular vein.l",
+    "centre": [
+      0.032,
+      1.4857,
+      0.0076
+    ],
+    "size": [
+      0.0308,
+      0.0492,
+      0.0123
+    ]
+  },
+  {
+    "name": "Internal jugular vein.l",
+    "parent": null,
+    "centre": [
+      0.0298,
+      1.4928,
+      0.0019
+    ],
+    "size": [
+      0.0199,
+      0.1627,
+      0.0435
+    ]
+  },
+  {
+    "name": "Maxillary veins.r",
+    "parent": "Retromandibular vein.r",
+    "centre": [
+      -0.0363,
+      1.5499,
+      0.0366
+    ],
+    "size": [
+      0.016,
+      0.0113,
+      0.0624
+    ]
+  },
+  {
+    "name": "Superficial temporal veins.r",
+    "parent": "Retromandibular vein.r",
+    "centre": [
+      -0.0636,
+      1.6169,
+      0.0005
+    ],
+    "size": [
+      0.0307,
+      0.1095,
+      0.0429
+    ]
+  },
+  {
+    "name": "Retromandibular vein.r",
+    "parent": "Anterior division of retromandibular vein.r",
+    "centre": [
+      -0.045,
+      1.5559,
+      0.0066
+    ],
+    "size": [
+      0.0098,
+      0.0148,
+      0.0027
+    ]
+  },
+  {
+    "name": "Anterior division of retromandibular vein.r",
+    "parent": "Common facial vein.r",
+    "centre": [
+      -0.0372,
+      1.5391,
+      0.0081
+    ],
+    "size": [
+      0.0101,
+      0.0208,
+      0.0052
+    ]
+  },
+  {
+    "name": "Angular vein.r",
+    "parent": "Facial vein.r",
+    "centre": [
+      -0.0186,
+      1.5876,
+      0.0771
+    ],
+    "size": [
+      0.0218,
+      0.0713,
+      0.0168
+    ]
+  },
+  {
+    "name": "Inferior labial veins.r",
+    "parent": "Facial vein.r",
+    "centre": [
+      -0.0193,
+      1.5136,
+      0.0652
+    ],
+    "size": [
+      0.0326,
+      0.0329,
+      0.0319
+    ]
+  },
+  {
+    "name": "Submental vein.r",
+    "parent": "Facial vein.r",
+    "centre": [
+      -0.0173,
+      1.5031,
+      0.0608
+    ],
+    "size": [
+      0.0276,
+      0.014,
+      0.0388
+    ]
+  },
+  {
+    "name": "Superior labial vein.r",
+    "parent": "Facial vein.r",
+    "centre": [
+      -0.0228,
+      1.5411,
+      0.0769
+    ],
+    "size": [
+      0.0221,
+      0.0035,
+      0.023
+    ]
+  },
+  {
+    "name": "Facial vein.r",
+    "parent": "Common facial vein.r",
+    "centre": [
+      -0.0328,
+      1.5303,
+      0.0398
+    ],
+    "size": [
+      0.0099,
+      0.0456,
+      0.0617
+    ]
+  },
+  {
+    "name": "Common facial vein.r",
+    "parent": "Internal jugular vein.r",
+    "centre": [
+      -0.0309,
+      1.5262,
+      0.0059
+    ],
+    "size": [
+      0.0069,
+      0.0084,
+      0.0087
+    ]
+  },
+  {
+    "name": "Lingual vein.r",
+    "parent": "Internal jugular vein.r",
+    "centre": [
+      -0.0238,
+      1.5334,
+      0.0294
+    ],
+    "size": [
+      0.0162,
+      0.0128,
+      0.046
+    ]
+  },
+  {
+    "name": "Superior thyroid vein.r",
+    "parent": "Internal jugular vein.r",
+    "centre": [
+      -0.032,
+      1.4857,
+      0.0076
+    ],
+    "size": [
+      0.0308,
+      0.0492,
+      0.0123
+    ]
+  },
+  {
+    "name": "Internal jugular vein.r",
+    "parent": null,
+    "centre": [
+      -0.0298,
+      1.4928,
+      0.0019
+    ],
+    "size": [
+      0.0199,
+      0.1627,
+      0.0435
+    ]
+  },
+  {
+    "name": "Anterior circumflex humeral vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.1673,
+      1.3729,
+      -0.0098
+    ],
+    "size": [
+      0.0516,
+      0.0646,
+      0.0329
+    ]
+  },
+  {
+    "name": "Median antebrachial vein.l",
+    "parent": "Median cubital vein.l",
+    "centre": [
+      0.2313,
+      0.9715,
+      0.0094
+    ],
+    "size": [
+      0.0866,
+      0.2079,
+      0.051
+    ]
+  },
+  {
+    "name": "Median cubital vein.l",
+    "parent": "Basilic vein.l",
+    "centre": [
+      0.2182,
+      1.0685,
+      -0.0023
+    ],
+    "size": [
+      0.0403,
+      0.1125,
+      0.0362
+    ]
+  },
+  {
+    "name": "Basilic vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.197,
+      1.0765,
+      -0.0086
+    ],
+    "size": [
+      0.0927,
+      0.4668,
+      0.0488
+    ]
+  },
+  {
+    "name": "Deep venous palmar arch.l",
+    "parent": "Radial veins.l",
+    "centre": [
+      0.2683,
+      0.8474,
+      0.0248
+    ],
+    "size": [
+      0.0487,
+      0.0492,
+      0.0168
+    ]
+  },
+  {
+    "name": "Radial veins.l",
+    "parent": "Brachial veins.l",
+    "centre": [
+      0.2558,
+      0.9707,
+      0.0052
+    ],
+    "size": [
+      0.0556,
+      0.2081,
+      0.044
+    ]
+  },
+  {
+    "name": "Palmar digital veins.l",
+    "parent": "Superficial venous palmar arch.l",
+    "centre": [
+      0.2758,
+      0.7689,
+      0.0582
+    ],
+    "size": [
+      0.0999,
+      0.1225,
+      0.0692
+    ]
+  },
+  {
+    "name": "Superficial venous palmar arch.l",
+    "parent": "Ulnar veins.l",
+    "centre": [
+      0.262,
+      0.8381,
+      0.0272
+    ],
+    "size": [
+      0.0309,
+      0.0656,
+      0.0128
+    ]
+  },
+  {
+    "name": "Ulnar veins.l",
+    "parent": "Brachial veins.l",
+    "centre": [
+      0.2429,
+      0.9713,
+      0.0056
+    ],
+    "size": [
+      0.0296,
+      0.207,
+      0.0531
+    ]
+  },
+  {
+    "name": "Brachial veins.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.1916,
+      1.1923,
+      -0.0136
+    ],
+    "size": [
+      0.0804,
+      0.2378,
+      0.0253
+    ]
+  },
+  {
+    "name": "Dorsal digital veins of hand.l",
+    "parent": "Dorsal venous network of hand.l",
+    "centre": [
+      0.2783,
+      0.7881,
+      0.0556
+    ],
+    "size": [
+      0.1062,
+      0.1592,
+      0.0732
+    ]
+  },
+  {
+    "name": "Dorsal venous network of hand.l",
+    "parent": "Cephalic vein.l",
+    "centre": [
+      0.2651,
+      0.808,
+      0.0207
+    ],
+    "size": [
+      0.0488,
+      0.0715,
+      0.0166
+    ]
+  },
+  {
+    "name": "Cephalic vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.1959,
+      1.1109,
+      0.0027
+    ],
+    "size": [
+      0.1797,
+      0.5648,
+      0.0419
+    ]
+  },
+  {
+    "name": "Lateral thoracic vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.101,
+      1.2161,
+      0.0595
+    ],
+    "size": [
+      0.0723,
+      0.3389,
+      0.1243
+    ]
+  },
+  {
+    "name": "Posterior circumflex humeral vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.1632,
+      1.3643,
+      -0.0177
+    ],
+    "size": [
+      0.0517,
+      0.0091,
+      0.0362
+    ]
+  },
+  {
+    "name": "Circumflex scapular vein.l",
+    "parent": "Subscapular vein.l",
+    "centre": [
+      0.1401,
+      1.3565,
+      -0.0281
+    ],
+    "size": [
+      0.0122,
+      0.0217,
+      0.0542
+    ]
+  },
+  {
+    "name": "Thoracodorsal vein.l",
+    "parent": "Subscapular vein.l",
+    "centre": [
+      0.1256,
+      1.3279,
+      0.0087
+    ],
+    "size": [
+      0.0207,
+      0.1149,
+      0.0234
+    ]
+  },
+  {
+    "name": "Subscapular vein.l",
+    "parent": "Axillary vein.l",
+    "centre": [
+      0.1315,
+      1.3208,
+      -0.0159
+    ],
+    "size": [
+      0.0092,
+      0.0898,
+      0.0304
+    ]
+  },
+  {
+    "name": "Axillary vein.l",
+    "parent": "Left subclavian vein",
+    "centre": [
+      0.1242,
+      1.3561,
+      -0.0005
+    ],
+    "size": [
+      0.0646,
+      0.0947,
+      0.012
+    ]
+  },
+  {
+    "name": "Anterior jugular vein.l",
+    "parent": "External jugular vein.l",
+    "centre": [
+      0.0203,
+      1.4376,
+      0.0214
+    ],
+    "size": [
+      0.0329,
+      0.0427,
+      0.0119
+    ]
+  },
+  {
+    "name": "Posterior auricular vein.l",
+    "parent": "External jugular vein.l",
+    "centre": [
+      0.0626,
+      1.5904,
+      -0.0123
+    ],
+    "size": [
+      0.028,
+      0.0564,
+      0.0378
+    ]
+  },
+  {
+    "name": "Posterior division of retromandibular vein.l",
+    "parent": "External jugular vein.l",
+    "centre": [
+      0.0457,
+      1.5426,
+      0.0025
+    ],
+    "size": [
+      0.0105,
+      0.0141,
+      0.0098
+    ]
+  },
+  {
+    "name": "Suprascapular vein.l",
+    "parent": "External jugular vein.l",
+    "centre": [
+      0.0941,
+      1.3924,
+      -0.0209
+    ],
+    "size": [
+      0.1015,
+      0.0598,
+      0.0676
+    ]
+  },
+  {
+    "name": "External jugular vein.l",
+    "parent": "Left subclavian vein",
+    "centre": [
+      0.0407,
+      1.4722,
+      0.008
+    ],
+    "size": [
+      0.0212,
+      0.1275,
+      0.021
+    ]
+  },
+  {
+    "name": "Left subclavian vein",
+    "parent": null,
+    "centre": [
+      0.0591,
+      1.4072,
+      0.0113
+    ],
+    "size": [
+      0.0715,
+      0.0203,
+      0.0253
+    ]
+  },
+  {
+    "name": "Anterior circumflex humeral vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.1673,
+      1.3729,
+      -0.0098
+    ],
+    "size": [
+      0.0516,
+      0.0646,
+      0.0329
+    ]
+  },
+  {
+    "name": "Median antebrachial vein.r",
+    "parent": "Median cubital vein.r",
+    "centre": [
+      -0.2313,
+      0.9715,
+      0.0094
+    ],
+    "size": [
+      0.0866,
+      0.2079,
+      0.051
+    ]
+  },
+  {
+    "name": "Median cubital vein.r",
+    "parent": "Basilic vein.r",
+    "centre": [
+      -0.2182,
+      1.0685,
+      -0.0023
+    ],
+    "size": [
+      0.0403,
+      0.1125,
+      0.0362
+    ]
+  },
+  {
+    "name": "Basilic vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.197,
+      1.0765,
+      -0.0086
+    ],
+    "size": [
+      0.0927,
+      0.4668,
+      0.0488
+    ]
+  },
+  {
+    "name": "Deep venous palmar arch.r",
+    "parent": "Radial veins.r",
+    "centre": [
+      -0.2683,
+      0.8474,
+      0.0248
+    ],
+    "size": [
+      0.0487,
+      0.0492,
+      0.0168
+    ]
+  },
+  {
+    "name": "Radial veins.r",
+    "parent": "Brachial veins.r",
+    "centre": [
+      -0.2558,
+      0.9707,
+      0.0052
+    ],
+    "size": [
+      0.0556,
+      0.2081,
+      0.044
+    ]
+  },
+  {
+    "name": "Palmar digital veins.r",
+    "parent": "Superficial venous palmar arch.r",
+    "centre": [
+      -0.2758,
+      0.7689,
+      0.0582
+    ],
+    "size": [
+      0.0999,
+      0.1225,
+      0.0692
+    ]
+  },
+  {
+    "name": "Superficial venous palmar arch.r",
+    "parent": "Ulnar veins.r",
+    "centre": [
+      -0.262,
+      0.8381,
+      0.0272
+    ],
+    "size": [
+      0.0309,
+      0.0656,
+      0.0128
+    ]
+  },
+  {
+    "name": "Ulnar veins.r",
+    "parent": "Brachial veins.r",
+    "centre": [
+      -0.2429,
+      0.9713,
+      0.0056
+    ],
+    "size": [
+      0.0296,
+      0.207,
+      0.0531
+    ]
+  },
+  {
+    "name": "Brachial veins.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.1916,
+      1.1923,
+      -0.0136
+    ],
+    "size": [
+      0.0804,
+      0.2378,
+      0.0253
+    ]
+  },
+  {
+    "name": "Dorsal digital veins of hand.r",
+    "parent": "Dorsal venous network of hand.r",
+    "centre": [
+      -0.2783,
+      0.7881,
+      0.0556
+    ],
+    "size": [
+      0.1062,
+      0.1592,
+      0.0732
+    ]
+  },
+  {
+    "name": "Dorsal venous network of hand.r",
+    "parent": "Cephalic vein.r",
+    "centre": [
+      -0.2651,
+      0.808,
+      0.0207
+    ],
+    "size": [
+      0.0488,
+      0.0715,
+      0.0166
+    ]
+  },
+  {
+    "name": "Cephalic vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.1959,
+      1.1109,
+      0.0027
+    ],
+    "size": [
+      0.1797,
+      0.5648,
+      0.0419
+    ]
+  },
+  {
+    "name": "Lateral thoracic vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.101,
+      1.2161,
+      0.0595
+    ],
+    "size": [
+      0.0723,
+      0.3389,
+      0.1243
+    ]
+  },
+  {
+    "name": "Posterior circumflex humeral vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.1632,
+      1.3643,
+      -0.0177
+    ],
+    "size": [
+      0.0517,
+      0.0091,
+      0.0362
+    ]
+  },
+  {
+    "name": "Circumflex scapular vein.r",
+    "parent": "Subscapular vein.r",
+    "centre": [
+      -0.1401,
+      1.3565,
+      -0.0281
+    ],
+    "size": [
+      0.0122,
+      0.0217,
+      0.0542
+    ]
+  },
+  {
+    "name": "Thoracodorsal vein.r",
+    "parent": "Subscapular vein.r",
+    "centre": [
+      -0.1256,
+      1.3279,
+      0.0087
+    ],
+    "size": [
+      0.0207,
+      0.1149,
+      0.0234
+    ]
+  },
+  {
+    "name": "Subscapular vein.r",
+    "parent": "Axillary vein.r",
+    "centre": [
+      -0.1315,
+      1.3208,
+      -0.0159
+    ],
+    "size": [
+      0.0092,
+      0.0898,
+      0.0304
+    ]
+  },
+  {
+    "name": "Axillary vein.r",
+    "parent": "Right subclavian vein",
+    "centre": [
+      -0.1242,
+      1.3561,
+      -0.0005
+    ],
+    "size": [
+      0.0646,
+      0.0947,
+      0.012
+    ]
+  },
+  {
+    "name": "Anterior jugular vein.r",
+    "parent": "External jugular vein.r",
+    "centre": [
+      -0.0203,
+      1.4376,
+      0.0214
+    ],
+    "size": [
+      0.0329,
+      0.0427,
+      0.0119
+    ]
+  },
+  {
+    "name": "Posterior auricular vein.r",
+    "parent": "External jugular vein.r",
+    "centre": [
+      -0.0626,
+      1.5904,
+      -0.0123
+    ],
+    "size": [
+      0.028,
+      0.0564,
+      0.0378
+    ]
+  },
+  {
+    "name": "Posterior division of retromandibular vein.r",
+    "parent": "External jugular vein.r",
+    "centre": [
+      -0.0457,
+      1.5426,
+      0.0025
+    ],
+    "size": [
+      0.0105,
+      0.0141,
+      0.0098
+    ]
+  },
+  {
+    "name": "Suprascapular vein.r",
+    "parent": "External jugular vein.r",
+    "centre": [
+      -0.0941,
+      1.3924,
+      -0.0209
+    ],
+    "size": [
+      0.1015,
+      0.0598,
+      0.0676
+    ]
+  },
+  {
+    "name": "External jugular vein.r",
+    "parent": "Right subclavian vein",
+    "centre": [
+      -0.0407,
+      1.4722,
+      0.008
+    ],
+    "size": [
+      0.0212,
+      0.1275,
+      0.021
+    ]
+  },
+  {
+    "name": "Right subclavian vein",
+    "parent": null,
+    "centre": [
+      -0.0572,
+      1.4068,
+      0.0109
+    ],
+    "size": [
+      0.0752,
+      0.0195,
+      0.0245
+    ]
+  },
+  {
+    "name": "Accessory hemi-azygos vein",
+    "parent": "Azygos vein",
+    "centre": [
+      0.0092,
+      1.3381,
+      -0.0161
+    ],
+    "size": [
+      0.0458,
+      0.1289,
+      0.0785
+    ]
+  },
+  {
+    "name": "Left ascending lumbar vein",
+    "parent": "Hemi-azygos vein",
+    "centre": [
+      0.02,
+      1.0592,
+      -0.0105
+    ],
+    "size": [
+      0.0105,
+      0.1766,
+      0.0312
+    ]
+  },
+  {
+    "name": "Left subcostal vein",
+    "parent": "Hemi-azygos vein",
+    "centre": [
+      0.047,
+      1.1039,
+      -0.0426
+    ],
+    "size": [
+      0.0534,
+      0.0706,
+      0.0427
+    ]
+  },
+  {
+    "name": "Hemi-azygos vein",
+    "parent": "Azygos vein",
+    "centre": [
+      0.004,
+      1.1979,
+      -0.0326
+    ],
+    "size": [
+      0.0398,
+      0.1018,
+      0.021
+    ]
+  },
+  {
+    "name": "Right ascending lumbar vein",
+    "parent": "Azygos vein",
+    "centre": [
+      -0.0023,
+      1.0744,
+      0.0092
+    ],
+    "size": [
+      0.0529,
+      0.156,
+      0.0217
+    ]
+  },
+  {
+    "name": "Right subcostal vein",
+    "parent": "Azygos vein",
+    "centre": [
+      -0.0424,
+      1.1112,
+      -0.0315
+    ],
+    "size": [
+      0.0628,
+      0.0853,
+      0.0647
+    ]
+  },
+  {
+    "name": "Right superior intercostal vein",
+    "parent": "Azygos vein",
+    "centre": [
+      -0.0685,
+      1.2477,
+      0.0077
+    ],
+    "size": [
+      0.1273,
+      0.3566,
+      0.1966
+    ]
+  },
+  {
+    "name": "Right superior phrenic vein",
+    "parent": "Azygos vein",
+    "centre": [
+      -0.0842,
+      1.1834,
+      0.001
+    ],
+    "size": [
+      0.0705,
+      0.163,
+      0.1006
+    ]
+  },
+  {
+    "name": "Azygos vein",
+    "parent": "Superior vena cava",
+    "centre": [
+      -0.0118,
+      1.2586,
+      -0.0119
+    ],
+    "size": [
+      0.0122,
+      0.2151,
+      0.0528
+    ]
+  },
+  {
+    "name": "Musculophrenic veins.l",
+    "parent": "Internal thoracic veins.l",
+    "centre": [
+      0.0586,
+      1.1802,
+      0.0783
+    ],
+    "size": [
+      0.0952,
+      0.1621,
+      0.0482
+    ]
+  },
+  {
+    "name": "Superior epigastric veins.l",
+    "parent": "Internal thoracic veins.l",
+    "centre": [
+      0.0157,
+      1.183,
+      0.1004
+    ],
+    "size": [
+      0.0093,
+      0.1567,
+      0.0143
+    ]
+  },
+  {
+    "name": "Internal thoracic veins.l",
+    "parent": "Left brachiocephalic vein",
+    "centre": [
+      0.0188,
+      1.3326,
+      0.063
+    ],
+    "size": [
+      0.0164,
+      0.1436,
+      0.0742
+    ]
+  },
+  {
+    "name": "Left superior intercostal vein",
+    "parent": "Left brachiocephalic vein",
+    "centre": [
+      0.0578,
+      1.2497,
+      0.0075
+    ],
+    "size": [
+      0.1598,
+      0.3582,
+      0.1963
+    ]
+  },
+  {
+    "name": "Occipital vein.l",
+    "parent": "Vertebral vein.l",
+    "centre": [
+      0.0322,
+      1.5898,
+      -0.0521
+    ],
+    "size": [
+      0.043,
+      0.1085,
+      0.1027
+    ]
+  },
+  {
+    "name": "Vertebral vein.l",
+    "parent": "Left brachiocephalic vein",
+    "centre": [
+      0.0361,
+      1.4892,
+      -0.0114
+    ],
+    "size": [
+      0.0347,
+      0.1582,
+      0.0591
+    ]
+  },
+  {
+    "name": "Left brachiocephalic vein",
+    "parent": "Superior vena cava",
+    "centre": [
+      0.0027,
+      1.3927,
+      0.0243
+    ],
+    "size": [
+      0.0552,
+      0.044,
+      0.0223
+    ]
+  },
+  {
+    "name": "Musculophrenic veins.r",
+    "parent": "Internal thoracic veins.r",
+    "centre": [
+      -0.0586,
+      1.1802,
+      0.0783
+    ],
+    "size": [
+      0.0952,
+      0.1621,
+      0.0482
+    ]
+  },
+  {
+    "name": "Superior epigastric veins.r",
+    "parent": "Internal thoracic veins.r",
+    "centre": [
+      -0.0157,
+      1.183,
+      0.1004
+    ],
+    "size": [
+      0.0093,
+      0.1567,
+      0.0143
+    ]
+  },
+  {
+    "name": "Internal thoracic veins.r",
+    "parent": "Right brachiocephalic vein",
+    "centre": [
+      -0.0188,
+      1.3326,
+      0.063
+    ],
+    "size": [
+      0.0164,
+      0.1436,
+      0.0742
+    ]
+  },
+  {
+    "name": "Occipital vein.r",
+    "parent": "Vertebral vein.r",
+    "centre": [
+      -0.0322,
+      1.5898,
+      -0.0521
+    ],
+    "size": [
+      0.043,
+      0.1085,
+      0.1027
+    ]
+  },
+  {
+    "name": "Vertebral vein.r",
+    "parent": "Right brachiocephalic vein",
+    "centre": [
+      -0.0361,
+      1.4892,
+      -0.0114
+    ],
+    "size": [
+      0.0347,
+      0.1582,
+      0.0591
+    ]
+  },
+  {
+    "name": "Right brachiocephalic vein",
+    "parent": "Superior vena cava",
+    "centre": [
+      -0.0168,
+      1.3918,
+      0.0226
+    ],
+    "size": [
+      0.0252,
+      0.0423,
+      0.0214
+    ]
+  },
+  {
+    "name": "Superior vena cava",
+    "parent": null,
+    "centre": [
+      -0.0163,
+      1.3588,
+      0.0191
+    ],
+    "size": [
+      0.0249,
+      0.0377,
+      0.027
+    ]
+  }
+]

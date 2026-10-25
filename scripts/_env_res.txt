@@ -1,0 +1,100 @@
+# C:\Users\mural\AppData\Local\hermes\hermes-agent\hermes_cli\cli_agent_setup_mixin.py
+
+def _ensure_runtime_credentials(self) -> bool:
+        """
+        Ensure runtime credentials are resolved before agent use.
+        Re-resolves provider credentials so key rotation and token refresh
+        are picked up without restarting the CLI.
+        Returns True if credentials are ready, False on auth failure.
+        """
+        from cli import ChatConsole, _cprint, logger
+        from hermes_cli.runtime_provider import (
+            resolve_runtime_provider,
+            format_runtime_provider_error,
+        )
+
+        _primary_exc = None
+        runtime = None
+        try:
+            runtime = resolve_runtime_provider(
+                requested=self.requested_provider,
+                explicit_api_key=self._explicit_api_key,
+                explicit_base_url=self._explicit_base_url,
+            )
+        except Exception as exc:
+            _primary_exc = exc
+
+        # Primary provider auth failed — try fallback providers before giving up.
+        if runtime is None and _primary_exc is not None:
+            from hermes_cli.auth import AuthError
+            if isinstance(_primary_exc, AuthError):
+                _fb_chain = self._fallback_model if isinstance(self._fallback_model, list) else []
+                for _fb in _fb_chain:
+                    _fb_provider = (_fb.get("provider") or "").strip().lower()
+                    _fb_model = (_fb.get("model") or "").strip()
+                    if not _fb_provider or not _fb_model:
+                        continue
+                    try:
+                        from hermes_cli.fallback_config import resolve_entry_api_key
+
+                        _fb_kwargs = {"requested": _fb_provider}
+                        if _fb.get("base_url"):
+                            _fb_kwargs["explicit_base_url"] = _fb["base_url"]
+                        _fb_api_key = resolve_entry_api_key(_fb)
+                        if _fb_api_key:
+                            _fb_kwargs["explicit_api_key"] = _fb_api_key
+                        runtime = resolve_runtime_provider(**_fb_kwargs)
+                        logger.warning(
+                            "Primary provider auth failed (%s). Falling through to fallback: %s/%s",
+                            _primary_exc, _fb_provider, _fb_model,
+                        )
+                        _cprint(f"⚠️  Primary auth failed — switching to fallback: {_fb_provider} / {_fb_model}")
+                        self.requested_provider = _fb_provider
+                        self.model = _fb_model
+                        _primary_exc = None
+                        break
+                    except Exception:
+                        continue
+
+        if runtime is None:
+            message = format_runtime_provider_error(_primary_exc) if _primary_exc else "Provider resolution failed."
+            ChatConsole().print(f"[bold red]{message}[/]")
+            return False
+
+        api_key = runtime.get("api_key")
+        base_url = runtime.get("base_url")
+        resolved_provider = runtime.get("provider", "openrouter")
+        resolved_api_mode = runtime.get("api_mode", self.api_mode)
+        resolved_acp_command = runtime.get("command")
+        resolved_acp_args = list(runtime.get("args") or [])
+        resolved_credential_pool = runtime.get("credential_pool")
+        # A callable api_key is a bearer-token provider (Azure Foundry
+        # Entra ID — ``azure_identity_adapter.build_token_provider``).
+        # The OpenAI SDK accepts ``Callable[[], str]`` for ``api_key`` and
+        # invokes it before every request. Skip the string-only validation
+        # and placeholder substitution for callables.
+        _is_callable_provider = callable(api_key) and not isinstance(api_key, str)
+        if not _is_callable_provider and (not isinstance(api_key, str) or not api_key):
+            # Custom / local endpoints (llama.cpp, ollama, vLLM, etc.) often
+            # don't require authentication.  When a base_url IS configured but
+            # no API key was found, use a placeholder so the OpenAI SDK
+            # doesn't reject the request and local servers just ignore it.
+            _source = runtime.get("source", "")
+            _has_custom_base = isinstance(base_url, str) and base_url and "openrouter.ai" not in base_url
+            if _has_custom_base:
+                api_key = "no-key-required"
+                logger.debug(
+                    "No API key for custom endpoint %s (source=%s), "
+                    "using placeholder — local servers typically ignore auth",
+                    base_url, _source,
+                )
+            else:
+                print("\n⚠️  Provider resolver returned an empty API key. "
+                      "Set OPENROUTER_API_KEY or run: hermes setup")
+                return False
+        if not isinstance(base_url, str) or not base_url:
+            print("\n⚠️  Provider resolver returned an empty base URL. "
+                  "Check your provider config or run: hermes setup")
+            return False
+
+        crede

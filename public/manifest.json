@@ -1,0 +1,18 @@
+{
+  "name": "SHASTRA AI — Kautilya AI · Hospital Ops",
+  "short_name": "SHASTRA AI",
+  "description": "Divine Wisdom meets Machine Intelligence — 360° Hospital Operations powered by 7 interconnected AI systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030708",
+  "theme_color": "#030708",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

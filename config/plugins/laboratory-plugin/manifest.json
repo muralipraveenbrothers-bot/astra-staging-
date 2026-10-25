@@ -1,0 +1,329 @@
+{
+  "pluginId": "laboratory-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Laboratory Plugin",
+  "version": "1.0.0",
+  "description": "Worklist, sample collection, barcodes, processing, results, critical values, TAT management.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": [
+      "medical-knowledge-gateway",
+      "medical-model-pack"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "laboratory-service",
+      "type": "department",
+      "endpoint": "/api/laboratory",
+      "healthEndpoint": "/api/laboratory/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "laboratory_hod",
+      "name": "Laboratory HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "worklist_manager",
+      "name": "Worklist Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "laboratory_hod"
+    },
+    {
+      "agentId": "sample_manager",
+      "name": "Sample Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "laboratory_hod"
+    },
+    {
+      "agentId": "result_manager",
+      "name": "Result Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "laboratory_hod"
+    },
+    {
+      "agentId": "critical_value_manager",
+      "name": "Critical Value Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "laboratory_hod"
+    },
+    {
+      "agentId": "tat_manager",
+      "name": "TAT Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "laboratory_hod"
+    },
+    {
+      "agentId": "pathology_hod",
+      "name": "Pathology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "cbc_agent",
+      "name": "CBC Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "biochemistry_agent",
+      "name": "Biochemistry Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "microbiology_agent",
+      "name": "Microbiology Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "pathology_agent",
+      "name": "Pathology Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "critical_value_agent",
+      "name": "Critical Value Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "result_verification_agent",
+      "name": "Result Verification Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "lab_tat_agent",
+      "name": "Lab TAT Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "create_worklist",
+      "name": "Create Worklist",
+      "description": "Create lab worklist",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "collect_sample",
+      "name": "Collect Sample",
+      "description": "Record sample collection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "process_test",
+      "name": "Process Test",
+      "description": "Process test",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sampleId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "enter_result",
+      "name": "Enter Result",
+      "description": "Enter result values",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string"
+          },
+          "values": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "verify_result",
+      "name": "Verify Result",
+      "description": "Verify lab result",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "flag_critical",
+      "name": "Flag Critical",
+      "description": "Flag critical value",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "generate_barcode",
+      "name": "Generate Barcode",
+      "description": "Print sample barcode",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sampleId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "LAB_TECH",
+      "claims": [
+        "lab:write_result",
+        "lab:verify"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/lab",
+        "component": "LabDashboard",
+        "roles": [
+          "LAB_TECH"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "flask-conical",
+      "barcode"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "lab.result.entered",
+      "lab.critical.alert"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Worklist Queue",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Result DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Critical Value Pipeline",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Barcode Printer",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "criticalAlertRoles": {
+        "type": "array",
+        "default": [
+          "DOCTOR"
+        ]
+      }
+    },
+    "secrets": [
+      "LIS_INTERFACE_ENDPOINT"
+    ]
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:laboratory-plugin-1.0.0"
+}

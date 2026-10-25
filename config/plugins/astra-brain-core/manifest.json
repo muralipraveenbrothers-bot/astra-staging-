@@ -1,0 +1,230 @@
+{
+  "pluginId": "astra-brain-core",
+  "tier": "P0",
+  "category": "CORE",
+  "name": "ASTRA Brain Core",
+  "version": "1.0.0",
+  "description": "Central clinical intelligence, Hermes reasoning, model routing, memory governor, and base tool registry.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "hermes-brain",
+      "type": "agent-runtime",
+      "endpoint": "/api/brain/hermes",
+      "healthEndpoint": "/api/brain/hermes/health"
+    },
+    {
+      "serviceId": "model-router",
+      "type": "model-routing",
+      "endpoint": "/api/models/route",
+      "healthEndpoint": "/api/models/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "hermes_brain",
+      "name": "Hermes Central Brain",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "model_router",
+      "name": "Model Router",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "memory_governor",
+      "name": "Memory Governor",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "skill_registry",
+      "name": "Skill Registry",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "knowledge_governor",
+      "name": "Knowledge Governor",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "safety_governor",
+      "name": "Safety Governor",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "command_core",
+      "name": "Command Core",
+      "level": "CORE",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "search_skill",
+      "name": "Search Skills",
+      "description": "Search approved institutional skills",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "get_memory_scope",
+      "name": "Get Memory Scope",
+      "description": "Read a memory scope",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scopeId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "hermes_default",
+      "provider": "local",
+      "modelType": "REASONING",
+      "fallbackRouteId": "hermes_cloud_fallback"
+    }
+  ],
+  "knowledge": [
+    {
+      "sourceId": "hospital_protocols",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:clinical_reasoning",
+        "ai:agent_execution"
+      ]
+    },
+    {
+      "role": "ADMIN",
+      "claims": [
+        "plugin:configure",
+        "agent:modify"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/brain/settings",
+        "component": "BrainSettingsPanel",
+        "roles": [
+          "ADMIN"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "name": "BrainStatusWidget",
+        "slot": "system-health-panel"
+      }
+    ],
+    "icons": [
+      "brain",
+      "activity",
+      "cpu"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "brain.thought.complete",
+      "brain.agent.delegate"
+    ],
+    "subscribes": [
+      "system.shutdown",
+      "plugin.health.check"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Hermes Response",
+      "endpoint": "hermes-brain",
+      "timeoutMs": 5000,
+      "critical": true
+    },
+    {
+      "name": "Model Router",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Tool Registry",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "defaultModel": {
+        "type": "string",
+        "required": true
+      },
+      "memoryBackend": {
+        "type": "string",
+        "enum": [
+          "sqlite",
+          "postgres",
+          "redis"
+        ],
+        "required": true
+      },
+      "maxConcurrentAgents": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "secrets": [
+      "OPENAI_API_KEY",
+      "GEMINI_API_KEY",
+      "KIMI_API_KEY"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:astra-brain-core-1.0.0"
+}

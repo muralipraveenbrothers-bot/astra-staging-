@@ -1,0 +1,269 @@
+{
+  "pluginId": "medical-vision-dicom",
+  "tier": "P1",
+  "category": "VISION",
+  "name": "Medical Vision & DICOM",
+  "version": "1.0.0",
+  "description": "Image analysis, trauma vision, DICOM parsing, PACS adapter, annotation, and comparison.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "medical-model-pack",
+      "hospital-data-connector"
+    ],
+    "optional": [
+      "medical-knowledge-gateway"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "vision-engine",
+      "type": "vision",
+      "endpoint": "/api/vision",
+      "healthEndpoint": "/api/vision/health"
+    },
+    {
+      "serviceId": "dicom-parser",
+      "type": "vision",
+      "endpoint": "/api/dicom",
+      "healthEndpoint": "/api/dicom/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "image_quality_agent",
+      "name": "Image Quality Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "trauma_vision_agent",
+      "name": "Trauma Vision Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "dicom_parser",
+      "name": "DICOM Parser",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "anatomy_mapper",
+      "name": "Anatomy Mapper",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "image_quality_agent"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "analyze_image",
+      "name": "Analyze Image",
+      "description": "Analyze medical/trauma image",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageData": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "parse_dicom",
+      "name": "Parse DICOM",
+      "description": "Parse DICOM series",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "enhance_image",
+      "name": "Enhance Image",
+      "description": "Image enhancement",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageData": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "annotate_image",
+      "name": "Annotate Image",
+      "description": "Annotate image",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageData": {
+            "type": "string"
+          },
+          "annotations": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "compare_studies",
+      "name": "Compare Studies",
+      "description": "Side-by-side study comparison",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyA": {
+            "type": "string"
+          },
+          "studyB": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "vision_local",
+      "provider": "local",
+      "modelType": "VISION",
+      "fallbackRouteId": "vision_cloud_fallback"
+    }
+  ],
+  "knowledge": [
+    {
+      "sourceId": "anatomy_atlas",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:image_analysis"
+      ]
+    },
+    {
+      "role": "RADIOLOGIST",
+      "claims": [
+        "radiology:report",
+        "ai:image_analysis"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "MedicalImageAnnotatorModal",
+        "slot": "image-workspace"
+      },
+      {
+        "name": "ImageIntelligenceModal",
+        "slot": "patient-workspace-image-tab"
+      }
+    ],
+    "icons": [
+      "scan",
+      "image"
+    ]
+  },
+  "database": {
+    "migrations": [
+      "001_create_image_studies.sql",
+      "002_create_image_annotations.sql"
+    ],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "vision.analysis.complete",
+      "dicom.study.retrieved"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Vision Model",
+      "endpoint": "model-router",
+      "timeoutMs": 5000,
+      "critical": true
+    },
+    {
+      "name": "DICOM Parser",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Image Storage",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "PACS Connectivity",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "windowing": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": [
+      "PACS_HOST",
+      "PACS_PORT",
+      "PACS_AETITLE"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:medical-vision-dicom-1.0.0",
+  "statusRule": "If PACS unavailable -> DEGRADED, local vision still works"
+}

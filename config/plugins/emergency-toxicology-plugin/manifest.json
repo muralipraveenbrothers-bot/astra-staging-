@@ -1,0 +1,151 @@
+{
+  "pluginId": "emergency-toxicology-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Emergency Toxicology (Tox-Command)",
+  "version": "1.0.0",
+  "description": "Toxidrome matcher, weight-based antidote calculator, Rumack-Matthew nomogram, snake bite / OP / heavy metal protocols.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "pharmacy-plugin"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "tox-command",
+      "type": "toxicology",
+      "endpoint": "/api/tox-command",
+      "healthEndpoint": "/api/tox-command/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "tox_commander",
+      "name": "Tox-Commander",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "emergency_hod"
+    },
+    {
+      "agentId": "antidote_calculator",
+      "name": "Antidote Calculator",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "tox_commander"
+    },
+    {
+      "agentId": "toxidrome_matcher",
+      "name": "Toxidrome Matcher",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "tox_commander"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "match_toxidrome",
+      "name": "Match Toxidrome",
+      "description": "Symptom pattern → poisoning identification + antidote",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "calculate_antidote_dose",
+      "name": "Calculate Antidote Dose",
+      "description": "Weight-based antidote dosing",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "plot_nomogram",
+      "name": "Plot Nomogram",
+      "description": "Rumack-Matthew paracetamol nomogram",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "antidote_db",
+      "type": "toxicology",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "tox:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "flask-conical",
+      "skull"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "tox.protocol.activated"
+    ],
+    "subscribes": [
+      "order.pharmacy.created"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Antidote DB",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Pharmacy Inventory",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {},
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:emergency-toxicology-plugin-1.0.0",
+  "notes": "Antidote doses are DERIVED ESTIMATES — confirm against poison control before administration."
+}

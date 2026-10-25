@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "banner": "REVIEW REQUIRED BY DOCTOR/PHARMACIST BEFORE CLINICAL USE",
+  "importFormat": {
+    "description": "Append reviewed entries. Keep the banner unchanged. severity is info, orange, or red. Red is only for a lethal pair or a physiologically impossible dose. suggestionOnly is never applied unless the doctor ticks it.",
+    "allergy": {
+      "id": "string",
+      "allergen": "string",
+      "drugNames": ["string"],
+      "alsoMatchClass": "string or omit",
+      "severity": "orange",
+      "message": "string",
+      "suggestionOnly": "string or omit",
+      "overrideAllowed": false
+    },
+    "renalHepatic": {
+      "id": "string",
+      "drugNames": ["string"],
+      "egfrBelow": null,
+      "creatinineMgDlAtOrAbove": null,
+      "altAbove": null,
+      "astAbove": null,
+      "severity": "orange",
+      "message": "string",
+      "overrideAllowed": false
+    },
+    "interactions": {
+      "id": "string",
+      "pair": ["drug-a", "drug-b"],
+      "severity": "orange",
+      "message": "string",
+      "overrideAllowed": false
+    },
+    "classInteractions": {
+      "id": "string",
+      "patientDrug": "string",
+      "draftClass": "string",
+      "severity": "orange",
+      "message": "string",
+      "overrideAllowed": false
+    },
+    "doseOutliers": {
+      "id": "string",
+      "drugNames": ["string"],
+      "orangeAtOrAboveSingleMg": null,
+      "redAboveSingleMg": null,
+      "maxDailyMg": null,
+      "orangeMessage": "string",
+      "redMessage": "string or omit",
+      "overrideAllowed": false
+    },
+    "lethalPairs": {
+      "id": "string",
+      "pair": ["drug-a", "drug-b"],
+      "severity": "red",
+      "message": "string",
+      "overrideAllowed": true,
+      "enabled": false
+    },
+    "drugClasses": {
+      "drugNames": ["string"],
+      "classes": ["string"]
+    }
+  },
+  "drugClasses": [
+    {
+      "drugNames": [
+        "amoxicillin",
+        "ampicillin",
+        "amoxicillin-clavulanate",
+        "amoxicillin clavulanate",
+        "amoxicillin clavulanic acid",
+        "augmentin",
+        "co-amoxiclav",
+        "piperacillin",
+        "piperacillin tazobactam"
+      ],
+      "classes": ["penicillin", "antibiotic"]
+    },
+    {
+      "drugNames": ["erythromycin"],
+      "classes": ["macrolide", "antibiotic"]
+    },
+    {
+      "drugNames": ["warfarin"],
+      "classes": ["anticoagulant"]
+    },
+    {
+      "drugNames": ["aspirin"],
+      "classes": ["antiplatelet"]
+    },
+    {
+      "drugNames": ["paracetamol", "acetaminophen", "dolo"],
+      "classes": ["analgesic"]
+    },
+    {
+      "drugNames": ["renal-rule-example"],
+      "classes": ["example"]
+    }
+  ],
+  "allergy": [
+    {
+      "id": "allergy.penicillin.amoxicillin-clavulanate",
+      "allergen": "penicillin",
+      "drugNames": [
+        "amoxicillin",
+        "ampicillin",
+        "amoxicillin-clavulanate",
+        "amoxicillin clavulanate",
+        "amoxicillin clavulanic acid",
+        "augmentin",
+        "co-amoxiclav",
+        "piperacillin",
+        "piperacillin tazobactam"
+      ],
+      "alsoMatchClass": "penicillin",
+      "severity": "orange",
+      "message": "Recorded penicillin allergy. This drug is in the penicillin class (amoxicillin, ampicillin, amoxicillin-clavulanate/Augmentin, piperacillin).",
+      "suggestionOnly": "erythromycin",
+      "overrideAllowed": false
+    }
+  ],
+  "renalHepatic": [
+    {
+      "id": "renal.gfr-lt-30.example",
+      "drugNames": ["renal-rule-example"],
+      "egfrBelow": 30,
+      "severity": "orange",
+      "message": "GFR <30 → renal-adjusted options",
+      "overrideAllowed": false,
+      "reviewNote": "Placeholder drug key. Replace drugNames with the hospital list after review."
+    },
+    {
+      "id": "renal.cr-before-aggressive.example",
+      "drugNames": ["renal-rule-example"],
+      "creatinineMgDlAtOrAbove": 1.2,
+      "severity": "orange",
+      "message": "Ensure Cr <1.2 before aggressive dosing",
+      "overrideAllowed": false,
+      "reviewNote": "Placeholder drug key. Replace drugNames with the hospital list after review."
+    }
+  ],
+  "interactions": [
+    {
+      "id": "interaction.warfarin.aspirin",
+      "pair": ["warfarin", "aspirin"],
+      "severity": "orange",
+      "message": "Warfarin + aspirin: bleeding risk.",
+      "overrideAllowed": false
+    }
+  ],
+  "classInteractions": [
+    {
+      "id": "interaction.warfarin.antibiotic",
+      "patientDrug": "warfarin",
+      "draftClass": "antibiotic",
+      "severity": "orange",
+      "message": "Antibiotic in a warfarin patient: monitor INR.",
+      "overrideAllowed": false
+    }
+  ],
+  "doseOutliers": [
+    {
+      "id": "dose.paracetamol.single.example",
+      "drugNames": ["paracetamol", "acetaminophen", "dolo"],
+      "orangeAtOrAboveSingleMg": 5000,
+      "redAboveSingleMg": null,
+      "maxDailyMg": null,
+      "orangeMessage": "Did you mean a high dose, or is that a typo?",
+      "overrideAllowed": false,
+      "reviewNote": "Source example: 5000 mg flags orange. 500 mg does not. Not a reviewed maximum."
+    }
+  ],
+  "lethalPairs": [],
+  "impossibleDose": {
+    "id": "dose.non-positive",
+    "severity": "red",
+    "whenSingleDoseMgAtOrBelow": 0,
+    "overrideAllowed": false,
+    "message": "A dose of zero or less is physiologically impossible."
+  }
+}

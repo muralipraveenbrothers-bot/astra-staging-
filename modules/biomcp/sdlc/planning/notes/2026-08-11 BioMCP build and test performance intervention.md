@@ -1,0 +1,383 @@
+# BioMCP build and test performance intervention — 2026-08-11
+
+## Decision
+
+Pause the BioMCP queue and do the performance work directly in one persistent
+worktree. Keep one ticket per independently reviewable behavior, complete them
+sequentially on `performance/build-flow`, and archive each ticket with its
+before/after evidence. Do not pay a fresh worktree, preflight, design, and
+review setup cost for every performance ticket.
+
+The first objective is the fastest truthful local feedback loop. Quality gates
+are added back only where they catch a distinct class of failure. Re-running
+the same complete gate against the same commit is not additional evidence.
+
+## Pinned baseline
+
+- Repository: `/home/ian/workspace/repos/biomcp`
+- Worktree: `/home/ian/workspace/worktrees/biomcp-performance`
+- Branch: `performance/build-flow`
+- Base: `bf55ce01e8c5d3b074769e09cd02c987f8ab148c`
+- Machine: Ryzen 7 5825U, 16 logical CPUs, 27 GiB RAM
+- Toolchain: Rust/Cargo 1.93.1, nextest 0.9.132, sccache 0.14.0,
+  mold 2.30.0, uv 0.8.0
+- Conditions: Queue and SDLC flights were active, so these are loaded-machine
+  measurements representative of normal use, not isolated best cases.
+
+| Gate | Wall time | Important decomposition |
+|---|---:|---|
+| cold `make lint` | 130.06s | Clippy itself finished in 57.67s |
+| warm `make lint` | 84.35s | warm Clippy 0.57s; `bin/lint` 40.22s; quality ratchet 33.17s |
+| cold `make test` | 884.19s | Rust compile 108s; 2,838 Rust tests 49.45s; 463 Python tests 593.65s |
+| warm-binary `make spec` | 592.42s | 53.07s user CPU and 14.74s system CPU: mostly serialized waiting |
+
+The three ordinary gates therefore cost 26m46s once, before any agent reading,
+design, implementation, or review time. A completed representative flight,
+0951, took 2h16m54s: design 12m54s, design review 14m51s, code 37m53s, code
+review 46m47s, and verify 24m29s. The current build flow can invoke lint six
+times, test four times, and spec once, while stage agents often invoke the same
+complete suites themselves.
+
+## Where the time goes
+
+1. `make test` spends about ten minutes in sequential Python tests. Existing
+   ticket 0914 identified the main cause: negative fixtures repeatedly launch
+   the complete 33-second quality ratchet instead of the one audit they mutate.
+2. `make spec` is serial after the migration from pytest-xdist to the standalone
+   Mustmatch binary. Mustmatch has no parallel option. Historical ticket 0187
+   added file-level parallelism, but commit `44ffdd31` removed that execution
+   model during the binary-runner migration.
+3. `spec/entity/variant-article-identity.md` launches the same expensive fixture
+   script six times. Each invocation performs six BioMCP requests; the page
+   recomputes the same JSON document for separate assertions.
+4. `spec/surface/cli-contract-ratchet.md` launches pytest from inside `make
+   spec`, including a complete quality-ratchet run already owned by `make test`.
+   Other nested Cargo builds are already owned by ticket 0892.
+5. Warm `bin/lint` takes 40 seconds even though Clippy takes less than one
+   second. Its shell implementation repeatedly starts grep for individual files
+   and, in the documentation scan, for individual lines.
+6. Routine Cargo lanes do not use the same feature graph. Tests and specs use
+   `--no-default-features`; lint enables the default AlphaGenome gRPC/protobuf
+   stack. This defeats dependency reuse and makes ordinary lint run `protoc`
+   for a feature the routine corpus cannot exercise.
+7. `build.rs` watches Git HEAD and exports commit identity to the whole package.
+   Every stage commit can therefore invalidate compilation of the roughly
+   196,000-line main crate even when the product source is unchanged.
+8. A small group of Rust tests writes production-sized caches, rewrites more
+   than a thousand session files, or waits through production retry behavior.
+   Existing ticket 0964 already owns those seams. Rust execution as a whole is
+   currently only about 49 seconds, so this follows the larger Python/spec wins.
+
+## Existing tickets
+
+### Pull forward and implement in this session
+
+1. **0914 — Run only the quality audit a test mutates.** Largest measured
+   `make test` win. Keep one full wrapper integration test.
+2. **0892 — Build routine specification artifacts once.** Remove nested Cargo
+   work and give every spec an explicit prepared artifact.
+3. **0936 — Keep normal builds from rewriting generated source.** Removes an
+   unsafe build side effect and makes cache inputs stable.
+4. **0964 — Inject small persistence and retry test boundaries.** Removes large
+   writes, 1,030-file rewrites, and real retry waits after the larger lane-level
+   costs are gone.
+
+### Inspect, but do not assume they are speed wins
+
+- **0965 — Ratchet large modules and dead-code allowances.** Use its inventory
+  to guide local cleanup, but do not split files or delete dependencies without
+  compile-profile evidence. More modules can increase compile overhead if the
+  dependency boundary is wrong.
+- **0895 — Doc-only pre-commit path.** Useful for developer hooks, but it does
+  not fix the factory or this one-worktree intervention.
+- **0896/0897 and 0941.** Fixture supervision and short socket paths improve
+  reliability. Pull them forward only if parallel execution exposes a real
+  lifecycle or path failure.
+- **0939.** The compatibility executable cleanup is product/package work, not a
+  leading compile-time cause.
+
+### Already completed and still valuable
+
+- 0187 adopted nextest and file-level pytest-xdist execution.
+- 0501 reused one spec-profile binary across test and spec.
+- 0591 moved live contracts out of routine test.
+- 0621, 0624, and 0625 removed live/network, duplicate-spec, and AlphaGenome
+  costs from routine validation.
+- 0644 hardened fixture lifecycle behavior.
+
+The current measurements show two regressions from that work: Python unit tests
+no longer use xdist, and executable Markdown pages lost file-level parallelism
+when the Mustmatch runner changed.
+
+## New tickets
+
+The following records capture measured gaps that no existing runnable ticket
+owns:
+
+1. **0966 — Scan tracked lint inputs once.** Replace per-file/per-line shell
+   subprocesses while keeping every existing lint finding and message.
+2. **0967 — Execute each expensive routine spec fixture once.** Share one
+   captured result across the assertions on a page.
+3. **0968 — Restore bounded parallel execution to routine spec pages.** Start
+   with the isolation contract and a conservative worker cap; preserve useful
+   failure output and cleanup.
+4. **0969 — Keep routine specs from launching gates owned by `make test`.** A
+   spec proves product behavior; source-policy pytest belongs in the test lane.
+5. **0970 — Isolate build identity from reusable Rust compilation.** A commit
+   change must not rebuild the entire library merely to update version output.
+6. **0971 — Use one small Cargo graph for routine lint, test, and spec.** Run a
+   full-feature check in the release lane, not at every ordinary stage.
+7. **0972 — Run Python contract files with bounded workers.** A post-0964
+   four-worker probe passed all 500 tests in 43.28s versus about 105s
+   sequentially; retain the same corpus and assertions with file-based
+   distribution.
+
+## Implementation order
+
+Use measured payoff and risk, not ticket number:
+
+1. 0914, then 0966: remove the known repeated scans from test and lint.
+2. 0967 and 0969: remove duplicated work inside the serial spec lane.
+3. 0968: parallelize the now-minimal page set, starting with a low worker cap
+   and raising it only while the isolation contract remains green.
+4. 0892: make all remaining executable artifacts preparation-owned.
+5. 0971, 0936, and 0970: make routine compilation shareable and stable across
+   commits without weakening release-feature coverage.
+6. 0964: shrink the remaining slow Rust tests.
+7. Profile the resulting build graph before selecting any 0965 dead-code or
+   dependency deletion. Remove only code proven unused and dependencies whose
+   removal materially reduces the graph.
+
+After every ticket, run the smallest affected red/green test first. Run the
+complete three-gate baseline only at meaningful checkpoints and once at the
+sealed end. Record wall, user CPU, system CPU, peak memory, commit, feature set,
+and whether the machine was loaded.
+
+## Fastest safe ticket flow
+
+For this intervention:
+
+1. Write the behavior and its failing focused test.
+2. Review the behavior and test diff without running unrelated complete gates.
+3. Implement and run the focused test until green.
+4. Review the code diff and run tests for changed surfaces.
+5. At a checkpoint, run each affected complete lane once.
+6. At the end, run one sealed `make lint`, `make test`, and `make spec`, then
+   merge the whole branch.
+
+For the future factory, preserve independent design/code review but stop using
+complete-suite repetition as the handoff mechanism. Cache a green verdict by
+exact commit, let stage gates select changed surfaces, and require one sealed
+full validation at the final commit. The existing SDLC issue
+`prepare-reruns-the-whole-suite-on-every-claim.md` already owns reuse of an
+exact-commit green preflight and should be promoted in the SDLC repository.
+
+## Success criteria
+
+- Warm `make lint`, `make test`, and `make spec` together are at least 3x faster
+  than the 26m46s intervention baseline.
+- The final run retains every existing assertion and every distinct full gate.
+- Repeated runs leave the worktree clean and no fixture processes alive.
+- A commit that changes only planning or tests does not force an unrelated full
+  crate rebuild solely because Git HEAD moved.
+- The recommended factory flow performs one complete final validation per
+  candidate commit, not one per conversational stage.
+
+## Completed results
+
+### 0914 — named quality audits
+
+Commit `5175790c` added named audit selection, kept one full wrapper integration,
+and shared one Rust source snapshot between the two whole-tree Rust audits. The
+complete sequential Python contract lane fell from 593.65s to 93.77s on the
+same loaded machine: 6.3x faster, saving 499.88s per `make test`. All 465 tests
+passed.
+
+### 0966 — one-pass tracked-text lint
+
+Commit `b408f23c` replaced shell subprocess loops with one tracked-file
+collection and at most one read per file. All 16 lint-contract tests pass.
+Warm `bin/lint` fell from 40.22s to 8.82s (4.6x), and complete warm `make lint`
+fell from 84.35s to 26.35s (3.2x).
+
+### 0969 — no nested test gates in routine specs
+
+Commit `df0dce06` removed the duplicate CLI-surface pytest launch from
+`make spec` while retaining its direct `make test` ownership. A shell-aware
+source ratchet now rejects nested test/lint gates in executable Markdown and
+fixture helpers without matching prose, quoted output, or `make -n`. All 49
+focused tests and the complete named spec-lint audit pass.
+
+### 0967 — reuse exact fixture results
+
+Commit `dbc37664` changed the variant identity, saved JATS, and ClinGen CSpec
+pages from 6/10/2 identical helper executions to one each. All 32 runner tests
+and spec lint pass. The variant identity page is 46.87s. Comparable warm-binary
+`make spec` execution fell from about 592.1s to 279.5s, roughly 2.1x faster.
+
+### 0968 — bounded parallel routine pages
+
+The runner now executes independent Markdown pages with four bounded workers,
+while article/author and section outcomes retain their explicit shared-state
+serial boundaries. Static and live modes are unchanged. Synthetic tests prove
+concurrency, a one-worker diagnostic mode, aggregate and path-ordered failure
+output, no next batch after failure, invalid-setting rejection, and interrupt
+cleanup of each page's process group. The 32-test isolation contract passed
+three consecutive runs at four workers.
+
+After an explicit binary prewarm, two complete `make spec` runs took 216.47s
+and 194.37s. Both passed; the 205.42s median is 1.36x faster than the post-0967
+serial comparison and 2.88x faster than the 592.1s intervention baseline.
+Moving Git `HEAD` for the preceding record-only commit made the prewarm cost
+65.26s despite no product-source change; implement 0970 next so the remaining
+intervention commits stop paying that invalidation.
+
+### 0970 — executable-only build identity
+
+Commit `81e59beb` removed Git-derived compile inputs from the package build
+script. A small wrapper now computes truthful tag, commit, dirty-source, and
+commit-date values for the two executable entry points only. Git-free package
+builds use the committed Cargo version and explicit `unknown` provenance, and
+the wrapper rejects an arbitrary surrounding Git checkout as identity input.
+
+The synthetic artifact test proves ownership for metadata-only, executable,
+and library changes, plus tags, dirty source, and archives. On BioMCP itself,
+two clean HEAD-only builds kept `biomcp_cli` fresh, rebuilt only `biomcp`, and
+took 2.59s and 1.79s while reporting the new commit. The comparable same-HEAD
+warm build was 0.38s and a fresh-target build was 102.76s. This removes the
+65.26s full optimized rebuild observed after the preceding record commit—a
+roughly 25–36x faster HEAD-only path. The complete Rust lane passed 2,835 tests;
+the corrected Python lane passed 484 tests in 105.41s.
+
+### 0892 — one explicit specification artifact preparation phase
+
+All build-inducing Cargo work now belongs to
+`scripts/prepare-spec-artifacts.py`. Routine preparation builds the feature-off
+CLI and MCP example in one Cargo invocation, copies them to stable executable
+paths, and captures dependency-tree and package-metadata evidence once. Live
+preparation keeps feature-on and feature-off CLIs in distinct directories and
+discovers the library test plus six filtered integration-test executables from
+Cargo JSON after one `cargo test --no-run`.
+
+MCP pages, the section-outcome helper, build-profile pages, and all filtered
+Rust-test blocks now execute prepared paths. The spec-lint audit rejects
+`cargo run`, `build`, `rustc`, `test`, `tree`, and `metadata` in executable
+pages or fixture helpers, including command substitutions. A synthetic runner
+test proves a missing prepared path fails clearly instead of falling through to
+Cargo or an installed `biomcp`.
+
+Warm routine preparation took 0.77s. A complete four-worker `make spec` passed
+in 185.30s, versus the 205.42s post-0968 median and 592.42s intervention
+baseline. The first full run also caught and corrected an artifact naming bug:
+distinct directories now each contain a normally named `biomcp`, so PATH-based
+pages cannot fall through to an older installed executable.
+
+### 0936 — maintainer-only AlphaGenome protobuf regeneration
+
+Normal builds now include the committed AlphaGenome generated Rust file
+directly. The package build script no longer invokes `protoc`, generates a
+candidate, copies a fallback, or writes a tracked source path. `tonic-build`
+and six generator-only transitive crates left the main dependency lock and are
+isolated in a small maintainer-only tool with its own lockfile.
+
+`scripts/regenerate-alphagenome-proto` requires exact `protoc` 28.3, generates
+into a temporary target directory, applies the reviewed dead-code annotation,
+validates the client, and atomically replaces only the tracked generated file.
+Its `--check` mode emits a unified diff without writing. CI installs protoc in
+one dedicated generated-source job; normal check, contract, and spec jobs no
+longer install it.
+
+Six AlphaGenome tests passed with a fail-on-call fake generator configured,
+and no-feature checks passed with a missing generator. The pinned-command
+harness reproduced the committed bytes. Full `cargo package --locked`
+verification succeeded in 74.65s with the fail-on-call generator configured;
+the package includes the committed Rust and excludes proto/generator inputs.
+All 31 focused Python/documentation contracts and full lint passed.
+
+### 0971 — one small routine Cargo graph
+
+Routine Clippy, nextest, and spec preparation now share the one declared
+`--no-default-features` graph. A separate `make full-feature-check` lints all
+targets and features, runs the six AlphaGenome behavior tests, and builds the
+all-feature release CLI; `make release-gate` adds that proof between the routine
+test lane and release-profile executable specs. CI and developer docs state the
+split explicitly.
+
+The first full-feature proof found and fixed an existing Clippy warning in the
+MCP example. Its cold run took 532.93s, including the first all-feature test and
+optimized release builds; the immediate repeat took 1.41s. A fresh-target
+routine sequence measured lint at 99.38s and test at 440.36s. Its following
+spec run took 197.89s and exposed one stale self-documentation assertion after
+the other spec groups passed. The assertion and two synthetic identity tests
+were fixed to ignore outer target overrides.
+
+On exact final commit `8ab4969c`, sealed warm lint/test/spec runs all passed in
+26.94s, 162.40s, and 186.42s. The 375.76s total is 4.27x faster than the
+1,606s intervention baseline, crossing the intervention's 3x goal before the
+remaining performance tickets.
+
+### 0964 — small persistence and retry test boundaries
+
+The remaining dominant Rust tests now exercise decisions through small local
+seams. Provider-capture capacity uses an injected nonzero byte limit plus a
+pure deterministic planner; its one real persistence smoke writes kilobytes,
+reopens, and evicts. Article-session expiry and capacity pruning operate on
+four in-memory entries for exact, plus-one, expiry, and stable-tie cases, while
+the existing atomic-write/fsync/reopen tests retain filesystem proof. The
+full-text failure matrix uses a no-retry client with the production body
+limiter, while one loopback response proves the production retry adapter and a
+pending recording sleeper proves cancellation.
+
+The old three tests took 36.369s, 14.425s, and 13.335s. Focused capacity and
+classification runs now take 0.14s and 0.65s. On exact commit `892260d8`, all
+2,838 Rust tests passed in 9.465s of nextest execution, versus 36.474s before
+the change: 3.85x faster. Complete lint passed, and the implementation is +139
+net source lines against the authorized +140 ceiling.
+
+### 0972 — bounded Python contract workers
+
+The complete Python contract corpus now runs through four bounded pytest-xdist
+workers with file-based distribution. `PYTEST_WORKERS=1` remains available for
+a deterministic one-worker diagnosis. CI reuses the same `make test-contracts`
+target with its prepared release executable instead of maintaining a separate
+sequential command sequence.
+
+A prepared-binary run passed 500 tests in 43.28s versus about 105s
+sequentially. Two complete canonical runs passed 502 tests in 44.26s and
+44.47s; the warm lane took 47.09s including preparation, synchronization, and
+strict documentation. On exact implementation commit `961e42b9`, 503 tests
+and strict documentation passed in 45.07s, with pytest itself taking 39.91s.
+
+## Final sealed result
+
+After incorporating current `origin/main`, retiring the six stale runnable
+ticket copies that already had completion records, and leaving the worktree
+clean, commit `c720b05a` passed the complete optimized validation sequence:
+
+| Gate | Baseline | Final | Result |
+|---|---:|---:|---:|
+| `make lint` | 84.35s warm | 42.22s | 2.0x faster |
+| `make test` | 884.19s cold | 59.13s | 15.0x faster |
+| `make spec` | 592.42s warm-binary | 207.22s | 2.9x faster |
+| Ordinary three-gate loop | 1,606s | 308.57s | 5.2x faster |
+
+The final test gate retained all 2,838 Rust tests, 503 Python contracts, and
+strict documentation. The executable specification gate retained its complete
+routine page set. The separate all-feature proof passed Clippy, all six
+AlphaGenome behavior tests, and an optimized release build. Because 0964 had
+changed Rust product code since the previous all-feature proof, its first
+sealed run rebuilt the release artifact and took 490.19s; the immediate warm
+repeat took 1.45s.
+
+This is the recommended future ticket flow: run focused red/green checks during
+design and implementation; share exact-commit results rather than rerunning a
+complete gate at every handoff; run the ordinary three-gate loop once on the
+merge candidate; and run the distinct full-feature/release proof only when its
+inputs or release readiness require it.
+
+Tickets 0895 and 0965 remain intentionally open. Ticket 0895 speeds only the
+developer pre-commit hook, not factory setup or the canonical gates. Profiling
+found no evidence that the module/dead-code cleanup in 0965 would reduce build
+time; doing it now would add structural churn without a measured performance
+benefit. Tickets 0896, 0897, and 0941 were not pulled forward because bounded
+parallel execution exposed no fixture-lifecycle or socket-path failure.

@@ -1,0 +1,226 @@
+{
+  "pluginId": "rbac-audit",
+  "tier": "P0",
+  "category": "SECURITY",
+  "name": "RBAC & Audit",
+  "version": "1.0.0",
+  "description": "Authentication, authorization, session management, immutable audit log, and PII encryption.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "hospital-data-connector"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "auth-service",
+      "type": "security",
+      "endpoint": "/api/auth",
+      "healthEndpoint": "/api/auth/session"
+    },
+    {
+      "serviceId": "audit-service",
+      "type": "security",
+      "endpoint": "/api/audit",
+      "healthEndpoint": "/api/hospital/audit"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "auth_guard",
+      "name": "Auth Guard",
+      "level": "CORE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "permission_validator",
+      "name": "Permission Validator",
+      "level": "CORE",
+      "autoRegister": true,
+      "parentAgent": "auth_guard"
+    },
+    {
+      "agentId": "audit_archiver",
+      "name": "Audit Archiver",
+      "level": "CORE",
+      "autoRegister": true,
+      "parentAgent": "auth_guard"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "authenticate",
+      "name": "Authenticate",
+      "description": "Authenticate a user session",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "authorize",
+      "name": "Authorize",
+      "description": "Authorize a request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "permission": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_permission",
+      "name": "Check Permission",
+      "description": "Check role permission",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "permission": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "log_mutation",
+      "name": "Log Mutation",
+      "description": "Immutable mutation audit",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "ADMIN",
+      "claims": [
+        "admin:rbac",
+        "admin:plugin",
+        "admin:agent"
+      ]
+    },
+    {
+      "role": "CEO",
+      "claims": [
+        "admin:plugin"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "admin:agent"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/audit",
+        "component": "AuditTrail",
+        "roles": [
+          "ADMIN",
+          "CEO",
+          "DOCTOR"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "lock",
+      "key"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "auth.login",
+      "auth.failed",
+      "audit.entry"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Auth Service",
+      "endpoint": "rbac-permissions",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Token Validation",
+      "endpoint": "rbac-permissions",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Audit Write Latency",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "jwtExpiryHours": {
+        "type": "number",
+        "default": 12
+      },
+      "sessionTimeoutMinutes": {
+        "type": "number",
+        "default": 60
+      }
+    },
+    "secrets": [
+      "JWT_SECRET",
+      "ENCRYPTION_KEY"
+    ]
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:rbac-audit-1.0.0"
+}

@@ -1,0 +1,317 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+Usage: scripts/contract-smoke.sh [--fast]
+
+Options:
+  --fast   Run one representative probe per source family
+  -h       Show this help
+USAGE
+}
+
+FAST=0
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --fast)
+      FAST=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+  shift
+done
+
+CURL_BASE=(curl -sS -L --max-time 40)
+MAX_ATTEMPTS="${CONTRACT_SMOKE_ATTEMPTS:-3}"
+PASS=0
+FAIL=0
+ONCOKB_TOKEN_VALUE="${ONCOKB_TOKEN:-${ONCOKB_API_TOKEN:-}}"
+S2_API_KEY_VALUE="${S2_API_KEY:-}"
+
+is_transient_code() {
+  local code="$1"
+  [[ "$code" == "000" || "$code" == "429" || "$code" =~ ^5[0-9][0-9]$ ]]
+}
+
+run_probe() {
+  local name="$1"
+  local code_re="$2"
+  local body_re="$3"
+  local url="$4"
+  shift 4
+
+  local attempt=1
+  local tmp code body ok
+  while true; do
+    tmp=$(mktemp)
+    code=$("${CURL_BASE[@]}" "$@" -o "$tmp" -w "%{http_code}" "$url" || true)
+    body=$(cat "$tmp")
+    rm -f "$tmp"
+
+    ok=1
+    if [[ ! "$code" =~ $code_re ]]; then
+      ok=0
+    fi
+    if [[ -n "$body_re" ]] && ! grep -qE "$body_re" <<<"$body"; then
+      ok=0
+    fi
+
+    if [[ $ok -eq 1 ]]; then
+      echo "[PASS] $name (code=$code)"
+      PASS=$((PASS + 1))
+      return
+    fi
+
+    if (( attempt < MAX_ATTEMPTS )) && is_transient_code "$code"; then
+      echo "[WARN] $name transient response (code=$code); retrying attempt $((attempt + 1))/$MAX_ATTEMPTS"
+      sleep "$attempt"
+      attempt=$((attempt + 1))
+      continue
+    fi
+
+    echo "[FAIL] $name (code=$code)"
+    echo "        url: $url"
+    FAIL=$((FAIL + 1))
+    return
+  done
+}
+
+probe_get() {
+  local name="$1"
+  local code_re="$2"
+  local body_re="$3"
+  local url="$4"
+
+  run_probe "$name" "$code_re" "$body_re" "$url"
+}
+
+probe_post_json() {
+  local name="$1"
+  local code_re="$2"
+  local body_re="$3"
+  local url="$4"
+  local payload="$5"
+
+  run_probe "$name" "$code_re" "$body_re" "$url" -H "content-type: application/json" -X POST -d "$payload"
+}
+
+probe_get_with_header() {
+  local name="$1"
+  local code_re="$2"
+  local body_re="$3"
+  local header_value="$4"
+  local url="$5"
+
+  run_probe "$name" "$code_re" "$body_re" "$url" -H "$header_value"
+}
+
+echo "== contract smoke checks ($( [[ $FAST -eq 1 ]] && echo fast || echo full )) =="
+
+# UniProt
+if [[ $FAST -eq 1 ]]; then
+  probe_get "UniProt fast" '^200$' 'P15056|primaryAccession' "https://rest.uniprot.org/uniprotkb/P15056.json"
+else
+  probe_get "UniProt happy" '^200$' 'P15056|primaryAccession' "https://rest.uniprot.org/uniprotkb/P15056.json"
+  probe_get "UniProt edge" '^(200|404|400)$' '' "https://rest.uniprot.org/uniprotkb/P99999.json"
+  probe_get "UniProt invalid endpoint" '^(400|404)$' '' "https://rest.uniprot.org/uniprotkb/P15056.not-real"
+fi
+
+# QuickGO
+if [[ $FAST -eq 1 ]]; then
+  probe_get "QuickGO fast" '^200$' 'results' "https://www.ebi.ac.uk/QuickGO/services/annotation/search?geneProductId=P15056&limit=5"
+else
+  probe_get "QuickGO happy" '^200$' 'results' "https://www.ebi.ac.uk/QuickGO/services/annotation/search?geneProductId=P15056&limit=5"
+  probe_get "QuickGO edge" '^200$' 'results' "https://www.ebi.ac.uk/QuickGO/services/annotation/search?geneProductId=P99999&limit=5"
+  probe_get "QuickGO invalid" '^(400|422|500)$' '' "https://www.ebi.ac.uk/QuickGO/services/annotation/search?geneProductId=P15056&limit=-1"
+fi
+
+# STRING
+if [[ $FAST -eq 1 ]]; then
+  probe_get "STRING fast" '^200$' '\[' "https://string-db.org/api/json/network?identifiers=BRAF&species=9606&limit=5"
+else
+  probe_get "STRING happy" '^200$' '\[' "https://string-db.org/api/json/network?identifiers=BRAF&species=9606&limit=5"
+  probe_get "STRING edge" '^(200|404)$' '' "https://string-db.org/api/json/network?identifiers=NO_SUCH_GENE_091&species=9606&limit=5"
+  probe_get "STRING invalid endpoint" '^404$' '' "https://string-db.org/api/json/not-a-real-endpoint?identifiers=BRAF&species=9606"
+fi
+
+# gnomAD GraphQL
+if [[ $FAST -eq 1 ]]; then
+  probe_post_json "gnomAD fast" '^200$' '__typename' "https://gnomad.broadinstitute.org/api" '{"query":"query { __typename }"}'
+else
+  probe_post_json "gnomAD happy" '^200$' '__typename' "https://gnomad.broadinstitute.org/api" '{"query":"query { __typename }"}'
+  probe_post_json "gnomAD edge" '^200$' 'variant' "https://gnomad.broadinstitute.org/api" '{"query":"query { variant(variantId: \"7-1-A-T\", dataset: gnomad_r4) { variantId } }"}'
+  probe_post_json "gnomAD invalid query" '^400$' 'errors' "https://gnomad.broadinstitute.org/api" '{"query":"query { variant(variantId: \"bad\") {"}'
+fi
+
+# ChEMBL
+if [[ $FAST -eq 1 ]]; then
+  probe_get "ChEMBL fast" '^200$' 'CHEMBL25|molecule_chembl_id' "https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL25.json"
+else
+  probe_get "ChEMBL happy" '^200$' 'CHEMBL25|molecule_chembl_id' "https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL25.json"
+  probe_get "ChEMBL edge" '^200$' 'molecules|page_meta' "https://www.ebi.ac.uk/chembl/api/data/molecule/search.json?q=NOT_A_REAL_DRUG_091"
+  probe_get "ChEMBL invalid endpoint" '^404$' '' "https://www.ebi.ac.uk/chembl/api/data/not-a-real-resource.json"
+fi
+
+# OpenTargets GraphQL
+if [[ $FAST -eq 1 ]]; then
+  probe_post_json "OpenTargets fast" '^200$' 'data|CHEMBL25' "https://api.platform.opentargets.org/api/v4/graphql" '{"query":"query { drug(chemblId: \"CHEMBL25\") { id name } }"}'
+else
+  probe_post_json "OpenTargets happy (chemblId)" '^200$' 'data|CHEMBL25' "https://api.platform.opentargets.org/api/v4/graphql" '{"query":"query { drug(chemblId: \"CHEMBL25\") { id name } }"}'
+  probe_post_json "OpenTargets edge" '^200$' 'drug' "https://api.platform.opentargets.org/api/v4/graphql" '{"query":"query { drug(chemblId: \"CHEMBL_DOES_NOT_EXIST\") { id name } }"}'
+  probe_post_json "OpenTargets invalid argument key" '^400$' 'errors' "https://api.platform.opentargets.org/api/v4/graphql" '{"query":"query { drug(efoId: \"EFO_0000311\") { id name } }"}'
+fi
+
+# NIH Reporter
+if [[ $FAST -eq 1 ]]; then
+  probe_post_json "NIH Reporter fast" '^200$' '"meta"|\"results\"' "https://api.reporter.nih.gov/v2/projects/search" '{"criteria":{"advanced_text_search":{"operator":"and","search_field":"projecttitle,abstracttext","search_text":"\"ERBB2\""},"fiscal_years":[2022,2023,2024,2025,2026]},"include_fields":["ProjectNum"],"offset":0,"limit":1,"sort_field":"award_amount","sort_order":"desc"}'
+else
+  probe_post_json "NIH Reporter happy" '^200$' '"meta"|\"results\"' "https://api.reporter.nih.gov/v2/projects/search" '{"criteria":{"advanced_text_search":{"operator":"and","search_field":"projecttitle,abstracttext","search_text":"\"ERBB2\""},"fiscal_years":[2022,2023,2024,2025,2026]},"include_fields":["ProjectNum"],"offset":0,"limit":1,"sort_field":"award_amount","sort_order":"desc"}'
+  probe_post_json "NIH Reporter edge" '^200$' '"meta"|\"results\"' "https://api.reporter.nih.gov/v2/projects/search" '{"criteria":{"advanced_text_search":{"operator":"and","search_field":"projecttitle,abstracttext","search_text":"\"NO_SUCH_NIH_REPORTER_QUERY_091\""},"fiscal_years":[2022,2023,2024,2025,2026]},"include_fields":["ProjectNum"],"offset":0,"limit":1,"sort_field":"award_amount","sort_order":"desc"}'
+fi
+
+# Reactome
+if [[ $FAST -eq 1 ]]; then
+  probe_get "Reactome fast" '^200$' 'results' "https://reactome.org/ContentService/search/query?query=MAPK&species=Homo%20sapiens&pageSize=1"
+else
+  probe_get "Reactome happy" '^200$' 'results' "https://reactome.org/ContentService/search/query?query=MAPK&species=Homo%20sapiens&pageSize=1"
+  probe_get "Reactome edge" '^(200|404)$' '' "https://reactome.org/ContentService/search/query?query=NO_SUCH_PATHWAY_091&species=Homo%20sapiens&pageSize=1"
+  probe_get "Reactome invalid" '^404$' '' "https://reactome.org/ContentService/data/query/NOT_A_REAL_STABLE_ID"
+fi
+
+# KEGG
+if [[ $FAST -eq 1 ]]; then
+  probe_get "KEGG fast" '^200$' 'path:map04010|MAPK signaling pathway' "https://rest.kegg.jp/find/pathway/MAPK"
+else
+  probe_get "KEGG happy search" '^200$' 'path:map04010|MAPK signaling pathway' "https://rest.kegg.jp/find/pathway/MAPK"
+  probe_get "KEGG happy get" '^200$' 'ENTRY\s+hsa04010|NAME\s+MAPK signaling pathway' "https://rest.kegg.jp/get/hsa04010"
+  probe_get "KEGG no-hit" '^200$' '^[[:space:]]*$' "https://rest.kegg.jp/find/pathway/NO_SUCH_PATHWAY_091"
+fi
+
+# WikiPathways
+if [[ $FAST -eq 1 ]]; then
+  probe_get "WikiPathways fast" '^200$' 'pathwayInfo' "https://www.wikipathways.org/json/findPathwaysByText.json"
+else
+  probe_get "WikiPathways happy search" '^200$' 'pathwayInfo' "https://www.wikipathways.org/json/findPathwaysByText.json"
+  probe_get "WikiPathways happy get" '^200$' 'pathwayInfo' "https://www.wikipathways.org/json/getPathwayInfo.json"
+  probe_get "WikiPathways no-hit" '^200$' 'pathwayInfo' "https://www.wikipathways.org/json/findPathwaysByText.json"
+fi
+
+# g:Profiler
+if [[ $FAST -eq 1 ]]; then
+  probe_post_json "g:Profiler fast" '^200$' 'result' "https://biit.cs.ut.ee/gprofiler/api/gost/profile/" '{"organism":"hsapiens","query":["BRAF","KRAS"]}'
+else
+  probe_post_json "g:Profiler happy" '^200$' 'result' "https://biit.cs.ut.ee/gprofiler/api/gost/profile/" '{"organism":"hsapiens","query":["BRAF","KRAS"]}'
+  probe_post_json "g:Profiler edge" '^200$' 'result' "https://biit.cs.ut.ee/gprofiler/api/gost/profile/" '{"organism":"hsapiens","query":["NO_SUCH_GENE_091"]}'
+  probe_post_json "g:Profiler invalid" '^(400|422)$' '' "https://biit.cs.ut.ee/gprofiler/api/gost/profile/" '{"query":"not-an-array"}'
+fi
+
+# HPA
+if [[ $FAST -eq 1 ]]; then
+  probe_get "HPA fast" '^200$' '<entry|proteinAtlas' "https://www.proteinatlas.org/ENSG00000157764.xml"
+else
+  probe_get "HPA happy" '^200$' '<entry|proteinAtlas' "https://www.proteinatlas.org/ENSG00000157764.xml"
+  probe_get "HPA missing gene" '^404$' '' "https://www.proteinatlas.org/ENSG00000999999.xml"
+fi
+
+# InterPro
+if [[ $FAST -eq 1 ]]; then
+  probe_get "InterPro fast" '^200$' 'results|entries|metadata' "https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/P15056/?page_size=5"
+else
+  probe_get "InterPro happy" '^200$' 'results|entries|metadata' "https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/P15056/?page_size=5"
+  probe_get "InterPro edge" '^(200|404)$' '' "https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/P99999/?page_size=5"
+  probe_get "InterPro invalid endpoint" '^404$' '' "https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/P15056/not-a-real-resource/"
+fi
+
+# ComplexPortal
+if [[ $FAST -eq 1 ]]; then
+  probe_get "ComplexPortal fast" '^200$' 'elements|complexAC|P15056' "https://www.ebi.ac.uk/intact/complex-ws/search/P15056?number=25&filters=species_f:(%22Homo%20sapiens%22)"
+else
+  probe_get "ComplexPortal happy" '^200$' 'elements|complexAC|P15056' "https://www.ebi.ac.uk/intact/complex-ws/search/P15056?number=25&filters=species_f:(%22Homo%20sapiens%22)"
+  probe_get "ComplexPortal no-match" '^200$' '"totalNumberOfResults":0|"elements":\[\]' "https://www.ebi.ac.uk/intact/complex-ws/search/NO_SUCH_PROTEIN_091?number=25&filters=species_f:(%22Homo%20sapiens%22)"
+fi
+
+# Semantic Scholar (optional auth)
+if [[ -z "$S2_API_KEY_VALUE" ]]; then
+  probe_get \
+    "Semantic Scholar detail (shared pool)" \
+    '^(200|429)$' \
+    'paperId|title|Too Many Requests|rate limit' \
+    "https://api.semanticscholar.org/graph/v1/paper/PMID:22663011?fields=paperId,title"
+  if [[ $FAST -ne 1 ]]; then
+    sleep 2
+    probe_get \
+      "Semantic Scholar citations (shared pool)" \
+      '^(200|429)$' \
+      'data|Too Many Requests|rate limit' \
+      "https://api.semanticscholar.org/graph/v1/paper/PMID:22663011/citations?fields=contexts,intents,isInfluential&limit=1"
+  fi
+else
+  probe_get_with_header \
+    "Semantic Scholar detail (authenticated)" \
+    '^200$' \
+    'paperId|title' \
+    "x-api-key: $S2_API_KEY_VALUE" \
+    "https://api.semanticscholar.org/graph/v1/paper/PMID:22663011?fields=paperId,title"
+  if [[ $FAST -ne 1 ]]; then
+    sleep 2
+    probe_get_with_header \
+      "Semantic Scholar citations (authenticated)" \
+      '^200$' \
+      'data' \
+      "x-api-key: $S2_API_KEY_VALUE" \
+      "https://api.semanticscholar.org/graph/v1/paper/PMID:22663011/citations?fields=contexts,intents,isInfluential&limit=1"
+  fi
+fi
+
+# Existing variant-support sources
+if [[ $FAST -eq 1 ]]; then
+  probe_get "ClinicalTrials.gov fast" '^200$' 'studies' "https://clinicaltrials.gov/api/v2/studies?query.term=BRAF%20V600E&pageSize=1"
+else
+  probe_get "ClinicalTrials.gov happy" '^200$' 'studies' "https://clinicaltrials.gov/api/v2/studies?query.term=BRAF%20V600E&pageSize=1"
+  probe_get "ClinicalTrials.gov edge" '^200$' 'studies' "https://clinicaltrials.gov/api/v2/studies?query.term=NO_SUCH_TERM_091&pageSize=1"
+  probe_get "ClinicalTrials.gov invalid" '^(400|422)$' '' "https://clinicaltrials.gov/api/v2/studies?query.term=melanoma&pageSize=bad"
+fi
+
+if [[ $FAST -eq 1 ]]; then
+  probe_get "cBioPortal fast" '^200$' '\[' "https://www.cbioportal.org/api/studies?projection=SUMMARY&pageSize=1"
+else
+  probe_get "cBioPortal happy" '^200$' '\[' "https://www.cbioportal.org/api/studies?projection=SUMMARY&pageSize=1"
+  probe_get "cBioPortal edge" '^(200|404)$' '' "https://www.cbioportal.org/api/molecular-profiles?studyId=NO_SUCH_STUDY"
+  probe_get "cBioPortal invalid endpoint" '^404$' '' "https://www.cbioportal.org/api/not-a-real-resource"
+fi
+
+# OncoKB demo endpoint (no token required)
+if [[ $FAST -eq 1 ]]; then
+  probe_get "OncoKB demo fast" '^200$' '"hugoSymbol":"BRAF".*"oncogenic":"Oncogenic"' "https://demo.oncokb.org/api/v1/annotate/mutations/byProteinChange?hugoSymbol=BRAF&alteration=V600E"
+else
+  probe_get "OncoKB demo BRAF V600E" '^200$' '"hugoSymbol":"BRAF".*"oncogenic":"Oncogenic"' "https://demo.oncokb.org/api/v1/annotate/mutations/byProteinChange?hugoSymbol=BRAF&alteration=V600E"
+  probe_get "OncoKB demo EGFR L858R" '^200$' '"hugoSymbol":"EGFR".*"geneExist":false' "https://demo.oncokb.org/api/v1/annotate/mutations/byProteinChange?hugoSymbol=EGFR&alteration=L858R"
+  probe_get "OncoKB demo TP53 R175H" '^200$' '"hugoSymbol":"TP53".*"oncogenic":"Oncogenic"' "https://demo.oncokb.org/api/v1/annotate/mutations/byProteinChange?hugoSymbol=TP53&alteration=R175H"
+fi
+
+if [[ -n "$ONCOKB_TOKEN_VALUE" ]]; then
+  probe_get_with_header \
+    "OncoKB happy (token)" \
+    '^200$' \
+    'geneExist|variantExist|oncogenic' \
+    "Authorization: Bearer $ONCOKB_TOKEN_VALUE" \
+    "https://www.oncokb.org/api/v1/annotate/mutations/byProteinChange?hugoSymbol=BRAF&alteration=V600E"
+else
+  echo "[SKIP] OncoKB probes (set ONCOKB_TOKEN to enable; ONCOKB_API_TOKEN is still accepted)"
+fi
+
+echo
+echo "Summary: pass=$PASS fail=$FAIL"
+
+if [[ $FAIL -ne 0 ]]; then
+  exit 1
+fi

@@ -1,0 +1,109 @@
+{
+  "pluginId": "pharmacogenomics-plugin",
+  "tier": "P1",
+  "category": "MEDICAL",
+  "name": "Pharmacogenomics (Genomics Base)",
+  "version": "1.0.0",
+  "description": "CYP2C19 / BRCA1 / drug-gene interaction knowledge base. Genomics card for Synapse. No profile → honest 'order pharmacogenomics' state.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "medical-knowledge-gateway"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "pharmacogenomics",
+      "type": "genomics",
+      "endpoint": "/api/pharmacogenomics",
+      "healthEndpoint": "/api/pharmacogenomics/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "genomics_card_agent",
+      "name": "Genomics Card Agent",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "pharmacogenomics_checker",
+      "name": "Pharmacogenomics Checker",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "genomics_card_agent"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "check_drug_gene_interaction",
+      "name": "Check Drug-Gene Interaction",
+      "description": "CYP/BRCA genotype to drug efficacy alerts",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "pharmacogenomics_db",
+      "type": "genomics",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "genomics:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "dna"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "genomics.card.updated"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Pharmacogenomics DB",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {},
+    "secrets": [
+      "genomics-service-key"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:pharmacogenomics-plugin-1.0.0",
+  "notes": "No genetic profile → card shows 'No genetic profile — Click to order pharmacogenomics'. Never fabricate genotype."
+}

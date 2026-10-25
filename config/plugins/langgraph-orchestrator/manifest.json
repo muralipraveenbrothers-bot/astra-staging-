@@ -1,0 +1,177 @@
+{
+  "pluginId": "langgraph-orchestrator",
+  "tier": "P0",
+  "category": "ORCHESTRATION",
+  "name": "LangGraph Orchestrator",
+  "version": "1.0.0",
+  "description": "LangGraph runtime, checkpoint store, state persistence, and bounded workflow engine with human-in-the-loop gates.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "langgraph-runtime",
+      "type": "workflow-engine",
+      "endpoint": "/api/orchestrator/run",
+      "healthEndpoint": "/api/orchestrator/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "langgraph_supervisor",
+      "name": "LangGraph Supervisor",
+      "level": "CORE",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "checkpoint_manager",
+      "name": "Checkpoint Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "langgraph_supervisor"
+    },
+    {
+      "agentId": "retry_handler",
+      "name": "Retry Handler",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "langgraph_supervisor"
+    },
+    {
+      "agentId": "langgraph_orchestrator",
+      "name": "LangGraph Orchestrator",
+      "level": "CORE",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "create_workflow",
+      "name": "Create Workflow",
+      "description": "Define a stateful agent workflow",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "graph": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "resume_workflow",
+      "name": "Resume Workflow",
+      "description": "Resume from checkpoint",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "get_checkpoint",
+      "name": "Get Checkpoint",
+      "description": "Read workflow checkpoint",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "ADMIN",
+      "claims": [
+        "agent:modify"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "AgentExecutionPanel",
+        "slot": "agent-trace-panel"
+      }
+    ],
+    "icons": [
+      "workflow",
+      "git-branch"
+    ]
+  },
+  "database": {
+    "migrations": [
+      "001_create_workflow_states.sql"
+    ],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "orchestrator.graph.complete",
+      "orchestrator.approval.required"
+    ],
+    "subscribes": [
+      "brain.agent.delegate"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Graph Execution",
+      "endpoint": "agent-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Checkpoint Store",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "maxSteps": {
+        "type": "number",
+        "default": 10
+      },
+      "maxRetries": {
+        "type": "number",
+        "default": 3
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:langgraph-orchestrator-1.0.0"
+}

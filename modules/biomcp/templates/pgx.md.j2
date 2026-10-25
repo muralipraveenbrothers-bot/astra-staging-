@@ -1,0 +1,121 @@
+{% if section_only -%}
+# {{ section_header }}
+{% else -%}
+# PGx: {% if gene %}{{ gene }}{% elif drug %}{{ drug }}{% else %}{{ query }}{% endif %}
+
+{% if gene -%}
+Gene: {{ gene }}
+{% endif -%}
+{% if drug -%}
+Drug: {{ drug }}
+{% endif -%}
+Source: CPIC
+
+{% if interactions -%}
+{% if gene -%}
+Affected Drugs: {% for row in interactions -%}{{ row.drugname }}{% if not loop.last %}, {% endif %}{% endfor %}
+{% elif drug -%}
+Affected Genes: {% for row in interactions -%}{{ row.genesymbol }}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif -%}
+{% endif -%}
+{% endif -%}
+
+{% if show_interactions_section -%}
+## Interactions (CPIC)
+
+{% if interactions -%}
+| Drug | Gene | CPIC Level | PGx Testing |
+|---|---|---|---|
+{% for row in interactions -%}
+| {{ row.drugname }} | {{ row.genesymbol }} | {{ row.cpiclevel or "-" }} | {{ row.pgxtesting or "-" }} |
+{% endfor -%}
+{% else -%}
+No PGx interactions found.
+{% endif -%}
+{% if section_pagination.interactions and section_pagination.interactions.next_offset is not none -%}
+Next: `biomcp get pgx {{ query }} interactions --offset {{ section_pagination.interactions.next_offset }} --limit {{ section_pagination.interactions.limit }}`
+{% endif -%}
+{% endif -%}
+
+{% if show_recommendations_section -%}
+## Recommendations (CPIC)
+
+{% if recommendations -%}
+| Drug | Genotype | Activity Score | Recommendation | Classification |
+|---|---|---|---|---|
+{% for row in recommendations -%}
+| {{ row.drugname }} | {% if row.genotype %}{% for pair in row.genotype %}{{ pair[0] }} {{ pair[1] }}{% if not loop.last %}; {% endif %}{% endfor %}{% else %}-{% endif %} | {% if row.activity_score %}{% for pair in row.activity_score %}{{ pair[0] }} {{ pair[1] }}{% if not loop.last %}; {% endif %}{% endfor %}{% else %}-{% endif %} | {{ row.recommendation or "-" }} | {{ row.classification or "-" }} |
+{% endfor -%}
+{% if gene -%}
+Drugs on this page: {% for drug in page_recommendation_drugs %}{{ drug }}{% if not loop.last %}, {% endif %}{% endfor %}.{% if recommendation_drugs and held_recommendation_drugs %} Also held for {{ gene }}: {% for drug in held_recommendation_drugs %}{{ drug }}{% if not loop.last %}, {% endif %}{% endfor %}.{% endif %}
+{% endif -%}
+{% else -%}
+No CPIC recommendations found for this query.
+{% endif -%}
+{% if section_pagination.recommendations and section_pagination.recommendations.next_offset is not none -%}
+Next: `biomcp get pgx {{ query }} recommendations --offset {{ section_pagination.recommendations.next_offset }} --limit {{ section_pagination.recommendations.limit }}`
+{% endif -%}
+{% endif -%}
+
+{% if show_frequencies_section -%}
+## Population Frequencies (CPIC)
+
+{% if source_states.frequencies.status %}{{ source_states.frequencies.status }}
+{% endif -%}
+{% if source_states.frequencies.payload_allowed and frequencies -%}
+| Gene | Allele | Population | Frequency | Subjects |
+|---|---|---|---|---|
+{% for row in frequencies -%}
+| {{ row.genesymbol }} | {{ row.allele }} | {{ row.population_group or "-" }} | {% if row.frequency is defined and row.frequency is not none %}{{ row.frequency | af }}{% else %}-{% endif %} | {% if row.subject_count is defined and row.subject_count is not none %}{{ row.subject_count }}{% else %}-{% endif %} |
+{% endfor -%}
+{% elif source_states.frequencies.empty_allowed -%}
+No CPIC population frequencies found for this query.
+{% endif -%}
+{% if source_states.frequencies.payload_allowed and section_pagination.frequencies and section_pagination.frequencies.next_offset is not none -%}
+Next: `biomcp get pgx {{ query }} frequencies --offset {{ section_pagination.frequencies.next_offset }} --limit {{ section_pagination.frequencies.limit }}`
+{% endif -%}
+{% endif -%}
+
+{% if show_guidelines_section -%}
+## Guidelines (CPIC)
+
+{% if guidelines -%}
+| Guideline | Genes | Drugs |
+|---|---|---|
+{% for row in guidelines -%}
+| {% if row.url %}[{{ row.name }}]({{ row.url }}){% else %}{{ row.name }}{% endif %} | {% if row.genes %}{{ row.genes | join(", ") }}{% else %}-{% endif %} | {% if row.drugs %}{{ row.drugs | join(", ") }}{% else %}-{% endif %} |
+{% endfor -%}
+{% else -%}
+No CPIC guideline metadata found for this query.
+{% endif -%}
+{% if section_pagination.guidelines and section_pagination.guidelines.next_offset is not none -%}
+Next: `biomcp get pgx {{ query }} guidelines --offset {{ section_pagination.guidelines.next_offset }} --limit {{ section_pagination.guidelines.limit }}`
+{% endif -%}
+{% endif -%}
+
+{% if show_annotations_section -%}
+## PharmGKB Annotations
+
+{% if source_states.annotations.status %}{{ source_states.annotations.status }}
+{% endif -%}
+{% if source_states.annotations.payload_allowed and annotations -%}
+| Source | Type | ID | Title | Level |
+|---|---|---|---|---|
+{% for row in annotations -%}
+| {{ row.source }} | {{ row.kind }} | {{ row.id }} | {% if row.url %}[{{ row.title }}]({{ row.url }}){% else %}{{ row.title }}{% endif %} | {{ row.level or "-" }} |
+{% endfor -%}
+{% elif source_states.annotations.empty_allowed and show_annotations_empty -%}
+No PharmGKB annotations found for this query.
+{% endif -%}
+{% if source_states.annotations.payload_allowed and annotations_note -%}
+{{ annotations_note }}
+{% endif -%}
+{% if source_states.annotations.payload_allowed and section_pagination.annotations and section_pagination.annotations.next_offset is not none -%}
+Next: `biomcp get pgx {{ query }} annotations --offset {{ section_pagination.annotations.next_offset }} --limit {{ section_pagination.annotations.limit }}`
+{% endif -%}
+{% endif -%}
+
+{% if sections_block %}{{ sections_block }}
+{% endif -%}
+{% if related_block %}{{ related_block }}
+{% endif -%}

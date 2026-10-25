@@ -1,0 +1,4 @@
+{
+  "reviewedStandardCodes": [],
+  "note": "Pending clinician review: no service code is STANDARD until explicitly classified. Unknown codes fail closed to HIGH."
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BioMCP Trial",
+  "type": "object",
+  "required": ["nct_id", "title"],
+  "properties": {
+    "nct_id": { "type": "string" },
+    "source": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "status": { "type": ["string", "null"] },
+    "phase": { "type": ["string", "null"] },
+    "study_type": { "type": ["string", "null"] },
+    "age_range": { "type": ["string", "null"] },
+    "conditions": {
+      "type": ["array", "null"],
+      "items": { "type": "string" }
+    },
+    "interventions": {
+      "type": ["array", "null"],
+      "items": { "type": "string" }
+    },
+    "sponsor": { "type": ["string", "null"] },
+    "enrollment": { "type": ["integer", "number", "null"] },
+    "summary": { "type": ["string", "null"] },
+    "start_date": { "type": ["string", "null"] },
+    "completion_date": { "type": ["string", "null"] },
+    "eligibility_text": { "type": ["string", "null"] },
+    "_meta": {
+      "type": ["object", "null"],
+      "properties": {
+        "evidence_urls": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "url": { "type": "string" }
+            },
+            "required": ["label", "url"],
+            "additionalProperties": true
+          }
+        },
+        "next_commands": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "workflow": { "type": ["string", "null"] },
+        "workflow_rationale": { "type": ["string", "null"] },
+        "workflow_playbook": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

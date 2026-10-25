@@ -1,0 +1,146 @@
+{
+  "pluginId": "bio-sim-engine",
+  "tier": "P1",
+  "category": "MEDICAL",
+  "name": "Bio-Sim Engine (Digital Twin)",
+  "version": "1.0.0",
+  "description": "Deterministic physics engine: SVR/CO/DO2 hemodynamics, Stewart acid-base, what-if cascade (fluid/norepinephrine/furosemide) with flash pulmonary edema warnings. NOT an LLM.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "hospital-data-connector",
+      "ward-icu-plugin"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "bio-sim",
+      "type": "physiology-simulator",
+      "endpoint": "/api/biosim",
+      "healthEndpoint": "/api/biosim/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "biosim_simulator",
+      "name": "Bio-Sim Simulator",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "hemodynamic_calculator",
+      "name": "Hemodynamic Calculator",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "biosim_simulator"
+    },
+    {
+      "agentId": "acid_base_analyzer",
+      "name": "Acid-Base Analyzer (Stewart)",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "biosim_simulator"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "run_bio_sim",
+      "name": "Run Bio-Sim",
+      "description": "Hemodynamic simulation from vitals/labs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "what_if_cascade",
+      "name": "What-If Cascade",
+      "description": "Fluid / norepinephrine / furosemide projection with flash warnings",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "biosim:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/biosim",
+        "label": "Bio-Sim Viewer",
+        "roles": [
+          "doctor",
+          "ceo",
+          "admin"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "activity",
+      "wave"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "biosim.simulated"
+    ],
+    "subscribes": [
+      "vitals.updated"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Bio-Sim Engine",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Vitals Feed",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "svrReferenceLow": {
+        "type": "number",
+        "default": 800
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:bio-sim-engine-1.0.0",
+  "notes": "All formulas documented in output.methods. What-If predictions are DERIVED ESTIMATES — clinical judgment required."
+}

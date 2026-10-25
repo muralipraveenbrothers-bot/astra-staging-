@@ -1,0 +1,327 @@
+{
+  "pluginId": "medical-knowledge-gateway",
+  "tier": "P0",
+  "category": "KNOWLEDGE",
+  "name": "Medical Knowledge Gateway",
+  "version": "1.0.0",
+  "description": "Smart RAG pipeline: hybrid dense+BM25 retrieval, vector store, reranker, ingestion, citation validation, conflict detection.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "rag-pipeline",
+      "type": "knowledge",
+      "endpoint": "/api/knowledge",
+      "healthEndpoint": "/api/knowledge/stats"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "knowledge_ingestor",
+      "name": "Knowledge Ingestor",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "citation_validator",
+      "name": "Citation Validator",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "freshness_scanner",
+      "name": "Freshness Scanner",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "knowledge_ingestor"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "ingest_source",
+      "name": "Ingest Source",
+      "description": "Ingest a knowledge source",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "search_knowledge",
+      "name": "Search Knowledge",
+      "description": "Hybrid RAG search",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "verify_citation",
+      "name": "Verify Citation",
+      "description": "Validate citation against source",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "citation": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_freshness",
+      "name": "Check Freshness",
+      "description": "Check source freshness",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "embeddings_minilm",
+      "provider": "local",
+      "modelType": "EMBEDDING"
+    },
+    {
+      "modelRouteId": "medical_reranker",
+      "provider": "local",
+      "modelType": "RERANKER"
+    }
+  ],
+  "knowledge": [
+    {
+      "sourceId": "pubmed",
+      "type": "external",
+      "accessScope": "public",
+      "autoIndex": true
+    },
+    {
+      "sourceId": "europe_pmc",
+      "type": "external",
+      "accessScope": "public",
+      "autoIndex": true
+    },
+    {
+      "sourceId": "clinicaltrials",
+      "type": "external",
+      "accessScope": "public",
+      "autoIndex": true
+    },
+    {
+      "sourceId": "who_iris",
+      "type": "external",
+      "accessScope": "public",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:evidence_search"
+      ]
+    },
+    {
+      "role": "ADMIN",
+      "claims": [
+        "knowledge:configure"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/knowledge",
+        "component": "KnowledgeFabric",
+        "roles": [
+          "DOCTOR",
+          "ADMIN"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "name": "EvidenceAiCopilot",
+        "slot": "evidence-panel"
+      }
+    ],
+    "icons": [
+      "book-open",
+      "globe"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "knowledge.indexed",
+      "knowledge.conflict.detected"
+    ],
+    "subscribes": [
+      "data.updated"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Vector Store",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Embedding Model",
+      "endpoint": "ollama-local",
+      "timeoutMs": 5000,
+      "critical": true
+    },
+    {
+      "name": "BM25 Index",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "PubMed Connector",
+      "endpoint": "external-pubmed",
+      "timeoutMs": 6000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "embeddingModel": {
+        "type": "string",
+        "default": "bge-m3"
+      },
+      "indexChunkSize": {
+        "type": "number",
+        "default": 512
+      }
+    },
+    "secrets": [
+      "PINECONE_KEY",
+      "QDRANT_KEY",
+      "OPENAI_EMBEDDING_KEY"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:medical-knowledge-gateway-1.0.0",
+  "knowledgeMetrics": {
+    "measured": {
+      "sourceFilesTsTsx": 289,
+      "linesOfCode": 85312,
+      "pluginManifests": 45,
+      "agentsDeclaredInManifests": 304,
+      "toolsDeclaredInManifests": 185,
+      "toolsRegisteredInToolRegistry": 26,
+      "mcpServers": 7,
+      "integrations": 5,
+      "pluginEngineClasses": 10,
+      "coreSpecialistAgentsImplemented": 6,
+      "registrySystems": 7,
+      "knowledgeDocumentsIndexed": 0,
+      "pluginEcosystemTests": "38/38 PASS"
+    },
+    "targetKnowledgeCorpus": {
+      "pubmedAbstracts": {
+        "records": "~36M",
+        "tokens": "~9.0B"
+      },
+      "pmcFullText": {
+        "records": "~4.5M",
+        "tokens": "~36B"
+      },
+      "europePmc": {
+        "records": "~40M (≈90% overlap — dedupe)",
+        "tokens": "~10B"
+      },
+      "clinicalTrialsGov": {
+        "records": "~0.5M",
+        "tokens": "~0.6B"
+      },
+      "whoGuidelinesCochraneTextbooks": {
+        "records": "~0.1M",
+        "tokens": "~0.5B"
+      },
+      "ayurvedicNaturopathyTexts": {
+        "records": "small corpus",
+        "tokens": "~0.05B"
+      },
+      "totalDeduplicated": {
+        "records": "~41M unique documents",
+        "tokens": "~56B tokens ≈ 224 GB text"
+      }
+    },
+    "derivedEstimate": {
+      "label": "DERIVED ESTIMATE — never presented as measured",
+      "method": "1 atomic fact ≈ 20–50 tokens; 56B tokens ÷ 20–50",
+      "range": "~1.1–2.8 TRILLION atomic medical facts",
+      "kimiK3": {
+        "totalParams": "2.8T",
+        "activeParams": "104B",
+        "architecture": "MoE — reported as-is, never summed"
+      }
+    },
+    "honestGaps": [
+      "KnowledgeRegistry indexes 0 documents (registry only)",
+      "HermesBrain is rule-based — 0 direct model fetches",
+      "Voicebox TTS DEGRADED (no upstream at 127.0.0.1:17493)",
+      "Model routing is registry-level; no live inference connected",
+      "Billing figures partially hard-coded (ToolRegistry amountDue) — Phase 2 replacement"
+    ],
+    "phase1Targets": [
+      "Connect real ingestion (PubMed/PMC/Europe PMC) before claiming knowledge scale",
+      "Wire real model routes (Ollama/API) through the model router",
+      "Replace hard-coded billing with live billing-table calculations"
+    ]
+  },
+  "notes": "Knowledge Fabric: vector + graph + BM25 + reranker + citation. Measured metrics honest (0 documents indexed — registry only). Derived estimate labeled. Phase 1 = connect real ingestion."
+}

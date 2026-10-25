@@ -1,0 +1,259 @@
+{
+  "mcp_servers": [
+    {
+      "id": "medical-mcp",
+      "name": "Medical MCP (JamesANZ)",
+      "repo": "https://github.com/JamesANZ/medical-mcp",
+      "description": "FDA, WHO, PubMed, RxNorm medical data server with HTTP transport.",
+      "transport": "http",
+      "endpoint": "http://127.0.0.1:7010/mcp",
+      "command": "node",
+      "args": [
+        "build/index.js",
+        "--http",
+        "--port",
+        "7010"
+      ],
+      "cwd": "modules/medical-mcp",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "tools",
+        "prompts"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "nurse"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "medical-research-suite",
+      "name": "Medical Research MCP Suite",
+      "repo": "https://github.com/ezhou89/medical-research-mcp-suite",
+      "description": "PubMed, ClinicalTrials.gov, FDA database research tools (stdio transport).",
+      "transport": "stdio",
+      "endpoint": "modules/medical-research-mcp-suite/dist/index.js",
+      "command": "node",
+      "args": [
+        "dist/index.js"
+      ],
+      "cwd": "modules/medical-research-mcp-suite",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "prompts"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "biomcp",
+      "name": "BioMCP (Genomics Oncology)",
+      "repo": "https://github.com/genomoncology/biomcp",
+      "description": "Biomedical genomics resources and variant-analysis tools (stdio transport).",
+      "transport": "stdio",
+      "endpoint": "modules/biomcp",
+      "command": "C:/Users/mural/AppData/Local/Programs/Python/Python312/Scripts/biomcp.exe",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "tools"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "lab"
+        ],
+        "denyTools": []
+      },
+      "args": [
+        "mcp"
+      ],
+      "cwd": "modules/biomcp"
+    },
+    {
+      "id": "dicom-mcp",
+      "name": "DICOM MCP Server",
+      "repo": "https://github.com/fluxinc/dicom-mcp-server",
+      "description": "DICOM medical imaging resources and parsing tools (stdio transport, Python).",
+      "transport": "stdio",
+      "endpoint": "modules/dicom-mcp-server",
+      "command": "modules/dicom-mcp-server/venv/Scripts/python.exe",
+      "args": [
+        "server.py"
+      ],
+      "cwd": "modules/dicom-mcp-server",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "tools"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "radiology"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "mcp-slicer",
+      "name": "MCP Slicer",
+      "repo": "https://github.com/zhaoyouj/mcp-slicer",
+      "description": "3D imaging slicer tools for radiology volume processing (stdio transport).",
+      "transport": "stdio",
+      "endpoint": "modules/mcp-slicer",
+      "command": "modules/mcp-slicer/venv/Scripts/mcp-slicer.exe",
+      "args": [],
+      "cwd": "modules/mcp-slicer",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "tools"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "radiology"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "health-record-mcp",
+      "name": "Health Record MCP (jmandel)",
+      "repo": "https://github.com/jmandel/health-record-mcp",
+      "description": "FHIR EHR resource connector (Node.js SSE transport).",
+      "transport": "sse",
+      "endpoint": "modules/health-record-mcp",
+      "command": "bun",
+      "args": [
+        "run",
+        "src/sse.ts"
+      ],
+      "cwd": "modules/health-record-mcp",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "nurse"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "medcalc-mcp",
+      "name": "MedCalc MCP",
+      "repo": "https://github.com/winninghealth/medcalcmcp",
+      "description": "Clinical medical calculators as tools (FastMCP 2.0 HTTP transport, Python).",
+      "transport": "http",
+      "endpoint": "http://127.0.0.1:7016/mcp",
+      "command": "modules/medcalcmcp/venv/Scripts/python.exe",
+      "args": [
+        "api_server.py"
+      ],
+      "cwd": "modules/medcalcmcp",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "tools"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "nurse"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "healthcare-mcp-public",
+      "name": "Healthcare MCP Public",
+      "repo": "https://github.com/Cicatriiz/healthcare-mcp-public",
+      "description": "FDA, PubMed, Google Scholar healthcare MCP server (HTTP transport).",
+      "transport": "http",
+      "endpoint": "http://127.0.0.1:7017/mcp",
+      "command": "node",
+      "args": [
+        "server/index.js"
+      ],
+      "cwd": "modules/healthcare-mcp-public",
+      "status": "enabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "prompts"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin",
+          "nurse"
+        ],
+        "denyTools": []
+      }
+    },
+    {
+      "id": "medical-deep-research",
+      "name": "Medical Deep Research",
+      "repo": "https://github.com/Clinical-Copilot/Medical_Deep_Research",
+      "description": "Agentic medical deep research via LangGraph (HTTP transport, Python/FastAPI).",
+      "transport": "http",
+      "endpoint": "http://127.0.0.1:7018/api/chat",
+      "command": "python",
+      "args": [
+        "server.py",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "7018"
+      ],
+      "cwd": "modules/Medical_Deep_Research",
+      "status": "disabled",
+      "required": false,
+      "capabilities": [
+        "resources",
+        "prompts",
+        "tools"
+      ],
+      "authentication": "none",
+      "permissions": {
+        "allowedRoles": [
+          "doctor",
+          "admin"
+        ],
+        "denyTools": []
+      }
+    }
+  ]
+}

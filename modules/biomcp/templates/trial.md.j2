@@ -1,0 +1,122 @@
+{% if section_only -%}
+# {{ section_header }}
+{% else -%}
+# {{ nct_id }}
+
+Status: {{ status }}{% if why_stopped_checked %} | Why stopped: {% if why_stopped %}{{ why_stopped }}{% else %}Not provided by ClinicalTrials.gov{% endif %}{% endif %}{% if phase %} | Phase: {{ phase }}{% endif %}{% if study_type %} | Study Type: {{ study_type }}{% endif %}{% if sponsor %} | Sponsor: {{ sponsor }}{% endif %}
+
+Title: {{ title }}
+{% if enrollment %}Target Enrollment: {{ enrollment }}{% endif %}
+{% if age_range %}Eligible Ages: {{ age_range }}{% endif %}
+{% if start_date %}Start Date: {{ start_date }}{% endif %}{% if completion_date %} | Completion Date: {{ completion_date }}{% endif %}
+Source: {{ trial_source_label }}
+
+{% if conditions -%}
+## Conditions ({{ trial_source_label }})
+{% for c in conditions -%}
+- {{ c }}
+{% endfor %}
+{% endif -%}
+{% if intervention_details -%}
+## Interventions ({{ trial_source_label }})
+{% for i in intervention_details[:5] -%}
+- {{ i.name }}{% if i.intervention_type %} *({{ i.intervention_type }})*{% endif %}{% if i.other_names %} (also known as: {{ i.other_names | join(", ") }}){% endif %}
+{% endfor %}
+{% if intervention_details | length > 5 -%}
+_and {{ intervention_details | length - 5 }} more (see `arms` section)_
+{% endif -%}
+{% elif interventions -%}
+## Interventions ({{ trial_source_label }})
+{% for i in interventions[:5] -%}
+- {{ i }}
+{% endfor %}
+{% if interventions | length > 5 -%}
+_and {{ interventions | length - 5 }} more (see `arms` section)_
+{% endif -%}
+{% endif -%}
+{% if summary -%}
+## Summary ({{ trial_source_label }})
+
+{{ summary }}
+{% endif -%}
+{% endif -%}
+{% if show_contacts_section and contacts -%}
+## Contacts ({{ trial_source_label }})
+
+{% for contact in contacts -%}
+### {% if contact.level == "central" %}Central Contact{% else %}Site Contact{% endif %}
+- Name: {{ contact.name }}
+{% if contact.role -%}- Role: {{ contact.role }}
+{% endif -%}
+{% if contact.email -%}- Email: {{ contact.email }}
+{% endif -%}
+{% if contact.phone -%}- Phone: {{ contact.phone }}
+{% endif -%}
+{% if contact.facility or contact.city or contact.state or contact.country -%}- Location: {% if contact.facility %}{{ contact.facility }}{% endif %}{% if contact.city %}{% if contact.facility %}, {% endif %}{{ contact.city }}{% endif %}{% if contact.state %}, {{ contact.state }}{% endif %}{% if contact.country %}, {{ contact.country }}{% endif %}
+{% endif -%}
+{% endfor %}
+{% endif -%}
+{% if show_eligibility_section and (eligibility or eligibility_text) -%}
+## Eligibility ({{ trial_source_label }})
+
+{% if eligibility -%}
+{% if eligibility.sex %}Sex: {{ eligibility.sex }}
+{% endif -%}
+{% if eligibility.minimum_age or eligibility.maximum_age %}Eligible Ages: {{ eligibility.minimum_age or "Any age" }} to {{ eligibility.maximum_age or "Any age" }}
+{% endif -%}
+{% endif -%}
+{% if eligibility_text %}{{ eligibility_text }}
+{% endif -%}
+{% if eligibility_provenance and eligibility_provenance.posted_documents_available -%}
+
+**Posted trial documents:** Posted trial documents are available and may contain additional eligibility detail: `{{ eligibility_provenance.documents_handle }}`
+{% endif -%}
+{% endif -%}
+{% if show_locations_section and locations -%}
+## Locations ({{ trial_source_label }})
+
+| Facility | City | Country | Status | Contact |
+|---|---|---|---|---|
+{% for loc in locations[:20] -%}
+| {{ loc.facility | truncate(40) }} | {{ loc.city }}{% if loc.state %}, {{ loc.state }}{% endif %} | {{ loc.country }} | {{ loc.status or "-" }} | {% if loc.contact_name %}{{ loc.contact_name }}{% if loc.contact_role %} ({{ loc.contact_role }}){% endif %}{% if loc.contact_phone %} {{ loc.contact_phone }}{% endif %}{% if loc.contact_email %} {{ loc.contact_email }}{% endif %}{% else %}-{% endif %} |
+{% endfor -%}
+{% endif -%}
+{% if show_outcomes_section and outcomes -%}
+## Outcomes ({{ trial_source_label }})
+
+{% if outcomes.primary -%}
+### Primary
+{% for o in outcomes.primary -%}
+{{ loop.index }}. **{{ o.measure }}**{% if o.description %} - {{ o.description }}{% endif %}{% if o.time_frame %} *Time frame: {{ o.time_frame }}*{% endif %}
+{% endfor -%}
+{% endif -%}
+{% if outcomes.secondary -%}
+### Secondary
+{% for o in outcomes.secondary -%}
+{{ loop.index }}. **{{ o.measure }}**{% if o.description %} - {{ o.description }}{% endif %}{% if o.time_frame %} *Time frame: {{ o.time_frame }}*{% endif %}
+{% endfor -%}
+{% endif -%}
+{% endif -%}
+{% if show_arms_section and arms -%}
+## Arms ({{ trial_source_label }})
+
+| Arm | Type | Interventions | Description |
+|---|---|---|---|
+{% for arm in arms -%}
+| {{ arm.label }} | {{ arm.arm_type or "-" }} | {% if arm.interventions %}{{ arm.interventions | join(", ") }}{% else %}-{% endif %} | {{ (arm.description or "-") | truncate(60) }} |
+{% endfor -%}
+{% endif -%}
+{% if show_references_section and references is not none -%}
+## References ({{ trial_source_label }})
+{% if references | length == 0 -%}
+No references found.
+{% else -%}
+{% for ref in references -%}
+{{ loop.index }}. {% if ref.pmid %}[PMID: {{ ref.pmid }}] {% endif %}{{ ref.citation }}{% if ref.reference_type %} *({{ ref.reference_type }})*{% endif %}
+{% endfor -%}
+{% endif -%}
+{% endif -%}
+{% if sections_block %}{{ sections_block }}
+{% endif -%}
+{% if related_block %}{{ related_block }}
+{% endif -%}

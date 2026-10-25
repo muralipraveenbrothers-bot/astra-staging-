@@ -1,0 +1,103 @@
+{
+  "notifications": [
+    {
+      "id": "WON-1",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "billing",
+      "type": "WORK_ORDER_STATUS",
+      "from": "DRAFT",
+      "to": "REQUESTED",
+      "title": "Complete Blood Picture (CBP): REQUESTED",
+      "detail": "Order Complete Blood Picture (CBP) for Rajesh Kumar (Bed 4)",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.044Z"
+    },
+    {
+      "id": "WON-2",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "reception",
+      "type": "WORK_ORDER_STATUS",
+      "from": "BILL_REQUIRED",
+      "to": "BILL_CREATED",
+      "title": "Complete Blood Picture (CBP): BILL CREATED",
+      "detail": "No discount, Rs.300",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.138Z"
+    },
+    {
+      "id": "WON-3",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "billing",
+      "type": "WORK_ORDER_STATUS",
+      "from": "BILL_REQUIRED",
+      "to": "BILL_CREATED",
+      "title": "Complete Blood Picture (CBP): BILL CREATED",
+      "detail": "No discount, Rs.300",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.138Z"
+    },
+    {
+      "id": "WON-4",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "reception",
+      "type": "WORK_ORDER_STATUS",
+      "from": "BILL_CREATED",
+      "to": "PAYMENT_PENDING",
+      "title": "Complete Blood Picture (CBP): PAYMENT PENDING",
+      "detail": "Bill sent to reception/patient",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.147Z"
+    },
+    {
+      "id": "WON-5",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "doctor",
+      "type": "WORK_ORDER_STATUS",
+      "from": "PAID",
+      "to": "RELEASED",
+      "title": "Complete Blood Picture (CBP): RELEASED",
+      "detail": "Order released - department notified",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.168Z"
+    },
+    {
+      "id": "WON-6",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "admin",
+      "type": "WORK_ORDER_STATUS",
+      "from": "PAID",
+      "to": "RELEASED",
+      "title": "Complete Blood Picture (CBP): RELEASED",
+      "detail": "Order released - department notified",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.168Z"
+    },
+    {
+      "id": "WON-7",
+      "orderId": "WO-2026-00007",
+      "patientId": "UHID-2026-8804",
+      "department": "Lab",
+      "recipientRole": "doctor",
+      "type": "WORK_ORDER_STATUS",
+      "from": "RELEASED",
+      "to": "ACKNOWLEDGED",
+      "title": "Complete Blood Picture (CBP): ACKNOWLEDGED",
+      "detail": "Staff acknowledged - starting work",
+      "status": "UNREAD",
+      "createdAt": "2026-10-13T09:33:10.182Z"
+    }
+  ],
+  "seq": 7
+}

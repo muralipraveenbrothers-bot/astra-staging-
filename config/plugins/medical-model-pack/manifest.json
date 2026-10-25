@@ -1,0 +1,204 @@
+{
+  "pluginId": "medical-model-pack",
+  "tier": "P1",
+  "category": "MODEL",
+  "name": "Medical Model Pack",
+  "version": "1.0.0",
+  "description": "MedGemma, BioGPT, PubMedBERT, MiniLM, and medical vision adapters. Resource Manager enforces hardware limits — never downloads beyond capacity.",
+  "license": "Apache-2.0",
+  "provider": "Hugging Face",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "medical-knowledge-gateway"
+    ],
+    "optional": [
+      "omniroute-gateway"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "medical-models",
+      "type": "model-service",
+      "endpoint": "/api/models/medical",
+      "healthEndpoint": "/api/models/medical/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "medical_model_manager",
+      "name": "Medical Model Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "model_router"
+    },
+    {
+      "agentId": "embedding_service",
+      "name": "Embedding Service",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "medical_model_manager"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "load_medical_model",
+      "name": "Load Medical Model",
+      "description": "Load medical model within VRAM budget",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "modelId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "medical_embed",
+      "name": "Medical Embed",
+      "description": "Embed medical text",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "medical_classify",
+      "name": "Medical Classify",
+      "description": "Medical classification",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "task": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "medical_generate",
+      "name": "Medical Generate",
+      "description": "Medical text generation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "medgemma",
+      "provider": "local",
+      "modelType": "MEDICAL"
+    },
+    {
+      "modelRouteId": "biogpt",
+      "provider": "local",
+      "modelType": "MEDICAL"
+    },
+    {
+      "modelRouteId": "pubmedbert",
+      "provider": "local",
+      "modelType": "EMBEDDING"
+    }
+  ],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:clinical_reasoning"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "stethoscope",
+      "brain"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "model.loaded",
+      "model.vram.low"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Model Load Time",
+      "endpoint": "model-router",
+      "timeoutMs": 5000,
+      "critical": true
+    },
+    {
+      "name": "VRAM Usage",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Inference Latency",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "maxVramMB": {
+        "type": "number",
+        "default": 512
+      },
+      "lazyLoad": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": [
+      "HUGGINGFACE_TOKEN"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:medical-model-pack-1.0.0",
+  "notes": "Never download models exceeding hardware. Resource Manager enforces."
+}

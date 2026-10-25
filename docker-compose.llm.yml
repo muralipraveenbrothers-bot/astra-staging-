@@ -1,0 +1,30 @@
+# ──────────────────────────────────────────────────────────────────────
+#  ASTRA AI — LLM Gateway stack (Docker path)
+#  Chains the two standalone clones into one network.
+#
+#  Native Astra stack (start-*.cmd / launch-all-services.ps1) is DIFFERENT:
+#    FreeLLMAPI API :3001 · FreeLLMAPI Vite UI :5170 · OmniRoute :5171
+#
+#  This compose file uses each clone's UPSTREAM defaults:
+#    Astra backend → OmniRoute (:20128 dashboard / :20129 API in Docker)
+#                        └→ FreeLLMAPI (:3001) as an upstream provider
+#
+#  Usage:
+#     cp freellmapi/.env.example freellmapi/.env   # first run only
+#     cp OmniRoute/.env.example   OmniRoute/.env   # first run only
+#     docker compose -f docker-compose.llm.yml --profile base up -d
+#
+#  Docker:  FreeLLMAPI http://127.0.0.1:3001
+#           OmniRoute  http://127.0.0.1:20128 (dashboard) / :20129 (API)
+#  Native:  OmniRoute  http://127.0.0.1:5171  (dashboard + /v1, one process)
+# ──────────────────────────────────────────────────────────────────────
+
+include:
+  - path: ./freellmapi/docker-compose.yml
+    project_directory: ./freellmapi
+  - path: ./OmniRoute/docker-compose.yml
+    project_directory: ./OmniRoute
+
+# OmniRoute must be allowed to call FreeLLMAPI on loopback (SSRF guard).
+# Set this in OmniRoute/.env — see docs/LLM_GATEWAY_INTEGRATION.md.
+#   OMNIROUTE_ALLOW_PRIVATE_PROVIDER_URLS=true

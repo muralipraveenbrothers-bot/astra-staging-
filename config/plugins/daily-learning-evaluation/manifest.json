@@ -1,0 +1,229 @@
+{
+  "pluginId": "daily-learning-evaluation",
+  "tier": "P1",
+  "category": "ANALYTICS",
+  "name": "Daily Learning & Evaluation",
+  "version": "1.0.0",
+  "description": "Skill learning, agent evaluation, daily improvement reports, benchmarking. Never auto-changes safety rules.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "langgraph-orchestrator",
+      "medical-knowledge-gateway"
+    ],
+    "optional": [
+      "medical-model-pack"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "learning-engine",
+      "type": "analytics",
+      "endpoint": "/api/learning",
+      "healthEndpoint": "/api/learning/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "daily_improvement_agent",
+      "name": "Daily Improvement Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "benchmark_runner",
+      "name": "Benchmark Runner",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "daily_improvement_agent"
+    },
+    {
+      "agentId": "skill_optimizer",
+      "name": "Skill Optimizer",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "daily_improvement_agent"
+    },
+    {
+      "agentId": "agent_evaluation_agent",
+      "name": "Agent Evaluation Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "run_benchmark",
+      "name": "Run Benchmark",
+      "description": "Run agent benchmark",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "benchmark": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "evaluate_agent",
+      "name": "Evaluate Agent",
+      "description": "Evaluate agent performance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "propose_skill_update",
+      "name": "Propose Skill Update",
+      "description": "Propose versioned skill update",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "skill": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "generate_daily_report",
+      "name": "Generate Daily Report",
+      "description": "Generate daily intelligence report",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "evaluate_agents",
+      "name": "Evaluate Agents",
+      "description": "Accuracy, latency, hallucination metrics per registered agent",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "propose_skill_improvements",
+      "name": "Propose Skill Improvements",
+      "description": "Self-analysis: skill proposals and routing optimization for approval",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "skill_library",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "ADMIN",
+      "claims": [
+        "agent:modify"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "trending-up",
+      "graduation-cap"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": [
+      "001_default_skills.json"
+    ]
+  },
+  "events": {
+    "publishes": [
+      "learning.report.ready",
+      "skill.updated"
+    ],
+    "subscribes": [
+      "orchestrator.graph.complete"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Benchmark DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Evaluation Pipeline",
+      "endpoint": "agent-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Report Generation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "dailyReportHour": {
+        "type": "number",
+        "default": 2
+      },
+      "skillVersioning": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:daily-learning-evaluation-1.0.0"
+}

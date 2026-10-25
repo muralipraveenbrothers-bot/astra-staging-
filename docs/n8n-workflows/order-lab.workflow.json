@@ -1,0 +1,95 @@
+{
+  "name": "ASTRA — Lab Order Bus (order-lab)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "order-lab",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1-webhook",
+      "name": "Lab Order Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "order-lab"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ASTRA contract — NEVER throw before responding; route violations to a 400.\nconst body = $json.body ?? $json;\nconst idempotencyKey = body.idempotencyKey || body.correlationId || null;\nconst now = new Date().toISOString();\nif (!idempotencyKey) {\n  return [{ json: { contractViolation: true, code: 'CONTRACT_VIOLATION', message: 'idempotencyKey required (at-least-once delivery + idempotent consumer)' } }];\n}\nreturn [{ json: {\n  contractViolation: false,\n  event: 'ORDER_LAB',\n  orderId: body.orderId || idempotencyKey,\n  patientId: body.patientId,\n  uhid: body.uhid,\n  tests: body.tests ?? [],\n  priority: body.priority || 'routine',\n  idempotencyKey,\n  correlationId: body.correlationId,\n  status: 'ACKNOWLEDGED',\n  receivedAt: now,\n  acknowledgedAt: now,\n  source: body.source || 'astra-copilot',\n  ackSource: 'n8n-order-lab'\n} }];"
+      },
+      "id": "a2-contract",
+      "name": "Contract & Acknowledgement",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.contractViolation ? { ok: false, code: $json.code, message: $json.message } : { ok: true, status: $json.status, orderId: $json.orderId, idempotencyKey: $json.idempotencyKey, receivedAt: $json.receivedAt, acknowledgedAt: $json.acknowledgedAt, uhid: $json.uhid, patientId: $json.patientId, correlationId: $json.correlationId } }}",
+        "options": {
+          "responseCode": "={{ $json.contractViolation ? 400 : 200 }}"
+        }
+      },
+      "id": "a5-respond",
+      "name": "Respond (200 ack / 400 violation)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Lab Order Webhook": {
+      "main": [
+        [
+          {
+            "node": "Contract & Acknowledgement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contract & Acknowledgement": {
+      "main": [
+        [
+          {
+            "node": "Respond (200 ack / 400 violation)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "meta": {
+    "astraContract": {
+      "endpoint": "POST /webhook/order-lab",
+      "requires": [
+        "idempotencyKey",
+        "event",
+        "patientId",
+        "uhid",
+        "tests"
+      ],
+      "stateFlow": "CREATED→SENT→RECEIVED→ACKNOWLEDGED→IN_PROGRESS→COMPLETED",
+      "delivery": "at-least-once + idempotent consumer (idempotencyKey)"
+    }
+  }
+}

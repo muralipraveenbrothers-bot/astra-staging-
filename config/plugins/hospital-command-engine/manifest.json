@@ -1,0 +1,200 @@
+{
+  "pluginId": "hospital-command-engine",
+  "tier": "P0",
+  "category": "HOSPITAL",
+  "name": "Hospital Command Engine",
+  "version": "1.0.0",
+  "description": "CommandResolver, IntentRegistry, ActionRegistry, ExecutionEngine, and immutable AuditHooks — the only mutation authority.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "command-engine",
+      "type": "command-gateway",
+      "endpoint": "/api/command/execute",
+      "healthEndpoint": "/api/command/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "command_resolver",
+      "name": "Command Resolver",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "execution_verifier",
+      "name": "Execution Verifier",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "audit_logger",
+      "name": "Audit Logger",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "resolve_intent",
+      "name": "Resolve Intent",
+      "description": "Resolve user input to a command intent",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "execute_command",
+      "name": "Execute Command",
+      "description": "Execute an authorized command",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "commandId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "verify_execution",
+      "name": "Verify Execution",
+      "description": "Verify a command executed",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "log_audit",
+      "name": "Log Audit Entry",
+      "description": "Append immutable audit entry",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "command_history",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "order:create",
+        "order:verify"
+      ]
+    },
+    {
+      "role": "ADMIN",
+      "claims": [
+        "order:cancel"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "OrderCenterModal",
+        "slot": "command-actions"
+      }
+    ],
+    "icons": [
+      "terminal",
+      "shield"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "command.executed",
+      "command.blocked"
+    ],
+    "subscribes": [
+      "system.shutdown"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Command Engine",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Audit Hook",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "requireConfirmationForHighRisk": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:hospital-command-engine-1.0.0"
+}

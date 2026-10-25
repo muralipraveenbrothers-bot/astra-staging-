@@ -1,0 +1,416 @@
+{
+  "pluginId": "clinical-reasoning-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Clinical Reasoning Plugin",
+  "version": "1.0.0",
+  "description": "Differential diagnosis, pathophysiology, blind spot detection, disease trajectory, sparse-data reasoning.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "langgraph-orchestrator",
+      "medical-knowledge-gateway",
+      "medical-model-pack"
+    ],
+    "optional": [
+      "daily-learning-evaluation"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "clinical-reasoning",
+      "type": "medical",
+      "endpoint": "/api/clinical",
+      "healthEndpoint": "/api/clinical/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "clinical_reasoning_agent",
+      "name": "Clinical Reasoning Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "diagnostic_differential_agent",
+      "name": "Diagnostic Differential Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "pathophysiology_agent",
+      "name": "Pathophysiology Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "disease_progression_agent",
+      "name": "Disease Progression Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "rare_disease_agent",
+      "name": "Rare Disease Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "risk_stratification_agent",
+      "name": "Risk Stratification Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "clinical_blind_spot_agent",
+      "name": "Clinical Blind Spot Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "clinical_command_hod",
+      "name": "Clinical Command HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "internal_medicine_hod",
+      "name": "Internal Medicine HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "general_surgery_hod",
+      "name": "General Surgery HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "orthopaedics_hod",
+      "name": "Orthopaedics HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "obgyn_hod",
+      "name": "OBG HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "pediatrics_hod",
+      "name": "Pediatrics HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "icu_critical_care_hod",
+      "name": "ICU Critical Care HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "cardiology_hod",
+      "name": "Cardiology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "neurology_hod",
+      "name": "Neurology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "nephrology_hod",
+      "name": "Nephrology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "gastroenterology_hod",
+      "name": "Gastroenterology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "pulmonology_hod",
+      "name": "Pulmonology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "infectious_disease_hod",
+      "name": "Infectious Disease HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "oncology_hod",
+      "name": "Oncology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "psychiatry_hod",
+      "name": "Psychiatry HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "dermatology_hod",
+      "name": "Dermatology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "ent_hod",
+      "name": "ENT HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "ophthalmology_hod",
+      "name": "Ophthalmology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "patient_safety_agent",
+      "name": "Patient Safety Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "clinical_documentation_agent",
+      "name": "Clinical Documentation Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "treatment_monitoring_agent",
+      "name": "Treatment Monitoring Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "clinical_contradiction_agent",
+      "name": "Clinical Contradiction Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "rule_in_agent",
+      "name": "Rule-In Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "rule_out_agent",
+      "name": "Rule-Out Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "medication_reconciliation_agent",
+      "name": "Medication Reconciliation Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "build_differential",
+      "name": "Build Differential",
+      "description": "Differential diagnosis builder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "explain_pathophysiology",
+      "name": "Explain Pathophysiology",
+      "description": "Cell-to-system pathophysiology",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "detect_blind_spots",
+      "name": "Detect Blind Spots",
+      "description": "Clinical blind spot scan",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "model_trajectory",
+      "name": "Model Trajectory",
+      "description": "Disease trajectory model",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "assess_risk",
+      "name": "Assess Risk",
+      "description": "Risk stratification",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "rule_out_condition",
+      "name": "Rule Out Condition",
+      "description": "Sensitivity-driven exclusion: EFFECTIVELY EXCLUDED | UNLIKELY | CANNOT EXCLUDE",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "rule_in_condition",
+      "name": "Rule In Condition",
+      "description": "Likelihood-ratio driven: HIGHLY SUPPORTIVE | SUPPORTIVE | CONSISTENT",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:clinical_reasoning"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "ClinicalReasoningPanel",
+        "slot": "clinical-workspace"
+      }
+    ],
+    "icons": [
+      "brain-circuit",
+      "stethoscope"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "clinical.reasoning.complete",
+      "clinical.blindspot.found"
+    ],
+    "subscribes": [
+      "lab.critical.alert"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Reasoning Model",
+      "endpoint": "model-router",
+      "timeoutMs": 5000,
+      "critical": true
+    },
+    {
+      "name": "RAG Retrieval",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Knowledge Graph",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "reasoningDepth": {
+        "type": "string",
+        "default": "CONSULTANT"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:clinical-reasoning-plugin-1.0.0"
+}

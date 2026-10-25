@@ -1,0 +1,249 @@
+{
+  "pluginId": "omniroute-gateway",
+  "tier": "P1",
+  "category": "INTEGRATION",
+  "name": "OmniRoute Gateway",
+  "version": "1.0.0",
+  "description": "Multi-provider model routing, failover, load balancing, and quota management. NOT a hospital brain.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core"
+    ],
+    "optional": [
+      "medical-model-pack"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "omniroute",
+      "type": "model-gateway",
+      "endpoint": "/api/providers/omniroute",
+      "healthEndpoint": "/api/providers/omniroute/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "provider_health_monitor",
+      "name": "Provider Health Monitor",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "model_router"
+    },
+    {
+      "agentId": "failover_orchestrator",
+      "name": "Failover Orchestrator",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "model_router"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "route_request",
+      "name": "Route Request",
+      "description": "Route LLM request to best provider",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_quota",
+      "name": "Check Quota",
+      "description": "Check provider quota",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "failover_provider",
+      "name": "Failover Provider",
+      "description": "Failover to secondary provider",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "list_providers",
+      "name": "List Providers",
+      "description": "List configured providers",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "omniroute_default",
+      "provider": "omniroute",
+      "modelType": "FAST"
+    }
+  ],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "ADMIN",
+      "claims": [
+        "model:configure"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/router",
+        "component": "RouterMeshDashboard",
+        "roles": [
+          "ADMIN"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "network",
+      "route"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "provider.failover",
+      "provider.quota.low"
+    ],
+    "subscribes": [
+      "plugin.health.check"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Provider Latency",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Quota Availability",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "fallbackTier": {
+        "type": "string",
+        "default": "LOCAL"
+      },
+      "maxFailoverAttempts": {
+        "type": "number",
+        "default": 3
+      }
+    },
+    "secrets": [
+      "OMNIROUTE_API_KEY"
+    ]
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:omniroute-gateway-1.0.0",
+  "statusRule": "If no providers configured -> CONFIG_REQUIRED",
+  "apiRoutes": [
+    {
+      "name": "PubMed / NCBI E-utilities",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+      "rateLimit": "3 req/s (free, key optional)",
+      "primary": true
+    },
+    {
+      "name": "Europe PMC REST",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "rateLimit": "free, open access",
+      "primary": false
+    },
+    {
+      "name": "ClinicalTrials.gov API v2",
+      "url": "https://clinicaltrials.gov/api/v2/studies",
+      "rateLimit": "free, 10 req/min anonymous",
+      "primary": false
+    },
+    {
+      "name": "WHO Global Health Observatory",
+      "url": "https://apps.who.int/gho/athena/api/GHO",
+      "rateLimit": "free",
+      "primary": false
+    },
+    {
+      "name": "WHO IRIS",
+      "url": "https://iris.who.int/rest",
+      "rateLimit": "free",
+      "primary": false
+    },
+    {
+      "name": "Open-Meteo (weather/seasonal)",
+      "url": "https://api.open-meteo.com/v1/forecast",
+      "rateLimit": "free, no key",
+      "primary": false
+    },
+    {
+      "name": "OpenStreetMap Nominatim",
+      "url": "https://nominatim.openstreetmap.org/search",
+      "rateLimit": "1 req/s (policy)",
+      "primary": false
+    },
+    {
+      "name": "GitHub API",
+      "url": "https://api.github.com",
+      "rateLimit": "60 req/h anonymous",
+      "primary": false
+    },
+    {
+      "name": "Wikipedia / Wikidata",
+      "url": "https://www.wikidata.org/w/api.php",
+      "rateLimit": "free",
+      "primary": false
+    },
+    {
+      "name": "NCBI TAXONOMY / PMC OA",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/tools/oa-service/",
+      "rateLimit": "free",
+      "primary": false
+    }
+  ],
+  "notes": "Free/NO-API integration layer. Best-route logic: primary healthy+quota → secondary → local cached index → 'External source unavailable. Using local knowledge only.' Retry max 3 with exponential backoff; 429 wait+retry; 503 failover; 404 = empty (not error); cache TTL 1h, stale labeled with timestamp. Rate limits visible to admin: 'PubMed API: 850/1000 requests today'."
+}

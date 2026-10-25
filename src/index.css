@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --gold: #d4af37;
+  --gold-light: #f5d97e;
+  --energy: #39d5ff;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.35);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.6);
+}
+
+/* ---------- black-glass card with thin gold border ---------- */
+.glass {
+  position: relative;
+  background: linear-gradient(160deg, rgba(11, 29, 32, 0.55), rgba(3, 7, 8, 0.68));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow: inset 0 1px 0 rgba(245, 217, 126, 0.06), 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(245, 217, 126, 0.28), rgba(57, 213, 255, 0.18), transparent 72%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+.glass-hover:hover {
+  transform: perspective(900px) translateY(-4px) rotateX(1.5deg) rotateY(-1.5deg);
+  box-shadow: inset 0 1px 0 rgba(245, 217, 126, 0.1), 0 16px 48px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(212, 175, 55, 0.22);
+}
+
+/* ---------- gold primary button ---------- */
+.btn-neon {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200;
+  color: #1a1405;
+  background: linear-gradient(120deg, #b8932c, #d4af37 55%, #f5d97e);
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.55), 0 0 18px rgba(212, 175, 55, 0.35);
+}
+.btn-neon:hover:not(:disabled) {
+  box-shadow: 0 0 0 1px rgba(245, 217, 126, 0.8), 0 0 28px rgba(212, 175, 55, 0.6);
+  transform: translateY(-1px);
+}
+.btn-neon:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-all duration-200 border border-white/10 bg-white/5 hover:bg-white/10 hover:text-white;
+}
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- danger / high-risk button ---------- */
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 border border-red-400/50 bg-red-500/10 text-red-200 hover:bg-red-500/20 hover:text-white;
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.2);
+}
+
+/* ---------- gold gradient text ---------- */
+.text-gradient {
+  background: linear-gradient(90deg, #f5d97e, #d4af37, #39d5ff, #d4af37, #f5d97e);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* ---------- inputs ---------- */
+.input-dark {
+  @apply w-full rounded-lg bg-ink-900/80 border border-white/10 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 outline-none transition-colors;
+}
+.input-dark:focus {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* ---------- typing dots ---------- */
+.typing-dot {
+  @apply inline-block w-1.5 h-1.5 rounded-full bg-neon-cyan;
+  animation: typingBlink 1.2s infinite;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes typingBlink {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ---------- voice: recording ring + speaking pulse ---------- */
+.record-ring {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(248, 113, 113, 0.9);
+  box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.55);
+  animation: recordPulse 1.4s infinite;
+}
+@keyframes recordPulse {
+  0% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(248, 113, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
+}
+.speak-bar {
+  display: inline-block;
+  width: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.9), rgba(34, 211, 238, 0.35));
+  animation: speakBounce 0.9s ease-in-out infinite;
+}
+@keyframes speakBounce {
+  0%, 100% { height: 6px; }
+  50% { height: 16px; }
+}
+
+/* ---------- misc ---------- */
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.55), transparent);
+}
+
+/* ---------- print: only .print-zone is printed ---------- */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .print-zone,
+  .print-zone * {
+    visibility: visible !important;
+  }
+  .print-zone {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* ---------- thermal receipt ---------- */
+.receipt {
+  font-family: "Courier New", ui-monospace, monospace;
+  color: #111;
+  background: #fff;
+  width: 320px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+.receipt h4 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.receipt .sub {
+  text-align: center;
+  font-size: 10px;
+  color: #444;
+}
+.receipt .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 1.5px 0;
+}
+.receipt .dash {
+  border-top: 1px dashed #999;
+  margin: 7px 0;
+}
+.receipt .total {
+  font-weight: 700;
+  font-size: 13px;
+}
+.receipt .foot {
+  text-align: center;
+  font-size: 10px;
+  color: #444;
+  margin-top: 8px;
+}
+
+/* ---------- OP Scan scan-line ---------- */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.95), transparent);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+  animation: scanSweep 2.4s ease-in-out infinite;
+}
+@keyframes scanSweep {
+  0% { top: 2%; }
+  50% { top: 96%; }
+  100% { top: 2%; }
+}
+/* =====================================================================
+   ASTRA PREMIUM COMMAND-COCKPIT  (gold + cyan luxury layer)
+   Additive overrides — never touches existing core styles.
+   ===================================================================== */
+
+:root {
+  --gold-300: #f5d97e;
+  --gold-400: #e9c766;
+  --gold-500: #d4af37;
+  --gold-600: #b8932c;
+  --cyan-300: #7fe7ff;
+  --cyan-400: #39d5ff;
+  --cyan-500: #0bc5ea;
+  --ink: #0b1d20;
+  --panel-glow: 0 0 0 1px rgba(212,175,55,0.22), 0 10px 44px -14px rgba(11,197,234,0.35);
+}
+
+/* ---------- premium text shimmer ---------- */
+.text-gold-shimmer {
+  background: linear-gradient(110deg, #8a6815 0%, #d4af37 22%, #fae9a3 40%, #fff8e0 50%, #fae9a3 60%, #d4af37 78%, #8a6815 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldShimmer 5.5s linear infinite;
+}
+@keyframes goldShimmer {
+  to { background-position: 220% center; }
+}
+.text-gold-solid { color: var(--gold-500); }
+.text-cyan-glow { color: var(--cyan-400); text-shadow: 0 0 16px rgba(57, 213, 255, 0.55); }
+
+/* ---------- premium glass ---------- */
+.glass-premium {
+  background: linear-gradient(150deg, rgba(18, 52, 60, 0.72) 0%, rgba(11, 29, 32, 0.85) 100%);
+  backdrop-filter: blur(18px) saturate(1.25);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow: var(--panel-glow), inset 0 1px 0 rgba(245, 217, 126, 0.12);
+}
+
+/* ---------- gold hairline divider ---------- */
+.hairline-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.75) 30%, rgba(57, 213, 255, 0.6) 70%, transparent);
+  border: none;
+}
+
+/* ---------- premium buttons ---------- */
+.btn-neon {
+  border: 1px solid rgba(212, 175, 55, 0.55) !important;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(57, 213, 255, 0.08)) !important;
+  color: var(--gold-300, #e9c766) !important;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.25), inset 0 0 12px rgba(212, 175, 55, 0.08) !important;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.35) !important;
+}
+.btn-neon:hover {
+  border-color: rgba(245, 217, 126, 0.9) !important;
+  box-shadow: 0 0 28px rgba(212, 175, 55, 0.5), inset 0 0 18px rgba(212, 175, 55, 0.15) !important;
+  transform: translateY(-1px);
+}
+.btn-neon:active { transform: translateY(0); }
+
+.btn-gold {
+  border: 1px solid rgba(212, 175, 55, 0.6) !important;
+  background: linear-gradient(135deg, #b8932c, #d4af37 45%, #f5d97e) !important;
+  color: #1a1405 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 6px 24px -6px rgba(212, 175, 55, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+.btn-gold:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 34px -6px rgba(212, 175, 55, 0.85) !important;
+  transform: translateY(-1px);
+}
+.btn-gold:active { transform: translateY(0); }
+
+/* ---------- gold focus + selection ---------- */
+::selection { background: rgba(212, 175, 55, 0.35); color: #fff; }
+:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.75);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- premium card body ---------- */
+.glass-premium .p-card { position: relative; overflow: hidden; }
+.glass-premium .p-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(900px 220px at 20% -10%, rgba(212, 175, 55, 0.09), transparent 60%);
+  pointer-events: none;
+}
+
+/* ---------- copilot orb premium pulse ---------- */
+.orb-gold-ring {
+  animation: orbGoldRing 3.4s ease-in-out infinite;
+}
+@keyframes orbGoldRing {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55), 0 0 22px rgba(212, 175, 55, 0.45); }
+  50% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0), 0 0 34px rgba(57, 213, 255, 0.55); }
+}
+.orb-thinking { animation: orbThinking 0.9s ease-in-out infinite !important; }
+@keyframes orbThinking {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* ---------- premium stat chips ---------- */
+.stat-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(57, 213, 255, 0.06));
+  backdrop-filter: blur(8px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #ffe9a8;
+  box-shadow: 0 4px 16px -6px rgba(212, 175, 55, 0.4);
+}
+
+/* ---------- premium tab / pill ---------- */
+.pill-gold {
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(11, 197, 234, 0.05)) !important;
+  color: #f5d97e !important;
+}
+
+/* ---------- premium hairline + glow for every dashboard sub-panel ---------- */
+/* Blanket-applies the gold premium edge to the raw inner panels used all over
+   the dashboards (bg-white/[0.03], bg-white/5, bg-white/[0.06]) so the "same
+   premium everywhere" holds without touching each dashboard. Pure overlays —
+   no position/overflow changes to parent. */
+[class~="bg-white/[0.03]"], [class~="bg-white/5"], [class~="bg-white/[0.06]"] {
+  position: relative;
+}
+[class~="bg-white/[0.03]"]::before, [class~="bg-white/5"]::before, [class~="bg-white/[0.06]"]::before {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5) 30%, rgba(57, 213, 255, 0.4) 70%, transparent);
+  pointer-events: none;
+  border-radius: inherit;
+}
+[class~="bg-white/[0.03]"]::after, [class~="bg-white/5"]::after, [class~="bg-white/[0.06]"]::after {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 0; bottom: 55%;
+  background: radial-gradient(340px 120px at 18% -30%, rgba(212, 175, 55, 0.07), transparent 62%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ---------- premium sub-panel hover lift (mild, whole-app) ---------- */
+[class~="bg-white/[0.03]"]:hover, [class~="bg-white/5"]:hover, [class~="bg-white/[0.06]"]:hover {
+  box-shadow: 0 6px 22px -10px rgba(212, 175, 55, 0.25);
+}
+
+/* ---------- reduced motion safety ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .text-gold-shimmer, .orb-gold-ring, .orb-thinking, .scanline { animation: none !important; }
+}
+
+/* EMR keeps global voice controls within the left panel footprint. */
+.emr-corner-switches { position: fixed; left: 34px; bottom: 84px; z-index: 125; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 266px; }
+.emr-corner-switches > button { justify-content: center; min-height: 42px; }
+.emr-corner-switches > * { min-width: 0; }

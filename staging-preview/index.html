@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ASTRA Staging Preview</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; background: #050a12; color: #e5edf9; }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at 50% 0%, #102a42, #050a12 55%); }
+      main { width: min(440px, calc(100% - 40px)); border: 1px solid #28516d; border-radius: 20px; background: #09131fdd; padding: 32px; box-shadow: 0 28px 90px #0008; }
+      h1 { margin: 0; letter-spacing: .08em; color: #d9bb65; } p { color: #aebfd1; line-height: 1.5; }
+      .tag { display: inline-block; margin: 16px 0 24px; padding: 7px 10px; border: 1px solid #b9872c; border-radius: 999px; color: #f3d680; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+      label { display: block; margin: 14px 0 6px; font-size: 13px; color: #c7d7e8; } input { width: 100%; box-sizing: border-box; padding: 13px; border: 1px solid #37536c; border-radius: 10px; background: #07111c; color: white; font: inherit; }
+      button { width: 100%; margin-top: 20px; padding: 13px; border: 0; border-radius: 10px; background: #d4af37; color: #14100a; font-weight: 800; cursor: pointer; } .error { color: #ffaba6; min-height: 20px; font-size: 13px; }
+      #workspace { display: none; } .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-top:22px; }.card { padding:15px; border-radius:12px; background:#0d1a28; border:1px solid #284157; color:#bbd0e5; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section id="login">
+        <h1>ASTRA AI</h1>
+        <p>PM Brothers Multispeciality Hospital · staging preview</p>
+        <div class="tag">STAGING ONLY · NO API · NO PATIENT DATA</div>
+        <label for="id">Demo account ID</label>
+        <input id="id" value="staging-demo-doctor" autocomplete="off" />
+        <label for="pin">Six-digit demo PIN</label>
+        <input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" autofocus />
+        <div class="error" id="error"></div>
+        <button id="sign-in">Sign in to staging preview</button>
+      </section>
+      <section id="workspace">
+        <h1>Welcome, Demo Doctor</h1>
+        <div class="tag">AUTHENTICATED · STAGING PREVIEW</div>
+        <p>The authentication preview is working. The migrated clinical modules remain deliberately disconnected until their safe, data-free replacements are implemented.</p>
+        <div class="grid"><div class="card">Clinical workspace<br><small>Migration pending</small></div><div class="card">AI gateway<br><small>FreeLLMAPI policy</small></div><div class="card">Patient data<br><small>Not loaded</small></div><div class="card">Audit trail<br><small>Staging only</small></div></div>
+      </section>
+    </main>
+    <script>
+      const signIn = () => {
+        const id = document.querySelector('#id').value;
+        const pin = document.querySelector('#pin').value;
+        if (id === 'staging-demo-doctor' && pin === '472946') {
+          document.querySelector('#login').style.display = 'none';
+          document.querySelector('#workspace').style.display = 'block';
+        } else document.querySelector('#error').textContent = 'Use the staging demo ID and six-digit PIN provided.';
+      };
+      document.querySelector('#sign-in').addEventListener('click', signIn);
+      document.querySelector('#pin').addEventListener('keydown', (event) => { if (event.key === 'Enter') signIn(); });
+    </script>
+  </body>
+</html>

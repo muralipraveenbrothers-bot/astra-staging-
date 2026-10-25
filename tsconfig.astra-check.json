@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.server.json",
+  "compilerOptions": { "noEmit": true },
+  "include": [
+    "server/index.ts",
+    "server/agents/hermesAdapter.ts",
+    "server/platform/runtimeStatus.ts",
+    "server/healthProbes.ts"
+  ]
+}

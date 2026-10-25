@@ -1,0 +1,273 @@
+{
+  "pluginId": "billing-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Billing Plugin",
+  "version": "1.0.0",
+  "description": "Collections, pending bills, IP/OP revenue, discharge clearance, receipts, financial summary.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "billing-service",
+      "type": "department",
+      "endpoint": "/api/billing",
+      "healthEndpoint": "/api/billing/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "billing_hod",
+      "name": "Billing HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "payment_agent",
+      "name": "Payment Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "billing_hod"
+    },
+    {
+      "agentId": "clearance_agent",
+      "name": "Clearance Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "billing_hod"
+    },
+    {
+      "agentId": "revenue_agent",
+      "name": "Revenue Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "billing_hod"
+    },
+    {
+      "agentId": "cost_analysis_agent",
+      "name": "Cost Analysis Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "billing_hod"
+    },
+    {
+      "agentId": "billing_agent",
+      "name": "Billing Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "op_margin_optimizer_agent",
+      "name": "OP Margin Optimizer Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "generate_bill",
+      "name": "Generate Bill",
+      "description": "Generate patient bill",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "record_payment",
+      "name": "Record Payment",
+      "description": "Record payment",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "billId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "process_clearance",
+      "name": "Process Clearance",
+      "description": "Discharge clearance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "print_receipt",
+      "name": "Print Receipt",
+      "description": "Print receipt",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "billId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "get_revenue_summary",
+      "name": "Get Revenue Summary",
+      "description": "Revenue summary",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "get_pending_bills",
+      "name": "Get Pending Bills",
+      "description": "Pending bills",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "analyze_op_margin",
+      "name": "Analyze OP Margin",
+      "description": "Cost-per-OP, margin %, break-even count, pricing suggestions from real billing data",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "BILLING",
+      "claims": [
+        "billing:read",
+        "billing:write",
+        "billing:refund"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/billing",
+        "component": "BillingDashboard",
+        "roles": [
+          "BILLING"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "receipt",
+      "indian-rupee"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "billing.payment.recorded",
+      "billing.clearance.completed"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Billing DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Payment Gateway",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Receipt Printer",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Clearance Queue",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "gstPercent": {
+        "type": "number",
+        "default": 18
+      }
+    },
+    "secrets": [
+      "PAYMENT_GATEWAY_KEY"
+    ]
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:billing-plugin-1.0.0"
+}

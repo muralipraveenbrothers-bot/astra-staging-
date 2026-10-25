@@ -1,0 +1,130 @@
+{
+  "pluginId": "book-to-skill",
+  "tier": "P1",
+  "category": "KNOWLEDGE",
+  "name": "Book-to-Skill Converter",
+  "version": "1.4.0",
+  "description": "Converts books and clinical documents (PDF, EPUB, DOCX, HTML, Markdown, plain text, RTF) into structured, on-demand agent skills (SKILL.md + chapters + glossary + patterns + cheatsheet) via the upstream book-to-skill extractor and a Central-Adapter-driven generator. Does not diagnose, prescribe, or mutate hospital data.",
+  "license": "MIT",
+  "provider": "upstream: github.com/virgiliojr94/book-to-skill",
+  "runtime": "hybrid",
+  "dependencies": {
+    "required": [
+      {
+        "name": "book-to-skill",
+        "source": "local: get-repo/book-to-skill",
+        "python": "get-repo/book-to-skill/.venv"
+      }
+    ],
+    "optional": [
+      { "name": "docling", "purpose": "technical-mode extraction (tables/code preserved)" },
+      { "name": "calibre ebook-convert", "purpose": "MOBI/AZW extraction" }
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "book-to-skill-worker",
+      "type": "document-pipeline",
+      "endpoint": "/api/book-to-skill/health",
+      "healthEndpoint": "/api/book-to-skill/health"
+    }
+  ],
+  "agents": [],
+  "tools": [
+    {
+      "toolId": "book_to_skill_extract",
+      "name": "Extract Document Text",
+      "description": "Deterministic text+metadata extraction from a document via book-to-skill extract.py (private venv).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "mode": { "type": "string", "enum": ["text", "technical"] }
+        },
+        "required": ["inputs"]
+      },
+      "outputSchema": { "type": "object" },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "book_to_skill_generate",
+      "name": "Generate Agent Skill",
+      "description": "Generate a structured agent skill (SKILL.md, chapters, glossary, patterns, cheatsheet) from extracted text via the Central AI Adapter. Writes only to the configured skills roots.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workdir": { "type": "string" },
+          "skillName": { "type": "string" },
+          "depth": { "type": "string", "enum": ["reference", "study"] }
+        },
+        "required": ["workdir", "skillName"]
+      },
+      "outputSchema": { "type": "object" },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "book_to_skill_generated",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": ["knowledge:ingest", "knowledge:generate_skill"]
+    },
+    {
+      "role": "ADMIN",
+      "claims": ["knowledge:ingest", "knowledge:generate_skill", "plugin:configure"]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": ["book", "library", "file-text"]
+  },
+  "database": { "migrations": [], "seeds": [] },
+  "events": {
+    "publishes": ["book_to_skill.skill.generated", "book_to_skill.skill.updated"],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Book-to-Skill Extractor",
+      "endpoint": "book-to-skill-worker",
+      "timeoutMs": 10000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "BOOK_TO_SKILL_ROOT": {
+        "type": "string",
+        "default": "get-repo/book-to-skill",
+        "description": "Local clone of the upstream book-to-skill repository."
+      },
+      "BOOK_TO_SKILL_PYTHON": {
+        "type": "string",
+        "description": "Private venv python used for extraction (defaults to <root>/.venv)."
+      },
+      "BOOK_TO_SKILL_OUTPUT_DIR": {
+        "type": "string",
+        "description": "Primary skills output root (defaults to $HERMES_HOME/skills, then ~/.agents/skills)."
+      },
+      "BOOK_TO_SKILL_MAX_CHAPTERS": {
+        "type": "number",
+        "default": 12,
+        "description": "Safety cap on chapters generated per conversion."
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "REVERSIBLE",
+  "checksum": "sha256:book-to-skill-1.4.0"
+}

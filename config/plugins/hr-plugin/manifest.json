@@ -1,0 +1,215 @@
+{
+  "pluginId": "hr-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "HR Plugin",
+  "version": "1.0.0",
+  "description": "Staff, attendance, leave, workforce analytics, staffing gap detection.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "hr-service",
+      "type": "department",
+      "endpoint": "/api/hr",
+      "healthEndpoint": "/api/hr/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "hr_hod",
+      "name": "HR HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "attendance_agent",
+      "name": "Attendance Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hr_hod"
+    },
+    {
+      "agentId": "leave_manager",
+      "name": "Leave Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hr_hod"
+    },
+    {
+      "agentId": "workforce_analytics_agent",
+      "name": "Workforce Analytics Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hr_hod"
+    },
+    {
+      "agentId": "hr_head",
+      "name": "HR Head",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "register_staff",
+      "name": "Register Staff",
+      "description": "Register staff member",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "record_attendance",
+      "name": "Record Attendance",
+      "description": "Record attendance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "staffId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "process_leave",
+      "name": "Process Leave",
+      "description": "Process leave request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "staffId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "analyze_workforce",
+      "name": "Analyze Workforce",
+      "description": "Workforce analytics",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_staffing_gap",
+      "name": "Check Staffing Gap",
+      "description": "Staffing gap check",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "department": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [],
+  "ui": {
+    "routes": [
+      {
+        "path": "/hr",
+        "component": "HRDashboard",
+        "roles": [
+          "MANAGEMENT"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "users",
+      "user-round-plus"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "hr.attendance.recorded"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Staff DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Attendance System",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Leave Balance",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "autoRoster": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "secrets": [
+      "BIOMETRIC_INTERFACE"
+    ]
+  },
+  "riskLevel": "LOW",
+  "checksum": "sha256:hr-plugin-1.0.0"
+}

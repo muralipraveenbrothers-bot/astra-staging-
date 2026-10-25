@@ -1,0 +1,96 @@
+{
+  "name": "PM BROTHERS MULTI SPECIALITY HOSPITAL",
+  "tagline": "Centre for Clinical Excellence, Robotic Surgery & Advanced Critical Care",
+  "address": "Plot 12-14, Health City Corridor, Kothagudem Road",
+  "district": "Bhadradri Kothagudem",
+  "state": "Telangana",
+  "pin": "507101",
+  "phone": "+91 98480 23456 / 08744-245678",
+  "email": "care@pmbrothershospital.com",
+  "website": "https://pmbrothershospital.com",
+  "hospitalType": "Multi-Speciality",
+  "hfrId": "HFR123456",
+  "rohiniCode": "ROHINI-PMB-HYD-500038",
+  "abdmFacilityId": "IN3600084920",
+  "pmjayProviderId": "PMJAY-TS-2026-000123",
+  "nabhStatus": "Accredited (Full)",
+  "cmrfStatus": "Empaneled",
+  "gstin": "36AAACP9842M1Z4",
+  "pan": "AAACP9842M",
+  "mode": "PRODUCTION",
+  "workingHours": {
+    "opHours": "08:00 AM - 08:00 PM (Mon-Sat)",
+    "ipVisitingHours": "04:00 PM - 07:00 PM",
+    "emergency24x7": true
+  },
+  "departments": [
+    "General Medicine & Critical Care",
+    "Cardiology & Interventional",
+    "Orthopaedics & Joint Replacement",
+    "General & Laparoscopic Surgery",
+    "Obstetrics & Gynaecology",
+    "Paediatrics & Neonatology",
+    "Radiology & Imaging",
+    "Clinical Laboratory",
+    "Emergency & Trauma",
+    "Dialysis & Nephrology"
+  ],
+  "bedCapacity": {
+    "general": 20,
+    "semiPrivate": 12,
+    "private": 8,
+    "icu": 6,
+    "emergency": 4,
+    "total": 50
+  },
+  "otTheatres": [
+    {
+      "id": "OT-01",
+      "name": "Major OT 1 (Orthopaedics / Joint Replacement)",
+      "type": "Major",
+      "laminarFlow": true
+    },
+    {
+      "id": "OT-02",
+      "name": "Major OT 2 (Laparoscopy / General Surgery)",
+      "type": "Major",
+      "laminarFlow": true
+    },
+    {
+      "id": "OT-03",
+      "name": "Emergency / Septic OT",
+      "type": "Emergency",
+      "laminarFlow": false
+    }
+  ],
+  "activeDoctors": [
+    {
+      "id": "DOC-01",
+      "name": "Dr. Murali Praveen, M.D.",
+      "qualifications": "MBBS, MD (General Medicine), FCCP",
+      "speciality": "Internal Medicine & Critical Care",
+      "regNumber": "TSMC-64821"
+    },
+    {
+      "id": "DOC-02",
+      "name": "Dr. S. Reddy, M.S.",
+      "qualifications": "MBBS, MS (Orthopaedics), M.Ch",
+      "speciality": "Orthopaedics & Joint Replacement",
+      "regNumber": "TSMC-52119"
+    },
+    {
+      "id": "DOC-03",
+      "name": "Dr. Ananya Rao, M.D.",
+      "qualifications": "MBBS, MD (Pulmonology)",
+      "speciality": "Pulmonary Medicine & ICU",
+      "regNumber": "TSMC-78904"
+    },
+    {
+      "id": "DOC-04",
+      "name": "Dr. Nitin Deshmukh, M.D.",
+      "qualifications": "MBBS, MD (Radiodiagnosis)",
+      "speciality": "Radiology & Imaging",
+      "regNumber": "TSMC-49231"
+    }
+  ]
+}

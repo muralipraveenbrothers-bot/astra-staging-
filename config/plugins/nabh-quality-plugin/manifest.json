@@ -1,0 +1,236 @@
+{
+  "pluginId": "nabh-quality-plugin",
+  "tier": "P2",
+  "category": "QUALITY",
+  "name": "NABH & Quality Plugin",
+  "version": "1.0.0",
+  "description": "NABH indicators, CAPA, incident reporting, quality dashboards, audit readiness.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": [
+      "daily-learning-evaluation"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "quality-service",
+      "type": "quality",
+      "endpoint": "/api/quality",
+      "healthEndpoint": "/api/quality/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "quality_hod",
+      "name": "Quality HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "nabh_agent",
+      "name": "NABH Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "quality_hod"
+    },
+    {
+      "agentId": "capa_agent",
+      "name": "CAPA Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "quality_hod"
+    },
+    {
+      "agentId": "incident_agent",
+      "name": "Incident Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "quality_hod"
+    },
+    {
+      "agentId": "quality_indicator_agent",
+      "name": "Quality Indicator Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "quality_hod"
+    },
+    {
+      "agentId": "quality_nabh_head",
+      "name": "Quality NABH Head",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "quality_nabh_hod",
+      "name": "Quality NABH HOD",
+      "level": "HOD",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "report_incident",
+      "name": "Report Incident",
+      "description": "Report clinical incident",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "incident": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "create_capa",
+      "name": "Create CAPA",
+      "description": "Create corrective action",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "incidentId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "track_indicator",
+      "name": "Track Indicator",
+      "description": "Track NABH indicator",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "indicator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "generate_audit_report",
+      "name": "Generate Audit Report",
+      "description": "Audit readiness report",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_compliance",
+      "name": "Check Compliance",
+      "description": "Compliance check",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "standard": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "admin:agent"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/nabh",
+        "component": "NABHDashboard",
+        "roles": [
+          "MANAGEMENT"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "award",
+      "clipboard-list"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "quality.incident.reported",
+      "quality.capa.created"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Quality DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Incident Pipeline",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Indicator Calculation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "nabhVersion": {
+        "type": "string",
+        "default": "5th Edition"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:nabh-quality-plugin-1.0.0"
+}

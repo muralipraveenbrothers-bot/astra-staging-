@@ -1,0 +1,329 @@
+{
+  "pluginId": "executive-analytics-plugin",
+  "tier": "P2",
+  "category": "ANALYTICS",
+  "name": "Executive Analytics Plugin",
+  "version": "1.0.0",
+  "description": "CEO dashboard, revenue, occupancy, doctor productivity, claims, bottlenecks, daily brief.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "billing-plugin",
+      "insurance-plugin"
+    ],
+    "optional": [
+      "daily-learning-evaluation"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "executive-analytics",
+      "type": "analytics",
+      "endpoint": "/api/executive",
+      "healthEndpoint": "/api/executive/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "ceo_ai",
+      "name": "CEO AI",
+      "level": "EXECUTIVE",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "executive_intelligence_agent",
+      "name": "Executive Intelligence Agent",
+      "level": "EXECUTIVE",
+      "autoRegister": true,
+      "parentAgent": "ceo_ai"
+    },
+    {
+      "agentId": "revenue_analytics_agent",
+      "name": "Revenue Analytics Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ceo_ai"
+    },
+    {
+      "agentId": "occupancy_agent",
+      "name": "Occupancy Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ceo_ai"
+    },
+    {
+      "agentId": "bottleneck_detector",
+      "name": "Bottleneck Detector",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ceo_ai"
+    },
+    {
+      "agentId": "chief_clinical_cto",
+      "name": "Chief Clinical CTO",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "hospital_operations_cto",
+      "name": "Hospital Operations CTO",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "ai_technology_cto",
+      "name": "AI Technology CTO",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "finance_cto",
+      "name": "Finance CTO",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "get_executive_summary",
+      "name": "Get Executive Summary",
+      "description": "CEO executive summary",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "get_revenue_trend",
+      "name": "Get Revenue Trend",
+      "description": "Revenue trend",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "get_occupancy_rate",
+      "name": "Get Occupancy Rate",
+      "description": "Bed occupancy rate",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "get_doctor_productivity",
+      "name": "Get Doctor Productivity",
+      "description": "Doctor productivity metrics",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "detect_bottleneck",
+      "name": "Detect Bottleneck",
+      "description": "Department bottleneck detection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "generate_daily_brief",
+      "name": "Generate Daily Brief",
+      "description": "Daily executive brief",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "CEO",
+      "claims": [
+        "billing:read"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "billing:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/ceo",
+        "component": "Dashboard",
+        "roles": [
+          "CEO"
+        ]
+      },
+      {
+        "path": "/risk-radar",
+        "component": "HospitalRiskRadar",
+        "roles": [
+          "CEO",
+          "MANAGEMENT"
+        ]
+      },
+      {
+        "path": "/deterioration-radar",
+        "component": "PatientDeteriorationRadar",
+        "roles": [
+          "DOCTOR",
+          "NURSE"
+        ]
+      },
+      {
+        "path": "/journey-radar",
+        "component": "DelayedJourneyRadar",
+        "roles": [
+          "CEO",
+          "MANAGEMENT",
+          "RECEPTION"
+        ]
+      },
+      {
+        "path": "/knowledge-freshness",
+        "component": "KnowledgeFreshness",
+        "roles": [
+          "DOCTOR",
+          "ADMIN"
+        ]
+      },
+      {
+        "path": "/agent-health",
+        "component": "AgentHealthMonitor",
+        "roles": [
+          "ADMIN",
+          "CEO"
+        ]
+      },
+      {
+        "path": "/safety-queue",
+        "component": "ClinicalSafetyQueue",
+        "roles": [
+          "DOCTOR",
+          "NURSE",
+          "ADMIN"
+        ]
+      },
+      {
+        "path": "/epidemiology",
+        "component": "EpidemiologyPublicHealth",
+        "roles": [
+          "MANAGEMENT",
+          "DOCTOR"
+        ]
+      },
+      {
+        "path": "/plugin-health",
+        "component": "PluginHealthMonitor",
+        "roles": [
+          "ADMIN",
+          "CEO"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "name": "CeoInsights",
+        "slot": "executive-panel"
+      }
+    ],
+    "icons": [
+      "chart-line",
+      "crown"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "executive.brief.ready"
+    ],
+    "subscribes": [
+      "billing.payment.recorded",
+      "ward.deterioration"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Analytics DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Aggregation Pipeline",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Report Generation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "briefTime": {
+        "type": "string",
+        "default": "07:30"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:executive-analytics-plugin-1.0.0",
+  "notes": "Permissions: CEO, MANAGEMENT only."
+}

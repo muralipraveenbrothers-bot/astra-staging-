@@ -1,0 +1,40 @@
+#accession_version	object	object_name
+GTR000000001.1	gene	BRCA1
+GTR000000001.1	gene	BARD1
+GTR000000001.1	condition	Hereditary breast ovarian cancer syndrome
+GTR000000001.1	condition	Breast cancer
+GTR000000002.1	gene	EGFR
+GTR000000002.1	condition	Cutaneous melanoma
+GTR000000099.1	gene	RET
+GTR000000099.1	condition	Legacy syndrome
+GTR000000003.1	gene	BRAF
+GTR000000003.1	gene	BRCA1
+GTR000000003.1	gene	BRCA2
+GTR000000003.1	condition	Breast cancer
+GTR000000003.1	condition	Ovarian cancer
+GTR000000003.1	condition	Hereditary breast ovarian cancer syndrome
+GTR000000003.1	condition	Pancreatic cancer
+GTR000000003.1	condition	Lynch syndrome
+GTR000000003.1	condition	Colon cancer
+GTR000000010.1	condition	Tuberculosis
+GTR000000010.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000011.1	condition	Tuberculosis
+GTR000000011.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000012.1	condition	Tuberculosis
+GTR000000012.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000013.1	condition	Tuberculosis
+GTR000000013.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000014.1	condition	Tuberculosis
+GTR000000014.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000015.1	condition	Tuberculosis
+GTR000000015.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000016.1	condition	Tuberculosis
+GTR000000016.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000017.1	condition	Tuberculosis
+GTR000000017.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000018.1	condition	Tuberculosis
+GTR000000018.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000019.1	condition	Tuberculosis
+GTR000000019.1	condition	Mycobacterium tuberculosis complex infection
+GTR000000020.1	condition	Tuberculosis
+GTR000000020.1	condition	Mycobacterium tuberculosis complex infection

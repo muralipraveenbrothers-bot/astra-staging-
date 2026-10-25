@@ -1,0 +1,26 @@
+.astra-mic-btn { position: relative; transition: all .2s ease; }
+.astra-mic-btn.listening {
+  background: #e53935 !important; color: #fff !important;
+  animation: astra-mic-pulse 1.2s infinite;
+}
+@keyframes astra-mic-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(229,57,53,.5); }
+  70%  { box-shadow: 0 0 0 12px rgba(229,57,53,0); }
+  100% { box-shadow: 0 0 0 0 rgba(229,57,53,0); }
+}
+.astra-voice-toolbar { display: flex; align-items: center; gap: 6px; }
+.astra-voice-toolbar select {
+  font-size: 11px; padding: 3px 6px; border-radius: 6px;
+  border: 1px solid #d5dbe3; background: #fff; max-width: 130px;
+}
+.astra-speaking-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: #1565c0; background: #e3f0ff;
+  border: 1px solid #bcd7f7; border-radius: 999px; padding: 3px 10px;
+  cursor: pointer; margin: 4px 0;
+}
+.astra-speaking-chip .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #1565c0;
+  animation: astra-speak-blink .8s infinite alternate;
+}
+@keyframes astra-speak-blink { from { opacity: .3; } to { opacity: 1; } }

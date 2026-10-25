@@ -1,0 +1,153 @@
+use std::io::Cursor;
+
+use anyhow::Context;
+use rmcp::{ServerHandler, model::ServerInfo};
+use serde_json::{Value, json};
+use tokio::io::{
+    AsyncBufReadExt, AsyncRead, AsyncReadExt, AsyncWrite, AsyncWriteExt, BufReader, Chain,
+};
+
+use super::BioMcpServer;
+
+#[path = "modern.rs"]
+pub(super) mod modern;
+
+pub(super) const STDIO_DISCOVERY_VERSIONS: [&str; 3] = modern::SUPPORTED_VERSIONS;
+
+pub(super) async fn stdio_transport() -> anyhow::Result<(
+    Chain<Cursor<Vec<u8>>, BufReader<tokio::io::Stdin>>,
+    tokio::io::Stdout,
+)> {
+    await_initialize(tokio::io::stdin(), tokio::io::stdout()).await
+}
+
+async fn await_initialize<R, W>(
+    reader: R,
+    mut writer: W,
+) -> anyhow::Result<(Chain<Cursor<Vec<u8>>, BufReader<R>>, W)>
+where
+    R: AsyncRead + Unpin,
+    W: AsyncWrite + Unpin,
+{
+    let mut reader = BufReader::new(reader);
+    loop {
+        let mut frame = Vec::new();
+        if reader.read_until(b'\n', &mut frame).await? == 0 {
+            anyhow::bail!(super::mcp_stdio_guidance());
+        }
+
+        // rmcp accepts a UTF-8 BOM on stdio, so preserve that compatibility
+        // while retaining the original bytes for initialize replay.
+        let payload = frame.strip_prefix(b"\xef\xbb\xbf").unwrap_or(&frame);
+        let request: Value = match serde_json::from_slice(payload) {
+            Ok(request) => request,
+            Err(_) => {
+                write_error(&mut writer, None, -32700, "Parse error").await?;
+                continue;
+            }
+        };
+        let Some(object) = request.as_object() else {
+            write_invalid_request(&mut writer, None).await?;
+            continue;
+        };
+        let id = match object.get("id") {
+            Some(Value::String(id)) => Some(Value::String(id.clone())),
+            Some(Value::Number(id)) if id.as_i64().is_some() => Some(Value::Number(id.clone())),
+            Some(_) => {
+                write_invalid_request(&mut writer, None).await?;
+                continue;
+            }
+            None => None,
+        };
+        let method = object.get("method").and_then(Value::as_str);
+        let valid =
+            object.get("jsonrpc").and_then(Value::as_str) == Some("2.0") && method.is_some();
+        if !valid {
+            write_invalid_request(&mut writer, id).await?;
+            continue;
+        }
+
+        if method == Some("initialize") && id.is_some() {
+            return Ok((Cursor::new(frame).chain(reader), writer));
+        }
+        let Some(id) = id else {
+            continue;
+        };
+        if modern::has_protocol_metadata(&request) {
+            write_response(&mut writer, &modern::dispatch(&request).await).await?;
+        } else if method == Some("server/discover") {
+            write_response(&mut writer, &discovery_response(id)).await?;
+        } else if method == Some("ping") {
+            write_response(
+                &mut writer,
+                &json!({"jsonrpc": "2.0", "id": id, "result": {}}),
+            )
+            .await?;
+        } else {
+            write_error(
+                &mut writer,
+                Some(id),
+                -32602,
+                "MCP initialization is required before this request",
+            )
+            .await?;
+        }
+    }
+}
+
+fn discovery_response(id: Value) -> Value {
+    let ServerInfo {
+        capabilities,
+        server_info,
+        ..
+    } = BioMcpServer::new().get_info();
+    json!({
+        "jsonrpc": "2.0",
+        "id": id,
+        "result": {
+            "supportedVersions": STDIO_DISCOVERY_VERSIONS,
+            "capabilities": capabilities,
+            "_meta": {"io.modelcontextprotocol/serverInfo": server_info},
+            "resultType": "complete",
+            "ttlMs": 300000,
+            "cacheScope": "public"
+        }
+    })
+}
+
+async fn write_invalid_request<W>(writer: &mut W, id: Option<Value>) -> anyhow::Result<()>
+where
+    W: AsyncWrite + Unpin,
+{
+    write_error(writer, id, -32600, "Invalid Request").await
+}
+
+async fn write_error<W>(
+    writer: &mut W,
+    id: Option<Value>,
+    code: i32,
+    message: &str,
+) -> anyhow::Result<()>
+where
+    W: AsyncWrite + Unpin,
+{
+    let mut response = json!({
+        "jsonrpc": "2.0",
+        "error": {"code": code, "message": message}
+    });
+    if let Some(id) = id {
+        response["id"] = id;
+    }
+    write_response(writer, &response).await
+}
+
+async fn write_response<W>(writer: &mut W, response: &Value) -> anyhow::Result<()>
+where
+    W: AsyncWrite + Unpin,
+{
+    let mut bytes = serde_json::to_vec(response).context("failed to serialize MCP response")?;
+    bytes.push(b'\n');
+    writer.write_all(&bytes).await?;
+    writer.flush().await?;
+    Ok(())
+}

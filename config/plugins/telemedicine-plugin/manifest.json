@@ -1,0 +1,195 @@
+{
+  "pluginId": "telemedicine-plugin",
+  "tier": "P3",
+  "category": "INTEGRATION",
+  "name": "Telemedicine Plugin",
+  "version": "1.0.0",
+  "description": "Video consult, remote examination, e-prescription, follow-up scheduling.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "voicebox",
+      "hospital-data-connector"
+    ],
+    "optional": [
+      "medical-vision-dicom"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "telemedicine-service",
+      "type": "integration",
+      "endpoint": "/api/telemedicine",
+      "healthEndpoint": "/api/telemedicine/health"
+    },
+    {
+      "serviceId": "video-bridge",
+      "type": "integration",
+      "endpoint": "wss://video/signaling",
+      "healthEndpoint": "/api/telemedicine/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "telemedicine_host",
+      "name": "Telemedicine Host",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "remote_exam_assistant",
+      "name": "Remote Exam Assistant",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "telemedicine_host"
+    },
+    {
+      "agentId": "e_prescription_agent",
+      "name": "E-Prescription Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "telemedicine_host"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "start_video_call",
+      "name": "Start Video Call",
+      "description": "Start video consultation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "share_screen",
+      "name": "Share Screen",
+      "description": "Share screen",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "capture_remote_image",
+      "name": "Capture Remote Image",
+      "description": "Capture remote examination image",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "issue_e_prescription",
+      "name": "Issue E-Prescription",
+      "description": "Issue e-prescription",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "medications": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "order:create"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "TelemedicinePanel",
+        "slot": "clinical-workspace"
+      }
+    ],
+    "icons": [
+      "video",
+      "monitor-smartphone"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "telemedicine.call.started"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Video Bridge",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Signaling Server",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Prescription Integration",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "maxParticipants": {
+        "type": "number",
+        "default": 8
+      }
+    },
+    "secrets": [
+      "VIDEO_BRIDGE_KEY"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:telemedicine-plugin-1.0.0"
+}

@@ -1,0 +1,21 @@
+# Phenotype Search: {{ query }}
+
+{% if count == 0 -%}
+No phenotype similarity matches found.
+{% else -%}
+Found {{ count }} candidate disease{% if count != 1 %}s{% endif %}
+
+| Disease ID | Disease Name | Similarity Score |
+|---|---|---|
+{% for row in results -%}
+| {{ row.disease_id }} | {{ row.disease_name }} | {{ row.score | score }} |
+{% endfor -%}
+{% if related_block %}
+
+{{ related_block }}
+{% endif %}
+{% if pagination_footer %}
+
+{{ pagination_footer }}
+{% endif %}
+{% endif -%}

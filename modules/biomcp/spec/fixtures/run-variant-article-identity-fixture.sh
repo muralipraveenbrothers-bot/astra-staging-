@@ -1,0 +1,374 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="${1:-../..}"
+repo_root="$(cd "$repo_root" && pwd)"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ownership_helper="$script_dir/routine-fixture-ownership.sh"
+# shellcheck source=fixture-supervisor.sh
+source "$script_dir/fixture-supervisor.sh"
+cache_dir="$repo_root/.cache"
+kind="run-variant-article-identity"
+prefix="spec-run-variant-article-identity."
+mkdir -p "$cache_dir"
+recover_fixture_orphans "$cache_dir" "$kind" "$prefix"
+fixture_root="$(mktemp -d "$cache_dir/$prefix"XXXXXX)"
+owner_arg="$(bash "$ownership_helper" new-owner "$kind" "$fixture_root")"
+server_pid_file="$fixture_root/server-pid"
+ready="$fixture_root/ready"
+mode="$fixture_root/mode"
+printf 'normal\n' >"$mode"
+
+prepare_fixture_supervisor_current_process
+start_fixture_supervisor "$kind" "$cache_dir" "$fixture_root" "$prefix" "$server_pid_file" \
+  python3 - "$ready" "$mode" "$repo_root" "$owner_arg" <<'PY' >"$fixture_root/server.log" 2>&1 &
+import json
+import sys
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import parse_qs, urlparse
+
+ready = Path(sys.argv[1])
+mode = Path(sys.argv[2])
+repo_root = Path(sys.argv[3])
+real_car = (repo_root / "testdata/sources/clingen_allele_registry/tp53-nm_000546.6-c.215c-g.json").read_bytes()
+real_ldh_medium = (repo_root / "testdata/sources/clingen_ldh/ca000072-medium.json").read_bytes()
+real_ldh_direct = (repo_root / "testdata/sources/clingen_ldh/ca000072-pmc8372092-direct.json").read_bytes()
+# The frozen rows deliberately include a true positive and collision(s) for APC.
+# They are provider response fixtures, not clinical classifications.
+rows = {
+    "APC": [("12901799", "APC positive"), ("31749828", "APC retrieval collision"), ("90000001", "APC mixed observation")],
+    "ATM": [("32918381", "ATM positive")],
+    "PALB2": [("39999518", "PALB2 positive")],
+    "MLH1": [("20864636", "MLH1 positive")],
+    "BRCA1": [("33656647", "BRCA1 retrieval collision"), ("90000003", "BRCA1 unlinked fixture article")],
+    "PTEN": [("90000002", "PTEN unavailable verification")],
+    "TP53": [("34050721", "Real receipted TP53 identity anchor"), ("24376681", "TP53 retrieval collision")],
+}
+# Minimized PubTator3-shaped captures. These are provider facts, not clinical classifications.
+# Each tuple is (gene symbol, exact provider HGVS, NCBI Gene ID).
+passages = {
+    "12901799": [("APC", "p.Arg283Ter", 324)],
+    "31749828": [("TP53", "c.847C>T", 7157)],
+    "90000001": [("APC", "p.Arg283Ter", 324), ("APC", "p.Arg283Gln", 324)],
+    "32918381": [("ATM", "c.1066-6T>G", 472)],
+    "39999518": [("PALB2", "c.3350+5G>A", 79728)],
+    "20864636": [("MLH1", "p.Leu749Pro", 4292)],
+    "33656647": [("BRCA1", "c.788G>T", 672)],
+    "90000003": [("BRCA1", "c.788G>T", 672)],
+    "24376681": [("NKX2-5", "c.356C>A", 1482)],
+    "90000004": [("BRAF", "p.Val600Glu", 673)],
+    "90000005": [("BRAF", "p.Val600Glu", 673)],
+    "90000006": [("BRAF", "p.Val600Glu", 673)],
+    "90000007": [("BRAF", "p.Val600Glu", 673)],
+    "90000008": [("BRAF", "p.Val600Glu", 673)],
+    "90000009": [("BRAF", "p.Val600Glu", 673)],
+}
+
+def send(h, status, value):
+    body = json.dumps(value).encode()
+    h.send_response(status); h.send_header("Content-Type", "application/json"); h.send_header("Content-Length", str(len(body))); h.end_headers(); h.wfile.write(body)
+
+def send_bytes(h, body):
+    h.send_response(200); h.send_header("Content-Type", "application/json"); h.send_header("Content-Length", str(len(body))); h.end_headers(); h.wfile.write(body)
+
+pmcids = {"32918381": "PMC9541484", "39999518": "PMC9582472", "34050721": "PMC8372092"}
+def article(pmid, title):
+    return {"_id": pmid, "pmid": pmid, "pmcid": pmcids.get(pmid), "title": title, "journal": "Frozen fixture", "date": "2024-01-01", "score": 1}
+
+# Opaque fixture-only tokens exercise BioMCP aggregation; they are not registry CAids.
+car_ids = {
+    "NM_000038.6:c.847C>T": "CA900000000001", "NC_000005.10:g.112815507C>T": "CA900000000001",
+    "NM_000051.4:c.1066-6T>G": "CA900000000002", "NC_000011.10:g.108248927T>G": "CA900000000002",
+    "NM_007294.4:c.2428A>T": "CA900000000003", "NC_000017.11:g.43093103T>A": "CA900000000003",
+    "NM_000249.4:c.2246T>C": "CA900000000004", "NC_000003.12:g.37050628T>C": "CA900000000004",
+    "NM_024675.4:c.3350+5G>A": "CA900000000005", "NC_000016.10:g.23607859C>T": "CA900000000005",
+    "NM_000314.8:c.517C>T": "CA900000000006", "NC_000010.11:g.87952142C>T": "CA900000000006",
+    "NM_000546.6:c.356C>G": "CA900000000007", "NC_000017.11:g.7676013G>C": "CA900000000007",
+    "NM_004333.6:c.1799T>A": "CA900000000008", "NC_000007.13:g.140453136A>T": "CA900000000008",
+}
+
+class Handler(BaseHTTPRequestHandler):
+    def log_message(self, *args): pass
+    def do_GET(self):
+        parsed = urlparse(self.path); query = parse_qs(parsed.query); path = parsed.path
+        if path == "/ldh/Variant/id/CA000072/ld":
+            return send_bytes(self, real_ldh_medium)
+        if path == "/ldh/dss/cg/ns/ldh/set/variants_in_literature/id/PMC8372092/data":
+            return send_bytes(self, real_ldh_direct)
+        if path == "/ldh/Variant/id/CA900000000002/ld":
+            return send(self, 200, {"status": {"code": 200}, "metadata": {}, "data": {"VariantsInLiterature": [{"entDisposition": "external", "entType": "VariantsInLiterature", "entId": "PMC9541484", "entIri": "https://ldh.genome.network/ldh/dss/cg/ns/ldh/set/variants_in_literature/id/PMC9541484/data"}]}})
+        if path == "/ldh/Variant/id/CA900000000005/ld":
+            return send(self, 200, {"status": {"code": 200}, "metadata": {}, "data": {"VariantsInLiterature": [{"entDisposition": "external", "entType": "VariantsInLiterature", "entId": "PMC9582472", "entIri": "https://ldh.genome.network/ldh/dss/cg/ns/ldh/set/variants_in_literature/id/PMC9582472/data"}]}})
+        if path == "/ldh/dss/cg/ns/ldh/set/variants_in_literature/id/PMC9541484/data":
+            return send(self, 200, {"annotations": [{"id": "atm-annotation", "publicationId": "PMC9541484", "articleData": {"articleIDs": {"PMCID": "PMC9541484"}}, "variantMatch": "NM_000051.4:c.1066-6T>G", "created": "2026-01-01", "body": {"items": [{"type": "TextualBody", "value": "CA900000000002"}, {"type": "TextualBody", "value": "GeneData", "geneNCBI": [472], "geneSymbol": ["ATM"]}]}, "target": {"type": "List", "items": [{"source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9541484", "selector": [{"type": "TextQuoteSelector", "exact": "NM_000051.4:c.1066-6T>G"}]}]}}]})
+        if path == "/ldh/dss/cg/ns/ldh/set/variants_in_literature/id/PMC9582472/data":
+            return send(self, 200, {"annotations": [{"id": "palb2-annotation", "publicationId": "PMC9582472", "articleData": {"articleIDs": {"PMCID": "PMC9582472"}}, "variantMatch": "NM_024675.4:c.3350+5G>A", "created": "2026-01-01", "body": {"items": [{"type": "TextualBody", "value": "CA900000000005"}, {"type": "TextualBody", "value": "CA2731884673"}, {"type": "TextualBody", "value": "CA2838155028"}, {"type": "TextualBody", "value": "CA2213428726"}, {"type": "TextualBody", "value": "GeneData", "geneNCBI": [79728], "geneSymbol": ["PALB2"]}]}, "target": {"type": "List", "items": [{"source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9582472", "selector": [{"type": "TableTextSelector", "exact": "NM_024675.4:c.3350+5G>A"}]}]}}]})
+        if path == "/allele":
+            if query.get("hgvs", [""])[0] == "NM_000546.6:c.215C>G":
+                return send_bytes(self, real_car)
+            caid = car_ids.get(query.get("hgvs", [""])[0])
+            if caid:
+                return send(self, 200, {
+                    "@id": f"https://fixture.invalid/{caid}",
+                    "transcriptAlleles": [{"MANE": {
+                        "maneStatus": "MANE Select", "maneVersion": "1",
+                        "nucleotide": {"RefSeq": {"hgvs": query.get("hgvs", [""])[0]}},
+                    }}],
+                })
+            return send(self, 200, {"@id": "_:CA"})
+        if path == "/v1/query": return send(self, 200, {"total": 0, "hits": []})
+        if path.startswith("/v1/variant/"): return send(self, 404, {"error": "not found"})
+        if path == "/entity/autocomplete/": return send(self, 200, [])
+        if path == "/search/":
+            text = query.get("text", [""])[0]
+            found = next((gene for gene in rows if gene in text), None)
+            values = [article(*value) for value in rows.get(found, [])]
+            if mode.read_text().strip() == "trace-overflow" and "BRAF" in text:
+                values = [article(f"910{index:05}", "BRAF V600E trace-overflow fixture article") for index in range(51)]
+            if mode.read_text().strip() == "reordered":
+                values.reverse()
+            return send(self, 200, {"results": values, "count": len(values), "total_pages": 1, "current": 1, "page_size": 25})
+        if path == "/publications/export/biocjson":
+            pmid = query.get("pmids", [""])[0]
+            if pmid == "90000002": return send(self, 503, {"error": "fixture outage"})
+            pairs = passages.get(pmid, [])
+            # BRCA1 has the exact article-wide gene/allele pair but only an unrelated
+            # Association. It must not be upgraded from co-occurrence to proof.
+            typed_linkage = pmid != "90000003"
+            docs = [{
+                "id": pmid,
+                "pmid": int(pmid),
+                "pmcid": pmcids.get(pmid),
+                "passages": [{
+                    "infons": {"type": "abstract"},
+                    "text": f"{gene} {allele} frozen content.",
+                    "annotations": [
+                        {
+                            "id": f"gene-{index}",
+                            "text": "provider text must not be used as proof",
+                            "infons": {"type": "Gene", "name": gene, "identifier": str(gene_id), "normalized_id": gene_id},
+                        },
+                        {
+                            "id": f"variant-{index}",
+                            "text": "provider text must not be used as proof",
+                            "infons": ({"type": "Variant", "hgvs": allele, "identifier": f"Variant:{allele}"}
+                                if not typed_linkage else {
+                                    "type": "Variant", "hgvs": allele, "gene_id": gene_id, "gene_ids": [gene_id],
+                                    "identifier": f"Variant:{allele};CorrespondingGene:{gene_id}",
+                                }),
+                        },
+                    ],
+                } for index, (gene, allele, gene_id) in enumerate(pairs, start=1)],
+                # Association is deliberately unrelated proof: CorrespondingGene facts above
+                # must carry confirmation, not arbitrary BioC relation membership.
+                "relations": [{
+                    "id": f"association-{index}",
+                    "infons": {"type": "Association"},
+                    "nodes": [
+                        {"refid": f"gene-{index}", "role": "subject"},
+                        {"refid": f"variant-{index}", "role": "object"},
+                    ],
+                } for index, _ in enumerate(pairs, start=1)],
+            }]
+            if pmid == "12901799":
+                # Identity anomalies are diagnostic only. The canonical duplicate and
+                # document reordering exercise deterministic expected-PMID aggregation.
+                docs.extend([
+                    docs[0],
+                    {"id": "99999999", "pmid": 99999999, "passages": []},
+                    {"id": pmid, "pmid": 99999999, "passages": []},
+                    {"pmid": 99999999, "passages": []},
+                ])
+            if pmid == "90000003":
+                docs.append({"pmid": 99999999, "passages": []})
+            if mode.read_text().strip() == "reordered":
+                docs.reverse()
+            return send(self, 200, {"PubTator3": docs})
+        # This provider-shaped deep page sequence repeats one valid PMID. It exercises
+        # pagination work without inventing an internal shortcut: PubMed still returns
+        # ESearch IDs and matching ESummary records that BioMCP must deduplicate.
+        if path.endswith("/esearch.fcgi"):
+            if mode.read_text().strip() == "trace-overflow" and "BRAF" in query.get("term", [""])[0]:
+                return send(self, 200, {"esearchresult": {"idlist": ["91000050"], "count": "1"}})
+            if mode.read_text().strip() == "deep-discovery":
+                return send(self, 200, {"esearchresult": {"idlist": ["90000004", "90000005", "90000006", "90000007", "90000008", "90000009"], "count": "100"}})
+            if "APC" in query.get("term", [""])[0]:
+                return send(self, 200, {"esearchresult": {"idlist": ["12901799"], "count": "1"}})
+            return send(self, 200, {"esearchresult": {"idlist": [], "count": "0"}})
+        if path.endswith("/esummary.fcgi"):
+            pmids = query.get("id", [""])[0].split(",")
+            if mode.read_text().strip() == "deep-discovery":
+                return send(self, 200, {"result": {"uids": pmids, **{pmid: {"uid": pmid, "title": "BRAF V600E frozen identity article"} for pmid in pmids}}})
+            return send(self, 200, {"result": {"uids": pmids, **{pmid: {"uid": pmid, "title": "APC frozen identity article"} for pmid in pmids}}})
+        if path in {"/sentences/", "/passages/"}: return send(self, 200, [])
+        return send(self, 200, {"results": [], "data": [], "total": 0, "resultList": {"result": []}})
+
+server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+ready.write_text(f"http://127.0.0.1:{server.server_port}")
+server.serve_forever()
+PY
+supervisor_pid=$!
+for _ in $(seq 1 50); do test -s "$server_pid_file" && break; kill -0 "$supervisor_pid" 2>/dev/null || break; sleep .1; done
+test -s "$server_pid_file"
+server_pid="$(<"$server_pid_file")"
+bash "$ownership_helper" write "$repo_root" "$kind" "$fixture_root" "$server_pid" "BIOMCP_RUN_VARIANT_ARTICLE_IDENTITY" "$owner_arg" >/dev/null
+trap 'bash "$ownership_helper" cleanup "$repo_root" "$kind" "BIOMCP_RUN_VARIANT_ARTICLE_IDENTITY"' EXIT
+for _ in $(seq 1 100); do test -s "$ready" && break; sleep 0.05; done
+base_url="$(cat "$ready")"
+binary="${BIOMCP_BIN:-$repo_root/target/spec/biomcp}"
+export BIOMCP_CACHE_MODE=off BIOMCP_CACHE_DIR="$fixture_root/cache" BIOMCP_TEST_UNPACED_ORIGIN="$base_url"
+export BIOMCP_PUBTATOR_BASE="$base_url" BIOMCP_MYVARIANT_BASE="$base_url/v1" BIOMCP_EUROPEPMC_BASE="$base_url" BIOMCP_PUBMED_BASE="$base_url/entrez/eutils" BIOMCP_S2_BASE="$base_url" BIOMCP_LITSENSE2_BASE="$base_url" BIOMCP_CLINGEN_CAR_BASE="$base_url" BIOMCP_CLINGEN_LDH_FIXTURE_ORIGIN="$base_url"
+panel="$repo_root/spec/fixtures/g5-v2-identity-panel.json"
+all="$("$binary" --json variant articles --input "$panel" --verify-identity --debug-plan --limit 50)"
+confirmed="$("$binary" --json variant articles --input "$panel" --verify-identity --confirmed-only --debug-plan --limit 1)"
+printf 'deep-discovery\n' >"$mode"
+braf_panel="$repo_root/spec/fixtures/variant-article-braf-identity-input.json"
+reserved="$("$binary" --json variant articles --input "$braf_panel" --verify-identity --confirmed-only --debug-plan --limit 3)"
+visible="$("$binary" --json variant articles --input "$braf_panel" --verify-identity --debug-plan --limit 3)"
+printf 'normal\n' >"$mode"
+printf '[{"request_id":"real-tp53-anchor","gene":"TP53","transcript":"NM_000546.6","coding":"c.215C>G"}]\n' >"$fixture_root/real-anchor.json"
+real_anchor="$("$binary" --json variant articles --input "$fixture_root/real-anchor.json" --verify-identity --debug-plan --limit 5)"
+real_markdown="$("$binary" variant articles "TP53 c.215C>G" --verify-identity --limit 5)"
+printf 'trace-overflow\n' >"$mode"
+trace_overflow="$("$binary" --json variant articles --input "$braf_panel" --debug-plan --limit 1 --offset 1)"
+printf 'reordered\n' >"$mode"
+reordered="$("$binary" --json variant articles --input "$panel" --verify-identity --debug-plan --limit 50)"
+printf '%s' "$all" >"$fixture_root/all.json"
+printf '%s' "$confirmed" >"$fixture_root/confirmed.json"
+printf '%s' "$reserved" >"$fixture_root/reserved.json"
+printf '%s' "$visible" >"$fixture_root/visible.json"
+printf '%s' "$trace_overflow" >"$fixture_root/trace-overflow.json"
+printf '%s' "$reordered" >"$fixture_root/reordered.json"
+printf '%s' "$real_anchor" >"$fixture_root/real-anchor-output.json"
+jq -n --arg real_markdown "$real_markdown" --slurpfile all "$fixture_root/all.json" --slurpfile confirmed "$fixture_root/confirmed.json" --slurpfile reserved "$fixture_root/reserved.json" --slurpfile visible "$fixture_root/visible.json" --slurpfile trace_overflow "$fixture_root/trace-overflow.json" --slurpfile reordered "$fixture_root/reordered.json" --slurpfile real "$fixture_root/real-anchor-output.json" '
+  def item($id): $all[0].items[] | select(.request_id == $id);
+  def reordered_item($id): $reordered[0].items[] | select(.request_id == $id);
+  def reserved_item: $reserved[0].items[] | select(.request_id == "braf-refseq-grch37");
+  def visible_item: $visible[0].items[] | select(.request_id == "braf-refseq-grch37");
+  def trace_overflow_item: $trace_overflow[0].items[] | select(.request_id == "braf-refseq-grch37");
+  def has($id; $pmid; $status): any(item($id).results[]; .pmid == $pmid and .identity.status == $status);
+  {
+    real_receipted_identity_anchor: (
+      $real[0].items[0] as $item |
+      any($item.results[];
+        .pmid == "34050721" and .pmcid == "PMC8372092" and
+        .identity.status == "confirmed" and
+        any(.identity.observations[];
+          .source == "clingen_ldh" and
+          .provider_linkage.annotation_uuid == "c6e66874-536b-5b95-824a-5a37d4b2b787" and
+          .provider_linkage.caid == "CA000072" and
+          .provider_linkage.gene_id == 7157 and
+          .provider_linkage.selector_type == "TableTextSelector" and
+          .provider_linkage.selector_value == "rs1042522")) and
+      $item.canonical_equivalence.status == "single_identity" and
+      $item.canonical_equivalence.caid == "CA000072" and
+      ($item.canonical_equivalence.observations[0].provider_response_sha256 == "454b2fb812d8bac6cd9ff8cb3b1fca4dc4d993faee454e2bbeb35ebea549c367") and
+      ($item.debug_plan.work_allocation.identity_verification.consumed > 0) and
+      any($item.source_status[]; .route == "best_effort_free_text" and .source == "pubtator" and .status == "ok") and
+      any($item.debug_plan.candidate_trace.candidates[];
+        .identifier == "34050721" and .provider_terminal_state == "received" and
+        .verification_disposition == "confirmed" and .pagination_disposition == "visible") and
+      ($real_markdown | contains("Real receipted TP53 identity anchor") and contains("34050721"))
+    ),
+    clingen_ldh: {atm_exact_annotation_confirmed: any(item("atm-grch38").results[]; .pmcid == "PMC9541484" and any(.identity.observations[]; .provider_linkage.kind == "clingen_ldh_annotation" and .provider_linkage.gene_id == 472)), palb2_table_selector_confirmed: any(item("palb2-grch38").results[]; .pmcid == "PMC9582472" and any(.identity.observations[]; .provider_linkage.kind == "clingen_ldh_annotation" and .provider_linkage.gene_id == 79728 and .provider_linkage.selector_type == "TableTextSelector" and .provider_linkage.caid == "CA900000000005")), empty_coverage_preserves_candidates: (has("mlh1-grch38"; "20864636"; "confirmed") and all(item("mlh1-grch38").results[].identity.observations[]; .source != "clingen_ldh"))},
+    frozen_positive_statuses: {apc: has("apc-grch38"; "12901799"; "confirmed"), atm: has("atm-grch38"; "32918381"; "confirmed"), palb2: has("palb2-grch38"; "39999518"; "confirmed"), mlh1: has("mlh1-grch38"; "20864636"; "confirmed")},
+    collision_pmids_never_confirmed: (all(["31749828", "24376681", "33656647"][]; . as $pmid | any($all[0].items[].results[]; .pmid == $pmid and .identity.status != "confirmed"))),
+    intentional_unverified: {brca1: has("brca1-grch38"; "90000003"; "unverified"), pten: has("pten-grch38"; "90000002"; "unverified"), tp53: has("tp53-grch38"; "24376681"; "unverified")},
+    conflicting_observation: has("apc-grch38"; "90000001"; "conflicting"),
+    outage_is_incomplete: ((item("pten-grch38").complete == false) and (item("pten-grch38").truncated == true) and (item("pten-grch38").pagination.total == null)),
+    canonical_equivalence_is_additive: all(["atm-grch38", "palb2-grch38"][];
+      . as $request_id | item($request_id) |
+      .canonical_equivalence.caid as $caid |
+      .resolution.provider_validation.status == "not_found"
+      and .canonical_equivalence.status == "confirmed"
+      and .canonical_equivalence.complete == true
+      and .canonical_equivalence.exhaustive == true
+      and ($caid | type) == "string"
+      and ([.canonical_equivalence.observations[].basis] | sort) == ["genomic", "transcript_coding"]
+      and all(.canonical_equivalence.observations[];
+        .status == "resolved"
+        and .caid == $caid
+        and .comparison_complete == true
+        and .source == "clingen_car"
+        and (.provider_response_sha256 | test("^[0-9a-f]{64}$")))),
+    canonical_observation_statuses_are_closed: (any($all[0].items[]; (.canonical_equivalence.observations? // [] | length) > 0) and all($all[0].items[]; all((.canonical_equivalence.observations? // [])[]; .status == "resolved" or .status == "not_found" or .status == "invalid" or .status == "indeterminate" or .status == "unavailable"))),
+    debug_plan_provider_statuses_are_closed: (any($all[0].items[]; (.debug_plan.routes | map(.providers | length) | add) > 0) and all($all[0].items[]; all(.debug_plan.routes[].providers[]; .status == "ok" or .status == "degraded" or .status == "unavailable" or .status == "skipped" or .status == "not_attempted"))),
+    confirmed_page_filters_before_limit: (any($confirmed[0].items[] | select(.request_id == "apc-grch38").results[]; .pmid == "12901799" and .rank == 1) and all($confirmed[0].items[]; .pagination.returned <= .pagination.limit and .pagination.returned == ([.results[]] | length) and all(.results[]; .identity.status == "confirmed"))),
+    deep_discovery_keeps_structured_braf_for_identity_verification: (reserved_item | .complete == false and .truncated == true and .canonical_equivalence.status == "confirmed" and .canonical_equivalence.complete == true and any(.results[]; .pmid == "90000004" and .identity.status == "confirmed") and all(.results[]; .identity.status == "confirmed")),
+    identity_verification_is_bounded_to_visible_page: (visible_item | .pagination.returned > 0 and .debug_plan.work_allocation.identity_verification.item.consumed > 0 and .debug_plan.work_allocation.identity_verification.item.consumed <= .pagination.returned),
+    debug_plan_records_discovery_and_verification_allocation: (reserved_item | .debug_plan as $plan | $plan.work_allocation as $allocation | ($allocation | type) == "object" and ($plan.budgets.item.consumed | type) == "number" and ($allocation.discovery.consumed | type) == "number" and $allocation.discovery.consumed > 0 and $allocation.discovery.consumed <= $plan.budgets.item.consumed and ($allocation.exact_lexical.item.consumed | type) == "number" and $allocation.exact_lexical.item.consumed <= $plan.budgets.item.consumed and ($allocation.identity_verification.reserved | type) == "number" and ($allocation.identity_verification.consumed | type) == "number" and $allocation.identity_verification.reserved >= 1 and $allocation.identity_verification.consumed > 1 and $allocation.identity_verification.consumed <= $plan.budgets.item.consumed and ($allocation.discovery.consumed + $allocation.exact_lexical.item.consumed + $allocation.identity_verification.item.consumed == $plan.budgets.item.consumed) and all($plan.routes[] | select(.route == "strict" or .route == "exact_lexical" or .route == "identity_verification"); ([.providers[].calls] | add) as $calls | $calls == 0 or (if .route == "strict" then $allocation.discovery.consumed else if .route == "exact_lexical" then $allocation.exact_lexical.item.consumed else $allocation.identity_verification.item.consumed end end) > 0)),
+    candidate_route_trace_is_versioned_bounded_and_stage_attributed: (all($all[0].items[];
+      .debug_plan as $plan |
+      ($plan.candidate_trace | type) == "object" and
+      $plan.candidate_trace.schema_version == "variant-article-candidate-trace-v2" and
+      ($plan.candidate_trace.observed_total | type) == "number" and
+      ($plan.candidate_trace.dropped | type) == "number" and
+      $plan.candidate_trace.dropped == 0 and
+      $plan.candidate_trace.bounded == false and
+      ($plan.candidate_trace.candidates | type) == "array" and
+      $plan.candidate_trace.observed_total == ($plan.candidate_trace.candidates | length) and
+      ($plan.candidate_trace.candidates | length) <= $plan.budgets.item.limit and
+      all($plan.candidate_trace.candidates[];
+        (keys | sort) == ["after_dedup", "after_union", "identifier", "pagination_disposition", "provider_terminal_state", "rank_position", "received", "route", "verification_disposition"] and
+        (.identifier | type) == "string" and
+        (.route | type) == "string" and
+        (.provider_terminal_state | type) == "string" and
+        (.received | type) == "boolean" and
+        (.after_union | type) == "boolean" and
+        (.after_dedup | type) == "boolean" and
+        (.rank_position == null or ((.rank_position | type) == "number" and .rank_position >= 1 and .rank_position <= $plan.budgets.item.limit)) and
+        (.verification_disposition | type) == "string" and
+        (.pagination_disposition | type) == "string")) and
+      any($all[0].items[]; .debug_plan.candidate_trace.candidates[] | .identifier == "12901799" and .received == true and .after_union == true and .after_dedup == true and .pagination_disposition == "visible")),
+    visible_results_have_candidate_route_receipts: (all($all[0].items[];
+      . as $item |
+      all($item.results[];
+        .pmid as $pmid |
+        any($item.debug_plan.candidate_trace.candidates[]?;
+          .identifier == $pmid and .received == true and .after_union == true and
+          .after_dedup == true and .pagination_disposition == "visible")))),
+    candidate_route_trace_keeps_filtered_observations: (any($confirmed[0].items[];
+      .debug_plan.candidate_trace.candidates[]? |
+      .identifier == "31749828" and .received == true and .after_dedup == true and
+      .verification_disposition == "filtered_confirmed_only" and
+      .pagination_disposition == "not_visible")),
+    candidate_route_trace_keeps_duplicate_route_observations: (any($all[0].items[];
+      [.debug_plan.candidate_trace.candidates[]? | select(.identifier == "12901799") | .route] |
+      unique | length >= 2)),
+    candidate_route_trace_reports_omissions_and_retains_offset_visible_receipt: (trace_overflow_item |
+      .debug_plan.candidate_trace as $trace |
+      .results[0].pmid as $visible_pmid |
+      ($trace.observed_total | type) == "number" and
+      ($trace.dropped | type) == "number" and
+      $trace.observed_total > ($trace.candidates | length) and
+      $trace.dropped > 0 and
+      $trace.dropped == ($trace.observed_total - ($trace.candidates | length)) and
+      $trace.bounded == true and
+      any($trace.candidates[]; .identifier == $visible_pmid and .received == true and
+        .after_union == true and .after_dedup == true and
+        .pagination_disposition == "visible")),
+    audit_versions_and_canonical_subsets: (all($all[0].items[]; .debug_plan.verification.verifier_version == "article-identity-v2" and (.debug_plan.verification.provider_template_version | startswith("pubtator-export")) and .debug_plan.verification.response_subset_version == "clinically-relevant-response-v1" and .debug_plan.verification.content_subset_version == "clinically-relevant-content-v1" and (.debug_plan.verification.canonical_response_subset_hash | type) == "string" and (.debug_plan.verification.canonical_content_subset_hash | type) == "string") and all($all[0].items[]; . as $item | reordered_item($item.request_id) | .debug_plan.verification.canonical_response_subset_hash == $item.debug_plan.verification.canonical_response_subset_hash and .debug_plan.verification.canonical_content_subset_hash == $item.debug_plan.verification.canonical_content_subset_hash)),
+    typed_corresponding_gene_proof_is_pmid_bound: (all([
+      ["apc-grch38", "12901799", 324, "p.Arg283Ter"],
+      ["atm-grch38", "32918381", 472, "c.1066-6T>G"],
+      ["palb2-grch38", "39999518", 79728, "c.3350+5G>A"]
+    ][]; . as [$request_id, $pmid, $gene_id, $hgvs] |
+      any(item($request_id).results[]; .pmid == $pmid and .identity.status == "confirmed" and any(.identity.observations[];
+        (.provider_linkage | keys == ["expected_pmid", "gene_annotation_id", "gene_id", "identifier_tokens", "kind", "observed_hgvs", "provenance", "relation_id", "relation_roles", "relation_type", "returned_pmid", "variant_annotation_id"]) and
+        .provider_linkage.kind == "pubtator_corresponding_gene" and
+        .provider_linkage.expected_pmid == $pmid and .provider_linkage.returned_pmid == $pmid and
+        .provider_linkage.gene_id == $gene_id and .provider_linkage.observed_hgvs == $hgvs and
+        .provider_linkage.identifier_tokens == ["CorrespondingGene:\($gene_id)", "Variant:\($hgvs)"] and
+        (.provider_linkage.provenance | keys == ["canonical_response_subset_sha256", "request_template_version", "response_subset_version", "source", "verifier_version"] and .source == "pubtator3" and (.canonical_response_subset_sha256 | test("^[0-9a-f]{64}$"))) and
+        .provider_linkage.relation_id == null and .provider_linkage.relation_type == null and .provider_linkage.relation_roles == null and
+        .gene_annotation_id == .provider_linkage.gene_annotation_id and .allele_annotation_id == .provider_linkage.variant_annotation_id and .provider_relation == null
+      )))),
+    document_identity_anomalies_are_incomplete_without_false_contradiction: (item("apc-grch38").results[] | select(.pmid == "12901799") | .identity.status == "confirmed" and .identity.incomplete == true and (.identity.contradictions | all(.[]; false))),
+    association_without_typed_linkage_is_unverified: (item("brca1-grch38").results[] | select(.pmid == "90000003") | .identity.status == "unverified" and .identity.incomplete == true),
+    expected_pmid_aggregation_is_order_independent: ((item("apc-grch38").results[] | select(.pmid == "12901799")) as $first |
+      (reordered_item("apc-grch38").results[] | select(.pmid == "12901799")) as $second |
+      $first.identity.status == "confirmed" and $first.identity.incomplete == true and
+      $first.identity.status == $second.identity.status and $first.identity.incomplete == $second.identity.incomplete and
+      ($first.identity.observations == ($first.identity.observations | unique)))
+  }'

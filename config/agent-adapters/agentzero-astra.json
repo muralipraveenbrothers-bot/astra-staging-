@@ -1,0 +1,11 @@
+{
+  "id": "agentzero",
+  "role": "MULTI_AGENT_ORCHESTRATION",
+  "throughAdapter": true,
+  "baseUrl": "http://127.0.0.1:31415/v1",
+  "dashboardUrl": "http://127.0.0.1:50001",
+  "repo": "https://github.com/agentzero-ai/agentzero",
+  "keyEnv": "ASTRA_ADAPTER_API_KEY",
+  "approvalRequired": true,
+  "note": "Agent Zero performs multi-agent orchestration. Inference goes through Astra /v1 via the openai-completions provider; no separate model keys."
+}

@@ -1,0 +1,89 @@
+# Pharmacogenomics Queries
+
+BioMCP's PGx surface connects genes, drugs, and CPIC guidance without forcing
+users to switch tools or guess which source backed the answer. These canaries
+focus on CPIC-style interaction tables plus opt-in recommendation, guideline, and
+frequency detail.
+
+Every `get pgx` list is bounded. The default selects only `interactions` with
+limit 10; named sections omit unrelated lists, and each JSON section advertises
+its own continuation metadata.
+
+## Gene-First Search
+
+Searching by pharmacogene should keep the interaction table shape visible so a
+reader can immediately see which drugs are affected.
+
+```bash
+../../tools/biomcp-ci search pgx CYP2D6 --limit 3 | mustmatch like '...
+# PGx Search: gene=CYP2D6
+...
+| Gene | Drug | CPIC Level | PGx Testing | Guideline |
+...
+| CYP2D6 | codeine | A | Actionable PGx |'
+```
+
+The testing-recommendation filter accepts the provider's documented category
+and every returned interaction matches it.
+
+```bash
+set -o pipefail
+../../tools/biomcp-ci --json search pgx CYP2D6 --pgx-testing "Actionable PGx" --limit 3 \
+  | jq '(.results | length > 0) and all(.results[]; .pgxtesting == "Actionable PGx")' \
+  | mustmatch 'true'
+```
+
+## Drug-First Search
+
+Drug lookup is a first-class path too. It should route through the same CPIC
+interaction surface instead of an undocumented special-case workflow.
+
+```bash
+../../tools/biomcp-ci search pgx --drug clopidogrel --limit 3 | mustmatch like '...
+# PGx Search: drug=clopidogrel
+...
+| CYP2C19 | clopidogrel | A | Actionable PGx |'
+```
+
+## Recommendations Stay Opt-In
+
+Recommendation detail belongs behind an explicit deepen path so the default
+interaction card stays readable.
+
+```bash
+../../tools/biomcp-ci get pgx CYP2D6 recommendations | mustmatch like '...
+# CYP2D6 - recommendations
+...
+## Recommendations (CPIC)
+...
+| Drug | Genotype | Activity Score | Recommendation | Classification |'
+```
+
+## Guideline Summaries
+
+Guideline metadata is likewise opt-in. A gene query should expose the CPIC guidance
+that contextualizes its interaction rows without making the default card noisy.
+
+```bash
+../../tools/biomcp-ci get pgx CYP2D6 guidelines | mustmatch like '...
+# CYP2D6 - guidelines
+...
+## Guidelines (CPIC)
+...
+| Guideline | Genes | Drugs |'
+```
+
+## Population Frequencies
+
+Population allele frequencies should stay available as their own section and
+render with explicit population/frequency columns instead of disappearing into
+free text.
+
+```bash
+../../tools/biomcp-ci get pgx CYP2D6 frequencies | mustmatch like '...
+# CYP2D6 - frequencies
+...
+## Population Frequencies (CPIC)
+...
+| Gene | Allele | Population | Frequency | Subjects |'
+```

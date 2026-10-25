@@ -1,0 +1,379 @@
+{
+  "pluginId": "integrative-medicine-plugin",
+  "tier": "P2.5",
+  "category": "MEDICAL",
+  "name": "Integrative Medicine Plugin",
+  "version": "1.0.0",
+  "description": "Ayurveda (prakriti, herb-drug safety), Naturopathy (supervised protocols), Dietetics (local food habits, regional diet charts, food-drug timing, Ritucharya).",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "medical-knowledge-gateway"
+    ],
+    "optional": [
+      "pharmacy-plugin"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "integrative-medicine",
+      "type": "clinical-advisory",
+      "endpoint": "/api/integrative-medicine",
+      "healthEndpoint": "/api/integrative-medicine/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "ayurveda_hod",
+      "name": "Ayurveda HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "naturopathy_hod",
+      "name": "Naturopathy HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "dietetics_hod",
+      "name": "Dietetics HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "ayurvedic_prakriti_agent",
+      "name": "Ayurvedic Prakriti Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "ayurveda_hod"
+    },
+    {
+      "agentId": "ayurvedic_aushadhi_agent",
+      "name": "Ayurvedic Aushadhi Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "ayurveda_hod"
+    },
+    {
+      "agentId": "naturopathy_hydro_agent",
+      "name": "Naturopathy Hydro Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "naturopathy_hod"
+    },
+    {
+      "agentId": "local_diet_chart_agent",
+      "name": "Local Diet Chart Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "food_medication_interaction_agent",
+      "name": "Food Medication Interaction Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "seasonal_regimen_agent",
+      "name": "Seasonal Regimen (Ritucharya) Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "ayurveda_hod"
+    },
+    {
+      "agentId": "prakriti_analyzer",
+      "name": "Prakriti Analyzer",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ayurvedic_prakriti_agent"
+    },
+    {
+      "agentId": "local_diet_manager",
+      "name": "Local Diet Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "local_diet_chart_agent"
+    },
+    {
+      "agentId": "food_interaction_checker",
+      "name": "Food Interaction Checker",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "food_medication_interaction_agent"
+    },
+    {
+      "agentId": "therapeutic_diet_manager",
+      "name": "Therapeutic Diet Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "local_cuisine_manager",
+      "name": "Local Cuisine Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "naturopathy_diet_manager",
+      "name": "Naturopathy Diet Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "allergy_nutrition_manager",
+      "name": "Allergy Nutrition Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    },
+    {
+      "agentId": "opd_diet_counseling_manager",
+      "name": "OPD Diet Counseling Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "dietetics_hod"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "analyze_prakriti",
+      "name": "Analyze Prakriti",
+      "description": "Body constitution analysis (Vata/Pitta/Kapha) + dietary advice",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "answers": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "generate_diet_chart",
+      "name": "Generate Diet Chart",
+      "description": "Region-specific diet chart (South/North/East/West/Tribal) with calories, protein, med timing gaps",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_herb_drug_interaction",
+      "name": "Check Herb Drug Interaction",
+      "description": "Herb-drug interaction safety flag (safety layer)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "herb": {
+            "type": "string"
+          },
+          "drug": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_food_drug_timing",
+      "name": "Check Food Drug Timing",
+      "description": "Food timing vs drug absorption guidance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "suggest_ritucharya",
+      "name": "Suggest Ritucharya",
+      "description": "Seasonal regimen (diet, lifestyle, exercise, precautions)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "number"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "suggest_naturopathy_protocol",
+      "name": "Suggest Naturopathy Protocol",
+      "description": "Supervised hydrotherapy/fasting/diet protocols with contraindications",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "contraindications": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "charaka_samhita",
+      "type": "ayurveda",
+      "accessScope": "hospital",
+      "autoIndex": false
+    },
+    {
+      "sourceId": "sushruta_samhita",
+      "type": "ayurveda",
+      "accessScope": "hospital",
+      "autoIndex": false
+    },
+    {
+      "sourceId": "regional_food_databases",
+      "type": "nutrition",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "integrative:read"
+      ]
+    },
+    {
+      "role": "NURSE",
+      "claims": [
+        "integrative:read"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "integrative:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "IntegrativeModeToggle",
+        "slot": "command-center-mode"
+      }
+    ],
+    "icons": [
+      "leaf",
+      "sun",
+      "droplet"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "integrative.advice.generated"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Knowledge Tables",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Herb-Drug Safety Layer",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "defaultRegion": {
+        "type": "string",
+        "default": "south"
+      },
+      "integrativeMode": {
+        "type": "string",
+        "enum": [
+          "modern",
+          "ayurveda",
+          "combined",
+          "naturopathy"
+        ],
+        "default": "combined"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:integrative-medicine-plugin-1.0.0",
+  "notes": "Herb-drug flags are a SAFETY LAYER only; allopathic drug-safety agent and physician always over-rule. Combined mode: Hermes synthesizes modern + ayurvedic perspectives."
+}

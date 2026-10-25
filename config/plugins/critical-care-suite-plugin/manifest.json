@@ -1,0 +1,162 @@
+{
+  "pluginId": "critical-care-suite-plugin",
+  "tier": "P3",
+  "category": "HOSPITAL",
+  "name": "Critical Care Suite (Vent-Brain)",
+  "version": "1.0.0",
+  "description": "Vent-Brain co-pilot: driving-pressure safety, asynchrony detection, RSBI weaning predictor, ABG interpreter, sepsis EWS. Deterministic ICU tool.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "ward-icu-plugin",
+      "bio-sim-engine"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "critical-care-suite",
+      "type": "icu-tools",
+      "endpoint": "/api/vent-brain",
+      "healthEndpoint": "/api/vent-brain/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "vent_brain",
+      "name": "Vent-Brain (Ventilator Co-Pilot)",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "icu_hod"
+    },
+    {
+      "agentId": "abg_interpreter",
+      "name": "ABG Interpreter",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "vent_brain"
+    },
+    {
+      "agentId": "weaning_predictor",
+      "name": "Weaning Predictor (RSBI)",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "vent_brain"
+    },
+    {
+      "agentId": "sepsis_ews_agent",
+      "name": "Sepsis EWS Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "icu_hod"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "assess_ventilation",
+      "name": "Assess Ventilation",
+      "description": "Driving pressure + asynchrony + weaning readiness",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "interpret_abg",
+      "name": "Interpret ABG",
+      "description": "Acid-base classification + ventilator adjustments",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "calculate_rsbi",
+      "name": "Calculate RSBI",
+      "description": "Rapid Shallow Breathing Index for SBT readiness",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "icu:read"
+      ]
+    },
+    {
+      "role": "NURSE",
+      "claims": [
+        "icu:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "wind",
+      "lungs"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "icu.vent.assessed"
+    ],
+    "subscribes": [
+      "vitals.updated"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Vent-Brain Engine",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "ICU Vitals",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "drivingPressureAlert": {
+        "type": "number",
+        "default": 15
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:critical-care-suite-plugin-1.0.0",
+  "notes": "Driving pressure > 15 cmH2O → red flash + suggest lower tidal volume (4-6 mL/kg PBW)."
+}

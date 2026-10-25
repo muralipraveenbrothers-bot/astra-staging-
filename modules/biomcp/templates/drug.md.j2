@@ -1,0 +1,157 @@
+{% if section_only -%}
+# {{ section_header }}
+{% else -%}
+# {{ name }}
+
+DrugBank ID: {% if drugbank_id %}{{ drugbank_id }}{% else %}-{% endif %}
+{% if drug_type %}Type (MyChem.info): {{ drug_type }}{% endif %}
+{% if approval_date_display %}FDA Approved (DrugCentral): {{ approval_date_display }}{% endif %}
+{% if brand_names %}Brand Names (DrugBank): {{ brand_names | join(", ") }}{% endif %}
+{% if route %}Route (MyChem.info): {{ route }}{% endif %}
+{% if show_us_header -%}
+{% if top_adverse_events -%}
+Safety (OpenFDA FAERS): {{ top_adverse_events | join(", ") }}
+{% else -%}
+Safety (OpenFDA FAERS): unavailable
+{% endif -%}
+{% endif -%}
+{% endif -%}
+{% if show_label_section and label -%}
+## FDA Label
+
+{% if raw_label -%}
+{% if label.indications -%}
+### Indications and Usage
+{{ label.indications }}
+{% endif -%}
+{% if label.warnings -%}
+### Warnings and Precautions
+{{ label.warnings }}
+{% endif -%}
+{% if label.dosage -%}
+### Dosage and Administration
+{{ label.dosage }}
+{% endif -%}
+{% elif label.indication_summary -%}
+### Approved Indications
+{% for row in label.indication_summary -%}
+- {{ row.name }}{% if row.approval_date or row.pivotal_trial %}{% if row.approval_date %} | approval: {{ row.approval_date }}{% endif %}{% if row.pivotal_trial %} | trial: {{ row.pivotal_trial }}{% endif %}{% endif %}
+{% endfor -%}
+
+Use `--raw` for the full truncated FDA label text.
+{% elif label.indications -%}
+### Indications and Usage
+{{ label.indications }}
+{% endif -%}
+{% endif -%}
+{% if regulatory_block %}{{ regulatory_block }}
+{% endif -%}
+{% if safety_block %}{{ safety_block }}
+{% endif -%}
+{% if shortage_block %}{{ shortage_block }}
+{% endif -%}
+{% if approvals_block %}{{ approvals_block }}
+{% endif -%}
+{% if show_civic_section -%}
+## CIViC
+
+{% if source_states.civic.status %}{{ source_states.civic.status }}
+{% endif -%}
+{% if source_states.civic.payload_allowed and civic -%}
+- Evidence Items: {{ civic.evidence_total_count }}
+- Assertions: {{ civic.assertion_total_count }}
+{% if civic.assertions -%}
+| Assertion | AMP Level | Molecular Profile | Disease |
+|---|---|---|---|
+{% for row in civic.assertions -%}
+| {{ row.name }} | {{ row.amp_level or "-" }} | {{ row.molecular_profile }} | {{ row.disease or "-" }} |
+{% endfor -%}
+{% elif civic.evidence_items -%}
+| Evidence | Level | Molecular Profile | Disease |
+|---|---|---|---|
+{% for row in civic.evidence_items -%}
+| {{ row.name }} | {{ row.evidence_level }} | {{ row.molecular_profile }} | {{ row.disease or "-" }} |
+{% endfor -%}
+{% else -%}
+No CIViC records returned for this drug query.
+{% endif -%}
+{% elif source_states.civic.empty_allowed -%}
+No CIViC records returned for this drug query.
+{% endif -%}
+{% endif -%}
+{% if not section_only %}
+{% if mechanisms -%}
+## Mechanisms (MyChem.info / ChEMBL)
+
+{% if mechanisms | length == 1 -%}
+{{ mechanisms[0] }}
+{% else -%}
+{% for m in mechanisms -%}
+- {{ m }}
+{% endfor -%}
+{% endif -%}
+{% elif mechanism -%}
+## Mechanism (MyChem.info / ChEMBL)
+
+{{ mechanism }}
+{% endif -%}
+{% endif -%}
+{% if show_targets_section and (targets or variant_targets or source_states.targets.status) -%}
+## Targets (ChEMBL / Open Targets)
+{% if source_states.targets.status %}{{ source_states.targets.status }}
+{% endif -%}
+{% if source_states.targets.payload_allowed and (target_family or target_family_name) -%}
+Family: {{ target_family or target_family_name }}{% if target_family and target_family_name %} ({{ target_family_name }}){% endif %}
+Members: {{ targets | join(", ") }}
+{% elif source_states.targets.payload_allowed and targets -%}
+{{ targets | join(", ") }}
+{% endif -%}
+{% if source_states.targets.payload_allowed and variant_targets -%}
+Variant Targets (CIViC): {{ variant_targets | join(", ") }}
+{% endif -%}
+{% endif -%}
+{% if show_indications_section and (indications or source_states.indications.status) -%}
+## Indications (Open Targets)
+
+{% if source_states.indications.status %}{{ source_states.indications.status }}
+{% endif -%}
+{% if source_states.indications.payload_allowed and indications %}{{ indications | join(", ") }}
+{% endif -%}
+{% endif -%}
+{% if show_interactions_section -%}
+## {{ drug_interactions_heading }}
+
+{% if source_states.interactions.status %}{{ source_states.interactions.status }}
+{% endif -%}
+{% if drug_interactions_note -%}
+{{ drug_interactions_note }}
+
+{% endif -%}
+{% if interaction_pagination -%}
+Returned: {{ interaction_pagination.count }} of {{ interaction_pagination.total }}
+
+DDInter bundle freshness: {{ interaction_bundle_freshness }}
+
+{% endif -%}
+{% if source_states.interactions.payload_allowed and interactions -%}
+| Interacting Drug | Level | Classes | Description |
+|---|---|---|---|
+{% for row in interactions -%}
+| {{ row.drug }} | {{ row.level or "-" }} | {% if row.partner_classes %}{{ row.partner_classes | join(", ") }}{% else %}-{% endif %} | {{ row.description or "-" }} |
+{% endfor -%}
+{% endif -%}
+{% if interaction_pagination and interaction_pagination.next_command -%}
+
+Continue with `{{ interaction_pagination.next_command }}`.
+{% endif -%}
+{% if source_states.interactions.payload_allowed and interaction_text -%}
+
+## Additive Label Text (OpenFDA)
+
+{{ interaction_text }}
+{% endif -%}
+{% endif -%}
+{% if sections_block %}{{ sections_block }}
+{% endif -%}
+{% if related_block %}{{ related_block }}
+{% endif -%}

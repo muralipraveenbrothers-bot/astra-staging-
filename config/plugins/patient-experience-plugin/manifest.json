@@ -1,0 +1,248 @@
+{
+  "pluginId": "patient-experience-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Patient Experience Plugin",
+  "version": "1.0.0",
+  "description": "Health tips, podcasts, multilingual guidance, feedback, counselling scripts.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "reception-plugin",
+      "voicebox",
+      "medical-knowledge-gateway"
+    ],
+    "optional": [
+      "daily-learning-evaluation"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "patient-experience-service",
+      "type": "department",
+      "endpoint": "/api/patient-experience",
+      "healthEndpoint": "/api/patient-experience/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "patient_experience_hod",
+      "name": "Patient Experience HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "health_content_agent",
+      "name": "Health Content Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "patient_experience_hod"
+    },
+    {
+      "agentId": "podcast_agent",
+      "name": "Podcast Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "patient_experience_hod"
+    },
+    {
+      "agentId": "reception_guide_agent",
+      "name": "Reception Guide Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "patient_experience_hod"
+    },
+    {
+      "agentId": "feedback_collector",
+      "name": "Feedback Collector",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "patient_experience_hod"
+    },
+    {
+      "agentId": "patient_experience_head",
+      "name": "Patient Experience Head",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    },
+    {
+      "agentId": "patient_journey_hod",
+      "name": "Patient Journey HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "patient_journey_agent",
+      "name": "Patient Journey Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "discharge_agent",
+      "name": "Discharge Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "referral_agent",
+      "name": "Referral Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "generate_health_tip",
+      "name": "Generate Health Tip",
+      "description": "Generate multilingual health tip",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "generate_podcast_script",
+      "name": "Generate Podcast Script",
+      "description": "Generate podcast script",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "collect_feedback",
+      "name": "Collect Feedback",
+      "description": "Collect patient feedback",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "render_content_card",
+      "name": "Render Content Card",
+      "description": "Render display card",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "contentId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "RECEPTION",
+      "claims": [
+        "ai:voice_command"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "ReceptionGuideWidget",
+        "slot": "reception-wall"
+      }
+    ],
+    "icons": [
+      "heart-handshake",
+      "megaphone"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "experience.feedback.collected",
+      "experience.content.ready"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Content Generation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Audio Synthesis",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 5000,
+      "critical": false
+    },
+    {
+      "name": "Feedback DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "languages": {
+        "type": "array",
+        "default": [
+          "en",
+          "te",
+          "hi"
+        ]
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "LOW",
+  "checksum": "sha256:patient-experience-plugin-1.0.0"
+}

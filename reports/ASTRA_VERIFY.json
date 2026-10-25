@@ -1,0 +1,425 @@
+{
+  "timestamp": "2026-10-14T12:53:31.584Z",
+  "durationMs": 120625,
+  "summary": {
+    "total": 41,
+    "passed": 40,
+    "failed": 0,
+    "warnings": 1,
+    "skipped": 0,
+    "requiredFailed": 0
+  },
+  "exitCode": 0,
+  "results": [
+    {
+      "category": "1 static/config",
+      "module": "Config",
+      "test": "ports.json schema & canonical port registry",
+      "status": "PASS",
+      "latencyMs": 1,
+      "error": "-",
+      "fix": "Check config/ports.json for valid JSON and required services (astra-api, freellmapi, omniroute, ollama)",
+      "required": true
+    },
+    {
+      "category": "1 static/config",
+      "module": "Config",
+      "test": "ai-gateway.env presence & canonical settings",
+      "status": "PASS",
+      "latencyMs": 1,
+      "error": "-",
+      "fix": "Ensure config/ai-gateway.env exists with ASTRA_LLM_BASE_URL and key definitions",
+      "required": true
+    },
+    {
+      "category": "1 static/config",
+      "module": "Config",
+      "test": "package.json integrity & 'astra' script definition",
+      "status": "PASS",
+      "latencyMs": 0,
+      "error": "-",
+      "fix": "Add 'astra' package script pointing to scripts/verify-astra.ps1 in package.json",
+      "required": true
+    },
+    {
+      "category": "2 unit",
+      "module": "CircuitBreaker",
+      "test": "AI Circuit Breaker state transitions & cooldown",
+      "status": "PASS",
+      "latencyMs": 5339,
+      "error": "-",
+      "fix": "Inspect server/ai/circuitBreaker.ts logic",
+      "required": true
+    },
+    {
+      "category": "2 unit",
+      "module": "PatientContext",
+      "test": "Patient context boundary & allergy/vitals models",
+      "status": "PASS",
+      "latencyMs": 4021,
+      "error": "-",
+      "fix": "Inspect server/patient/patientContext.ts",
+      "required": true
+    },
+    {
+      "category": "2 unit",
+      "module": "MayinMath",
+      "test": "Mayin gesture vector math & spatial transforms",
+      "status": "PASS",
+      "latencyMs": 4156,
+      "error": "-",
+      "fix": "Inspect src/features/mayin/gesture/mayinGestureMath.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "API (:3000)",
+      "test": "Astra Core API HTTP liveliness & health endpoint",
+      "status": "PASS",
+      "latencyMs": 357,
+      "error": "-",
+      "fix": "pm2 restart AstraAPI OR start-astra-api.cmd",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "UI (:5173)",
+      "test": "Astra Vite frontend dev/preview server liveliness",
+      "status": "PASS",
+      "latencyMs": 486,
+      "error": "-",
+      "fix": "pm2 restart AstraUI OR start-astra-vite.cmd",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "JSON hospital store",
+      "test": "data/hospital.json integrity & readable schema",
+      "status": "PASS",
+      "latencyMs": 1,
+      "error": "-",
+      "fix": "Check data/hospital.json syntax or restore from backups/ (see docs/ASTRA_TROUBLESHOOTING.md #7)",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Saarathi",
+      "test": "Saarathi conversational engine & command route",
+      "status": "PASS",
+      "latencyMs": 4,
+      "error": "-",
+      "fix": "Restart Astra API (pm2 restart AstraAPI)",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Voicebox (:17493)",
+      "test": "Voicebox local neural TTS/STT TCP socket liveliness",
+      "status": "PASS",
+      "latencyMs": 2,
+      "error": "-",
+      "fix": "pm2 restart Voicebox OR scripts/start-voicebox-server.ps1",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "FreeLLMAPI (:31415)",
+      "test": "FreeLLMAPI primary OpenAI-compatible model route",
+      "status": "PASS",
+      "latencyMs": 6,
+      "error": "-",
+      "fix": "pm2 restart FreeLLMAPI OR start-freellmapi-server.cmd",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "OmniRoute (:20128)",
+      "test": "OmniRoute fallback model gateway liveliness",
+      "status": "PASS",
+      "latencyMs": 9,
+      "error": "-",
+      "fix": "scripts/start-omniroute-external.cmd",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Ollama (:11434)",
+      "test": "Ollama local inference runtime tags endpoint",
+      "status": "PASS",
+      "latencyMs": 6,
+      "error": "-",
+      "fix": "Start Ollama desktop app or run 'ollama serve'",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Laya (:8791)",
+      "test": "Laya System-1 fast decision nucleus API",
+      "status": "PASS",
+      "latencyMs": 10,
+      "error": "-",
+      "fix": "python server/plugins/astra_laya_server.py --port 8791",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "D1-D7",
+      "test": "Astra 7D clinical dimensions engine health",
+      "status": "PASS",
+      "latencyMs": 4477,
+      "error": "-",
+      "fix": "Inspect src/features/mayin/clinical/D7Workflow.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Scientist",
+      "test": "Evidence Scientist & NCBI PubMed client contract",
+      "status": "PASS",
+      "latencyMs": 9387,
+      "error": "-",
+      "fix": "Inspect server/medical/ncbiClient.ts and server/brain/specialists.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Internal Browser",
+      "test": "Internal Browser intent routing & service parser",
+      "status": "PASS",
+      "latencyMs": 3855,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part4/browser.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "EventBus",
+      "test": "AstraEventBus pub/sub & flight recorder correlation",
+      "status": "PASS",
+      "latencyMs": 3276,
+      "error": "-",
+      "fix": "Inspect src/astra/events/astraEventBus.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "ModelGateway",
+      "test": "Central ModelGateway configuration & fallback health",
+      "status": "PASS",
+      "latencyMs": 3541,
+      "error": "-",
+      "fix": "Inspect server/ai/modelGateway.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Tool/Service Registry",
+      "test": "Tool & service registry schemas, risk classes & roles",
+      "status": "PASS",
+      "latencyMs": 3464,
+      "error": "-",
+      "fix": "Inspect server/toolRegistryContracts.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Memory Fabric",
+      "test": "Memory Fabric multi-tier scope & persistence seam",
+      "status": "PASS",
+      "latencyMs": 3603,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part5/memoryFabric.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "Flight Recorder",
+      "test": "Flight Recorder span recording, latency & secret scrubbing",
+      "status": "PASS",
+      "latencyMs": 3053,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part5/trace.ts",
+      "required": true
+    },
+    {
+      "category": "3 service health",
+      "module": "n8n (:5678)",
+      "test": "n8n workflow automation engine healthz endpoint",
+      "status": "WARN",
+      "latencyMs": 13,
+      "error": "ECONNREFUSED: fetch failed",
+      "fix": "start-n8n.cmd OR npx n8n start (optional extension)",
+      "required": false
+    },
+    {
+      "category": "4 ModelGateway",
+      "module": "ModelGateway",
+      "test": "FreeLLMAPI -> OmniRoute -> Ollama failover & PHI local model lock",
+      "status": "PASS",
+      "latencyMs": 4214,
+      "error": "-",
+      "fix": "Inspect server/ai/modelGateway.ts and fallback handling",
+      "required": true
+    },
+    {
+      "category": "5 EventBus",
+      "module": "EventBus",
+      "test": "AstraEventEnvelope validation, correlationId propagation & pub/sub",
+      "status": "PASS",
+      "latencyMs": 2938,
+      "error": "-",
+      "fix": "Inspect src/astra/events/astraEventBus.ts",
+      "required": true
+    },
+    {
+      "category": "6 Tool Registry",
+      "module": "Tool Registry",
+      "test": "Role-based tool authorization & R2/R3/R4 human approval gates",
+      "status": "PASS",
+      "latencyMs": 3634,
+      "error": "-",
+      "fix": "Inspect server/toolRegistryContracts.ts and server/brain/toolRegistry.ts",
+      "required": true
+    },
+    {
+      "category": "7 Laya decisions",
+      "module": "Laya",
+      "test": "Bounded System-1 decision nucleus & low-confidence fallback",
+      "status": "PASS",
+      "latencyMs": 3000,
+      "error": "-",
+      "fix": "Inspect src/astra/plugins/layaDecision.ts",
+      "required": true
+    },
+    {
+      "category": "8 Hermes dispatch",
+      "module": "Hermes",
+      "test": "Hermes cortex supervisory delegation & diagnostic restraint",
+      "status": "PASS",
+      "latencyMs": 4235,
+      "error": "-",
+      "fix": "Inspect server/brain/hermesCortex.ts",
+      "required": true
+    },
+    {
+      "category": "9 LangGraph checkpoint/resume",
+      "module": "LangGraph",
+      "test": "Clinical state machine steps, approval pause & resume",
+      "status": "PASS",
+      "latencyMs": 4170,
+      "error": "-",
+      "fix": "Inspect server/brain/langGraphMaster.ts",
+      "required": true
+    },
+    {
+      "category": "10 complete D1-D7 synthetic case",
+      "module": "D1-D7",
+      "test": "Synthetic radicular pain clinical evaluation across D1-D7",
+      "status": "PASS",
+      "latencyMs": 5146,
+      "error": "-",
+      "fix": "Inspect src/features/mayin/clinical/D7Workflow.ts",
+      "required": true
+    },
+    {
+      "category": "11 Memory Fabric",
+      "module": "Memory Fabric",
+      "test": "Scoped memory gates, recall/store verdicts & patient isolation",
+      "status": "PASS",
+      "latencyMs": 3037,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part5/memoryFabric.ts and memory.ts",
+      "required": true
+    },
+    {
+      "category": "12 Internal Browser",
+      "module": "Internal Browser",
+      "test": "API-first browser intent routing & external AI sanitization",
+      "status": "PASS",
+      "latencyMs": 3179,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part4/browser.ts",
+      "required": true
+    },
+    {
+      "category": "13 plugin actions",
+      "module": "Plugins",
+      "test": "Plugin manifest validation (45 found) & skill lifecycle",
+      "status": "PASS",
+      "latencyMs": 3829,
+      "error": "-",
+      "fix": "Inspect config/plugins/ manifests and src/astra/brain/part3/evolution.ts",
+      "required": true
+    },
+    {
+      "category": "14 Voicebox simulated flow",
+      "module": "Voicebox",
+      "test": "Voicebox provider adapter, status contract & speech synthesis",
+      "status": "PASS",
+      "latencyMs": 3714,
+      "error": "-",
+      "fix": "Inspect src/features/mayin/voice/VoiceboxProvider.ts",
+      "required": true
+    },
+    {
+      "category": "14 Voicebox simulated flow",
+      "module": "Voicebox",
+      "test": "Audio round-trip delivery & TTS fallback chain",
+      "status": "PASS",
+      "latencyMs": 3296,
+      "error": "-",
+      "fix": "Inspect src/astra/voice/roundTrip/deliverResponse.ts",
+      "required": true
+    },
+    {
+      "category": "15 Flight Recorder",
+      "module": "Flight Recorder",
+      "test": "Measured span recording, token aggregation & secret scrubbing",
+      "status": "PASS",
+      "latencyMs": 3561,
+      "error": "-",
+      "fix": "Inspect src/astra/brain/part5/trace.ts",
+      "required": true
+    },
+    {
+      "category": "16 permission/privacy tests",
+      "module": "RBAC/Privacy",
+      "test": "Production authentication, role authorization & PHI containment",
+      "status": "PASS",
+      "latencyMs": 5820,
+      "error": "-",
+      "fix": "Inspect server/rbac.ts and server/brain/privacy.ts",
+      "required": true
+    },
+    {
+      "category": "17 frontend build",
+      "module": "Frontend Build",
+      "test": "TypeScript server compilation (tsc --noEmit -p tsconfig.server.json)",
+      "status": "PASS",
+      "latencyMs": 8909,
+      "error": "-",
+      "fix": "Run 'npm run typecheck:server' to inspect and fix compiler errors",
+      "required": true
+    },
+    {
+      "category": "17 frontend build",
+      "module": "Frontend Build",
+      "test": "Vite production bundle integrity (dist/index.html)",
+      "status": "PASS",
+      "latencyMs": 0,
+      "error": "-",
+      "fix": "Run 'npx vite build' to generate production assets",
+      "required": true
+    },
+    {
+      "category": "18 E2E dashboard",
+      "module": "E2E Dashboard",
+      "test": "Playwright browser headless navigation & UI title verification",
+      "status": "PASS",
+      "latencyMs": 8851,
+      "error": "-",
+      "fix": "Ensure Vite server is up and index.html loads on http://127.0.0.1:5173",
+      "required": true
+    }
+  ]
+}

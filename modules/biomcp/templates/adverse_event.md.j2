@@ -1,0 +1,68 @@
+{% if section_only -%}
+# {{ section_header }}
+
+Report ID: {{ report_id }}
+Drug: {{ drug }}
+Source: OpenFDA
+{% else -%}
+# Adverse Event
+
+Report ID: {{ report_id }}
+Drug: {{ drug }}{% if indication %} | Indication: {{ indication }}{% endif %}{% if date %} | Date: {{ date }}{% endif %}{% if serious %} | Serious: yes{% else %} | Serious: no{% endif %}
+{% if patient %}Patient: {{ patient }}{% endif %}
+{% if reporter_type or reporter_country %}Reporter: {% if reporter_type %}{{ reporter_type }}{% else %}Unknown{% endif %}{% if reporter_country %} ({{ reporter_country }}){% endif %}{% endif %}
+Source: OpenFDA
+{% endif -%}
+{% if show_reactions_section and (section_only or reactions) -%}
+## Reactions (OpenFDA)
+{% if reactions -%}
+{% for value in reactions -%}
+- {{ value }}
+{% endfor %}
+{% else -%}
+No reactions reported.
+{% endif -%}
+{% endif -%}
+{% if show_outcomes_section and (section_only or outcomes) -%}
+## Outcomes (OpenFDA)
+{% if outcomes -%}
+{% for value in outcomes -%}
+- {{ value }}
+{% endfor %}
+{% else -%}
+No outcomes reported.
+{% endif -%}
+{% endif -%}
+{% if show_concomitant_section and (section_only or concomitant_medications) -%}
+## Concomitant Drugs (OpenFDA)
+
+{% if concomitant_medications -%}
+{% for drug_name in concomitant_medications -%}
+- {{ drug_name }}
+{% endfor -%}
+{% else -%}
+No concomitant drugs reported.
+{% endif -%}
+{% endif -%}
+{% if show_guidance_section -%}
+## What to Do Next
+
+{% if section_only -%}
+{% for command in guidance_commands -%}
+- `{{ command }}`
+{% endfor -%}
+{% else -%}
+{% if guidance_drug -%}
+- Drug safety profile: `biomcp drug adverse-events {{ guidance_drug }}`
+- Drug search: `biomcp search drug -q {{ guidance_drug }}`
+- Related trials: `biomcp drug trials {{ guidance_drug }}`
+{% endif -%}
+{% if guidance_indication -%}
+- Disease context: `biomcp search disease --query {{ guidance_indication }}`
+{% endif -%}
+{% endif -%}
+{% endif -%}
+{% if sections_block %}{{ sections_block }}
+{% endif -%}
+{% if related_block %}{{ related_block }}
+{% endif -%}

@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Image source files and temporary files
+docs/images/*.psd
+docs/images/*.ai
+docs/images/*.sketch
+docs/images/*.xcf
+docs/images/*.fig
+docs/images/raw/
+docs/images/temp/

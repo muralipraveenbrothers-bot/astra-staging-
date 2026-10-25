@@ -1,0 +1,666 @@
+# BioMCP Source Integration Architecture
+
+This document is the durable contract for adding a new upstream source to
+BioMCP or deepening an existing integration. It is for implementers and
+reviewers working in `src/`, `docs/`, `spec/`, and `scripts/`.
+
+The goal is consistency without pretending every source follows one rigid
+template. Some conventions are required; others are preferred when they fit the
+source's transport, authentication, and payload shape.
+
+## New Source vs Existing Source
+
+- Add one module per upstream provider under `src/sources/<source>.rs` when the
+  repo does not already have a client for that upstream.
+- Extend the existing module when the work deepens an already integrated
+  provider instead of creating a sibling client for the same API surface.
+- Current examples of distinct upstream modules include
+  `src/sources/hpa.rs`, `src/sources/gnomad.rs`,
+  `src/sources/cancerhotspots.rs`, and `src/sources/complexportal.rs`.
+- Current examples of extension work include `src/sources/opentargets.rs`,
+  which already owns multiple OpenTargets query paths.
+- ClinGen Search, ClinGen Allele Registry, ClinGen ERepo, ClinGen CSpec, and ClinGen LDH
+  have distinct origins and response contracts, so they remain separate source modules. CAR
+  uses only bounded read-only projected requests and an origin-restricted client; CSpec
+  selection uses an exact provider resource IRI and stores the bounded response before
+  parsing; LDH validates official annotation IRIs before its fixture-only origin remap.
+- Every source module must be declared from `src/sources/mod.rs`.
+
+This prevents duplicated auth handling, base URL overrides, rate limiting, and
+error behavior for the same provider.
+
+| ClinGen source | Public role | Internal identity and opt-in role |
+|---|---|---|
+| CAR | `variant normalize car` / `variant_normalize_car`; additive article `canonical_equivalence` | `clingen_car`; bounded explicit normalization only |
+| CSpec | `gene cspec` / `gene_cspec`; CLI-only raw bytes | `clingen_cspec` source status and `cspec` capture namespace; selected-document retrieval only |
+| ERepo | `variant erepo` / `variant_erepo` | `clingen_erepo` source status; explicit expert-assertion lookup only |
+| LDH | additive `variant_articles` identity evidence | `clingen_ldh` source status and separate work-budget routes; only runs with identity verification |
+
+For variant-article CAR agreement, article orchestration reuses the existing
+ClinGen Allele Registry client and its shared work budget. Received CAR bodies
+retain a SHA-256 audit fact only after receipt; request-template and equivalence
+rule versions may participate in planning, while CAR service versions and body
+hashes never do. The article response exposes this as additive
+`canonical_equivalence` evidence, not as liftover or a replacement for MyVariant
+resolution. LDH is a post-retrieval article identity observer: it spends the same
+per-item work budget on one medium lookup and bounded direct annotations, but cannot
+discover, remove, rank, or supply negative evidence for candidates.
+
+## Shared Source Client Conventions
+
+BioMCP source clients should reuse shared helpers from `src/sources/mod.rs`
+when they apply:
+
+- Use `shared_client()` for ordinary JSON/HTTP request flows that fit the
+  middleware stack.
+- Use `streaming_http_client()` when middleware-compatible request cloning or
+  streaming is not workable.
+- Use `env_base(default, ENV_VAR)` when a source needs a testable or
+  operator-overridable base URL.
+- Use `read_limited_body()` and `body_excerpt()` for bounded error handling and
+  readable upstream failure messages.
+- Use `retry_send()` when explicit retry handling is needed outside the shared
+  middleware path, especially for streaming or provider-specific request
+  builders.
+- Reuse provider-specific rate limiting already present in the repo instead of
+  inventing a second limiter for the same source.
+
+These are conventions, not a fake one-size-fits-all constructor contract. The
+current repo does not require every client to share one name, one constructor
+shape, or one exact error-variant mix.
+
+Shared cached clients enforce response-body limits inside the cache middleware,
+so an oversized transport response cannot be materialized as a cache entry.
+The default is 8 MiB; sources with an existing larger or smaller contract attach
+that request-specific limit before sending. A one-time, filesystem-locked cache
+epoch clears legacy HTTP entries written before this guarantee. Limit failures
+retain the typed, payload-free body-limit classification without exposing URLs,
+credentials, or response bytes.
+
+### Exact variant identity joins
+
+Exact variant joins compare source facts before any transform collapses provider
+arrays. The variant entity layer owns the requested/source identity types and the
+one-/three-letter, optional/accession-prefixed protein comparator. Search,
+MyVariant-backed helper pivots, structure mapping, and PubTator autocomplete
+reuse that owner rather than implementing residue matching independently.
+
+Requested fields are conjunctive. A non-matching source field is contradictory;
+missing evidence is indeterminate. Gene plus protein or coding membership in
+unlinked multi-gene arrays cannot prove a tuple. Exact MyVariant search examines
+source pages from offset zero, excludes contradictory and indeterminate rows,
+deduplicates compatible source identities, and applies caller pagination only
+after filtering. It examines at most 1,000 raw candidates; reaching that cap
+without exhausting the provider makes the total unknown and the resolution
+ambiguous. Broad variant discovery retains the ordinary provider-pagination
+path and response shape.
+
+The variant-to-article pivot consumes that one strict resolution. Resolved
+unions acquire every compatible PubTator entity token, normalized aliases
+through bounded article backends, and canonical PubMed citations from one exact
+MyVariant lookup. Candidate provenance stays attached through transitive article
+identity merging; ranking counts only the best position per route/backend, and
+caller pagination runs once afterward. Ambiguous or unresolved identities cannot
+enter an exact route. Route failures remain visible in sanitized source status;
+incomplete acquisition has an unknown total rather than a complete empty claim.
+
+Tar consumers that accept remote archives iterate physical headers in raw mode
+and share checked entry/member/aggregate/extension-metadata accounting. They
+bound GNU long-name and local PAX path metadata before buffering it and reject
+links, devices, sparse entries, size overrides, and ambiguous metadata with a
+sanitized source-unavailable failure.
+
+### Provider-returned URL security
+
+`src/sources/provider_url_policy.rs` is the single owner for outbound URLs that
+come from provider payloads. A source-specific policy supplies explicit allowed
+HTTPS origins and ports; the shared owner rejects URL credentials, forbidden IP
+classes (loopback, private, link-local, and cloud metadata), unsafe DNS answers,
+and invalid redirect targets. DNS validation runs in the connector resolver so
+the addresses checked are the addresses used for contact, and every redirect
+hop re-enters the scheme/origin/port policy before contact.
+
+The enumerated consumers are Semantic Scholar PDF fallback, PMC OA archive
+links, PMC linked article assets, Figshare file downloads, and ClinicalTrials.gov posted documents. Each
+uses a policy-specific HTTP client. The consumer enum, shared rejection matrix,
+and ownership ratchet must change together, so adding a provider-returned URL
+fetch without naming its policy owner fails the Rust test lane. Reviewed CDN
+transitions are explicit origins (including the PMC archive host, Figshare
+ndownloader/S3 host, and ClinicalTrials.gov document CDN), never suffix-based
+wildcards.
+
+For Semantic Scholar, `x-api-key` is retained only for the canonical API
+origin, authenticated responses remain no-store, and noncanonical base
+overrides are unauthenticated. Repository fixtures may use the exact loopback
+`BIOMCP_TEST_UNPACED_ORIGIN` signal; PMC/Figshare/trial fixture-base seams may
+likewise select only their exact IP-loopback origin. These unsafe exceptions are
+internal test inputs and are not exposed through normal CLI/model inputs.
+
+Policy failures must identify the source and outbound-policy class without
+including the rejected URL, response payload, credentials, or signed query
+values.
+
+Externally supplied PubMed, PMC, and JATS article XML uses one shared borrowed
+parser policy. It accepts external `DOCTYPE` syntax without a resolver or network
+access, rejects entity declarations before parsing, and requires every caller to
+provide a finite node limit. PubMed citation parsing keeps its 100,000-node cap;
+JATS and PMC article parsing use a 1,000,000-node cap. Existing 8 MiB
+transport/archive-member limits remain in force. Public failures stay
+payload-free: raw response bodies, request URLs/API keys, and parser diagnostics
+must not cross source or article boundaries.
+
+Article asset resolution uses explicit success, healthy-absence, and failure
+outcomes across PMC OA, Europe PMC supplementary ZIP, JATS/PMC HTML linked assets, and Figshare. Later
+success wins, but later healthy absence never erases an earlier failure; with no
+winner, only an all-healthy miss becomes `not_found`. Europe PMC owns its
+validated PMCID request and bounded in-memory ZIP parsing: 64 MiB compressed,
+8 MiB per member, 64 MiB expanded total, and 256 members, with unsafe or
+duplicate normalized paths rejected and no disk extraction.
+
+## Configuration Classification
+
+`docs/reference/configuration.md` owns the source-controlled classification of
+environment variables. Public operator `BIOMCP_*` variables must be documented
+there and read by production runtime code. Production-read `BIOMCP_*` variables
+must be classified there as operator-supported, internal/measurement,
+test/fixture seams, release/install variables, or observability/degradation
+controls. Intentional exceptions belong in the docs/code parity ratchet with a
+short reason.
+
+Do not promote `BIOMCP_*_BASE` or `BIOMCP_*_URL` fixture seams to stable
+operator API unless a ticket explicitly does that. Measurement controls such as
+`BIOMCP_GENE_TIMING_PATH` are internal even when they write local files.
+
+## Local Runtime Sources and File-Backed Assets
+
+Not every file-backed dependency participates in the same runtime lifecycle.
+
+### Local runtime sources
+
+DDInter, EMA, WHO Prequalification, CDC CVX/MVX, GTR, and WHO IVD are local runtime sources.
+
+- Runtime resolution is owned by the source module, not hard-coded in docs.
+- DDInter resolves `BIOMCP_DDINTER_DIR` first, then the platform data directory.
+- EMA resolves `BIOMCP_EMA_DIR` first, then the platform data directory.
+- WHO resolves `BIOMCP_WHO_DIR` first, then the platform data directory.
+- CDC CVX/MVX resolves `BIOMCP_CVX_DIR` first, then the platform data directory.
+- GTR resolves `BIOMCP_GTR_DIR` first, then the platform data directory.
+- WHO IVD resolves `BIOMCP_WHO_IVD_DIR` first, then the platform data directory.
+- first-use auto-download prepares missing local runtime files for commands
+  that need those sources, while the sync commands force-refresh the same
+  local bundles for operator workflows.
+- Full `biomcp health` includes the DDInter, EMA, WHO Prequalification, CDC CVX/MVX, GTR, and WHO IVD local-data readiness rows.
+- `biomcp health --apis-only` excludes those rows because local runtime data is
+  not an upstream API.
+- The row status contract is `configured`, `configured (stale)`,
+  `available (default path)`, `available (default path, stale)`,
+  `not configured`, and `error (missing: ...)`.
+- The canonical provider terms live in `docs/reference/source-licensing.md`
+  and the machine-readable source inventory in `docs/reference/sources.json`.
+- Operator-facing setup details live in `docs/user-guide/drug.md` for DDInter
+  and the other drug local data roots, and `docs/user-guide/diagnostic.md` for
+  GTR and WHO IVD.
+- CDC CVX/MVX only augments the EMA plain-name vaccine identity path after
+  MyChem misses; it is not a WHO alias source and pure `--region us` searches
+  do not use the CVX root.
+
+| Source | Env root | Required files | Stale window | Sync command | Health/API-only | Terms |
+|---|---|---|---|---|---|---|
+| DDInter | `BIOMCP_DDINTER_DIR` | `ddinter_downloads_code_A.csv`, `ddinter_downloads_code_B.csv`, `ddinter_downloads_code_D.csv`, `ddinter_downloads_code_H.csv`, `ddinter_downloads_code_L.csv`, `ddinter_downloads_code_P.csv`, `ddinter_downloads_code_R.csv`, `ddinter_downloads_code_V.csv` | 72 hours | `biomcp ddinter sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+| EMA | `BIOMCP_EMA_DIR` | `medicines.json`, `post_authorisation.json`, `referrals.json`, `psusas.json`, `dhpcs.json`, `shortages.json` | 72 hours | `biomcp ema sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+| WHO Prequalification | `BIOMCP_WHO_DIR` | `who_pq.csv`, `who_api.csv`, `who_vaccines.csv` | 72 hours | `biomcp who sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+| CDC CVX/MVX | `BIOMCP_CVX_DIR` | `cvx.txt`, `TRADENAME.txt`, `mvx.txt` | 30 days | `biomcp cvx sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+| GTR | `BIOMCP_GTR_DIR` | `test_version.gz`, `test_condition_gene.txt` | 7 days | `biomcp gtr sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+| WHO IVD | `BIOMCP_WHO_IVD_DIR` | `who_ivd.csv` | 72 hours | `biomcp who-ivd sync` | full health row; omitted from `--apis-only` | `docs/reference/source-licensing.md` / `docs/reference/sources.json` |
+
+DDInter, EMA, WHO Prequalification, and WHO IVD use a 72-hour stale window;
+CDC CVX/MVX uses a 30-day refresh window; GTR uses a 7-day stale window.
+DDInter reads are distinct from maintenance: they load a complete local bundle
+immediately and report fresh/stale state without downloading. Only `biomcp
+ddinter sync` downloads DDInter data, staging and validating the complete bundle
+before publication. Interaction detail is sorted and deduplicated locally before
+bounded paging, with no per-partner enrichment calls or name-based class inference.
+
+This keeps local runtime readiness grounded in `src/cli/health/local.rs` and
+`src/sources/ddinter.rs` / `src/sources/ema.rs` / `src/sources/who_pq.rs` /
+`src/sources/cvx.rs` / `src/sources/gtr.rs` / `src/sources/who_ivd.rs` while
+leaving operator setup details in the user guide.
+
+### File-backed non-runtime assets
+
+BioASQ is the canonical file-backed non-runtime asset.
+
+- File-backed benchmark and evaluation assets are repo-local artifacts, not
+  runtime query providers.
+- They do not join the runtime source inventory, `biomcp health`, or the
+  source-readiness checklist unless a future ticket makes them runtime-visible.
+- The authoritative operator/reference home remains
+  `docs/reference/bioasq-benchmark.md`.
+- The repo-local grounding surface is `benchmarks/bioasq/`.
+
+## Section-First Entity Integration
+
+BioMCP prefers entity-section integration over ad hoc command sprawl.
+
+- New upstream data should usually extend an existing entity in `src/entities/`
+  rather than adding a new top-level command family.
+- The default card should stay concise and reliable. New network-backed data
+  belongs behind named sections unless there is a strong reason to put it on
+  the default path.
+- Section names must fit the existing `get <entity> <id> [section...]`
+  contract, where default `get` output stays concise and optional sections
+  expand on demand.
+- Keep the user-facing command grammar aligned with code changes by updating
+  `src/cli/commands.rs` for top-level command families and `after_help`
+  examples, the owning entity CLI module such as `src/cli/drug/mod.rs` for
+  entity-specific clap/help text, `src/cli/list/`, and
+  `docs/user-guide/cli-reference.md` when the public CLI surface changes.
+- The progressive-disclosure behavior described in
+  `architecture/functional/overview.md` and `docs/concepts/progressive-disclosure.md`
+  remains the governing UX rule.
+
+Entity integration shapes differ by entity, but common patterns include:
+
+- adding new optional fields or section structs to the owning entity type;
+- adding source-labelled enrichments under an existing broad section when the
+  source is not a user-selectable section, as variant `all` does for
+  Cancerhotspots.org recurrence counts;
+- gating a section on prerequisite identifiers already present on the base
+  entity card;
+- keeping helper commands for true cross-entity pivots rather than routine
+  upstream enrichment.
+
+## Entity-Specific Command Modifiers
+
+Some entities need named modifiers in addition to section names. The durable
+contract is:
+
+- The base grammar remains `get <entity> <id> [section...]`.
+- Entity-specific modifiers are named options that sit beside the positional
+  `sections` list; they are not new positional arguments.
+- The canonical example is `get drug <name> ... --region <us|eu|who|all>`.
+- This modifier pattern is distinct from unrelated search filters that happen
+  to reuse the same flag name on other entities.
+
+Implementers must keep every alignment surface in sync:
+
+- top-level command families and `after_help` examples in
+  `src/cli/commands.rs`
+- entity-specific clap argument/help text in the owning CLI module, such as
+  `src/cli/drug/mod.rs`
+- concise list/help output in `src/cli/list/` and `src/cli/list_reference.md`
+- user-facing docs in `docs/user-guide/cli-reference.md` and the owning entity
+  guide such as `docs/user-guide/drug.md`
+- executable CLI contract coverage in the owning canary or surface spec when
+  that command participates in the active tree
+
+Runtime validation belongs in the owning entity or CLI path, not only in
+docs/help text.
+
+The current drug contract is the model:
+
+- `--region` only changes the data plane for `regulatory`, `safety`,
+  `shortage`, or `all`
+- `--region who` is valid for `regulatory` and `all`, but not for `safety` or
+  `shortage`
+- `approvals` remains U.S.-only
+- invalid flag/section combinations fail fast before data fetches
+
+## Source-Aware Section Capability Contract
+
+Multi-source entities must define one authoritative capability model for their
+section surface.
+
+The current pathway implementation is the concrete example:
+
+- section constants and parsing live in `src/entities/pathway.rs`
+- source-specific capability lists live there as
+  `REACTOME_PATHWAY_SECTIONS` and `KEGG_PATHWAY_SECTIONS`
+- runtime validation resolves against the capability list for the resolved
+  source
+- `all` expands to the sections supported by the resolved source, not the
+  union of all sections across every source for that entity
+
+For source-aware entities, "all" means all sections available for the resolved
+source, not all sections ever defined for that entity.
+
+This contract defines three user-visible states:
+
+- **unsupported**: the resolved source does not offer that section. Fail fast
+  with a source-aware `InvalidArgument` error and a recovery hint. Current
+  pathway example: KEGG `events` and `enrichment`.
+- **empty**: the section is supported and the upstream call succeeded, but no
+  data came back. Return the entity's truthful empty shape.
+- **unavailable**: the section is supported, but the upstream failed or timed
+  out. Treat this as unavailable, not unsupported, and degrade in the owning
+  entity's established shape rather than inventing a new hard failure path.
+
+Downstream surfaces must stay in lockstep with the capability model:
+
+- top-level command/help examples in `src/cli/commands.rs` and entity-specific
+  option/help text in the owning CLI module, such as `src/cli/drug/mod.rs`,
+  must describe source-specific limits accurately
+- `src/cli/list/` must not advertise unsupported sections as universally
+  valid
+- renderer follow-on commands and section suggestions must derive from the
+  resolved source capability list
+- docs that teach sections, including `architecture/functional/overview.md`,
+  `docs/concepts/progressive-disclosure.md`, and user-guide pages, must either
+  describe the source-aware constraint inline or show examples valid for the
+  named source
+
+## Multi-Source Search Ranking
+
+When an entity search fans out across multiple upstreams, ranking happens after
+the combined fetch, not by hard-coding a preferred source.
+
+The current pathway search contract is the model:
+
+1. Normalize the query once for upstream search and ranking.
+2. Fetch Reactome and KEGG results in parallel when both sources are enabled.
+3. Score title matches globally across both source result sets:
+   - Tier 3: exact normalized title match
+   - Tier 2: normalized title starts with the normalized query
+   - Tier 1: normalized title contains the normalized query
+   - Tier 0: no title match
+4. Sort by tier descending, then upstream position ascending, then stable ID
+   ascending as the final tiebreaker.
+5. Preserve source identity on every row.
+6. Truncate after ranking.
+
+Two semantics are non-negotiable:
+
+- there is no fixed source-priority rule within the same title-match tier
+- federated totals are source-aware:
+  - if rows from both sources are merged, the total is not presented as an
+     exact combined count
+  - if only one source contributes rows and that source has an authoritative
+     total, that source total may be preserved
+
+### Article-search ranking contract
+
+For federated article search, the article contract is more specific than the
+generic multi-source rule above:
+
+1. Build ranking concepts from the typed article filters in
+   `src/entities/article/mod.rs`. Structured filters remain one concept each, while
+   `--keyword` is decomposed into independently matchable concepts instead of
+   one exact phrase blob.
+2. Apply one shared normalization strategy in `src/transform/article.rs` to
+   both anchor creation and result normalization, including compact matching for
+   compound-name punctuation variants that PubMed commonly resolves through MeSH
+   or author keywords.
+3. Capture source-local backend position before cross-source merge and preserve
+   it through dedup on the merged `ArticleSearchResult`. Cross-source append
+   order is not part of the relevance contract.
+4. Resolve the effective relevance mode after filters are finalized:
+   keyword-bearing queries default to `hybrid`, while entity-only queries
+   default to `lexical`.
+5. Sort federated article rows with explicit ranking signals rather than hidden
+   source identity:
+   - `lexical` keeps the existing calibrated PubMed rescue plus lexical
+     directness comparator;
+   - `semantic` sorts LitSense2 score descending, then falls back to lexical;
+   - `hybrid` scores
+     `semantic + lexical + citations + position` with configurable weights and
+     stable-ID tiebreaking.
+6. Preserve provenance on the result row and, when ranking metadata is
+   serialized, expose the effective mode plus the normalized component scores
+   needed to explain hybrid and semantic ordering in JSON output.
+7. For every multi-source article fan-out, including `BackendPlan::TypeCapable`,
+   run source legs concurrently and bound each source leg with the 12-second
+   federated article timeout. A timed-out or unreachable source is omitted from
+   merged rows, but must be recorded as degraded/unavailable in the article
+   source-status surface.
+
+The article-specific invariants are:
+
+- the same query and document normalization must be used on both sides of
+  anchor matching;
+- source-local rank is comparable within a source, not a proxy for source
+  priority across the whole federation;
+- merge order must not be observable as a relevance penalty; and
+- calibrated PubMed rescue remains part of lexical fallback behavior, but it is
+  one explicit ranking signal rather than an implicit source-priority rule; and
+- federated article source degradation must be honest: markdown, JSON
+  `_meta.source_status`, and `--debug-plan` show degraded/unavailable sources
+  instead of silently dropping them.
+
+## Non-JSON Transport Guidance
+
+Source integrations do not have to be JSON to fit the repo's architecture.
+
+- Keep using the repo's bounded-body and readable-error conventions.
+- Name the response media type and parsing approach in module-level docs or
+  nearby architectural prose so reviewers can orient quickly.
+- Prefer the shared HTTP client when it fits; transport format alone does not
+  justify a new client.
+- Inline parsing is acceptable for small line-oriented text payloads.
+- Move synchronous parsing to `tokio::task::spawn_blocking` when parser cost or
+  payload size would block the async runtime inappropriately.
+- Reject obviously wrong content types when an upstream commonly falls back to
+  HTML or another human-facing error surface.
+
+Current concrete examples:
+
+- KEGG uses plain-text flat-file / tab-separated style responses and parses
+  them inline in `src/sources/kegg.rs`.
+- HPA uses XML and parses it with `roxmltree` behind `spawn_blocking` in
+  `src/sources/hpa.rs`.
+
+## Provenance and Rendering
+
+Source identity must remain visible in output.
+
+- Preserve provenance in markdown and JSON rather than normalizing it away.
+- Use the entity's existing rendering shape, such as per-row `source`,
+  `source_label`, stable source identifiers, or source-specific notes.
+- Do not merge facts from different upstreams into one unlabeled result when
+  the user needs to understand where the data came from.
+- Rendering work may require changes in `src/render/markdown/`,
+  `src/render/json.rs`, or shared provenance helpers such as
+  `src/render/provenance.rs`.
+
+The exact representation is not universal across the repo. Some sections label
+individual rows, some label source groups, and some preserve provenance through
+source-specific notes and identifiers.
+
+Optional source-backed sections across gene, article, pathway, protein, drug,
+adverse-event search, disease, variant, PGx, and diagnostic entities use an
+entity-owned `section_outcomes` registry. Its six states are `not_requested`,
+`inapplicable`, `data`, `empty`, `degraded`, and `unavailable`. `inapplicable`
+means BioMCP determined locally that a required input was absent and did not
+contact the provider; it has empty `sources` and a safe explanatory message.
+`empty` means a healthy source confirmed zero rows; `unavailable` means no usable
+result was obtained. Human output follows those typed states: `not_requested`
+makes no absence claim, `empty` alone can say that a healthy source found no
+rows, `degraded` is partial, and `unavailable` draws no negative conclusion.
+`sources` credits only providers that returned usable
+evidence, so inapplicable and unavailable outcomes have no successful source
+credit. `_meta.section_sources` omits `not_requested` but preserves source-less
+`inapplicable` entries.
+
+Automatic disease treatment/trial enrichments and the optional lookups in
+`variant structure` use the same algebra through outcome-only registry rows.
+Their owning enrichment/helper completes each outcome after deciding whether a
+provider was applicable and contacted. `variant structure` exposes those rows in
+top-level `lookup_outcomes` rather than `_meta.section_sources`.
+
+<!-- source-state-registry:start -->
+| entity | section | selector class | aggregation | allowed successful providers | rendering |
+|---|---|---|---|---|---|
+| gene | pathways | canonical | additive | Reactome / KEGG | `pathways` outcome and provenance projection |
+| gene | ontology | canonical | additive | Enrichr | `ontology` outcome and provenance projection |
+| gene | diseases | canonical | additive | Enrichr | `diseases` outcome and provenance projection |
+| gene | diagnostics | canonical | additive | NCBI Genetic Testing Registry / WHO Prequalified IVD | `diagnostics` outcome and provenance projection |
+| gene | protein | canonical | fallback | UniProt | `protein` outcome and provenance projection |
+| gene | go | canonical | additive | QuickGO | `go` outcome and provenance projection |
+| gene | interactions | canonical | additive | STRING | `interactions` outcome and provenance projection |
+| gene | civic | canonical | additive | CIViC | `civic` outcome and provenance projection |
+| gene | expression | canonical | additive | GTEx | `expression` outcome and provenance projection |
+| gene | hpa | canonical | fallback | Human Protein Atlas | `hpa` outcome and provenance projection |
+| gene | druggability | canonical | additive | DGIdb / Open Targets | `druggability` outcome and provenance projection |
+| gene | clingen | canonical | fallback | ClinGen | `clingen` outcome and provenance projection |
+| gene | constraint | canonical | fallback | gnomAD | `constraint` outcome and provenance projection |
+| gene | disgenet | canonical | additive | DisGeNET | `disgenet` outcome and provenance projection |
+| gene | funding | canonical | additive | NIH Reporter | `funding` outcome and provenance projection |
+| article | fulltext | canonical | fallback | Europe PMC / NCBI EFetch / PMC OA / PMC / Semantic Scholar | `fulltext` outcome and provenance projection |
+| article | indexing | canonical | fallback | PubMed | `indexing` outcome and provenance projection |
+| article | tldr | canonical | fallback | Semantic Scholar | `tldr` outcome and provenance projection |
+| pathway | genes | canonical | fallback | Reactome / KEGG / WikiPathways / MyGene.info | `genes` outcome and provenance projection |
+| pathway | events | canonical | additive | Reactome | `events` outcome and provenance projection |
+| pathway | enrichment | canonical | additive | g:Profiler | `enrichment` outcome and provenance projection |
+| protein | domains | canonical | additive | InterPro | `domains` outcome and provenance projection |
+| protein | interactions | canonical | additive | STRING | `interactions` outcome and provenance projection |
+| protein | complexes | canonical | additive | Complex Portal | `complexes` outcome and provenance projection |
+| protein | structures | canonical | additive | PDBe | `structures` outcome and provenance projection |
+| drug | approvals | canonical | additive | OpenFDA Drugs@FDA | `approvals` outcome and provenance projection |
+| drug | safety | canonical | additive | OpenFDA FAERS / OpenFDA label / EMA | `safety` outcome and provenance projection |
+| drug | targets | canonical | additive | Guide to PHARMACOLOGY / ChEMBL / Open Targets | `targets` outcome and provenance projection |
+| drug | indications | canonical | additive | DrugCentral / Open Targets | `indications` outcome and provenance projection |
+| drug | interactions | canonical | additive | DDInter / DrugBank / OpenFDA label | `interactions` outcome and provenance projection |
+| drug | civic | canonical | fallback | CIViC | `civic` outcome and provenance projection |
+| adverse_event | faers | outcome-only | additive | OpenFDA FAERS | `faers` outcome and provenance projection |
+| adverse_event | vaers | outcome-only | additive | CDC CVX / CDC VAERS | `vaers` outcome and provenance projection |
+| disease | treatments | outcome-only | fallback | MyChem.info indication search | `treatments` outcome and provenance projection |
+| disease | recruiting_trials | outcome-only | fallback | ClinicalTrials.gov | `recruiting_trials` outcome and provenance projection |
+| disease | genes | canonical | additive | Monarch Initiative / CIViC / Open Targets | `genes` outcome and provenance projection |
+| disease | pathways | canonical | additive | Reactome | `pathways` outcome and provenance projection |
+| disease | phenotypes | canonical | additive | MyDisease.info / Monarch Initiative / HPO | `phenotypes` outcome and provenance projection |
+| disease | diagnostics | canonical | fallback | NCBI Genetic Testing Registry / WHO Prequalified IVD | `diagnostics` outcome and provenance projection |
+| disease | variants | canonical | additive | CIViC | `variants` outcome and provenance projection |
+| disease | models | canonical | additive | Monarch Initiative | `models` outcome and provenance projection |
+| disease | prevalence | canonical | fallback | Open Targets | `prevalence` outcome and provenance projection |
+| disease | survival | canonical | fallback | SEER Explorer | `survival` outcome and provenance projection |
+| disease | funding | canonical | additive | NIH Reporter | `funding` outcome and provenance projection |
+| disease | civic | canonical | fallback | CIViC | `civic` outcome and provenance projection |
+| variant_structure | domains | outcome-only | fallback | InterPro | `domains` outcome and provenance projection |
+| variant_structure | cancerhotspots | outcome-only | fallback | cancerhotspots.org | `cancerhotspots` outcome and provenance projection |
+| variant | predict | canonical | fallback | AlphaGenome | `predict` outcome and provenance projection |
+| variant | population | canonical | fallback | dbSNP / gnomAD v4 | `population` outcome and provenance projection |
+| variant | cancerhotspots | outcome-only | fallback | cancerhotspots.org | `cancerhotspots` outcome and provenance projection |
+| variant | civic | canonical | fallback | CIViC | `civic` outcome and provenance projection |
+| variant | cbioportal | canonical | fallback | cBioPortal | `cbioportal` outcome and provenance projection |
+| variant | gwas | canonical | fallback | GWAS Catalog | `gwas` outcome and provenance projection |
+| pgx | frequencies | canonical | additive | CPIC | `frequencies` outcome and provenance projection |
+| pgx | annotations | canonical | fallback | PharmGKB | `annotations` outcome and provenance projection |
+| diagnostic | regulatory | canonical | fallback | OpenFDA Device 510(k) / PMA | `regulatory` outcome and provenance projection |
+<!-- source-state-registry:end -->
+
+## Auth, Cache, and Secrets
+
+Authenticated or key-gated integrations have extra requirements.
+
+- Required credentials must fail clearly with `BioMcpError::ApiKeyRequired`.
+- Optional credentials must improve quota or capability without breaking the
+  baseline no-key workflow, unless the feature itself is intentionally
+  key-gated.
+- Authenticated requests must use the no-store cache path, for example
+  `apply_cache_mode_with_auth(..., true)`, so private responses are not cached
+  like shared public responses.
+- Document new or changed keys in `docs/getting-started/api-keys.md` and
+  `docs/reference/data-sources.md`.
+- Keep secrets in environment variables and out of repository files.
+- User-facing errors may name the required env var and docs page, but must not
+  echo the credential value.
+- Do not log secrets.
+- Provider integrations that need byte-fidelity may retain one public response in
+  the private bounded capture store. A capture handle resolves only to its
+  locally verified original bytes and never triggers a provider refetch; it
+  contains no URL, request metadata, credential, or response content. On Unix,
+  the private store uses descriptor-relative no-follow operations; on other
+  platforms it fails closed as corrupt until an equivalent backend exists. This
+  is internal infrastructure, not a claim that every source route exposes captures.
+
+Semantic Scholar is the model optional-key integration for agent harnesses that
+launch BioMCP as a child process. `SemanticScholarClient::new()` reads
+`S2_API_KEY` from the `biomcp` process environment and selects either the
+authenticated shared client or the unauthenticated shared-pool client. Parent
+runners that intentionally strip subprocess environments must expose an explicit,
+redacted allowlist policy; BioMCP does not read credentials from runner metadata,
+bot folders, command arguments, or logs. See
+[Semantic Scholar runtime contract](semantic-scholar-runtime-contract.md) for the
+cross-process target state.
+
+## Graceful Degradation and Timeouts
+
+Optional enrichment is best-effort across the repo, but the exact fallback
+shape is entity-specific.
+
+- Optional enrichments must not take down the whole command.
+- Use bounded async enrichment with the entity-local timeout style instead of
+  inventing unrelated latency budgets.
+- Follow the owning entity's established timeout constant and section pattern.
+  Current entities use values such as 8 seconds for gene, disease, and variant
+  enrichments, and 10 seconds for PGx enrichment.
+- If a prerequisite identifier is missing, return the compatible empty/default
+  field with an `inapplicable` outcome and no provider credit rather than a hard
+  failure or a source-credited `empty` outcome.
+- On upstream failure or timeout, treat supported sections as unavailable, not
+  unsupported, and warn and degrade gracefully in the shape that matches the
+  entity: default section structs, empty collections, omitted optional fields,
+  or explanatory notes are all used in the current repo.
+- Returned output must stay truthful about missing or unavailable data.
+
+Default-path integrations can still return hard errors when the source is
+required for the base command, but those failures should use clear
+`BioMcpError` variants with useful recovery suggestions.
+
+## Rate Limits and Operational Constraints
+
+Source additions must preserve BioMCP's runtime boundaries.
+
+- Keep slow or failure-prone upstream calls off the default `get` path unless
+  the latency and failure profile are already acceptable there.
+- Respect the process-local rate limiting model described in
+  `architecture/technical/overview.md`.
+- When many workers need one shared limiter budget, the operational answer is
+  `biomcp serve-http`, not a per-ticket custom coordination layer.
+- CLI subprocess benchmark harnesses that cannot use `serve-http` must own an
+  explicit aggregate concurrency/rate policy outside BioMCP; a process-local
+  BioMCP limiter is not an aggregate quota guarantee.
+- Reuse source-specific rate limiting already present in `src/sources/` when a
+  provider has special throughput rules.
+- Document source-specific enforced limits, practical ceilings, or payload
+  constraints in `docs/reference/data-sources.md` when a new integration adds
+  them.
+
+## Source Addition Checklist
+
+Minimum required proof surface:
+
+| Surface | Required when | Contract |
+|---------|---------------|----------|
+| Targeted Rust tests near `src/sources/`, `src/entities/`, or `src/render/` | All source additions and source-deepening work | Verify behavior and edge handling for the new integration contract |
+| `spec/` BDD update | Any user-visible CLI contract change | Cover stable user-visible behavior such as new sections, new flags, or changed output structure |
+| `scripts/contract-smoke.sh` | Stable public endpoints with deterministic probe shapes | Add or update live probes when operationally suitable; skip or reduce secret-gated or volatile sources explicitly |
+| `src/cli/health/catalog.rs` | Readiness-significant sources that operators should inspect directly | Include the source when it materially affects baseline availability; key-gated sources may appear as excluded when unconfigured |
+| `CHANGELOG.md` | User-visible source additions or major deepening | Record the shipped surface change |
+
+Every new source or source-deepening ticket should then evaluate the following
+surfaces when applicable:
+
+- `src/sources/<source>.rs`
+- `src/sources/mod.rs`
+- the owning entity module(s) in `src/entities/`
+- rendering surfaces in `src/render/`
+- the owning CLI modules in `src/cli/`, including `src/cli/commands.rs` for
+  top-level grammar/help and entity modules such as `src/cli/drug/mod.rs` for
+  modifier-specific text
+- `src/cli/list/`
+- `docs/user-guide/cli-reference.md` when the public command surface changes
+- `docs/reference/data-sources.md`
+- `docs/getting-started/api-keys.md` when credentials are added or changed
+- `docs/reference/source-versioning.md` when a new upstream endpoint or version
+  pin is introduced
+- `src/cli/health/catalog.rs` when the source should participate in operator
+  health visibility
+- `scripts/contract-smoke.sh` when the upstream is suitable for live contract
+  probes
+- `spec/` when the stable CLI contract changes in a user-visible, assertable
+  way
+- targeted Rust tests near the new source, entity, and rendering behavior
+- `CHANGELOG.md` for user-visible source additions or major deepening work
+
+Not every item changes on every ticket. The contract is to evaluate each
+surface deliberately and update the ones the new source actually touches.

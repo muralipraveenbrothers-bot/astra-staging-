@@ -1,0 +1,40 @@
+# Discover: {{ query }}
+{% if notes | length > 0 -%}
+{% for note in notes -%}
+> {{ note }}
+{% endfor %}
+
+{% endif -%}
+## Concepts
+{% for group in groups -%}
+### {{ group.label }}
+{% for concept in group.concepts -%}
+{% if ambiguous %}{{ loop.index }}.{% else %}-{% endif %} **{{ concept.label }}**{% if concept.primary_id %} (`{{ concept.primary_id }}`){% endif %}
+{% if concept.synonyms | length > 0 -%}
+Synonyms: {{ concept.synonyms | join(", ") }}
+{% endif -%}
+{% if concept.xrefs | length > 0 -%}
+IDs: {{ concept.xrefs | join(", ") }}
+{% endif -%}
+{% if concept.sources | length > 0 -%}
+Sources: {{ concept.sources | join(", ") }}
+{% endif -%}
+
+{% endfor -%}
+{% endfor -%}
+Results: offset {{ pagination.offset }}, limit {{ pagination.limit }}, returned {{ pagination.returned }}, has more: {{ pagination.has_more }}{% if pagination.budget_truncated %} (document budget reached){% endif %}.
+{% if pagination.continuation_command -%}
+Next: `{{ pagination.continuation_command }}`
+{% endif %}
+
+{% if plain_language -%}
+## Plain Language
+**{{ plain_language.title }}** (MedlinePlus)
+{{ plain_language.summary_excerpt }}
+{{ plain_language.url }}
+
+{% endif -%}
+## Suggested Commands
+{% for command in next_commands -%}
+- `{{ command }}`
+{% endfor -%}

@@ -1,0 +1,145 @@
+[package]
+name = "biomcp-cli"
+version = "0.9.0-dev.6"
+edition = "2024"
+description = "Biomedical CLI and MCP server — genes, variants, trials, articles, drugs, diseases, pathways, proteins, adverse events, PGx"
+homepage = "https://biomcp.org"
+repository = "https://github.com/genomoncology/biomcp"
+documentation = "https://biomcp.org"
+license = "MIT"
+readme = "README.md"
+keywords = ["bioinformatics", "mcp", "genomics", "clinical-trials", "pubmed"]
+categories = ["command-line-utilities", "science"]
+exclude = [
+    "architecture/",
+    "protos/",
+    "scripts/regenerate-alphagenome-proto",
+    "sdlc/",
+    "testdata/",
+    "tools/alphagenome-proto-generator/",
+]
+
+[[bin]]
+name = "biomcp"
+path = "src/main.rs"
+
+[[bin]]
+name = "biomcp-cli"
+path = "src/main_biomcp_cli.rs"
+
+[dependencies]
+# CLI
+clap = { version = "4", features = ["derive"] }
+kuva = "0.5.0"
+
+# Async
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "fs", "signal", "io-util", "net", "process"] }
+tokio-stream = "0.1"
+tokio-util = "0.7"
+futures = "0.3"
+
+# HTTP
+axum = { version = "0.8.1", default-features = false, features = ["tokio", "http1", "json"] }
+cacache = { version = "13.1.0", default-features = false, features = ["mmap"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "gzip", "multipart"] }
+reqwest-middleware = { version = "0.4", features = ["json", "multipart"] }
+reqwest-retry = "0.7"
+http-cache = { version = "0.20", default-features = false }
+http-cache-reqwest = "0.15"
+http-cache-semantics = "2"
+http = "1"
+http-body-util = "0.1"
+
+# gRPC (AlphaGenome)
+tonic = { version = "0.12", features = ["tls", "tls-roots"], optional = true }
+prost = { version = "0.13", optional = true }
+zstd = { version = "0.13", optional = true }
+
+# JSON
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+base64 = "0.22"
+
+# Hashing (download cache keys)
+md5 = "0.7"
+
+# Parsing
+bytesize = "1"
+humantime = "2"
+regex = "1"
+csv = "1"
+roxmltree = "0.20"
+scraper = "0.18"
+ssri = "9"
+toml = "0.8"
+fs2 = "0.4"
+
+# MCP
+rmcp = { version = "1.1.1", features = ["server", "transport-io", "transport-streamable-http-server"] }
+
+# Templates
+minijinja = { version = "2", features = ["builtins"] }
+
+# Embedded skills
+rust-embed = "8"
+
+# Self-update
+flate2 = "1"
+semver = "1"
+sha2 = "0.10"
+libc = "0.2"
+tar = "0.4"
+zip = "0.6"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# XDG paths
+dirs = "5"
+
+# Time (metadata footer timestamps)
+time = { version = "0.3", features = ["formatting", "local-offset"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "2"
+anyhow = "1"
+async-trait = "0.1"
+
+# Command parsing for MCP shell
+shlex = "1"
+readability-rust = "0.1.0"
+htmd = "0.5.4"
+unpdf = "0.4.5"
+
+[features]
+default = ["alphagenome", "charts-png"]
+alphagenome = ["dep:tonic", "dep:prost", "dep:zstd"]
+charts-png = ["kuva/png"]
+
+[dev-dependencies]
+biomcp-mcp-contract-client = { path = "crates/biomcp-mcp-contract-client" }
+serial_test = "3"
+tempfile = "3"
+
+[target.'cfg(unix)'.dev-dependencies]
+rexpect = "0.7.0"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security", "Win32_Security_Authorization", "Win32_Storage_FileSystem", "Win32_System_Threading"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.spec]
+inherits = "release"
+lto = false
+codegen-units = 16
+# The spec binary exists to exercise contracts, not to be fast at runtime.
+# Inheriting release silently also inherited opt-level = 3, so every ticket
+# gate paid full -O3 codegen for a throwaway build.
+opt-level = 1

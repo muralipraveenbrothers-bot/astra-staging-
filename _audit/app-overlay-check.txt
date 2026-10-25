@@ -1,0 +1,2 @@
+297:    case "/mayin":
+298:      return <MayinCommandCentre onClose={() => navHash(ROLE_HOME_URL[account?.role ?? "DOCTOR"]) } />;

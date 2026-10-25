@@ -1,0 +1,9 @@
+{
+  "runtime": "in-process",
+  "llm": {
+    "via": "server/ai/centralCore.ts",
+    "agent": "langgraph",
+    "endpoint": "http://127.0.0.1:3000/v1",
+    "model": "auto"
+  }
+}

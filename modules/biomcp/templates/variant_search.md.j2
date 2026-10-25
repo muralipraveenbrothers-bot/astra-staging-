@@ -1,0 +1,37 @@
+# Variant Search Results
+
+Found: {{ count }} variant(s)
+{% if query %}Query: {{ query }}{% endif %}
+
+{% if filter_resolution %}
+## Filter resolution
+{% for name in filter_resolution %}
+{{ name }}: {{ filter_resolution[name] }}
+{% endfor %}
+{% endif %}
+{% if diagnostics %}
+## Filter diagnostics
+{% for diagnostic in diagnostics %}
+{{ diagnostic }}
+{% endfor %}
+{% endif %}
+{% if count == 0 -%}
+No variants found matching the filters.
+{% else -%}
+| ID | Build | Gene | Transcript | Coding | Protein | Legacy Name | Significance | ClinVar Stars | gnomAD AF | REVEL | GERP |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+{% for v in results -%}
+| {{ v.id }} | {{ v.genome_build }} | {{ v.gene }} | {{ v.transcript | default("-") }} | {{ v.hgvs_c | default("-") }} | {{ v.hgvs_p | default("-") }} | {{ v.legacy_name | default("-") }} | {{ v.significance | default("-") }} | {{ v.clinvar_stars | default("-") }} | {{ v.gnomad_af | default("-") }} | {{ v.revel | default("-") }} | {{ v.gerp | default("-") }} |
+{% endfor %}
+
+Use `get variant <id>` for details.
+Filters: -g <gene>, --hgvsp <protein>, --significance <value>, --max-frequency <0-1>, --min-cadd <score>, --consequence <term>, --review-status <stars>, --population <pop>, --revel-min <score>, --gerp-min <score>, --tumor-site <site>, --condition <name>, --impact <level>, --lof, --has <field>, --missing <field>, --therapy <name>
+{% if related_block %}
+
+{{ related_block }}
+{% endif %}
+{% if pagination_footer %}
+
+{{ pagination_footer }}
+{% endif %}
+{% endif %}

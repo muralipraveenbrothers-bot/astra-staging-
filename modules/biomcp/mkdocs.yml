@@ -1,0 +1,208 @@
+site_name: BioMCP
+repo_url: https://github.com/genomoncology/biomcp
+site_url: https://biomcp.org/
+site_description: Single-binary CLI and MCP server for querying biomedical databases
+site_author: Ian Maurer
+edit_uri: edit/main/docs/
+repo_name: genomoncology/biomcp
+copyright: Maintained by <a href="https://genomoncology.com">GenomOncology</a>.
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - First Query: getting-started/first-query.md
+      - MCP Clients: getting-started/mcp-clients.md
+      - Claude Desktop: getting-started/claude-desktop.md
+      - Remote HTTP Server: getting-started/remote-http.md
+      - API Keys: getting-started/api-keys.md
+      - Skills: getting-started/skills.md
+  - Concepts:
+      - What is BioMCP?: concepts/what-is-biomcp.md
+      - Progressive Disclosure: concepts/progressive-disclosure.md
+  - User Guide:
+      - CLI Reference: user-guide/cli-reference.md
+      - Discover: user-guide/discover.md
+      - Gene: user-guide/gene.md
+      - Variant: user-guide/variant.md
+      - Article: user-guide/article.md
+      - Supplementary Materials: user-guide/supplementary-materials.md
+      - Author: user-guide/author.md
+      - Trial: user-guide/trial.md
+      - Diagnostic: user-guide/diagnostic.md
+      - Drug: user-guide/drug.md
+      - Disease: user-guide/disease.md
+      - Pathway: user-guide/pathway.md
+      - Protein: user-guide/protein.md
+      - Adverse Event: user-guide/adverse-event.md
+      - PGx: user-guide/pgx.md
+      - GWAS: user-guide/gwas.md
+      - Phenotype: user-guide/phenotype.md
+  - Sources:
+      - Overview: sources/index.md
+      - PubMed: sources/pubmed.md
+      - ClinicalTrials.gov: sources/clinicaltrials-gov.md
+      - ClinGen Allele Registry: sources/clingen-allele-registry.md
+      - ClinGen CSpec: sources/clingen-cspec.md
+      - ClinGen ERepo: sources/clingen-erepo.md
+      - ClinGen LDH: sources/clingen-ldh.md
+      - ClinVar: sources/clinvar.md
+      - OpenFDA: sources/openfda.md
+      - UniProt: sources/uniprot.md
+      - gnomAD: sources/gnomad.md
+      - Reactome: sources/reactome.md
+      - Semantic Scholar: sources/semantic-scholar.md
+      - ChEMBL: sources/chembl.md
+      - OpenTargets: sources/opentargets.md
+      - SEER Explorer: sources/seer.md
+      - CIViC: sources/civic.md
+      - OncoKB: sources/oncokb.md
+      - cBioPortal: sources/cbioportal.md
+      - DDInter: sources/ddinter.md
+      - EMA: sources/ema.md
+      - WHO Prequalification: sources/who-prequalification.md
+      - NCBI Genetic Testing Registry: sources/gtr.md
+      - WHO Prequalified IVD: sources/who-ivd.md
+      - CDC CVX/MVX: sources/cdc-cvx.md
+      - CDC WONDER VAERS: sources/vaers.md
+      - MedlinePlus: sources/medlineplus.md
+      - KEGG: sources/kegg.md
+      - PharmGKB / CPIC: sources/pharmgkb.md
+      - Human Protein Atlas: sources/human-protein-atlas.md
+      - Monarch Initiative: sources/monarch-initiative.md
+  - How-To:
+      - Annotate Variants: how-to/annotate-variants.md
+      - Annotate Variant Structure: how-to/annotate-variant-structure.md
+      - Cross-Entity Pivots: how-to/cross-entity-pivots.md
+      - Find Articles: how-to/find-articles.md
+      - Find Trials: how-to/find-trials.md
+      - Predict Effects: how-to/predict-effects.md
+      - Reproduce Papers: how-to/reproduce-papers.md
+      - Search All Workflow: how-to/search-all-workflow.md
+      - Skill Authoring: how-to/skill-authoring.md
+      - Skill Validation: how-to/skill-validation.md
+      - Guide Workflows: how-to/guide-workflows.md
+  - Study Charts:
+      - Overview: charts/index.md
+      - Bar: charts/bar.md
+      - Stacked Bar: charts/stacked-bar.md
+      - Pie: charts/pie.md
+      - Waterfall: charts/waterfall.md
+      - Scatter: charts/scatter.md
+      - Heatmap: charts/heatmap.md
+      - Histogram: charts/histogram.md
+      - Density: charts/density.md
+      - Box: charts/box.md
+      - Violin: charts/violin.md
+      - Ridgeline: charts/ridgeline.md
+      - Survival: charts/survival.md
+  - Reference:
+      - Quick Reference: reference/quick-reference.md
+      - Data Sources: reference/data-sources.md
+      - Source Licensing: reference/source-licensing.md
+      - MCP Server: reference/mcp-server.md
+      - Release Process: reference/release-process.md
+      - Error Codes: reference/error-codes.md
+      - Benchmarks: reference/benchmarks.md
+      - BioASQ Benchmark: reference/bioasq-benchmark.md
+      - FAQ: reference/faq.md
+      - Configuration: reference/configuration.md
+      - Source Versioning: reference/source-versioning.md
+      - Article Keyword Search: reference/article-keyword-search.md
+      - CIViC Sections: reference/civic-sections.md
+      - Drug Approvals & AE Summary: reference/drug-approvals-and-ae-summary.md
+      - Dependencies: reference/dependencies.md
+  - Blog:
+      - blog/variant-structure-in-commands.md
+      - blog/daraxonrasib-six-commands.md
+      - blog/kras-g12c-treatment-landscape.md
+      - blog/biomcp-charts.md
+      - blog/biomcp-kuva-charts.md
+      - blog/biomcp-pubmed-articles.md
+      - blog/skillbench-biomcp-skills.md
+      - blog/cbioportal-study-analytics.md
+      - blog/we-deleted-35-tools.md
+  - Privacy Policy: policies.md
+  - Troubleshooting: troubleshooting.md
+
+hooks:
+  - scripts/copy-markdown-twins.py
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-\.]+'
+
+theme:
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/icon.png
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/genomoncology/biomcp
+  meta:
+    - property: og:type
+      content: website
+    - property: og:title
+      content: BioMCP - Biomedical CLI and MCP Server
+    - property: og:description
+      content: Single-binary CLI and MCP server for querying biomedical data sources
+    - property: og:image
+      content: https://biomcp.org/assets/icon.png
+    - property: og:url
+      content: https://biomcp.org/
+    - name: twitter:card
+      content: summary
+    - name: twitter:title
+      content: BioMCP - Biomedical CLI and MCP Server
+    - name: twitter:description
+      content: Single-binary CLI and MCP server for querying biomedical data sources
+    - name: keywords
+      content: biomedical, MCP, CLI, genomics, clinical trials, bioinformatics, Rust
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables

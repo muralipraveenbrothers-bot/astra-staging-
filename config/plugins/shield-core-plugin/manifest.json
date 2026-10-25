@@ -1,0 +1,187 @@
+{
+  "pluginId": "shield-core-plugin",
+  "tier": "P0",
+  "category": "SECURITY",
+  "name": "Shield Core (Guardian & Safety)",
+  "version": "1.0.0",
+  "description": "Orange Shield humble inquiry, Silent Whisper interactions, Hard Blocks with admin override, DPO anonymization mode, zero-loss stock watchdog, security self-defense.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "rbac-audit"
+    ],
+    "optional": [
+      "pharmacy-plugin"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "shield-core",
+      "type": "clinical-safety",
+      "endpoint": "/api/shield/check",
+      "healthEndpoint": "/api/shield/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "shield_guardian",
+      "name": "Shield Guardian (Clinical Watchdog)",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "dpo_agent",
+      "name": "Data Protection Officer (DPO)",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "shield_guardian"
+    },
+    {
+      "agentId": "zero_loss_auditor",
+      "name": "Zero Loss Auditor",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "shield_guardian"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "check_order_shield",
+      "name": "Check Order (Shield)",
+      "description": "SOP validation + humble inquiry / silent whisper / hard block on orders",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH_RISK",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_vitals_shield",
+      "name": "Check Vitals (Watchdog)",
+      "description": "Threshold crossing detection on vital stream",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "anonymize_export",
+      "name": "Anonymize Export (DPO)",
+      "description": "PII redaction before research export",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "sop_protocols",
+      "type": "protocols",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "safety:read",
+        "safety:override"
+      ]
+    },
+    {
+      "role": "NURSE",
+      "claims": [
+        "safety:read"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "safety:read"
+      ]
+    },
+    {
+      "role": "ADMIN",
+      "claims": [
+        "safety:override",
+        "shield:hardblock-override"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "ShieldBadge",
+        "slot": "order-submit"
+      }
+    ],
+    "icons": [
+      "shield",
+      "shield-alert"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "shield.hardblock.triggered",
+      "shield.inquiry.shown"
+    ],
+    "subscribes": [
+      "order.created"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Shield Ruleset",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "RBAC Override Gates",
+      "endpoint": "rbac-permissions",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "hardBlockOverride": {
+        "type": "string",
+        "enum": [
+          "admin-only"
+        ],
+        "default": "admin-only"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:shield-core-plugin-1.0.0",
+  "notes": "HARD BLOCK requires admin override. Orange shield is silent — no public announcement. SOP validation: green = compliant, red = legal/clinical risk."
+}

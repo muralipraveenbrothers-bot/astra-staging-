@@ -1,0 +1,90 @@
+[
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/hospital",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/plugins",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/doctor",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/command",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/doctor",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/doctor",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/dashboards",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5173/#/reception",
+    "title": "ASTRA AI — The Hospital's Central AI Command Centre",
+    "text": "PM BROTHERS HOSPITAL ASTRA AI Hospital OS Universal Order Center 4 Offline Voice English Theme 8 D Dr. Murali Praveen Doctor ⚡ ASTRA Supercore (AI) SUPERBRAIN 7M Clinical Command & Orders ORDERS HUB Astra Co-Pilot AI Hos",
+    "children": 3,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:31415/models/chat",
+    "title": "FreeLLMAPI · Unified LLM Router",
+    "text": "FreeLLMAPI Sign in Sign in to manage your keys, routing, and analytics. Email Password Sign in Forgot password?",
+    "children": 1,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:31415/keys",
+    "title": "FreeLLMAPI · Unified LLM Router",
+    "text": "FreeLLMAPI Sign in Sign in to manage your keys, routing, and analytics. Email Password Sign in Forgot password?",
+    "children": 1,
+    "errors": []
+  },
+  {
+    "ok": true,
+    "url": "http://localhost:5171/login",
+    "title": "OmniRoute — AI Gateway for Multi-Provider LLMs",
+    "text": "Skip to content hub OmniRoute Sign in Enter your password to continue Password Default password: CHANGEME (unless INITIAL_PASSWORD was set) Continue Forgot password? Unified AI API Proxy Route requests to multiple AI pro",
+    "children": 9,
+    "errors": []
+  }
+]

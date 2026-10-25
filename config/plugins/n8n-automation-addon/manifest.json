@@ -1,0 +1,166 @@
+{
+  "pluginId": "n8n-automation-addon",
+  "tier": "P4",
+  "category": "ADDON",
+  "name": "n8n Automation Addon",
+  "version": "1.0.0",
+  "description": "Self-hosted workflow automation bridge (n8n-style): webhook triggers, scheduled ops routines, discharge follow-up reminders, and lab-result broadcast flows.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "n8n-automation",
+      "type": "automation-bridge",
+      "endpoint": "/api/n8n",
+      "healthEndpoint": "/api/n8n/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "n8n_workflow_automation_agent",
+      "name": "n8n Workflow Automation Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "n8n_reminder_flow_agent",
+      "name": "n8n Reminder Flow Agent",
+      "level": "EXECUTOR",
+      "autoRegister": true,
+      "parentAgent": "n8n_workflow_automation_agent"
+    },
+    {
+      "agentId": "n8n_lab_broadcast_agent",
+      "name": "n8n Lab Broadcast Agent",
+      "level": "EXECUTOR",
+      "autoRegister": true,
+      "parentAgent": "n8n_workflow_automation_agent"
+    },
+    {
+      "agentId": "n8n_automation_agent",
+      "name": "n8n Automation Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "trigger_n8n_workflow",
+      "name": "Trigger n8n Workflow",
+      "description": "POST a webhook trigger to a registered n8n workflow (e.g. discharge follow-up, lab ready broadcast)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workflow": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "list_n8n_workflows",
+      "name": "List n8n Workflows",
+      "description": "Enumerate registered automation workflows and their last-run status",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "n8n:trigger"
+      ]
+    },
+    {
+      "role": "NURSE",
+      "claims": [
+        "n8n:trigger"
+      ]
+    },
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "n8n:trigger"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "AutomationWorkflowPanel",
+        "slot": "command-center-panel"
+      }
+    ],
+    "icons": [
+      "workflow",
+      "bell"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "automation.workflow.triggered"
+    ],
+    "subscribes": [
+      "discharge.cleared",
+      "lab.result.ready"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "n8n Bridge Reachability",
+      "endpoint": "tool-registry",
+      "timeoutMs": 5000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "n8nBaseUrl": {
+        "type": "string",
+        "default": "http://localhost:5678"
+      },
+      "apiKey": {
+        "type": "string",
+        "default": ""
+      }
+    },
+    "secrets": [
+      "apiKey"
+    ]
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:n8n-automation-addon-1.0.0",
+  "notes": "Addon pattern: external n8n instance optionally paired; ASTRA degrades gracefully (queued audit events) when unreachable."
+}

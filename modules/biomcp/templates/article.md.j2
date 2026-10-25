@@ -1,0 +1,144 @@
+{% if section_only -%}
+# {{ section_header }}
+{% else -%}
+# {{ title }}
+
+{% if pmid %}PMID: {{ pmid }}{% endif %}
+{% if pmcid %}PMCID: {{ pmcid }}{% endif %}
+{% if doi %}DOI: {{ doi }}{% endif %}
+{% if journal %}Journal: {{ journal }}{% endif %}
+{% if date %}Date: {{ date }}{% endif %}
+{% if citation_count is not none %}Citations: {{ citation_count }}{% endif %}
+{% if publication_type %}Type: {{ publication_type }}{% endif %}
+{% if open_access is not none %}Open Access: {% if open_access %}Yes{% else %}No{% endif %}{% endif %}
+{% if pmid %}[PubMed](https://pubmed.ncbi.nlm.nih.gov/{{ pmid }}/){% endif %}
+Source: PubMed / Europe PMC
+
+## Authors ({{ author_source }})
+
+{% if authors -%}
+{{ authors | join(", ") }}
+{% endif -%}
+{% if author_completeness == "complete" -%}
+Authorship: complete ({{ author_count }} returned; {{ author_source }})
+{% elif author_completeness == "source_limited" -%}
+Authorship: source-limited ({{ author_count }} returned; {{ author_source }})
+{% else -%}
+Authorship: unavailable (no author list supplied by {{ author_source }})
+{% endif -%}
+{% if abstract_text -%}
+## Abstract (PubMed / Europe PMC)
+
+{{ abstract_text }}
+{% endif -%}
+{% endif -%}
+{% if pubtator_fallback -%}
+_Note: Entity annotations unavailable for this article (PubTator3 lag). Metadata from Europe PMC._
+{% endif -%}
+{% if show_annotations_section and annotations -%}
+## PubTator Annotations
+
+These are PubTator normalized entity mentions for standardized extraction of genes, diseases, drugs, and mutations from the article text.
+
+{% if annotations.genes -%}
+- Genes: {% for m in annotations.genes -%}{{ m.text }} ({{ m.count }}){% if not loop.last %}, {% endif %}{% endfor %}
+{% endif -%}
+{% if annotations.diseases -%}
+- Diseases: {% for m in annotations.diseases -%}{{ m.text }} ({{ m.count }}){% if not loop.last %}, {% endif %}{% endfor %}
+{% endif -%}
+{% if annotations.chemicals -%}
+- Chemicals: {% for m in annotations.chemicals -%}{{ m.text }} ({{ m.count }}){% if not loop.last %}, {% endif %}{% endfor %}
+{% endif -%}
+{% if annotations.mutations -%}
+- Mutations: {% for m in annotations.mutations -%}{{ m.text }} ({{ m.count }}){% if not loop.last %}, {% endif %}{% endfor %}
+{% endif -%}
+{% endif -%}
+{% if show_fulltext_section and fulltext_outcome and fulltext_outcome.outcome != "not_requested" -%}
+## Full Text{% if fulltext_outcome.outcome == "data" and full_text_source %} ({{ full_text_source.label }}){% endif %}
+
+{% if source_states.fulltext.status %}{{ source_states.fulltext.status }}
+{% endif -%}
+{% if source_states.fulltext.payload_allowed and fulltext_outcome.outcome == "data" -%}
+Saved to: {{ full_text_path }}
+{% if not_included -%}
+
+Assets not inlined; retrieve the JSON manifest with `{{ not_included.figure_images.retrieve_with }}`.
+{% endif -%}
+{% elif full_text_coverage and full_text_coverage.coverage == "abstract_only" and fulltext_outcome.outcome == "unavailable" -%}
+Abstract found, but complete article-body retrieval was unavailable.
+{% elif source_states.fulltext.empty_allowed and full_text_coverage and full_text_coverage.coverage == "abstract_only" -%}
+Abstract found; article body not available.
+{% elif full_text_coverage and full_text_coverage.coverage == "metadata_only" and fulltext_outcome.outcome == "unavailable" -%}
+Article metadata found, but complete article-body retrieval was unavailable.
+{% elif source_states.fulltext.empty_allowed and full_text_coverage and full_text_coverage.coverage == "metadata_only" -%}
+Article metadata found; article body not available.
+{% elif source_states.fulltext.payload_allowed -%}
+{{ full_text_note }}
+{% endif -%}
+{% endif -%}
+{% if show_indexing_section and (indexing or source_states.indexing.status) -%}
+## Article Indexing
+
+{% if source_states.indexing.status %}{{ source_states.indexing.status }}
+{% endif -%}
+{% if source_states.indexing.payload_allowed and indexing -%}
+Status: {{ indexing.status }}
+Source: PubMed
+{% if indexing.status == "available" -%}
+### Authors
+
+{% if indexing.authors -%}
+{% for author in indexing.authors -%}
+- {{ author.name }}{% if author.orcid %} (ORCID: {{ author.orcid }}){% endif %}
+{% for affiliation in author.affiliations %}  - {{ affiliation.text }}
+{% for identifier in affiliation.identifiers %}    - {{ identifier.source }}: {{ identifier.value }}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{% else -%}
+No citation authors supplied.
+{% endif -%}
+### MeSH Headings
+
+{% if indexing.mesh_headings -%}
+{% for heading in indexing.mesh_headings -%}
+- {{ heading.descriptor.text }}{% if heading.descriptor.ui %} ({{ heading.descriptor.ui }}){% endif %}; major topic: {% if heading.descriptor.major_topic %}yes{% else %}no{% endif %}
+{% for qualifier in heading.qualifiers -%}
+  - {{ qualifier.text }}{% if qualifier.ui %} ({{ qualifier.ui }}){% endif %}; major topic: {% if qualifier.major_topic %}yes{% else %}no{% endif %}
+{% endfor -%}
+{% endfor -%}
+{% else -%}
+No MeSH headings supplied.
+{% endif -%}
+{% else -%}
+PubMed citation indexing metadata is unavailable.
+{% if indexing.failure -%}
+Failure code: {{ indexing.failure.code }}
+{{ indexing.failure.message }}
+{% endif -%}
+{% endif -%}
+{% endif -%}
+{% endif -%}
+{% if show_semantic_scholar_section and (semantic_scholar or source_states.tldr.status) -%}
+## Semantic Scholar
+
+{% if source_states.tldr.status %}{{ source_states.tldr.status }}
+{% endif -%}
+{% if source_states.tldr.payload_allowed and semantic_scholar -%}
+{% if semantic_scholar.paper_id %}Paper ID: {{ semantic_scholar.paper_id }}{% endif %}
+{% if semantic_scholar.tldr %}TLDR: {{ semantic_scholar.tldr }}{% endif %}
+{% if semantic_scholar.citation_count is not none %}Citations: {{ semantic_scholar.citation_count }}{% endif %}
+{% if semantic_scholar.influential_citation_count is not none %}Influential citations: {{ semantic_scholar.influential_citation_count }}{% endif %}
+{% if semantic_scholar.reference_count is not none %}References: {{ semantic_scholar.reference_count }}{% endif %}
+{% if semantic_scholar.is_open_access is not none %}Open access: {% if semantic_scholar.is_open_access %}Yes{% else %}No{% endif %}{% endif %}
+{% if semantic_scholar.open_access_pdf -%}
+{% if semantic_scholar.open_access_pdf.url %}Open-access PDF: {{ semantic_scholar.open_access_pdf.url }}{% endif %}
+{% if semantic_scholar.open_access_pdf.status %}PDF status: {{ semantic_scholar.open_access_pdf.status }}{% endif %}
+{% if semantic_scholar.open_access_pdf.license %}PDF license: {{ semantic_scholar.open_access_pdf.license }}{% endif %}
+{% endif -%}
+{% endif -%}
+{% endif -%}
+{% if sections_block %}{{ sections_block }}
+{% endif -%}
+{% if related_block %}{{ related_block }}
+{% endif -%}

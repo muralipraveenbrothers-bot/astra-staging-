@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-09-27",
+  "classification": "NOT_READY",
+  "reason": "Unified ASTRA verifier passed required gates, but full release-candidate lint/build/preflight commands failed.",
+  "installPolicy": {
+    "npmInstallRun": false,
+    "dependencyValidationCommand": "npm ls --depth=0",
+    "dependencyValidationResult": "PASS_WITH_EXTRANEOUS_PACKAGES"
+  },
+  "commands": [
+    {
+      "command": "npm ls --depth=0",
+      "status": "PASS",
+      "notes": "Exit 0; reported extraneous packages; no install performed."
+    },
+    {
+      "command": "npm run typecheck:server",
+      "status": "PASS",
+      "notes": "tsc --noEmit -p tsconfig.server.json passed."
+    },
+    {
+      "command": "npm run lint",
+      "status": "FAIL",
+      "notes": "tsc -b failed on existing Sanjeevani/test typing and tool contract errors."
+    },
+    {
+      "command": "npm test",
+      "status": "PASS",
+      "notes": "54 test files, 526 tests passed."
+    },
+    {
+      "command": "npm run stack:contract",
+      "status": "PASS",
+      "notes": "2 test files, 41 tests passed."
+    },
+    {
+      "command": "npm run stack:preflight",
+      "status": "FAIL",
+      "notes": "Required check failed: litellm[proxy] importable."
+    },
+    {
+      "command": "npm run build",
+      "status": "FAIL",
+      "notes": "Failed during tsc -b on the same TypeScript errors as lint."
+    },
+    {
+      "command": "npx playwright test",
+      "status": "FAIL",
+      "notes": "Attempted to fetch playwright from npm and failed with EACCES; no install performed."
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\verify-astra.ps1",
+      "status": "PASS_WITH_WARNING",
+      "notes": "Exit 0; total 41, passed 40, failed 0, warnings 1, skipped 0. Optional n8n health warned ECONNREFUSED."
+    }
+  ],
+  "unifiedVerifier": {
+    "source": "reports/ASTRA_VERIFY.json",
+    "timestamp": "2026-09-27T00:19:18.977Z",
+    "durationMs": 56766,
+    "total": 41,
+    "passed": 40,
+    "failed": 0,
+    "warnings": 1,
+    "skipped": 0,
+    "requiredFailed": 0,
+    "exitCode": 0
+  },
+  "components": [
+    {"component": "Astra API :3000", "wired": true, "healthy": true, "tested": true, "fallback": "PM2 or start-astra-api.cmd", "blocker": null},
+    {"component": "UI :5173", "wired": true, "healthy": true, "tested": true, "fallback": "PM2 or start-astra-vite.cmd", "blocker": "Full npm run build fails during tsc -b"},
+    {"component": "JSON hospital store", "wired": true, "healthy": true, "tested": true, "fallback": "Restore from backups if corrupt", "blocker": null},
+    {"component": "Saarathi", "wired": true, "healthy": true, "tested": true, "fallback": "Restart Astra API", "blocker": null},
+    {"component": "Voicebox :17493", "wired": true, "healthy": true, "tested": true, "fallback": "scripts/start-voicebox-server.ps1", "blocker": null},
+    {"component": "FreeLLMAPI :31415", "wired": true, "healthy": true, "tested": true, "fallback": "OmniRoute then Ollama", "blocker": null},
+    {"component": "OmniRoute :20128", "wired": true, "healthy": true, "tested": true, "fallback": "Ollama", "blocker": null},
+    {"component": "Ollama :11434", "wired": true, "healthy": true, "tested": true, "fallback": "Fail closed for PHI if unavailable", "blocker": null},
+    {"component": "Laya :8791", "wired": true, "healthy": true, "tested": true, "fallback": "Low-confidence fallback", "blocker": null},
+    {"component": "Hermes", "wired": true, "healthy": true, "tested": true, "fallback": "Structured failure / diagnostic restraint", "blocker": null},
+    {"component": "LangGraph", "wired": true, "healthy": true, "tested": true, "fallback": "Checkpoint/resume", "blocker": null},
+    {"component": "D1-D7", "wired": true, "healthy": true, "tested": true, "fallback": "Synthetic case validation", "blocker": null},
+    {"component": "Scientist / skills", "wired": true, "healthy": true, "tested": true, "fallback": "Structured source failures", "blocker": null},
+    {"component": "Tool Registry -> plugins", "wired": true, "healthy": true, "tested": true, "fallback": "R2/R3/R4 authorization gates", "blocker": null},
+    {"component": "Internal Browser -> Service Registry", "wired": true, "healthy": true, "tested": true, "fallback": "API-first routing fallback", "blocker": null},
+    {"component": "Memory Fabric", "wired": true, "healthy": true, "tested": true, "fallback": "Scoped recall/store gates", "blocker": null},
+    {"component": "Flight Recorder", "wired": true, "healthy": true, "tested": true, "fallback": "Secret-scrubbed local spans", "blocker": null},
+    {"component": "Dashboards -> live health APIs", "wired": true, "healthy": true, "tested": true, "fallback": "Health API degradation states", "blocker": null},
+    {"component": "n8n :5678", "wired": true, "healthy": false, "tested": true, "fallback": "start-n8n.cmd when needed", "blocker": "Optional extension offline: ECONNREFUSED"}
+  ],
+  "blockingFilesFromTypecheck": [
+    "src/__tests__/sanjeevaniEventListener.test.ts",
+    "src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts",
+    "src/agents/specialists/SanjeevaniConfirmationAgent.ts",
+    "src/agents/specialists/SanjeevaniEventListener.ts",
+    "src/agents/specialists/SanjeevaniReasoningAgent.ts",
+    "src/astra/brain/part3/surgery.ts",
+    "src/astra/plugins/layaDecision.spec.ts",
+    "src/plugins/sanjeevaniVoicePlugin.ts"
+  ],
+  "rebootStartCommands": [
+    "npm ls --depth=0",
+    "pm2 resurrect",
+    "pm2 status",
+    "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\verify-astra.ps1"
+  ],
+  "manualFallbackStartCommands": [
+    ".\\start-astra-api.cmd",
+    ".\\start-astra-vite.cmd",
+    ".\\start-freellmapi-server.cmd",
+    ".\\scripts\\start-omniroute-external.cmd",
+    ".\\scripts\\start-voicebox-server.ps1",
+    "python server/plugins/astra_laya_server.py --port 8791"
+  ],
+  "privacy": {
+    "phiLocalOnly": true,
+    "secretsTouched": false,
+    "dataDirectoryTouched": false,
+    "envFilesTouched": false
+  }
+}

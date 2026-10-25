@@ -1,0 +1,204 @@
+{
+  "pluginId": "hospital-data-connector",
+  "tier": "P0",
+  "category": "HOSPITAL",
+  "name": "Hospital Data Connector",
+  "version": "1.0.0",
+  "description": "Canonical transactional hospital database adapter: patients, orders, beds, vitals, billing, OT, audit.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-command-engine"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "hospital-db",
+      "type": "data-access",
+      "endpoint": "/api/hospital",
+      "healthEndpoint": "/api/hospital/pulse"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "data_sync_agent",
+      "name": "Data Sync Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "cache_manager",
+      "name": "Cache Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "data_integrity_agent",
+      "name": "Data Integrity Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "get_patient",
+      "name": "Get Patient",
+      "description": "Fetch patient by UHID/IP/name",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "update_patient",
+      "name": "Update Patient",
+      "description": "Update patient record",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "create_order",
+      "name": "Create Order",
+      "description": "Create hospital order",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "get_bed_status",
+      "name": "Get Bed Status",
+      "description": "Bed occupancy status",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "scan_data_integrity",
+      "name": "Scan Data Integrity",
+      "description": "Detect duplicate patients, missing allergies, broken linkages in the canonical DB",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "hospital_db",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "RECEPTION",
+      "claims": [
+        "patient:read",
+        "patient:write"
+      ]
+    },
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "patient:read_clinical"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "database",
+      "server"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "data.updated"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "DB Connection Pool",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Query Latency",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "connectionPoolSize": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "secrets": [
+      "DB_CONNECTION_STRING"
+    ]
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:hospital-data-connector-1.0.0"
+}

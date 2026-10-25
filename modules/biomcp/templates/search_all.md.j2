@@ -1,0 +1,25 @@
+# Search All: {{ query }}
+{% for section in sections %}
+{% if counts_only or section.error or section.rows | length > 0 or section.links | length > 0 -%}
+## {{ section.label }} ({{ section.count_label }})
+{% if section.note -%}
+> {{ section.note }}
+{% endif -%}
+{% if section.error -%}
+Error: {{ section.error }}
+{% elif counts_only -%}
+Rows omitted (`--counts-only`).
+{% elif section.rows | length > 0 -%}
+|{% for column in section.columns %}{{ column }}|{% endfor %}
+|{% for _ in section.columns %}---|{% endfor %}
+{% for row in section.rows -%}
+|{% for cell in row %}{{ cell | truncate(80) }}|{% endfor %}
+{% endfor %}
+{% endif -%}
+{% if section.links | length > 0 -%}
+{% for link in section.links -%}
+- `{{ link.command }}`
+{% endfor -%}
+{% endif -%}
+{% endif -%}
+{% endfor -%}

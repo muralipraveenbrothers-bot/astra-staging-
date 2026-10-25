@@ -1,0 +1,43 @@
+{
+  "id": "freellmapi",
+  "type": "astra-internal-service",
+  "version": "0.9.0",
+  "history": [],
+  "persistence": {
+    "persistent": true,
+    "dataDirectory": "./data"
+  },
+  "runtime": {
+    "managedBy": "astra",
+    "type": "node"
+  },
+  "autoStart": true,
+  "managed": true,
+  "network": {
+    "port": 31415,
+    "host": "127.0.0.1",
+    "visibility": "internal",
+    "healthEndpoint": "/api/ping"
+  },
+  "restartPolicy": {
+    "maxAttempts": 5,
+    "mode": "on-failure"
+  },
+  "displayName": "FreeLLMAPI",
+  "requestedVersion": "0.9.0",
+  "upstreamRef": "v0.9.0",
+  "verifiedCommit": "3b6f40e9a3e1691dd7e561d9fa842c28d6218746",
+  "installedAt": "2026-08-27T12:59:07.017Z",
+  "sourceLayout": "git-workspace",
+  "launch": {
+    "cwdRelative": "D:\\astra PM\\config\\plugins\\freellm-provider\\app",
+    "scriptRelative": "server/dist/index.js",
+    "args": [],
+    "nodeBin": "D:\\tools\\node-v22.22.3-win-x64\\node.exe"
+  },
+  "config": {
+    "host": "127.0.0.1",
+    "port": 31415,
+    "autoStart": true
+  }
+}

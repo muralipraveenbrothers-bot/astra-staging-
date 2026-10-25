@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" font-family="Segoe UI, system-ui, sans-serif">
+  <!-- ASTRA AI HOSPITAL OS — MCP + EXECUTOR + GATEWAYS ARCHITECTURE -->
+  <defs>
+    <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e3a5f"/><stop offset="1" stop-color="#0b1526"/>
+    </linearGradient>
+    <linearGradient id="modelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f2a3f"/><stop offset="1" stop-color="#081420"/>
+    </linearGradient>
+    <linearGradient id="mcpGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e1a3f"/><stop offset="1" stop-color="#0e0c20"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6z" fill="#4fd1c5"/></marker>
+  </defs>
+  <rect width="1200" height="860" fill="#05070c"/>
+
+  <!-- Title -->
+  <text x="600" y="36" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">ASTRA AI — HOSPITAL OS</text>
+  <text x="600" y="56" text-anchor="middle" fill="#8b8fa3" font-size="12">Trusted Control Plane · Model Context Protocol · Executors · Gateways</text>
+
+  <!-- ASTRA CORE -->
+  <rect x="440" y="76" width="320" height="66" rx="12" fill="url(#coreGrad)" stroke="#4fd1c5" stroke-width="2"/>
+  <text x="600" y="102" text-anchor="middle" fill="#7ee8dc" font-size="16" font-weight="700">ASTRA CORE</text>
+  <text x="600" y="122" text-anchor="middle" fill="#cbd5e1" font-size="11">:3000 — REST API · Auth · Audit · RBAC</text>
+  <text x="600" y="138" text-anchor="middle" fill="#94a3b8" font-size="10">authenticate + requireRole + logAudit</text>
+<!-- Two columns -->
+  <text x="300" y="170" text-anchor="middle" fill="#7ee8dc" font-size="13" font-weight="700">MODEL LAYER</text>
+  <text x="910" y="170" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="700">MCP LAYER</text>
+  <line x1="150" y1="180" x2="450" y2="180" stroke="#1f5c67"/><line x1="760" y1="180" x2="1050" y2="180" stroke="#3f3560"/>
+
+  <line x1="600" y1="142" x2="300" y2="190" stroke="#4fd1c5" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="600" y1="142" x2="910" y2="190" stroke="#8b5cf6" stroke-width="1.5"/>
+
+  <!-- MODEL COLUMN -->
+  <rect x="90" y="196" width="420" height="210" rx="10" fill="url(#modelGrad)" stroke="#1f5c67"/>
+  <text x="300" y="222" text-anchor="middle" fill="#7ee8dc" font-size="12" font-weight="700">CENTRAL AI ADAPTER</text>
+  <rect x="230" y="238" width="140" height="34" rx="8" fill="#0d2130" stroke="#2a6a7a"/>
+  <text x="300" y="260" text-anchor="middle" fill="#cbd5e1" font-size="11">gatewayAdapter.ts</text>
+
+  <rect x="130" y="300" width="120" height="44" rx="8" fill="#0a2633" stroke="#2e8b57"/>
+  <text x="190" y="318" text-anchor="middle" fill="#7ee8dc" font-size="11" font-weight="700">FreeLLMAPI</text>
+  <text x="190" y="334" text-anchor="middle" fill="#94a3b8" font-size="9">PRIMARY :3001</text>
+  <rect x="270" y="300" width="120" height="44" rx="8" fill="#0a2633" stroke="#d97706"/>
+  <text x="330" y="318" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">OmniRoute</text>
+  <text x="330" y="334" text-anchor="middle" fill="#94a3b8" font-size="9">FALLBACK :5171</text>
+  <rect x="410" y="300" width="80" height="44" rx="8" fill="#0a2633" stroke="#64748b"/>
+  <text x="450" y="318" text-anchor="middle" fill="#94a3b8" font-size="10">Ollama</text>
+  <text x="450" y="334" text-anchor="middle" fill="#94a3b8" font-size="9">LOCAL :11434</text>
+  <line x1="250" y1="322" x2="268" y2="322" stroke="#4fd1c5"/><line x1="390" y1="322" x2="408" y2="322" stroke="#4fd1c5"/>
+
+  <rect x="130" y="356" width="120" height="34" rx="8" fill="#0a2633" stroke="#a855f7"/>
+  <text x="190" y="378" text-anchor="middle" fill="#d8b4fe" font-size="10">LiteLLM proxy :4000</text>
+  <rect x="270" y="356" width="120" height="34" rx="8" fill="#0a2633" stroke="#a855f7"/>
+  <text x="330" y="378" text-anchor="middle" fill="#d8b4fe" font-size="10">RouteLLM :6060</text>
+
+  <!-- MCP COLUMN -->
+  <rect x="700" y="196" width="420" height="210" rx="10" fill="url(#mcpGrad)" stroke="#4c3a8a"/>
+  <text x="910" y="222" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="700">MCP CLIENT MANAGER</text>
+  <text x="910" y="240" text-anchor="middle" fill="#94a3b8" font-size="10">@modelcontextprotocol/sdk 1.30 · Streamable HTTP</text>
+  <rect x="820" y="250" width="180" height="30" rx="8" fill="#1a1633" stroke="#6d5fb8"/>
+  <text x="910" y="270" text-anchor="middle" fill="#d8b4fe" font-size="11">MCP REGISTRY + ORCHESTRATOR</text>
+
+  <text x="910" y="318" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">MEDICAL MCP SERVERS (config/mcp-servers.json)</text>
+  <rect x="714" y="330" width="110" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="769" y="346" text-anchor="middle" fill="#b7a8f0" font-size="9">medical-mcp :7010</text>
+  <rect x="828" y="330" width="112" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="884" y="346" text-anchor="middle" fill="#b7a8f0" font-size="9">med-research :7011</text>
+  <rect x="944" y="330" width="100" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="994" y="346" text-anchor="middle" fill="#b7a8f0" font-size="9">biomcp :7012</text>
+  <rect x="714" y="356" width="110" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="769" y="372" text-anchor="middle" fill="#b7a8f0" font-size="9">dicom :7013</text>
+  <rect x="828" y="356" width="112" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="884" y="372" text-anchor="middle" fill="#b7a8f0" font-size="9">slicer :7014</text>
+  <rect x="944" y="356" width="100" height="22" rx="5" fill="#0e0c20" stroke="#5b4d9c"/><text x="994" y="372" text-anchor="middle" fill="#b7a8f0" font-size="9">records :7015</text>
+  <text x="910" y="396" text-anchor="middle" fill="#6d5fb8" font-size="9">medcalc :7016 · healthcare :7017 · deep-research :7018</text>
+<!-- LANGGRAPH + CAPABILITY GATE -->
+  <rect x="90" y="440" width="1030" height="60" rx="10" fill="#0a0f18" stroke="#334155"/>
+  <text x="605" y="466" text-anchor="middle" fill="#7ee8dc" font-size="12" font-weight="700">LANGGRAPH ORCHESTRATOR (in-process)</text>
+  <text x="605" y="486" text-anchor="middle" fill="#cbd5e1" font-size="11">MODEL (central adapter) · MCP TOOLS/RESOURCES/PROMPTS · APPROVAL GATES · AGENTS</text>
+  <line x1="450" y1="406" x2="450" y2="440" stroke="#4fd1c5"/>
+  <line x1="1100" y1="406" x2="1100" y2="440" stroke="#8b5cf6"/>
+
+  <!-- SECURITY GATE -->
+  <rect x="90" y="520" width="1030" height="46" rx="10" fill="#150f1a" stroke="#b91c1c"/>
+  <text x="605" y="540" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="700">CAPABILITY + APPROVAL GATE (mcpSecurity.ts)</text>
+  <text x="605" y="558" text-anchor="middle" fill="#e2e8f0" font-size="10">role allowlists · tool deny-lists · risk classify (LOW/HIGH/CRITICAL) · human approval for high-risk · audit via logAudit</text>
+
+  <!-- AGENTS ROW -->
+  <text x="288" y="596" text-anchor="middle" fill="#7ee8dc" font-size="12" font-weight="700">AGENTS &amp; RUNTIMES (infer via Astra /v1)</text>
+  <text x="920" y="596" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="700">EXECUTORS</text>
+  <rect x="90" y="608" width="110" height="40" rx="8" fill="#0a2633" stroke="#38bdf8"/><text x="145" y="626" text-anchor="middle" fill="#bae6fd" font-size="10">Hermes :9119</text><text x="145" y="641" text-anchor="middle" fill="#64748b" font-size="8">plan/reasoning</text>
+  <rect x="204" y="608" width="110" height="40" rx="8" fill="#0a2633" stroke="#38bdf8"/><text x="259" y="626" text-anchor="middle" fill="#bae6fd" font-size="10">Paperclip :3100</text><text x="259" y="641" text-anchor="middle" fill="#64748b" font-size="8">org runtime</text>
+  <rect x="318" y="608" width="110" height="40" rx="8" fill="#0a2633" stroke="#38bdf8"/><text x="373" y="626" text-anchor="middle" fill="#bae6fd" font-size="10">OpenClaw :18789</text><text x="373" y="641" text-anchor="middle" fill="#64748b" font-size="8">tool runtime</text>
+  <rect x="432" y="608" width="110" height="40" rx="8" fill="#0a2633" stroke="#38bdf8"/><text x="487" y="626" text-anchor="middle" fill="#bae6fd" font-size="10">n8n :5678</text><text x="487" y="641" text-anchor="middle" fill="#64748b" font-size="8">automation</text>
+  <rect x="760" y="608" width="130" height="40" rx="8" fill="#160f26" stroke="#8b5cf6"/><text x="825" y="626" text-anchor="middle" fill="#c4b5fd" font-size="10">OpenHands :8080/:18000</text><text x="825" y="641" text-anchor="middle" fill="#7f74b8" font-size="8">approval-executor</text>
+  <rect x="900" y="608" width="130" height="40" rx="8" fill="#160f26" stroke="#8b5cf6"/><text x="965" y="626" text-anchor="middle" fill="#c4b5fd" font-size="10">Agent Zero :5000</text><text x="965" y="641" text-anchor="middle" fill="#7f74b8" font-size="8">multi-agent</text>
+
+  <!-- bottom row -->
+  <rect x="90" y="688" width="200" height="36" rx="8" fill="#0a2633" stroke="#38bdf8"/><text x="190" y="711" text-anchor="middle" fill="#bae6fd" font-size="10">Voicebox :17493 · TTS / Whisper</text>
+  <rect x="304" y="688" width="200" height="36" rx="8" fill="#0a2633" stroke="#64748b"/><text x="404" y="711" text-anchor="middle" fill="#94a3b8" font-size="10">Ollama local models</text>
+  <rect x="760" y="688" width="260" height="36" rx="8" fill="#150f1a" stroke="#b91c1c"/><text x="890" y="711" text-anchor="middle" fill="#fca5a5" font-size="10">AUDIT TRAIL · data/audit.jsonl (MCP)</text>
+
+  <!-- legend -->
+  <rect x="90" y="760" width="1030" height="70" rx="8" fill="#0a0f18" stroke="#1f5c67"/>
+  <text x="110" y="784" fill="#7ee8dc" font-size="11" font-weight="700">MCP = CAPABILITY / INTEGRATION LAYER (tools · resources · prompts)</text>
+  <text x="110" y="802" fill="#94a3b8" font-size="10">MCP does NOT replace model routing (FreeLLMAPI PRIMARY · OmniRoute FALLBACK · Ollama LOCAL). Optional MCP failures never crash Astra.</text>
+  <text x="110" y="820" fill="#64748b" font-size="9">Ports preserved · LangGraph = orchestration · Astra Core = trusted control plane</text>
+</svg>

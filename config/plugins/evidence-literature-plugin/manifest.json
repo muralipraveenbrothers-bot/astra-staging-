@@ -1,0 +1,229 @@
+{
+  "pluginId": "evidence-literature-plugin",
+  "tier": "P3",
+  "category": "KNOWLEDGE",
+  "name": "Evidence & Literature Plugin",
+  "version": "1.0.0",
+  "description": "PubMed search, guideline retrieval, systematic review access, citation management, conflict detection.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "medical-knowledge-gateway",
+      "astra-brain-core"
+    ],
+    "optional": [
+      "clinical-reasoning-plugin"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "evidence-service",
+      "type": "knowledge",
+      "endpoint": "/api/evidence",
+      "healthEndpoint": "/api/evidence/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "evidence_agent",
+      "name": "Evidence Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "guideline_agent",
+      "name": "Guideline Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "evidence_agent"
+    },
+    {
+      "agentId": "systematic_review_agent",
+      "name": "Systematic Review Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "evidence_agent"
+    },
+    {
+      "agentId": "citation_manager",
+      "name": "Citation Manager",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "evidence_agent"
+    },
+    {
+      "agentId": "conflict_detector",
+      "name": "Conflict Detector",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "evidence_agent"
+    },
+    {
+      "agentId": "evidence_conflict_agent",
+      "name": "Evidence Conflict Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "search_pubmed",
+      "name": "Search PubMed",
+      "description": "PubMed literature search",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "retrieve_guideline",
+      "name": "Retrieve Guideline",
+      "description": "Retrieve official guideline",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "find_systematic_review",
+      "name": "Find Systematic Review",
+      "description": "Find systematic reviews",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "verify_citation",
+      "name": "Verify Citation",
+      "description": "Verify citation realness",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "citation": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "detect_evidence_conflict",
+      "name": "Detect Evidence Conflict",
+      "description": "Guideline conflict detection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:evidence_search"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "EvidencePanel",
+        "slot": "evidence-panel"
+      }
+    ],
+    "icons": [
+      "library",
+      "file-search"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "evidence.conflict.found"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "PubMed API",
+      "endpoint": "external-pubmed",
+      "timeoutMs": 6000,
+      "critical": false
+    },
+    {
+      "name": "Europe PMC",
+      "endpoint": "external-pubmed",
+      "timeoutMs": 6000,
+      "critical": false
+    },
+    {
+      "name": "Guideline Repository",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "cacheHours": {
+        "type": "number",
+        "default": 1
+      }
+    },
+    "secrets": [
+      "NCBI_API_KEY"
+    ]
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:evidence-literature-plugin-1.0.0"
+}

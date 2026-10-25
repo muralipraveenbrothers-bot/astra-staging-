@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "related_medicines": "Examplemed",
+      "active_substance": "pembrolizumab",
+      "procedure_number": "PSUSA/00000001/202501",
+      "regulatory_outcome": "Routine signal management",
+      "first_published_date": "15/01/2025",
+      "last_updated_date": ""
+    }
+  ]
+}

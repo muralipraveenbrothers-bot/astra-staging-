@@ -1,0 +1,172 @@
+{
+  "pluginId": "hope-engine-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Hope Engine (V3 Deep Discovery)",
+  "version": "1.0.0",
+  "description": "Zebra hunting for null diagnosis after 48h or poor response: rare genetic errors, occult toxicity, masqueraders, literature-backed rescue treatments. ADVISORY ONLY.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "clinical-reasoning-plugin",
+      "evidence-literature-plugin"
+    ],
+    "optional": [
+      "medical-vision-dicom"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "hope-engine",
+      "type": "deep-discovery",
+      "endpoint": "/api/hope-engine",
+      "healthEndpoint": "/api/hope-engine/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "hope_engine",
+      "name": "Hope Engine (Deep Discovery)",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "clinical_reasoning_agent"
+    },
+    {
+      "agentId": "phenotype_detective",
+      "name": "Phenotype Detective",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hope_engine"
+    },
+    {
+      "agentId": "silent_killer_scanner",
+      "name": "Silent Killer Scanner",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hope_engine"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "run_hope_engine",
+      "name": "Run Hope Engine (V3)",
+      "description": "Lateral hypothesis generation across 4 investigation paths",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "scan_occupation_toxicity",
+      "name": "Scan Occupation Toxicity",
+      "description": "Home address + occupation vs toxicology databases",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "search_global_case",
+      "name": "Search Global Case",
+      "description": "PubMed + international registries mystery-case match",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "rare_disease_registries",
+      "type": "rare-disease",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "hope:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/hope",
+        "label": "Hope Engine V3",
+        "roles": [
+          "doctor",
+          "ceo"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "name": "HopeEngineView",
+        "slot": "clinical-mode"
+      }
+    ],
+    "icons": [
+      "sparkles",
+      "lightbulb"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "hope.discovery.suggested"
+    ],
+    "subscribes": [
+      "diagnosis.updated"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Evidence Literature",
+      "endpoint": "external-pubmed",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Rare Disease Registry",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "deepDiscoveryTriggerHours": {
+        "type": "number",
+        "default": 48
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:hope-engine-plugin-1.0.0",
+  "notes": "PURPLE/GOLD UI when V3 active. ALL suggestions advisory. Human doctor has final authority."
+}

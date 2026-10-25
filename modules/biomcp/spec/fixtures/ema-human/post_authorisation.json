@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "ema_product_number": ["EMEA/H/C/003820"],
+      "first_published_date": ["27/02/2026"],
+      "last_updated_date": [""],
+      "category": ["Human"]
+    },
+    {
+      "ema_product_number": ["EMEA/H/C/003820"],
+      "first_published_date": ["31/01/2020"],
+      "last_updated_date": [""],
+      "category": ["Human"]
+    },
+    {
+      "ema_product_number": ["EMEA/H/C/003820"],
+      "first_published_date": ["10/11/2017"],
+      "last_updated_date": [""],
+      "category": ["Human"]
+    },
+    {
+      "ema_product_number": ["EMEA/V/C/000999"],
+      "first_published_date": ["05/05/2024"],
+      "last_updated_date": [""],
+      "category": ["Veterinary"]
+    }
+  ]
+}

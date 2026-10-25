@@ -1,0 +1,241 @@
+{
+  "pluginId": "voicebox",
+  "tier": "P0",
+  "category": "VOICE",
+  "name": "Voicebox",
+  "version": "1.0.0",
+  "description": "Local-first VAD, streaming STT, streaming TTS, conversation engine, 3 human-like voices, 5 language packs.",
+  "license": "MIT",
+  "provider": "Voicebox AI",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "hospital-command-engine"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "voicebox-stt",
+      "type": "voice",
+      "endpoint": "/api/voice/stt",
+      "healthEndpoint": "/api/voice/health"
+    },
+    {
+      "serviceId": "voicebox-tts",
+      "type": "voice",
+      "endpoint": "/api/voice/tts",
+      "healthEndpoint": "/api/voice/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "voice_pipeline",
+      "name": "Voice Pipeline",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "conversation_manager",
+      "name": "Conversation Manager",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "voice_pipeline"
+    },
+    {
+      "agentId": "voice_selector",
+      "name": "Voice Selector",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "voice_pipeline"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "transcribe_stream",
+      "name": "Transcribe Stream",
+      "description": "Streaming STT transcription",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "audio": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "synthesize_speech",
+      "name": "Synthesize Speech",
+      "description": "Streaming TTS synthesis",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "voiceProfile": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "detect_vad",
+      "name": "Detect VAD",
+      "description": "Voice activity detection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "audio": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "switch_voice",
+      "name": "Switch Voice",
+      "description": "Switch voice profile",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "voiceProfile": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "voicebox_stt",
+      "provider": "voicebox",
+      "modelType": "STT"
+    },
+    {
+      "modelRouteId": "voicebox_tts",
+      "provider": "voicebox",
+      "modelType": "TTS"
+    }
+  ],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:voice_command"
+      ]
+    },
+    {
+      "role": "RECEPTION",
+      "claims": [
+        "ai:voice_command"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "AvatarOrb",
+        "slot": "voice-orb"
+      },
+      {
+        "name": "VoiceControls",
+        "slot": "voice-controls"
+      }
+    ],
+    "icons": [
+      "mic",
+      "audio-lines"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "voice.transcript.ready",
+      "voice.speaking"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "STT Model",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 5000,
+      "critical": false
+    },
+    {
+      "name": "TTS Model",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 5000,
+      "critical": false
+    },
+    {
+      "name": "VAD Latency",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Tool Wiring",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "defaultLanguage": {
+        "type": "string",
+        "default": "en"
+      },
+      "voicesEnabled": {
+        "type": "array",
+        "default": [
+          "DR_ARJUN",
+          "DR_PRIYA",
+          "RECEPTION_GUIDE"
+        ]
+      }
+    },
+    "secrets": [
+      "ELEVENLABS_KEY",
+      "AZURE_SPEECH_KEY"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:voicebox-1.0.0",
+  "notes": "Local-first. English, Telugu, Hindi, Tamil, Kannada."
+}

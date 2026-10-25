@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "name_of_medicine": "Ozempic / Victoza",
+      "dhpc_type": "Medicine shortage",
+      "regulatory_outcome": "",
+      "first_published_date": "02/09/2024",
+      "last_updated_date": ""
+    },
+    {
+      "name_of_medicine": "Ozempic / Victoza",
+      "dhpc_type": "Medicine shortage",
+      "regulatory_outcome": "",
+      "first_published_date": "21/11/2023",
+      "last_updated_date": "01/12/2023"
+    },
+    {
+      "name_of_medicine": "Ozempic",
+      "dhpc_type": "Medicine shortage",
+      "regulatory_outcome": "",
+      "first_published_date": "13/03/2023",
+      "last_updated_date": "13/03/2023"
+    },
+    {
+      "name_of_medicine": "Ozempic",
+      "dhpc_type": "Medicine shortage",
+      "regulatory_outcome": "Maintenance",
+      "first_published_date": "19/10/2022",
+      "last_updated_date": ""
+    }
+  ]
+}

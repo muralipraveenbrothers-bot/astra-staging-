@@ -1,0 +1,167 @@
+{
+  "pluginId": "public-health-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Epidemic & Public Health Plugin",
+  "version": "1.0.0",
+  "description": "Outbreak detection, notifiable disease reporting, infection control, vaccination tracking.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "medical-knowledge-gateway",
+      "hospital-data-connector"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "public-health",
+      "type": "medical",
+      "endpoint": "/api/public-health",
+      "healthEndpoint": "/api/public-health/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "outbreak_detector",
+      "name": "Outbreak Detector",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "infection_control_agent",
+      "name": "Infection Control Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "outbreak_detector"
+    },
+    {
+      "agentId": "notifiable_disease_agent",
+      "name": "Notifiable Disease Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "outbreak_detector"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "detect_outbreak_pattern",
+      "name": "Detect Outbreak Pattern",
+      "description": "Outbreak pattern detection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "generate_notification",
+      "name": "Generate Notification",
+      "description": "Notifiable disease notification",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "track_vaccination",
+      "name": "Track Vaccination",
+      "description": "Vaccination tracking",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "check_isolation_compliance",
+      "name": "Check Isolation Compliance",
+      "description": "Isolation compliance check",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "ADMIN",
+      "claims": [
+        "ai:evidence_search"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "PublicHealthPanel",
+        "slot": "monitoring-panel"
+      }
+    ],
+    "icons": [
+      "virus",
+      "shield-plus"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "publichealth.outbreak.suspected"
+    ],
+    "subscribes": [
+      "lab.critical.alert"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Surveillance DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Notification Pipeline",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "clusterThreshold": {
+        "type": "number",
+        "default": 3
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:public-health-plugin-1.0.0"
+}

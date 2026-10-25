@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  # ============================================================
+  # 1. OmniRoute AI Gateway
+  # ============================================================
+  omniroute:
+    image: omniroute:latest
+    container_name: astra-omniroute
+    restart: unless-stopped
+    ports:
+      - "5171:5171"
+      - "8080:8080"
+    environment:
+      - PORT=5171
+      - DASHBOARD_ALLOW_EMBED=astra
+      - OMNIROUTE_USE_TURBOPACK=0
+      - NODE_OPTIONS=--max-old-space-size=4096
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - NVIDIA_API_KEY=${NVIDIA_API_KEY:-}
+      - GROK_API_KEY=${GROK_API_KEY:-}
+    volumes:
+      - omniroute-storage:/root/.omniroute
+    networks:
+      - astra-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5171/api/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ============================================================
+  # 2. NVIDIA Audio2Face-3D Avatar & Lip-Sync Service
+  # ============================================================
+  audio2face:
+    build:
+      context: ./server/avatar
+      dockerfile: Dockerfile
+    container_name: astra-audio2face
+    restart: unless-stopped
+    ports:
+      - "8283:8283"
+    environment:
+      - PYTHONIOENCODING=utf-8
+      - PYTHONUTF8=1
+      - VOICEBOX_URL=http://voicebox:17493
+    volumes:
+      - ./Audio2Face-3D/Audio2Face-3D-SDK/sample-data:/app/models
+    networks:
+      - astra-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8283/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # ============================================================
+  # 3. Voicebox Multilingual TTS (Telugu / Hindi / English)
+  # ============================================================
+  voicebox:
+    image: voicebox:latest
+    container_name: astra-voicebox
+    restart: unless-stopped
+    ports:
+      - "17493:17493"
+    networks:
+      - astra-net
+
+  # ============================================================
+  # 4. Astra Hospital OS Central API Engine
+  # ============================================================
+  astra-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: astra-core
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - A2F_ENDPOINT=http://audio2face:8283
+      - OMNIROUTE_ENDPOINT=http://omniroute:5171
+    depends_on:
+      - omniroute
+      - audio2face
+      - voicebox
+    networks:
+      - astra-net
+  # ============================================================
+  # 5. Astra Brain Diagnostics Live Subsystem Probe Container
+  # ============================================================
+  astra-probes:
+    build:
+      context: ./astra-probes
+      dockerfile: Dockerfile
+    container_name: astra-probes
+    restart: always
+    environment:
+      - PROBE_TARGETS=http://astra-core:3000/api/health,http://audio2face:8283/health,http://omniroute:5171/api/health,http://voicebox:17493/health
+    depends_on:
+      - astra-core
+      - omniroute
+      - audio2face
+    networks:
+      - astra-net
+
+networks:
+  astra-net:
+    driver: bridge
+
+volumes:
+  omniroute-storage:

@@ -1,0 +1,25 @@
+{
+  "$comment": "Astra external services registry. modes: 'external' = connect to a separate Windows installation; 'internal' = start the copy bundled inside the Astra workspace. autoConnect=true means Astra launch will start the service if its port is down, then connect.",
+  "omniroute": {
+    "mode": "external",
+    "autoConnect": true,
+    "port": 5171,
+    "url": "http://127.0.0.1:5171",
+    "installedAppPath": null,
+    "portablePath": "D:\\astra-services\\omniroute",
+    "serverEnvPath": "%APPDATA%\\omniroute\\server.env"
+  },
+  "freellm": {
+    "mode": "internal",
+    "autoConnect": true,
+    "port": 31415,
+    "internalPath": "D:\\astra PM\\freellmapi",
+    "externalPath": "D:\\astra-services\\freellmapi",
+    "url": "http://127.0.0.1:31415"
+  },
+  "agentBridge": {
+    "mode": "internal",
+    "autoConnect": true,
+    "port": 7771
+  }
+}

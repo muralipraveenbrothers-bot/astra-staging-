@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "medicine_affected": "Ozempic",
+      "supply_shortage_status": "Resolved",
+      "availability_of_alternatives": "Yes",
+      "first_published_date": "18/12/2025",
+      "last_updated_date": "13/01/2026"
+    },
+    {
+      "medicine_affected": "Keytrudavet",
+      "supply_shortage_status": "Ongoing",
+      "availability_of_alternatives": "No",
+      "first_published_date": "01/06/2025",
+      "last_updated_date": "04/06/2025"
+    }
+  ]
+}

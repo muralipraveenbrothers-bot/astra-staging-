@@ -1,0 +1,48 @@
+# Adverse Events: {{ query }}
+{% if count == 0 -%}
+{{ empty_state_message or "No adverse events found" }}
+{% else -%}
+Found {{ count }} report{% if count != 1 %}s{% endif %}
+
+## Summary ({{ summary_source_label or "OpenFDA FAERS sample" }})
+- Total reports (OpenFDA FAERS): {{ summary.total_reports }}
+- Returned reports: {{ summary.returned_report_count }}
+{% if "aggregate" in (summary_source_label or "") -%}
+- Top reactions: aggregate count query; Percent = count / total reports.
+{% else -%}
+- Top reactions: returned-report sample only; Percent = count / returned reports, not population frequency.
+{% endif -%}
+{% if summary.top_reactions -%}
+| Reaction | Count | Percent |
+|---|---|---|
+{% for row in summary.top_reactions -%}
+| {{ row.reaction }} | {{ row.count }} | {{ row.percentage }}% |
+{% endfor -%}
+{% endif %}
+
+|Report ID|Drug|Reactions|Serious|
+|---|---|---|---|
+{% for r in results -%}
+|{{ r.report_id }}|{{ r.drug | truncate(20) }}|{{ r.reactions | join(", ") | truncate(30) }}|{% if r.serious %}Serious{% else %}-{% endif %}|
+{% endfor %}
+
+Use `get adverse-event <report_id>` for details.
+Filters: --drug <name>, --reaction <term>, --outcome <death|hospitalization|disability>, --serious <type>, --date-from <YYYY|YYYY-MM-DD>, --date-to <YYYY|YYYY-MM-DD>, --suspect-only, --sex <m|f>, --age-min <N>, --age-max <N>, --reporter <type>, --count <field>, --type faers|recall|device
+{% if pagination_footer %}
+
+{{ pagination_footer }}
+{% endif %}
+{% endif -%}
+{% if trial_adverse_events %}
+
+## Trial-Reported Adverse Events (ClinicalTrials.gov)
+ClinicalTrials.gov trial results reported the following adverse-event terms{% if trial_adverse_event_drug %} for {{ trial_adverse_event_drug }}{% endif %}.
+
+| Term | Trial Count |
+|---|---|
+{% for row in trial_adverse_events -%}
+| {{ row.term }} | {{ row.trial_count }} |
+{% endfor %}
+
+Source: ClinicalTrials.gov trial results
+{% endif -%}

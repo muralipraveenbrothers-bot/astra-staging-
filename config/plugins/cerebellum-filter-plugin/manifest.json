@@ -1,0 +1,117 @@
+{
+  "pluginId": "cerebellum-filter-plugin",
+  "tier": "P0",
+  "category": "CORE",
+  "name": "Cerebellum Filter (Tone & Empathy)",
+  "version": "1.0.0",
+  "description": "Lightweight deterministic tone middleware: de-escalation, empathy injection, humanization. Facts NEVER changed. Patient-facing always ON.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core"
+    ],
+    "optional": [
+      "voicebox"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "cerebellum-filter",
+      "type": "tone-filter",
+      "endpoint": "/api/cerebellum/filter",
+      "healthEndpoint": "/api/cerebellum/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "cerebellum_balancer",
+      "name": "Cerebellum Balancer",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "tone_analyzer",
+      "name": "Tone Analyzer",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "cerebellum_balancer"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "filter_tone",
+      "name": "Filter Tone (Cerebellum)",
+      "description": "Softens harsh phrasing; immutable core message",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "cerebellum:toggle"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "CerebellumToggle",
+        "slot": "doctor-settings"
+      }
+    ],
+    "icons": [
+      "sparkles"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "cerebellum.filtered"
+    ],
+    "subscribes": [
+      "ai.output.raw"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Tone Ruleset",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "doctorEmpathyDefault": {
+        "type": "string",
+        "enum": [
+          "on",
+          "off"
+        ],
+        "default": "off"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "LOW",
+  "checksum": "sha256:cerebellum-filter-plugin-1.0.0",
+  "notes": "All patient-facing communication passes through Cerebellum and CANNOT be disabled. Doctor-facing is a toggle."
+}

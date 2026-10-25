@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Live Avatar Client</title>
+  <meta name="description" content="A glassmorphic real-time Gemini Live Avatar streaming client built for ADK.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #8ab4f8;
+      --primary-hover: #aecbfa;
+      --bg: #0f1015;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(circle at top right, #1d1b26, #0f1015 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side: Avatar Video Player */
+    .avatar-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .avatar-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-placeholder {
+      position: absolute;
+      text-align: center;
+      z-index: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .avatar-placeholder.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .avatar-placeholder p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff3b30;
+      transition: background 0.3s;
+    }
+
+    .status-dot.connected {
+      background: #34c759;
+      box-shadow: 0 0 8px #34c759;
+    }
+
+    /* Right Side: Chat & Controls */
+    .controls-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header-text h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, #8ab4f8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .header-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .chat-box {
+      flex-grow: 1;
+      height: 250px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .chat-message {
+      padding: 10px 14px;
+      border-radius: 14px;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .chat-message.user {
+      background: var(--primary);
+      color: #0f1015;
+      align-self: flex-end;
+      font-weight: 600;
+    }
+
+    .chat-message.model {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      align-self: flex-start;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .text-input {
+      flex-grow: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .text-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #0f1015;
+      border: none;
+      border-radius: 14px;
+      padding: 0 24px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .wave {
+      width: 40px;
+      height: 40px;
+      background: rgba(138, 180, 248, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(138, 180, 248, 0.4); }
+      70% { box-shadow: 0 0 0 12px rgba(138, 180, 248, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(138, 180, 248, 0); }
+    }
+
+    .btn-mic {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      width: 50px;
+      padding: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-mic:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-mic.recording {
+      background: #ea4335;
+      border-color: #ea4335;
+      color: #fff;
+      animation: pulse 1.5s infinite;
+    }
+
+    .btn-mic svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="clientContainer">
+    <div class="avatar-wrapper">
+      <div class="status-badge">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Disconnected</span>
+      </div>
+      
+      <div class="avatar-placeholder" id="placeholder">
+        <div class="wave">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" x2="12" y1="19" y2="22"/>
+          </svg>
+        </div>
+        <p>Ready to stream</p>
+      </div>
+
+      <video class="avatar-video" id="avatarVideo" autoplay playsinline></video>
+    </div>
+
+    <div class="controls-wrapper">
+      <div class="header-text">
+        <h1>Gemini Avatar Client</h1>
+        <p>Talk with Kai using real-time video streaming</p>
+      </div>
+
+      <div class="chat-box" id="chatBox">
+        <div class="chat-message model">Hello! Say something to get started.</div>
+      </div>
+
+      <div class="input-row">
+        <button class="btn-mic" id="micBtn" title="Talk via Voice">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+        </button>
+        <input type="text" class="text-input" id="textInput" placeholder="Type a message..." autocomplete="off">
+        <button class="btn" id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const appName = 'live_avatar_agent';
+    const userId = 'web_avatar_user';
+    const sessionId = 'session_' + Math.random().toString(36).substring(2, 15);
+    const httpUrl = `http://localhost:8000/apps/${appName}/users/${userId}/sessions`;
+    const websocketUrl = `ws://localhost:8000/run_live?user_id=${userId}&session_id=${sessionId}&app_name=${appName}&save_live_blob=true`;
+
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const placeholder = document.getElementById('placeholder');
+    const chatBox = document.getElementById('chatBox');
+    const textInput = document.getElementById('textInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const micBtn = document.getElementById('micBtn');
+    const videoElement = document.getElementById('avatarVideo');
+
+    let ws = null;
+    let mediaSource = null;
+    let sourceBuffer = null;
+    let queue = [];
+    let isUpdating = false;
+
+    async function connect() {
+      statusText.textContent = 'Creating Session...';
+      
+      // 1. Create the session first
+      try {
+        const response = await fetch(httpUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            session_id: sessionId
+          })
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to create session: ${response.statusText}`);
+        }
+      } catch (err) {
+        console.error('Session creation failed:', err);
+        addMessage('System', 'Failed to create session on the server.', 'model');
+        statusText.textContent = 'Connection Error';
+        return;
+      }
+
+      statusText.textContent = 'Connecting...';
+      ws = new WebSocket(websocketUrl);
+      ws.binaryType = 'arraybuffer';
+
+
+      // Setup MediaSource for the video element
+      mediaSource = new MediaSource();
+      videoElement.src = URL.createObjectURL(mediaSource);
+
+      mediaSource.addEventListener('sourceopen', () => {
+        mediaSource.duration = Infinity;
+        // H.264 video codec is typical for Gemini Live video output chunks
+        sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+        sourceBuffer.addEventListener('updateend', () => {
+          isUpdating = false;
+          if (queue.length > 0) {
+            appendNextChunk();
+          }
+        });
+      });
+
+      ws.onopen = () => {
+        statusDot.classList.add('connected');
+        statusText.textContent = 'Connected';
+        placeholder.classList.add('hidden');
+        addMessage('System', 'Connected to avatar server.', 'model');
+      };
+
+      ws.onclose = () => {
+        statusDot.classList.remove('connected');
+        statusText.textContent = 'Disconnected';
+        placeholder.classList.remove('hidden');
+        addMessage('System', 'Disconnected from avatar server.', 'model');
+        // Auto-reconnect after 3 seconds
+        setTimeout(connect, 3000);
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const response = JSON.parse(event.data);
+          console.log('WS message:', response);
+          
+          // 1. Handle user voice input transcription (inputTranscription)
+          if (response.inputTranscription && response.inputTranscription.text) {
+            if (!currentUserVoiceMessageDiv) {
+              currentUserVoiceMessageDiv = document.createElement('div');
+              currentUserVoiceMessageDiv.classList.add('chat-message', 'user');
+              currentUserVoiceMessageDiv.textContent = 'Voice: ';
+              chatBox.appendChild(currentUserVoiceMessageDiv);
+            }
+            if (response.inputTranscription.finished) {
+              currentUserVoiceMessageDiv.textContent = 'Voice: ' + response.inputTranscription.text;
+              currentUserVoiceMessageDiv = null; // Turn complete
+            } else {
+              currentUserVoiceMessageDiv.textContent += response.inputTranscription.text;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+
+          // 2. Handle model transcript (outputTranscription)
+          if (response.outputTranscription && response.outputTranscription.text) {
+            if (!currentModelMessageDiv) {
+              currentModelMessageDiv = document.createElement('div');
+              currentModelMessageDiv.classList.add('chat-message', 'model');
+              currentModelMessageDiv.textContent = '';
+              chatBox.appendChild(currentModelMessageDiv);
+            }
+            currentModelMessageDiv.textContent += response.outputTranscription.text;
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+
+          // 2. Handle text content (transcripts or messages)
+          if (response.content && response.content.parts) {
+            for (const part of response.content.parts) {
+              if (part.text) {
+                addMessage('Kai', part.text, 'model');
+              }
+              // 3. Handle video inlineData chunks
+              if (part.inlineData && part.inlineData.mimeType) {
+                console.log('Received inlineData with mimeType:', part.inlineData.mimeType);
+                if (part.inlineData.mimeType.startsWith('video/')) {
+                  const base64Data = part.inlineData.data;
+                  const binaryData = base64ToUint8Array(base64Data);
+                  queue.push(binaryData);
+                  if (!isUpdating) {
+                    appendNextChunk();
+                  }
+                }
+              }
+            }
+          }
+        } catch (err) {
+          console.error('Error parsing WebSocket message:', err);
+        }
+      };
+    }
+
+    let currentModelMessageDiv = null;
+    let currentUserVoiceMessageDiv = null;
+
+    function appendNextChunk() {
+      if (queue.length === 0 || isUpdating || !sourceBuffer || sourceBuffer.updating) return;
+      isUpdating = true;
+      const chunk = queue.shift();
+      try {
+        console.log('Appending video chunk to SourceBuffer. Queue length:', queue.length);
+        sourceBuffer.appendBuffer(chunk);
+        // Ensure video is playing when chunks start appending
+        if (videoElement.paused) {
+          videoElement.play().catch(err => {
+            console.log('Video play pending user interaction:', err);
+          });
+        }
+      } catch (err) {
+        console.error('Error appending source buffer:', err);
+        addMessage('System', 'MediaSource error: ' + err.message, 'model');
+        isUpdating = false;
+      }
+    }
+
+    function base64ToUint8Array(base64) {
+      // Handle URL-safe base64 formatting which replaces '+' with '-' and '/' with '_'
+      let normalized = base64.replace(/-/g, '+').replace(/_/g, '/');
+      // Add missing base64 padding
+      while (normalized.length % 4 !== 0) {
+        normalized += '=';
+      }
+      const binaryString = atob(normalized);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    function addMessage(sender, text, type) {
+      // Avoid duplicate consecutive system messages
+      const lastMsg = chatBox.lastElementChild;
+      if (lastMsg && lastMsg.textContent === text) return;
+      
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('chat-message', type);
+      msgDiv.textContent = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = textInput.value.trim();
+      if (!text || !ws || ws.readyState !== WebSocket.OPEN) return;
+
+      const request = {
+        content: {
+          role: 'user',
+          parts: [{ text: text }]
+        }
+      };
+
+      ws.send(JSON.stringify(request));
+      addMessage('You', text, 'user');
+      currentModelMessageDiv = null;
+      textInput.value = '';
+
+      // Play video on user action to satisfy browser autoplay policy
+      if (videoElement.paused) {
+        videoElement.play().catch(() => {});
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    micBtn.addEventListener('click', toggleAudioRecording);
+
+    let audioContext = null;
+    let microphone = null;
+    let processor = null;
+    let isRecording = false;
+
+    async function startAudioRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        const inputSampleRate = audioContext.sampleRate;
+        const outputSampleRate = 16000;
+        
+        microphone = audioContext.createMediaStreamSource(stream);
+        processor = audioContext.createScriptProcessor(4096, 1, 1);
+        
+        processor.onaudioprocess = (e) => {
+          if (!isRecording || !ws || ws.readyState !== WebSocket.OPEN) return;
+          
+          const inputBuffer = e.inputBuffer.getChannelData(0);
+          const downsampled = downsampleBuffer(inputBuffer, inputSampleRate, outputSampleRate);
+          const pcm16 = floatTo16BitPCM(downsampled);
+          const base64 = int16ToBase64(pcm16);
+          
+          const request = {
+            blob: {
+              mimeType: 'audio/pcm;rate=16000',
+              data: base64
+            }
+          };
+          ws.send(JSON.stringify(request));
+        };
+        
+        microphone.connect(processor);
+        processor.connect(audioContext.destination);
+        isRecording = true;
+        
+        micBtn.classList.add('recording');
+        
+        // Ensure video plays and audio context starts
+        if (videoElement.paused) {
+          videoElement.play().catch(() => {});
+        }
+      } catch (err) {
+        console.error('Error starting audio recording:', err);
+        addMessage('System', 'Microphone error: ' + err.message, 'model');
+      }
+    }
+
+    function stopAudioRecording() {
+      isRecording = false;
+      if (processor) {
+        processor.disconnect();
+        processor = null;
+      }
+      if (microphone) {
+        microphone.disconnect();
+        microphone = null;
+      }
+      if (audioContext) {
+        audioContext.close();
+        audioContext = null;
+      }
+      micBtn.classList.remove('recording');
+    }
+
+    function toggleAudioRecording() {
+      if (isRecording) {
+        stopAudioRecording();
+      } else {
+        startAudioRecording();
+      }
+    }
+
+    function downsampleBuffer(buffer, inputSampleRate, outputSampleRate) {
+      if (inputSampleRate === outputSampleRate) {
+        return buffer;
+      }
+      const sampleRateRatio = inputSampleRate / outputSampleRate;
+      const newLength = Math.round(buffer.length / sampleRateRatio);
+      const result = new Float32Array(newLength);
+      let offsetResult = 0;
+      let offsetBuffer = 0;
+      while (offsetResult < result.length) {
+        const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+        let accum = 0;
+        let count = 0;
+        for (let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+          accum += buffer[i];
+          count++;
+        }
+        result[offsetResult] = accum / count;
+        offsetResult++;
+        offsetBuffer = nextOffsetBuffer;
+      }
+      return result;
+    }
+
+    function floatTo16BitPCM(input) {
+      const output = new Int16Array(input.length);
+      for (let i = 0; i < input.length; i++) {
+        const s = Math.max(-1, Math.min(1, input[i]));
+        output[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+      }
+      return output;
+    }
+
+    function int16ToBase64(int16Array) {
+      const buffer = int16Array.buffer;
+      const bytes = new Uint8Array(buffer);
+      let len = bytes.byteLength;
+      let binary = '';
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return btoa(binary);
+    }
+
+    // Low-latency synchronization loop to keep video playhead matched with arriving stream
+    setInterval(() => {
+      if (videoElement && videoElement.buffered.length > 0) {
+        const bufferedEnd = videoElement.buffered.end(videoElement.buffered.length - 1);
+        const diff = bufferedEnd - videoElement.currentTime;
+        if (diff > 0.4) {
+          console.log(`Video lagging behind buffer by ${diff.toFixed(2)}s. Catching up...`);
+          videoElement.currentTime = bufferedEnd - 0.1;
+        }
+      }
+    }, 150);
+
+    // Start connection on load
+    window.addEventListener('load', connect);
+  </script>
+</body>
+</html>

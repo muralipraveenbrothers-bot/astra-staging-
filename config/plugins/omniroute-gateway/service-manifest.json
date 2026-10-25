@@ -1,0 +1,48 @@
+{
+  "id": "omniroute",
+  "displayName": "OmniRoute",
+  "version": "3.8.50",
+  "baselineVersion": "3.8.41",
+  "type": "astra-internal-service",
+  "managed": true,
+  "autoStart": true,
+  "runtime": {
+    "type": "node",
+    "version": "22",
+    "managedBy": "astra"
+  },
+  "network": {
+    "visibility": "internal",
+    "host": "127.0.0.1",
+    "port": 5171,
+    "healthEndpoint": "/health"
+  },
+  "persistence": {
+    "dataDirectory": "./data",
+    "persistent": true
+  },
+  "restartPolicy": {
+    "mode": "on-failure",
+    "maxAttempts": 5
+  },
+  "requestedVersion": "3.8.50",
+  "upstreamRef": "v3.8.50",
+  "verifiedCommit": "zip-extracted-payload",
+  "installedAt": "2026-08-27T12:15:30.140Z",
+  "sourceLayout": "git-package",
+  "launch": {
+    "cwdRelative": "D:\\astra PM\\config\\plugins\\omniroute-gateway\\app",
+    "scriptRelative": "scripts/dev/run-next.mjs",
+    "args": [
+      "dev"
+    ],
+    "nodeBin": "D:\\tools\\node-v22.22.3-win-x64\\node.exe"
+  },
+  "history": [],
+  "config": {
+    "host": "127.0.0.1",
+    "port": 20128,
+    "autoStart": true,
+    "nodeBinOverride": "D:\\tools\\node-v22.22.3-win-x64\\node.exe"
+  }
+}

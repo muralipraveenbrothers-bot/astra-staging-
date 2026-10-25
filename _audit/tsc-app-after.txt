@@ -1,0 +1,27 @@
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(15,31): error TS1005: '>' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(15,38): error TS1005: ',' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(15,50): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(15,51): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(29,31): error TS1005: '>' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(29,38): error TS1005: ',' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(29,50): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(29,51): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(74,37): error TS1005: '>' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(74,44): error TS1005: ',' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(74,56): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(74,57): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(109,37): error TS1005: '>' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(109,44): error TS1005: ',' expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(109,56): error TS1109: Expression expected.
+src/__tests__/sanjeevaniOverlayLanguagePersona.test.ts(109,57): error TS1109: Expression expected.
+src/components/SanjeevaniOverlay.tsx(151,6): error TS17008: JSX element 'div' has no corresponding closing tag.
+src/components/SanjeevaniOverlay.tsx(196,13): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+src/components/SanjeevaniOverlay.tsx(262,1): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+src/components/SanjeevaniOverlay.tsx(265,1): error TS1005: '</' expected.
+src/initSanjeevaniUI.ts(32,32): error TS1005: '>' expected.
+src/initSanjeevaniUI.ts(32,39): error TS1005: ',' expected.
+src/initSanjeevaniUI.ts(32,50): error TS1005: ',' expected.
+src/initSanjeevaniUI.ts(32,75): error TS1005: ',' expected.
+src/initSanjeevaniUI.ts(32,89): error TS1109: Expression expected.
+src/initSanjeevaniUI.ts(33,11): error TS1109: Expression expected.
+EXIT:2

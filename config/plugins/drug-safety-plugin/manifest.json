@@ -1,0 +1,241 @@
+{
+  "pluginId": "drug-safety-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Drug Safety Plugin",
+  "version": "1.0.0",
+  "description": "Drug interactions, contraindications, dose checking, renal/hepatic adjustment, allergy cross-check.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "medical-knowledge-gateway",
+      "pharmacy-plugin"
+    ],
+    "optional": [
+      "clinical-reasoning-plugin"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "drug-safety",
+      "type": "medical",
+      "endpoint": "/api/drug-safety",
+      "healthEndpoint": "/api/drug-safety/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "drug_safety_agent",
+      "name": "Drug Safety Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "interaction_specialist",
+      "name": "Interaction Specialist",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "drug_safety_agent"
+    },
+    {
+      "agentId": "dose_specialist",
+      "name": "Dose Specialist",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "drug_safety_agent"
+    },
+    {
+      "agentId": "contraindication_specialist",
+      "name": "Contraindication Specialist",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "drug_safety_agent"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "check_interaction",
+      "name": "Check Interaction",
+      "description": "Drug interaction check",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drugs": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_contraindication",
+      "name": "Check Contraindication",
+      "description": "Contraindication screen",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "calculate_dose",
+      "name": "Calculate Dose",
+      "description": "Dose calculation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_allergy",
+      "name": "Check Allergy",
+      "description": "Allergy cross-check",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "adjust_renal_hepatic",
+      "name": "Adjust Renal/Hepatic Dose",
+      "description": "Renal/hepatic adjustment",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "drug": {
+            "type": "string"
+          },
+          "egfr": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "rxnorm",
+      "type": "external",
+      "accessScope": "public",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:clinical_reasoning"
+      ]
+    },
+    {
+      "role": "PHARMACIST",
+      "claims": [
+        "pharmacy:dispense"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "DrugSafetyPanel",
+        "slot": "pharmacy-safety"
+      }
+    ],
+    "icons": [
+      "shield-alert",
+      "pill"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "safety.interaction.found"
+    ],
+    "subscribes": [
+      "pharmacy.dispensed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Drug DB",
+      "endpoint": "knowledge-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Interaction Engine",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Allergy Cross-Reference",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "strictMode": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:drug-safety-plugin-1.0.0"
+}

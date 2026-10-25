@@ -1,0 +1,158 @@
+{
+  "pluginId": "browser-ai-addon",
+  "tier": "P4",
+  "category": "ADDON",
+  "name": "Browser AI Addon",
+  "version": "1.0.0",
+  "description": "In-browser lightweight AI client: local recall over recent commands, quick patient lookup, and a read-only command center skin for ward terminals and doctors' mobile browsers.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "browser",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "browser-ai",
+      "type": "browser-client",
+      "endpoint": "/browser-ai",
+      "healthEndpoint": "/api/browser-ai/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "browser_ai_client_agent",
+      "name": "Browser AI Client Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "browser_ai_quick_lookup_agent",
+      "name": "Browser AI Quick Lookup Agent",
+      "level": "EXECUTOR",
+      "autoRegister": true,
+      "parentAgent": "browser_ai_client_agent"
+    },
+    {
+      "agentId": "browser_use_agent",
+      "name": "Browser Use Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "browser_recent_recall",
+      "name": "Browser Recent Recall",
+      "description": "Return recent commands/notes from the local browser cache for the signed-in role",
+      "inputSchema": {
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "browser_quick_patient_lookup",
+      "name": "Browser Quick Patient Lookup",
+      "description": "Indexed patient lookup (UHID/name) rendered for small screens",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "NURSE",
+      "claims": [
+        "browser:read"
+      ]
+    },
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "browser:read"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "browser:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/browser-ai",
+        "component": "BrowserAICommandCenter",
+        "navigation": true,
+        "permission": "browser:read"
+      }
+    ],
+    "components": [
+      {
+        "name": "BrowserAICommandCenter",
+        "slot": "route"
+      }
+    ],
+    "icons": [
+      "globe",
+      "smartphone"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [],
+    "subscribes": [
+      "command.completed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Browser Bundle",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "cacheRecentCommands": {
+        "type": "boolean",
+        "default": true
+      },
+      "recallWindowDays": {
+        "type": "number",
+        "default": 7
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "LOW",
+  "checksum": "sha256:browser-ai-addon-1.0.0",
+  "notes": "Read-only by design; no browser-side writes to hospital state."
+}

@@ -1,0 +1,3726 @@
+[
+  {
+    "name": "Incus.l",
+    "parent": null,
+    "centre": [
+      0.0471,
+      1.5827,
+      -0.0072
+    ],
+    "size": [
+      0.0042,
+      0.0062,
+      0.0049
+    ]
+  },
+  {
+    "name": "Incus.r",
+    "parent": null,
+    "centre": [
+      -0.0471,
+      1.5827,
+      -0.0072
+    ],
+    "size": [
+      0.0042,
+      0.0062,
+      0.0049
+    ]
+  },
+  {
+    "name": "Malleus.l",
+    "parent": null,
+    "centre": [
+      0.0482,
+      1.5821,
+      -0.0039
+    ],
+    "size": [
+      0.0036,
+      0.0082,
+      0.0029
+    ]
+  },
+  {
+    "name": "Malleus.r",
+    "parent": null,
+    "centre": [
+      -0.0482,
+      1.5821,
+      -0.0039
+    ],
+    "size": [
+      0.0036,
+      0.0082,
+      0.0029
+    ]
+  },
+  {
+    "name": "Stapes.l",
+    "parent": null,
+    "centre": [
+      0.043,
+      1.581,
+      -0.0044
+    ],
+    "size": [
+      0.0041,
+      0.0024,
+      0.0031
+    ]
+  },
+  {
+    "name": "Stapes.r",
+    "parent": null,
+    "centre": [
+      -0.043,
+      1.581,
+      -0.0044
+    ],
+    "size": [
+      0.0041,
+      0.0024,
+      0.0031
+    ]
+  },
+  {
+    "name": "Fifth metatarsal bone.l",
+    "parent": null,
+    "centre": [
+      0.1194,
+      0.0255,
+      0.0228
+    ],
+    "size": [
+      0.037,
+      0.0312,
+      0.0737
+    ]
+  },
+  {
+    "name": "Fifth metatarsal bone.r",
+    "parent": null,
+    "centre": [
+      -0.1194,
+      0.0255,
+      0.0228
+    ],
+    "size": [
+      0.037,
+      0.0312,
+      0.0737
+    ]
+  },
+  {
+    "name": "First metatarsal bone.l",
+    "parent": null,
+    "centre": [
+      0.0712,
+      0.0371,
+      0.0526
+    ],
+    "size": [
+      0.0218,
+      0.0449,
+      0.0636
+    ]
+  },
+  {
+    "name": "First metatarsal bone.r",
+    "parent": null,
+    "centre": [
+      -0.0712,
+      0.0371,
+      0.0526
+    ],
+    "size": [
+      0.0218,
+      0.0449,
+      0.0636
+    ]
+  },
+  {
+    "name": "Fourth metatarsal bone.l",
+    "parent": null,
+    "centre": [
+      0.1093,
+      0.0309,
+      0.0379
+    ],
+    "size": [
+      0.0299,
+      0.037,
+      0.0685
+    ]
+  },
+  {
+    "name": "Fourth metatarsal bone.r",
+    "parent": null,
+    "centre": [
+      -0.1093,
+      0.0309,
+      0.0379
+    ],
+    "size": [
+      0.0299,
+      0.037,
+      0.0685
+    ]
+  },
+  {
+    "name": "Second metatarsal bone.r",
+    "parent": null,
+    "centre": [
+      -0.0894,
+      0.0385,
+      0.0499
+    ],
+    "size": [
+      0.0174,
+      0.0499,
+      0.0705
+    ]
+  },
+  {
+    "name": "Second metatarsal bone.l",
+    "parent": null,
+    "centre": [
+      0.0894,
+      0.0385,
+      0.0499
+    ],
+    "size": [
+      0.0174,
+      0.0499,
+      0.0705
+    ]
+  },
+  {
+    "name": "Third metatarsal bone.l",
+    "parent": null,
+    "centre": [
+      0.1007,
+      0.0356,
+      0.0474
+    ],
+    "size": [
+      0.0231,
+      0.0444,
+      0.0678
+    ]
+  },
+  {
+    "name": "Third metatarsal bone.r",
+    "parent": null,
+    "centre": [
+      -0.1007,
+      0.0356,
+      0.0474
+    ],
+    "size": [
+      0.0231,
+      0.0444,
+      0.0678
+    ]
+  },
+  {
+    "name": "Sesamoid bones of foot.r",
+    "parent": null,
+    "centre": [
+      -0.0717,
+      0.0146,
+      0.0705
+    ],
+    "size": [
+      0.0174,
+      0.008,
+      0.0136
+    ]
+  },
+  {
+    "name": "Distal phalanx of fifth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1425,
+      0.012,
+      0.091
+    ],
+    "size": [
+      0.0079,
+      0.0056,
+      0.0109
+    ]
+  },
+  {
+    "name": "Distal phalanx of fifth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1425,
+      0.012,
+      0.091
+    ],
+    "size": [
+      0.0079,
+      0.0056,
+      0.0109
+    ]
+  },
+  {
+    "name": "Distal phalanx of first finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.0801,
+      0.0157,
+      0.1212
+    ],
+    "size": [
+      0.0207,
+      0.0115,
+      0.0269
+    ]
+  },
+  {
+    "name": "Distal phalanx of first finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.0801,
+      0.0157,
+      0.1212
+    ],
+    "size": [
+      0.0207,
+      0.0115,
+      0.0269
+    ]
+  },
+  {
+    "name": "Distal phalanx of fourth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1322,
+      0.0129,
+      0.1096
+    ],
+    "size": [
+      0.0088,
+      0.0073,
+      0.0117
+    ]
+  },
+  {
+    "name": "Distal phalanx of fourth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1322,
+      0.0129,
+      0.1096
+    ],
+    "size": [
+      0.0088,
+      0.0073,
+      0.0117
+    ]
+  },
+  {
+    "name": "Distal phalanx of second finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1038,
+      0.0133,
+      0.1305
+    ],
+    "size": [
+      0.0102,
+      0.0076,
+      0.0137
+    ]
+  },
+  {
+    "name": "Distal phalanx of second finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1038,
+      0.0133,
+      0.1305
+    ],
+    "size": [
+      0.0102,
+      0.0076,
+      0.0137
+    ]
+  },
+  {
+    "name": "Distal phalanx of third finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1188,
+      0.0126,
+      0.1243
+    ],
+    "size": [
+      0.0088,
+      0.0062,
+      0.012
+    ]
+  },
+  {
+    "name": "Distal phalanx of third finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1188,
+      0.0126,
+      0.1243
+    ],
+    "size": [
+      0.0088,
+      0.0062,
+      0.012
+    ]
+  },
+  {
+    "name": "Middle phalanx of fifth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1411,
+      0.0129,
+      0.0837
+    ],
+    "size": [
+      0.0086,
+      0.0066,
+      0.0078
+    ]
+  },
+  {
+    "name": "Middle phalanx of fifth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1411,
+      0.0129,
+      0.0837
+    ],
+    "size": [
+      0.0086,
+      0.0066,
+      0.0078
+    ]
+  },
+  {
+    "name": "Middle phalanx of fourth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1299,
+      0.014,
+      0.0993
+    ],
+    "size": [
+      0.0111,
+      0.0083,
+      0.0141
+    ]
+  },
+  {
+    "name": "Middle phalanx of fourth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1299,
+      0.014,
+      0.0993
+    ],
+    "size": [
+      0.0111,
+      0.0083,
+      0.0141
+    ]
+  },
+  {
+    "name": "Middle phalanx of second finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.101,
+      0.0164,
+      0.1178
+    ],
+    "size": [
+      0.0123,
+      0.0091,
+      0.0176
+    ]
+  },
+  {
+    "name": "Middle phalanx of second finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.101,
+      0.0164,
+      0.1178
+    ],
+    "size": [
+      0.0123,
+      0.0091,
+      0.0176
+    ]
+  },
+  {
+    "name": "Middle phalanx of third finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1161,
+      0.0151,
+      0.1121
+    ],
+    "size": [
+      0.0111,
+      0.0083,
+      0.0174
+    ]
+  },
+  {
+    "name": "Middle phalanx of third finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1161,
+      0.0151,
+      0.1121
+    ],
+    "size": [
+      0.0111,
+      0.0083,
+      0.0174
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fifth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1355,
+      0.0149,
+      0.0684
+    ],
+    "size": [
+      0.0183,
+      0.0104,
+      0.0268
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fifth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1355,
+      0.0149,
+      0.0684
+    ],
+    "size": [
+      0.0183,
+      0.0104,
+      0.0268
+    ]
+  },
+  {
+    "name": "Proximal phalanx of first finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.074,
+      0.0202,
+      0.0972
+    ],
+    "size": [
+      0.0261,
+      0.0177,
+      0.0345
+    ]
+  },
+  {
+    "name": "Proximal phalanx of first finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.074,
+      0.0202,
+      0.0972
+    ],
+    "size": [
+      0.0261,
+      0.0177,
+      0.0345
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fourth finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1232,
+      0.0168,
+      0.0815
+    ],
+    "size": [
+      0.0181,
+      0.0138,
+      0.026
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fourth finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1232,
+      0.0168,
+      0.0815
+    ],
+    "size": [
+      0.0181,
+      0.0138,
+      0.026
+    ]
+  },
+  {
+    "name": "Proximal phalanx of second finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.0955,
+      0.0195,
+      0.0971
+    ],
+    "size": [
+      0.0179,
+      0.013,
+      0.0294
+    ]
+  },
+  {
+    "name": "Proximal phalanx of second finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.0955,
+      0.0195,
+      0.0971
+    ],
+    "size": [
+      0.0179,
+      0.013,
+      0.0294
+    ]
+  },
+  {
+    "name": "Proximal phalanx of third finger of foot.l",
+    "parent": null,
+    "centre": [
+      0.1106,
+      0.0181,
+      0.0912
+    ],
+    "size": [
+      0.0164,
+      0.012,
+      0.0302
+    ]
+  },
+  {
+    "name": "Proximal phalanx of third finger of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1106,
+      0.0181,
+      0.0912
+    ],
+    "size": [
+      0.0164,
+      0.012,
+      0.0302
+    ]
+  },
+  {
+    "name": "Sesamoid bones of foot.l",
+    "parent": null,
+    "centre": [
+      0.0717,
+      0.0146,
+      0.0705
+    ],
+    "size": [
+      0.0174,
+      0.008,
+      0.0136
+    ]
+  },
+  {
+    "name": "Calcaneus.l",
+    "parent": null,
+    "centre": [
+      0.0785,
+      0.037,
+      -0.0537
+    ],
+    "size": [
+      0.0477,
+      0.0514,
+      0.0757
+    ]
+  },
+  {
+    "name": "Calcaneus.r",
+    "parent": null,
+    "centre": [
+      -0.0785,
+      0.037,
+      -0.0537
+    ],
+    "size": [
+      0.0477,
+      0.0514,
+      0.0757
+    ]
+  },
+  {
+    "name": "Cuboid bone.l",
+    "parent": null,
+    "centre": [
+      0.0956,
+      0.0443,
+      -0.0064
+    ],
+    "size": [
+      0.0322,
+      0.0309,
+      0.0342
+    ]
+  },
+  {
+    "name": "Cuboid bone.r",
+    "parent": null,
+    "centre": [
+      -0.0956,
+      0.0443,
+      -0.0064
+    ],
+    "size": [
+      0.0322,
+      0.0309,
+      0.0342
+    ]
+  },
+  {
+    "name": "Intermediate cuneiform bone.l",
+    "parent": null,
+    "centre": [
+      0.0836,
+      0.0587,
+      0.0113
+    ],
+    "size": [
+      0.0195,
+      0.024,
+      0.023
+    ]
+  },
+  {
+    "name": "Intermediate cuneiform bone.r",
+    "parent": null,
+    "centre": [
+      -0.0836,
+      0.0587,
+      0.0113
+    ],
+    "size": [
+      0.0195,
+      0.024,
+      0.023
+    ]
+  },
+  {
+    "name": "Lateral cuneiform bone.l",
+    "parent": null,
+    "centre": [
+      0.0934,
+      0.0537,
+      0.007
+    ],
+    "size": [
+      0.0242,
+      0.0269,
+      0.0265
+    ]
+  },
+  {
+    "name": "Lateral cuneiform bone.r",
+    "parent": null,
+    "centre": [
+      -0.0934,
+      0.0537,
+      0.007
+    ],
+    "size": [
+      0.0242,
+      0.0269,
+      0.0265
+    ]
+  },
+  {
+    "name": "Medial cuneiform bone.l",
+    "parent": null,
+    "centre": [
+      0.0706,
+      0.0516,
+      0.0155
+    ],
+    "size": [
+      0.0251,
+      0.0323,
+      0.033
+    ]
+  },
+  {
+    "name": "Medial cuneiform bone.r",
+    "parent": null,
+    "centre": [
+      -0.0706,
+      0.0516,
+      0.0155
+    ],
+    "size": [
+      0.0251,
+      0.0323,
+      0.033
+    ]
+  },
+  {
+    "name": "Navicular bone.l",
+    "parent": null,
+    "centre": [
+      0.073,
+      0.0622,
+      -0.0031
+    ],
+    "size": [
+      0.0407,
+      0.0275,
+      0.024
+    ]
+  },
+  {
+    "name": "Navicular bone.r",
+    "parent": null,
+    "centre": [
+      -0.073,
+      0.0622,
+      -0.0031
+    ],
+    "size": [
+      0.0407,
+      0.0275,
+      0.024
+    ]
+  },
+  {
+    "name": "Talus.l",
+    "parent": null,
+    "centre": [
+      0.0747,
+      0.0677,
+      -0.0366
+    ],
+    "size": [
+      0.0421,
+      0.0356,
+      0.0591
+    ]
+  },
+  {
+    "name": "Talus.r",
+    "parent": null,
+    "centre": [
+      -0.0747,
+      0.0677,
+      -0.0366
+    ],
+    "size": [
+      0.0421,
+      0.0356,
+      0.0591
+    ]
+  },
+  {
+    "name": "Femur.l",
+    "parent": null,
+    "centre": [
+      0.0902,
+      0.6571,
+      -0.0203
+    ],
+    "size": [
+      0.1166,
+      0.4544,
+      0.0781
+    ]
+  },
+  {
+    "name": "Femur.r",
+    "parent": null,
+    "centre": [
+      -0.0902,
+      0.6571,
+      -0.0203
+    ],
+    "size": [
+      0.1166,
+      0.4544,
+      0.0781
+    ]
+  },
+  {
+    "name": "Fibula.l",
+    "parent": null,
+    "centre": [
+      0.1067,
+      0.2365,
+      -0.0432
+    ],
+    "size": [
+      0.0362,
+      0.3625,
+      0.0329
+    ]
+  },
+  {
+    "name": "Fibula.r",
+    "parent": null,
+    "centre": [
+      -0.1067,
+      0.2365,
+      -0.0432
+    ],
+    "size": [
+      0.0362,
+      0.3625,
+      0.0329
+    ]
+  },
+  {
+    "name": "Patella.l",
+    "parent": null,
+    "centre": [
+      0.0844,
+      0.4443,
+      0.0073
+    ],
+    "size": [
+      0.0434,
+      0.0411,
+      0.0228
+    ]
+  },
+  {
+    "name": "Patella.r",
+    "parent": null,
+    "centre": [
+      -0.0844,
+      0.4443,
+      0.0073
+    ],
+    "size": [
+      0.0434,
+      0.0411,
+      0.0228
+    ]
+  },
+  {
+    "name": "Tibia.l",
+    "parent": null,
+    "centre": [
+      0.0766,
+      0.2542,
+      -0.0289
+    ],
+    "size": [
+      0.0784,
+      0.358,
+      0.068
+    ]
+  },
+  {
+    "name": "Tibia.r",
+    "parent": null,
+    "centre": [
+      -0.0766,
+      0.2542,
+      -0.0289
+    ],
+    "size": [
+      0.0784,
+      0.358,
+      0.068
+    ]
+  },
+  {
+    "name": "Hip bone.l",
+    "parent": null,
+    "centre": [
+      0.0689,
+      0.9046,
+      -0.0154
+    ],
+    "size": [
+      0.132,
+      0.2146,
+      0.1429
+    ]
+  },
+  {
+    "name": "Hip bone.r",
+    "parent": null,
+    "centre": [
+      -0.0689,
+      0.9046,
+      -0.0154
+    ],
+    "size": [
+      0.132,
+      0.2146,
+      0.1429
+    ]
+  },
+  {
+    "name": "Capitate bone.l",
+    "parent": null,
+    "centre": [
+      0.2649,
+      0.8436,
+      0.018
+    ],
+    "size": [
+      0.0166,
+      0.0234,
+      0.018
+    ]
+  },
+  {
+    "name": "Capitate bone.r",
+    "parent": null,
+    "centre": [
+      -0.2649,
+      0.8436,
+      0.018
+    ],
+    "size": [
+      0.0166,
+      0.0234,
+      0.018
+    ]
+  },
+  {
+    "name": "Distal phalanx of fifth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2304,
+      0.7295,
+      0.0762
+    ],
+    "size": [
+      0.0086,
+      0.0131,
+      0.0148
+    ]
+  },
+  {
+    "name": "Distal phalanx of fifth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2304,
+      0.7295,
+      0.0762
+    ],
+    "size": [
+      0.0086,
+      0.0131,
+      0.0148
+    ]
+  },
+  {
+    "name": "Distal phalanx of first finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.3276,
+      0.7789,
+      0.0658
+    ],
+    "size": [
+      0.014,
+      0.0241,
+      0.0168
+    ]
+  },
+  {
+    "name": "Distal phalanx of first finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.3276,
+      0.7789,
+      0.0658
+    ],
+    "size": [
+      0.014,
+      0.0241,
+      0.0168
+    ]
+  },
+  {
+    "name": "Distal phalanx of fourth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2576,
+      0.7156,
+      0.0878
+    ],
+    "size": [
+      0.0086,
+      0.0096,
+      0.0162
+    ]
+  },
+  {
+    "name": "Distal phalanx of fourth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2576,
+      0.7156,
+      0.0878
+    ],
+    "size": [
+      0.0086,
+      0.0096,
+      0.0162
+    ]
+  },
+  {
+    "name": "Distal phalanx of second finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.3164,
+      0.7149,
+      0.0791
+    ],
+    "size": [
+      0.0104,
+      0.0143,
+      0.0176
+    ]
+  },
+  {
+    "name": "Distal phalanx of second finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.3164,
+      0.7149,
+      0.0791
+    ],
+    "size": [
+      0.0104,
+      0.0143,
+      0.0176
+    ]
+  },
+  {
+    "name": "Distal phalanx of third finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2852,
+      0.7056,
+      0.0881
+    ],
+    "size": [
+      0.0099,
+      0.0139,
+      0.0179
+    ]
+  },
+  {
+    "name": "Distal phalanx of third finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2852,
+      0.7056,
+      0.0881
+    ],
+    "size": [
+      0.0099,
+      0.0139,
+      0.0179
+    ]
+  },
+  {
+    "name": "Fifth metacarpal bone.l",
+    "parent": null,
+    "centre": [
+      0.243,
+      0.8086,
+      0.0317
+    ],
+    "size": [
+      0.0209,
+      0.057,
+      0.0255
+    ]
+  },
+  {
+    "name": "Fifth metacarpal bone.r",
+    "parent": null,
+    "centre": [
+      -0.243,
+      0.8086,
+      0.0317
+    ],
+    "size": [
+      0.0209,
+      0.057,
+      0.0255
+    ]
+  },
+  {
+    "name": "First metacarpal bone.l",
+    "parent": null,
+    "centre": [
+      0.3005,
+      0.8286,
+      0.0383
+    ],
+    "size": [
+      0.0387,
+      0.0384,
+      0.0315
+    ]
+  },
+  {
+    "name": "First metacarpal bone.r",
+    "parent": null,
+    "centre": [
+      -0.3005,
+      0.8286,
+      0.0383
+    ],
+    "size": [
+      0.0387,
+      0.0384,
+      0.0315
+    ]
+  },
+  {
+    "name": "Fourth metacarpal bone.l",
+    "parent": null,
+    "centre": [
+      0.2557,
+      0.8042,
+      0.0283
+    ],
+    "size": [
+      0.0131,
+      0.0621,
+      0.0271
+    ]
+  },
+  {
+    "name": "Fourth metacarpal bone.r",
+    "parent": null,
+    "centre": [
+      -0.2557,
+      0.8042,
+      0.0283
+    ],
+    "size": [
+      0.0131,
+      0.0621,
+      0.0271
+    ]
+  },
+  {
+    "name": "Hamate bone.l",
+    "parent": null,
+    "centre": [
+      0.2523,
+      0.841,
+      0.0218
+    ],
+    "size": [
+      0.0161,
+      0.0202,
+      0.0234
+    ]
+  },
+  {
+    "name": "Hamate bone.r",
+    "parent": null,
+    "centre": [
+      -0.2523,
+      0.841,
+      0.0218
+    ],
+    "size": [
+      0.0161,
+      0.0202,
+      0.0234
+    ]
+  },
+  {
+    "name": "Humerus.l",
+    "parent": null,
+    "centre": [
+      0.1967,
+      1.2458,
+      -0.0274
+    ],
+    "size": [
+      0.1042,
+      0.3176,
+      0.0524
+    ]
+  },
+  {
+    "name": "Humerus.r",
+    "parent": null,
+    "centre": [
+      -0.1967,
+      1.2458,
+      -0.0274
+    ],
+    "size": [
+      0.1042,
+      0.3176,
+      0.0524
+    ]
+  },
+  {
+    "name": "Lunate bone.l",
+    "parent": null,
+    "centre": [
+      0.2526,
+      0.8542,
+      0.0178
+    ],
+    "size": [
+      0.0173,
+      0.0132,
+      0.0172
+    ]
+  },
+  {
+    "name": "Lunate bone.r",
+    "parent": null,
+    "centre": [
+      -0.2526,
+      0.8542,
+      0.0178
+    ],
+    "size": [
+      0.0173,
+      0.0132,
+      0.0172
+    ]
+  },
+  {
+    "name": "Middle phalanx of fifth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2321,
+      0.7444,
+      0.0636
+    ],
+    "size": [
+      0.0121,
+      0.0205,
+      0.0173
+    ]
+  },
+  {
+    "name": "Middle phalanx of fifth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2321,
+      0.7444,
+      0.0636
+    ],
+    "size": [
+      0.0121,
+      0.0205,
+      0.0173
+    ]
+  },
+  {
+    "name": "Middle phalanx of fourth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2568,
+      0.7283,
+      0.0692
+    ],
+    "size": [
+      0.0126,
+      0.0248,
+      0.0251
+    ]
+  },
+  {
+    "name": "Middle phalanx of fourth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2568,
+      0.7283,
+      0.0692
+    ],
+    "size": [
+      0.0126,
+      0.0248,
+      0.0251
+    ]
+  },
+  {
+    "name": "Middle phalanx of second finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.3116,
+      0.7277,
+      0.062
+    ],
+    "size": [
+      0.0151,
+      0.0213,
+      0.0216
+    ]
+  },
+  {
+    "name": "Middle phalanx of second finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.3116,
+      0.7277,
+      0.062
+    ],
+    "size": [
+      0.0151,
+      0.0213,
+      0.0216
+    ]
+  },
+  {
+    "name": "Middle phalanx of third finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2824,
+      0.7214,
+      0.0699
+    ],
+    "size": [
+      0.0142,
+      0.0263,
+      0.0238
+    ]
+  },
+  {
+    "name": "Middle phalanx of third finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2824,
+      0.7214,
+      0.0699
+    ],
+    "size": [
+      0.0142,
+      0.0263,
+      0.0238
+    ]
+  },
+  {
+    "name": "Pisiform bone.l",
+    "parent": null,
+    "centre": [
+      0.2438,
+      0.8458,
+      0.0319
+    ],
+    "size": [
+      0.0087,
+      0.0122,
+      0.0108
+    ]
+  },
+  {
+    "name": "Pisiform bone.r",
+    "parent": null,
+    "centre": [
+      -0.2438,
+      0.8458,
+      0.0319
+    ],
+    "size": [
+      0.0087,
+      0.0122,
+      0.0108
+    ]
+  },
+  {
+    "name": "Scaphoid bone.r",
+    "parent": null,
+    "centre": [
+      -0.2698,
+      0.8546,
+      0.0181
+    ],
+    "size": [
+      0.0246,
+      0.0162,
+      0.0159
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fifth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2368,
+      0.7674,
+      0.049
+    ],
+    "size": [
+      0.0148,
+      0.0338,
+      0.0216
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fifth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2368,
+      0.7674,
+      0.049
+    ],
+    "size": [
+      0.0148,
+      0.0338,
+      0.0216
+    ]
+  },
+  {
+    "name": "Proximal phalanx of first finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.3188,
+      0.8002,
+      0.0539
+    ],
+    "size": [
+      0.0209,
+      0.0325,
+      0.023
+    ]
+  },
+  {
+    "name": "Proximal phalanx of first finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.3188,
+      0.8002,
+      0.0539
+    ],
+    "size": [
+      0.0209,
+      0.0325,
+      0.023
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fourth finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2552,
+      0.7569,
+      0.0487
+    ],
+    "size": [
+      0.0139,
+      0.0404,
+      0.0273
+    ]
+  },
+  {
+    "name": "Proximal phalanx of fourth finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2552,
+      0.7569,
+      0.0487
+    ],
+    "size": [
+      0.0139,
+      0.0404,
+      0.0273
+    ]
+  },
+  {
+    "name": "Proximal phalanx of second finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.3013,
+      0.7518,
+      0.0453
+    ],
+    "size": [
+      0.0227,
+      0.0389,
+      0.0237
+    ]
+  },
+  {
+    "name": "Proximal phalanx of second finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.3013,
+      0.7518,
+      0.0453
+    ],
+    "size": [
+      0.0227,
+      0.0389,
+      0.0237
+    ]
+  },
+  {
+    "name": "Proximal phalanx of third finger of hand.l",
+    "parent": null,
+    "centre": [
+      0.2771,
+      0.7519,
+      0.0497
+    ],
+    "size": [
+      0.019,
+      0.0421,
+      0.0302
+    ]
+  },
+  {
+    "name": "Proximal phalanx of third finger of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2771,
+      0.7519,
+      0.0497
+    ],
+    "size": [
+      0.019,
+      0.0421,
+      0.0302
+    ]
+  },
+  {
+    "name": "Radius.l",
+    "parent": null,
+    "centre": [
+      0.2578,
+      0.9748,
+      -0.0076
+    ],
+    "size": [
+      0.0618,
+      0.237,
+      0.0687
+    ]
+  },
+  {
+    "name": "Radius.r",
+    "parent": null,
+    "centre": [
+      -0.2578,
+      0.9748,
+      -0.0076
+    ],
+    "size": [
+      0.0618,
+      0.237,
+      0.0687
+    ]
+  },
+  {
+    "name": "Scaphoid bone.l",
+    "parent": null,
+    "centre": [
+      0.2698,
+      0.8546,
+      0.0181
+    ],
+    "size": [
+      0.0246,
+      0.0162,
+      0.0159
+    ]
+  },
+  {
+    "name": "Second metacarpal bone.l",
+    "parent": null,
+    "centre": [
+      0.2863,
+      0.8018,
+      0.0293
+    ],
+    "size": [
+      0.0321,
+      0.0705,
+      0.0267
+    ]
+  },
+  {
+    "name": "Second metacarpal bone.r",
+    "parent": null,
+    "centre": [
+      -0.2863,
+      0.8018,
+      0.0293
+    ],
+    "size": [
+      0.0321,
+      0.0705,
+      0.0267
+    ]
+  },
+  {
+    "name": "Third metacarpal bone.l",
+    "parent": null,
+    "centre": [
+      0.271,
+      0.8019,
+      0.0269
+    ],
+    "size": [
+      0.0208,
+      0.0667,
+      0.0317
+    ]
+  },
+  {
+    "name": "Third metacarpal bone.r",
+    "parent": null,
+    "centre": [
+      -0.271,
+      0.8019,
+      0.0269
+    ],
+    "size": [
+      0.0208,
+      0.0667,
+      0.0317
+    ]
+  },
+  {
+    "name": "Trapezium bone.l",
+    "parent": null,
+    "centre": [
+      0.2822,
+      0.8461,
+      0.0254
+    ],
+    "size": [
+      0.0177,
+      0.0208,
+      0.0175
+    ]
+  },
+  {
+    "name": "Trapezium bone.r",
+    "parent": null,
+    "centre": [
+      -0.2822,
+      0.8461,
+      0.0254
+    ],
+    "size": [
+      0.0177,
+      0.0208,
+      0.0175
+    ]
+  },
+  {
+    "name": "Trapezoid bone.l",
+    "parent": null,
+    "centre": [
+      0.2765,
+      0.8391,
+      0.02
+    ],
+    "size": [
+      0.0117,
+      0.0131,
+      0.0155
+    ]
+  },
+  {
+    "name": "Trapezoid bone.r",
+    "parent": null,
+    "centre": [
+      -0.2765,
+      0.8391,
+      0.02
+    ],
+    "size": [
+      0.0117,
+      0.0131,
+      0.0155
+    ]
+  },
+  {
+    "name": "Triquetrum bone.l",
+    "parent": null,
+    "centre": [
+      0.2452,
+      0.846,
+      0.0214
+    ],
+    "size": [
+      0.0111,
+      0.0143,
+      0.0159
+    ]
+  },
+  {
+    "name": "Triquetrum bone.r",
+    "parent": null,
+    "centre": [
+      -0.2452,
+      0.846,
+      0.0214
+    ],
+    "size": [
+      0.0111,
+      0.0143,
+      0.0159
+    ]
+  },
+  {
+    "name": "Ulna.l",
+    "parent": null,
+    "centre": [
+      0.2294,
+      0.9833,
+      -0.0188
+    ],
+    "size": [
+      0.0524,
+      0.2554,
+      0.0832
+    ]
+  },
+  {
+    "name": "Ulna.r",
+    "parent": null,
+    "centre": [
+      -0.2294,
+      0.9833,
+      -0.0188
+    ],
+    "size": [
+      0.0524,
+      0.2554,
+      0.0832
+    ]
+  },
+  {
+    "name": "Clavicle.l",
+    "parent": null,
+    "centre": [
+      0.0828,
+      1.4072,
+      -0.0009
+    ],
+    "size": [
+      0.1431,
+      0.0361,
+      0.1028
+    ]
+  },
+  {
+    "name": "Clavicle.r",
+    "parent": null,
+    "centre": [
+      -0.0828,
+      1.4072,
+      -0.0009
+    ],
+    "size": [
+      0.1431,
+      0.0361,
+      0.1028
+    ]
+  },
+  {
+    "name": "Scapula.l",
+    "parent": null,
+    "centre": [
+      0.1171,
+      1.3361,
+      -0.0558
+    ],
+    "size": [
+      0.113,
+      0.1636,
+      0.1141
+    ]
+  },
+  {
+    "name": "Scapula.r",
+    "parent": null,
+    "centre": [
+      -0.1171,
+      1.3361,
+      -0.0558
+    ],
+    "size": [
+      0.113,
+      0.1636,
+      0.1141
+    ]
+  },
+  {
+    "name": "Anterior cells of ethmoid bone.l",
+    "parent": "Ethmoid bone",
+    "centre": [
+      0.0091,
+      1.5882,
+      0.0588
+    ],
+    "size": [
+      0.0081,
+      0.0156,
+      0.008
+    ]
+  },
+  {
+    "name": "Anterior cells of ethmoid bone.r",
+    "parent": "Ethmoid bone",
+    "centre": [
+      -0.0091,
+      1.5882,
+      0.0588
+    ],
+    "size": [
+      0.0081,
+      0.0156,
+      0.008
+    ]
+  },
+  {
+    "name": "Middle cells of ethmoid bone.l",
+    "parent": "Ethmoid bone",
+    "centre": [
+      0.0098,
+      1.5877,
+      0.0516
+    ],
+    "size": [
+      0.0095,
+      0.0141,
+      0.0089
+    ]
+  },
+  {
+    "name": "Middle cells of ethmoid bone.r",
+    "parent": "Ethmoid bone",
+    "centre": [
+      -0.0098,
+      1.5877,
+      0.0516
+    ],
+    "size": [
+      0.0095,
+      0.0141,
+      0.0089
+    ]
+  },
+  {
+    "name": "Posterior cells of ethmoid bone.l",
+    "parent": "Ethmoid bone",
+    "centre": [
+      0.009,
+      1.5885,
+      0.0444
+    ],
+    "size": [
+      0.0125,
+      0.0164,
+      0.0119
+    ]
+  },
+  {
+    "name": "Posterior cells of ethmoid bone.r",
+    "parent": "Ethmoid bone",
+    "centre": [
+      -0.009,
+      1.5885,
+      0.0444
+    ],
+    "size": [
+      0.0125,
+      0.0164,
+      0.0119
+    ]
+  },
+  {
+    "name": "Ethmoid bone",
+    "parent": null,
+    "centre": [
+      0,
+      1.5856,
+      0.0537
+    ],
+    "size": [
+      0.0375,
+      0.0394,
+      0.0445
+    ]
+  },
+  {
+    "name": "Sinus of frontal bone",
+    "parent": "Frontal bone",
+    "centre": [
+      0,
+      1.617,
+      0.0802
+    ],
+    "size": [
+      0.0504,
+      0.0312,
+      0.0116
+    ]
+  },
+  {
+    "name": "Frontal bone",
+    "parent": null,
+    "centre": [
+      0,
+      1.6459,
+      0.0526
+    ],
+    "size": [
+      0.1224,
+      0.1066,
+      0.0691
+    ]
+  },
+  {
+    "name": "Inferior nasal concha bone.l",
+    "parent": null,
+    "centre": [
+      0.0097,
+      1.5634,
+      0.0581
+    ],
+    "size": [
+      0.0105,
+      0.0225,
+      0.0346
+    ]
+  },
+  {
+    "name": "Inferior nasal concha bone.r",
+    "parent": null,
+    "centre": [
+      -0.0097,
+      1.5634,
+      0.0581
+    ],
+    "size": [
+      0.0105,
+      0.0225,
+      0.0346
+    ]
+  },
+  {
+    "name": "Lacrimal bone.l",
+    "parent": null,
+    "centre": [
+      0.0118,
+      1.5857,
+      0.0689
+    ],
+    "size": [
+      0.0107,
+      0.0251,
+      0.0147
+    ]
+  },
+  {
+    "name": "Lacrimal bone.r",
+    "parent": null,
+    "centre": [
+      -0.0118,
+      1.5857,
+      0.0689
+    ],
+    "size": [
+      0.0107,
+      0.0251,
+      0.0147
+    ]
+  },
+  {
+    "name": "Maxilla.l",
+    "parent": null,
+    "centre": [
+      0.0229,
+      1.5713,
+      0.067
+    ],
+    "size": [
+      0.0462,
+      0.0678,
+      0.0538
+    ]
+  },
+  {
+    "name": "Maxilla.r",
+    "parent": null,
+    "centre": [
+      -0.0229,
+      1.5713,
+      0.067
+    ],
+    "size": [
+      0.0462,
+      0.0678,
+      0.0538
+    ]
+  },
+  {
+    "name": "Nasal bone.l",
+    "parent": null,
+    "centre": [
+      0.0042,
+      1.5894,
+      0.0898
+    ],
+    "size": [
+      0.0084,
+      0.0314,
+      0.0209
+    ]
+  },
+  {
+    "name": "Nasal bone.r",
+    "parent": null,
+    "centre": [
+      -0.0042,
+      1.5894,
+      0.0898
+    ],
+    "size": [
+      0.0084,
+      0.0314,
+      0.0209
+    ]
+  },
+  {
+    "name": "Occipital bone",
+    "parent": null,
+    "centre": [
+      0,
+      1.603,
+      -0.0455
+    ],
+    "size": [
+      0.1193,
+      0.1045,
+      0.1158
+    ]
+  },
+  {
+    "name": "Palatine bone.l",
+    "parent": null,
+    "centre": [
+      0.0139,
+      1.5641,
+      0.0424
+    ],
+    "size": [
+      0.0263,
+      0.0402,
+      0.0352
+    ]
+  },
+  {
+    "name": "Palatine bone.r",
+    "parent": null,
+    "centre": [
+      -0.0139,
+      1.5641,
+      0.0424
+    ],
+    "size": [
+      0.0263,
+      0.0402,
+      0.0352
+    ]
+  },
+  {
+    "name": "Parietal bone.l",
+    "parent": null,
+    "centre": [
+      0.0334,
+      1.6475,
+      -0.0289
+    ],
+    "size": [
+      0.0817,
+      0.1157,
+      0.1433
+    ]
+  },
+  {
+    "name": "Parietal bone.r",
+    "parent": null,
+    "centre": [
+      -0.0344,
+      1.6476,
+      -0.0306
+    ],
+    "size": [
+      0.08,
+      0.1156,
+      0.1394
+    ]
+  },
+  {
+    "name": "Sinus of sphenoid bone",
+    "parent": "Sphenoid bone",
+    "centre": [
+      0,
+      1.5941,
+      0.0309
+    ],
+    "size": [
+      0.0282,
+      0.0217,
+      0.0176
+    ]
+  },
+  {
+    "name": "Sphenoid bone",
+    "parent": null,
+    "centre": [
+      0,
+      1.5853,
+      0.0289
+    ],
+    "size": [
+      0.1088,
+      0.0699,
+      0.0532
+    ]
+  },
+  {
+    "name": "Temporal bone.l",
+    "parent": null,
+    "centre": [
+      0.041,
+      1.5859,
+      -0.0034
+    ],
+    "size": [
+      0.0628,
+      0.0744,
+      0.0963
+    ]
+  },
+  {
+    "name": "Temporal bone.r",
+    "parent": null,
+    "centre": [
+      -0.041,
+      1.5859,
+      -0.0034
+    ],
+    "size": [
+      0.0628,
+      0.0744,
+      0.0963
+    ]
+  },
+  {
+    "name": "Vomer",
+    "parent": null,
+    "centre": [
+      0,
+      1.5689,
+      0.0515
+    ],
+    "size": [
+      0.0102,
+      0.023,
+      0.0611
+    ]
+  },
+  {
+    "name": "Zygomatic bone.l",
+    "parent": null,
+    "centre": [
+      0.047,
+      1.5811,
+      0.0522
+    ],
+    "size": [
+      0.0307,
+      0.0547,
+      0.039
+    ]
+  },
+  {
+    "name": "Zygomatic bone.r",
+    "parent": null,
+    "centre": [
+      -0.047,
+      1.5811,
+      0.0522
+    ],
+    "size": [
+      0.0307,
+      0.0547,
+      0.039
+    ]
+  },
+  {
+    "name": "Hyoid bone",
+    "parent": null,
+    "centre": [
+      0,
+      1.5013,
+      0.021
+    ],
+    "size": [
+      0.0455,
+      0.0195,
+      0.036
+    ]
+  },
+  {
+    "name": "Mandible",
+    "parent": null,
+    "centre": [
+      0,
+      1.5375,
+      0.0428
+    ],
+    "size": [
+      0.1033,
+      0.0824,
+      0.0819
+    ]
+  },
+  {
+    "name": "Lower canine.l",
+    "parent": null,
+    "centre": [
+      0.0128,
+      1.5147,
+      0.0763
+    ],
+    "size": [
+      0.0077,
+      0.0262,
+      0.0152
+    ]
+  },
+  {
+    "name": "Lower canine.r",
+    "parent": null,
+    "centre": [
+      -0.0128,
+      1.5147,
+      0.0763
+    ],
+    "size": [
+      0.0077,
+      0.0262,
+      0.0152
+    ]
+  },
+  {
+    "name": "Lower lateral incisor.l",
+    "parent": null,
+    "centre": [
+      0.0081,
+      1.5152,
+      0.0796
+    ],
+    "size": [
+      0.0077,
+      0.0245,
+      0.0164
+    ]
+  },
+  {
+    "name": "Lower lateral incisor.r",
+    "parent": null,
+    "centre": [
+      -0.0081,
+      1.5152,
+      0.0796
+    ],
+    "size": [
+      0.0077,
+      0.0245,
+      0.0164
+    ]
+  },
+  {
+    "name": "Lower medial incisor.r",
+    "parent": null,
+    "centre": [
+      -0.0032,
+      1.5151,
+      0.0796
+    ],
+    "size": [
+      0.0061,
+      0.0247,
+      0.0179
+    ]
+  },
+  {
+    "name": "Lower medial incisor.l",
+    "parent": null,
+    "centre": [
+      0.0032,
+      1.5151,
+      0.0796
+    ],
+    "size": [
+      0.0061,
+      0.0247,
+      0.0179
+    ]
+  },
+  {
+    "name": "Upper canine.l",
+    "parent": null,
+    "centre": [
+      0.0171,
+      1.5424,
+      0.0814
+    ],
+    "size": [
+      0.0091,
+      0.0306,
+      0.0091
+    ]
+  },
+  {
+    "name": "Upper canine.r",
+    "parent": null,
+    "centre": [
+      -0.0171,
+      1.5424,
+      0.0814
+    ],
+    "size": [
+      0.0091,
+      0.0306,
+      0.0091
+    ]
+  },
+  {
+    "name": "Upper lateral incisor.l",
+    "parent": null,
+    "centre": [
+      0.0112,
+      1.5397,
+      0.0846
+    ],
+    "size": [
+      0.0094,
+      0.0282,
+      0.011
+    ]
+  },
+  {
+    "name": "Upper lateral incisor.r",
+    "parent": null,
+    "centre": [
+      -0.0112,
+      1.5397,
+      0.0846
+    ],
+    "size": [
+      0.0094,
+      0.0282,
+      0.011
+    ]
+  },
+  {
+    "name": "Upper medial incisor.l",
+    "parent": null,
+    "centre": [
+      0.0045,
+      1.5392,
+      0.0869
+    ],
+    "size": [
+      0.0088,
+      0.0258,
+      0.0126
+    ]
+  },
+  {
+    "name": "Upper medial incisor.r",
+    "parent": null,
+    "centre": [
+      -0.0045,
+      1.5392,
+      0.0869
+    ],
+    "size": [
+      0.0088,
+      0.0258,
+      0.0126
+    ]
+  },
+  {
+    "name": "Lower first molar tooth.l",
+    "parent": null,
+    "centre": [
+      0.0228,
+      1.5231,
+      0.0573
+    ],
+    "size": [
+      0.0121,
+      0.0192,
+      0.0148
+    ]
+  },
+  {
+    "name": "Lower first molar tooth.r",
+    "parent": null,
+    "centre": [
+      -0.0228,
+      1.5231,
+      0.0573
+    ],
+    "size": [
+      0.0121,
+      0.0192,
+      0.0148
+    ]
+  },
+  {
+    "name": "Lower first premolar.l",
+    "parent": null,
+    "centre": [
+      0.0169,
+      1.5175,
+      0.0709
+    ],
+    "size": [
+      0.0078,
+      0.022,
+      0.0138
+    ]
+  },
+  {
+    "name": "Lower first premolar.r",
+    "parent": null,
+    "centre": [
+      -0.0169,
+      1.5175,
+      0.0709
+    ],
+    "size": [
+      0.0078,
+      0.022,
+      0.0138
+    ]
+  },
+  {
+    "name": "Lower second molar tooth.l",
+    "parent": null,
+    "centre": [
+      0.0262,
+      1.5277,
+      0.0457
+    ],
+    "size": [
+      0.0118,
+      0.0182,
+      0.0161
+    ]
+  },
+  {
+    "name": "Lower second molar tooth.r",
+    "parent": null,
+    "centre": [
+      -0.0262,
+      1.5277,
+      0.0457
+    ],
+    "size": [
+      0.0118,
+      0.0182,
+      0.0161
+    ]
+  },
+  {
+    "name": "Lower second premolar.l",
+    "parent": null,
+    "centre": [
+      0.0199,
+      1.5184,
+      0.0646
+    ],
+    "size": [
+      0.008,
+      0.0228,
+      0.013
+    ]
+  },
+  {
+    "name": "Lower second premolar.r",
+    "parent": null,
+    "centre": [
+      -0.0199,
+      1.5184,
+      0.0646
+    ],
+    "size": [
+      0.008,
+      0.0228,
+      0.013
+    ]
+  },
+  {
+    "name": "Upper first molar tooth.l",
+    "parent": null,
+    "centre": [
+      0.0242,
+      1.5437,
+      0.0591
+    ],
+    "size": [
+      0.0113,
+      0.024,
+      0.0113
+    ]
+  },
+  {
+    "name": "Upper first molar tooth.r",
+    "parent": null,
+    "centre": [
+      -0.0242,
+      1.5437,
+      0.0591
+    ],
+    "size": [
+      0.0113,
+      0.024,
+      0.0113
+    ]
+  },
+  {
+    "name": "Upper first premolar.l",
+    "parent": null,
+    "centre": [
+      0.0201,
+      1.5426,
+      0.0738
+    ],
+    "size": [
+      0.0093,
+      0.0277,
+      0.0079
+    ]
+  },
+  {
+    "name": "Upper first premolar.r",
+    "parent": null,
+    "centre": [
+      -0.0201,
+      1.5426,
+      0.0738
+    ],
+    "size": [
+      0.0093,
+      0.0277,
+      0.0079
+    ]
+  },
+  {
+    "name": "Upper second molar tooth.l",
+    "parent": null,
+    "centre": [
+      0.0237,
+      1.5463,
+      0.0507
+    ],
+    "size": [
+      0.0116,
+      0.0221,
+      0.0096
+    ]
+  },
+  {
+    "name": "Upper second molar tooth.r",
+    "parent": null,
+    "centre": [
+      -0.0237,
+      1.5463,
+      0.0507
+    ],
+    "size": [
+      0.0116,
+      0.0221,
+      0.0096
+    ]
+  },
+  {
+    "name": "Upper second premolar.l",
+    "parent": null,
+    "centre": [
+      0.0231,
+      1.5423,
+      0.0678
+    ],
+    "size": [
+      0.0091,
+      0.0253,
+      0.0074
+    ]
+  },
+  {
+    "name": "Upper second premolar.r",
+    "parent": null,
+    "centre": [
+      -0.0231,
+      1.5423,
+      0.0678
+    ],
+    "size": [
+      0.0091,
+      0.0253,
+      0.0074
+    ]
+  },
+  {
+    "name": "Eighth rib.l",
+    "parent": null,
+    "centre": [
+      0.0763,
+      1.2111,
+      -0.0147
+    ],
+    "size": [
+      0.1179,
+      0.1515,
+      0.1634
+    ]
+  },
+  {
+    "name": "Eighth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0763,
+      1.2111,
+      -0.0147
+    ],
+    "size": [
+      0.1179,
+      0.1515,
+      0.1634
+    ]
+  },
+  {
+    "name": "Eleventh rib.l",
+    "parent": null,
+    "centre": [
+      0.0698,
+      1.1251,
+      -0.0377
+    ],
+    "size": [
+      0.0998,
+      0.132,
+      0.0812
+    ]
+  },
+  {
+    "name": "Eleventh rib.r",
+    "parent": null,
+    "centre": [
+      -0.0698,
+      1.1251,
+      -0.0377
+    ],
+    "size": [
+      0.0998,
+      0.132,
+      0.0812
+    ]
+  },
+  {
+    "name": "Twelfth rib.l",
+    "parent": null,
+    "centre": [
+      0.0524,
+      1.1054,
+      -0.0459
+    ],
+    "size": [
+      0.066,
+      0.0979,
+      0.0444
+    ]
+  },
+  {
+    "name": "Twelfth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0524,
+      1.1054,
+      -0.0459
+    ],
+    "size": [
+      0.066,
+      0.0979,
+      0.0444
+    ]
+  },
+  {
+    "name": "Ninth rib.l",
+    "parent": null,
+    "centre": [
+      0.0758,
+      1.1814,
+      -0.0271
+    ],
+    "size": [
+      0.1152,
+      0.1551,
+      0.1324
+    ]
+  },
+  {
+    "name": "Ninth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0758,
+      1.1814,
+      -0.0271
+    ],
+    "size": [
+      0.1152,
+      0.1551,
+      0.1324
+    ]
+  },
+  {
+    "name": "Tenth rib.l",
+    "parent": null,
+    "centre": [
+      0.075,
+      1.1509,
+      -0.0305
+    ],
+    "size": [
+      0.1129,
+      0.1568,
+      0.1094
+    ]
+  },
+  {
+    "name": "Tenth rib.r",
+    "parent": null,
+    "centre": [
+      -0.075,
+      1.1509,
+      -0.0305
+    ],
+    "size": [
+      0.1129,
+      0.1568,
+      0.1094
+    ]
+  },
+  {
+    "name": "Fifth rib.l",
+    "parent": null,
+    "centre": [
+      0.0734,
+      1.3043,
+      0.0074
+    ],
+    "size": [
+      0.1158,
+      0.126,
+      0.1893
+    ]
+  },
+  {
+    "name": "Fifth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0734,
+      1.3043,
+      0.0074
+    ],
+    "size": [
+      0.1158,
+      0.126,
+      0.1893
+    ]
+  },
+  {
+    "name": "First rib.l",
+    "parent": null,
+    "centre": [
+      0.0437,
+      1.4168,
+      0.0018
+    ],
+    "size": [
+      0.0549,
+      0.0594,
+      0.0707
+    ]
+  },
+  {
+    "name": "First rib.r",
+    "parent": null,
+    "centre": [
+      -0.0437,
+      1.4168,
+      0.0018
+    ],
+    "size": [
+      0.0549,
+      0.0594,
+      0.0707
+    ]
+  },
+  {
+    "name": "Fourth rib.l",
+    "parent": null,
+    "centre": [
+      0.0706,
+      1.3361,
+      0.0079
+    ],
+    "size": [
+      0.1096,
+      0.1171,
+      0.1698
+    ]
+  },
+  {
+    "name": "Fourth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0706,
+      1.3361,
+      0.0079
+    ],
+    "size": [
+      0.1096,
+      0.1171,
+      0.1698
+    ]
+  },
+  {
+    "name": "Second rib.r",
+    "parent": null,
+    "centre": [
+      -0.0583,
+      1.3907,
+      0.0107
+    ],
+    "size": [
+      0.0821,
+      0.0913,
+      0.112
+    ]
+  },
+  {
+    "name": "Second rib.l",
+    "parent": null,
+    "centre": [
+      0.0583,
+      1.3907,
+      0.0107
+    ],
+    "size": [
+      0.0821,
+      0.0913,
+      0.112
+    ]
+  },
+  {
+    "name": "Seventh rib.l",
+    "parent": null,
+    "centre": [
+      0.079,
+      1.2436,
+      -0.0057
+    ],
+    "size": [
+      0.1252,
+      0.1444,
+      0.1816
+    ]
+  },
+  {
+    "name": "Seventh rib.r",
+    "parent": null,
+    "centre": [
+      -0.079,
+      1.2436,
+      -0.0057
+    ],
+    "size": [
+      0.1252,
+      0.1444,
+      0.1816
+    ]
+  },
+  {
+    "name": "Sixth rib.l",
+    "parent": null,
+    "centre": [
+      0.0773,
+      1.2751,
+      0.0008
+    ],
+    "size": [
+      0.1231,
+      0.1386,
+      0.1962
+    ]
+  },
+  {
+    "name": "Sixth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0773,
+      1.2751,
+      0.0008
+    ],
+    "size": [
+      0.1231,
+      0.1386,
+      0.1962
+    ]
+  },
+  {
+    "name": "Third rib.l",
+    "parent": null,
+    "centre": [
+      0.0648,
+      1.3636,
+      0.0068
+    ],
+    "size": [
+      0.0955,
+      0.1058,
+      0.1392
+    ]
+  },
+  {
+    "name": "Third rib.r",
+    "parent": null,
+    "centre": [
+      -0.0648,
+      1.3636,
+      0.0068
+    ],
+    "size": [
+      0.0955,
+      0.1058,
+      0.1392
+    ]
+  },
+  {
+    "name": "Body of sternum",
+    "parent": null,
+    "centre": [
+      0,
+      1.2993,
+      0.0907
+    ],
+    "size": [
+      0.0493,
+      0.1194,
+      0.043
+    ]
+  },
+  {
+    "name": "Manubrium of sternum",
+    "parent": null,
+    "centre": [
+      -0.0001,
+      1.3769,
+      0.0577
+    ],
+    "size": [
+      0.0571,
+      0.054,
+      0.0522
+    ]
+  },
+  {
+    "name": "Xiphoid process",
+    "parent": null,
+    "centre": [
+      0,
+      1.2322,
+      0.1036
+    ],
+    "size": [
+      0.0217,
+      0.0227,
+      0.0154
+    ]
+  },
+  {
+    "name": "Costal cartilage of eighth rib.l",
+    "parent": null,
+    "centre": [
+      0.0772,
+      1.1615,
+      0.0831
+    ],
+    "size": [
+      0.0842,
+      0.0656,
+      0.0514
+    ]
+  },
+  {
+    "name": "Costal cartilage of eighth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0772,
+      1.1615,
+      0.0831
+    ],
+    "size": [
+      0.0842,
+      0.0656,
+      0.0514
+    ]
+  },
+  {
+    "name": "Costal cartilage of fifth rib.l",
+    "parent": null,
+    "centre": [
+      0.0519,
+      1.2603,
+      0.1014
+    ],
+    "size": [
+      0.0658,
+      0.0394,
+      0.0166
+    ]
+  },
+  {
+    "name": "Costal cartilage of fifth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0519,
+      1.2603,
+      0.1014
+    ],
+    "size": [
+      0.0658,
+      0.0394,
+      0.0166
+    ]
+  },
+  {
+    "name": "Costal cartilage of first rib.l",
+    "parent": null,
+    "centre": [
+      0.0389,
+      1.3881,
+      0.0396
+    ],
+    "size": [
+      0.0309,
+      0.0191,
+      0.0243
+    ]
+  },
+  {
+    "name": "Costal cartilage of first rib.r",
+    "parent": null,
+    "centre": [
+      -0.0389,
+      1.3881,
+      0.0396
+    ],
+    "size": [
+      0.0309,
+      0.0191,
+      0.0243
+    ]
+  },
+  {
+    "name": "Costal cartilage of fourth rib.l",
+    "parent": null,
+    "centre": [
+      0.0435,
+      1.2915,
+      0.0909
+    ],
+    "size": [
+      0.0546,
+      0.0291,
+      0.013
+    ]
+  },
+  {
+    "name": "Costal cartilage of fourth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0435,
+      1.2915,
+      0.0909
+    ],
+    "size": [
+      0.0546,
+      0.0291,
+      0.013
+    ]
+  },
+  {
+    "name": "Costal cartilage of ninth rib.l",
+    "parent": null,
+    "centre": [
+      0.0957,
+      1.1152,
+      0.0635
+    ],
+    "size": [
+      0.064,
+      0.0401,
+      0.0682
+    ]
+  },
+  {
+    "name": "Costal cartilage of ninth rib.r",
+    "parent": null,
+    "centre": [
+      -0.0957,
+      1.1152,
+      0.0635
+    ],
+    "size": [
+      0.064,
+      0.0401,
+      0.0682
+    ]
+  },
+  {
+    "name": "Costal cartilage of second rib.l",
+    "parent": null,
+    "centre": [
+      0.0293,
+      1.3515,
+      0.0696
+    ],
+    "size": [
+      0.0334,
+      0.0168,
+      0.0245
+    ]
+  },
+  {
+    "name": "Costal cartilage of second rib.r",
+    "parent": null,
+    "centre": [
+      -0.0293,
+      1.3515,
+      0.0696
+    ],
+    "size": [
+      0.0334,
+      0.0168,
+      0.0245
+    ]
+  },
+  {
+    "name": "Costal cartilage of seventh rib.l",
+    "parent": null,
+    "centre": [
+      0.0603,
+      1.2066,
+      0.0935
+    ],
+    "size": [
+      0.1082,
+      0.0755,
+      0.0369
+    ]
+  },
+  {
+    "name": "Costal cartilage of seventh rib.r",
+    "parent": null,
+    "centre": [
+      -0.0603,
+      1.2066,
+      0.0935
+    ],
+    "size": [
+      0.1082,
+      0.0755,
+      0.0369
+    ]
+  },
+  {
+    "name": "Costal cartilage of sixth rib.l",
+    "parent": null,
+    "centre": [
+      0.055,
+      1.2336,
+      0.1015
+    ],
+    "size": [
+      0.0828,
+      0.0558,
+      0.0229
+    ]
+  },
+  {
+    "name": "Costal cartilage of sixth rib.r",
+    "parent": null,
+    "centre": [
+      -0.055,
+      1.2336,
+      0.1015
+    ],
+    "size": [
+      0.0828,
+      0.0558,
+      0.0229
+    ]
+  },
+  {
+    "name": "Costal cartilage of tenth rib.l",
+    "parent": null,
+    "centre": [
+      0.1035,
+      1.0805,
+      0.0504
+    ],
+    "size": [
+      0.0502,
+      0.0378,
+      0.0695
+    ]
+  },
+  {
+    "name": "Costal cartilage of tenth rib.r",
+    "parent": null,
+    "centre": [
+      -0.1035,
+      1.0805,
+      0.0504
+    ],
+    "size": [
+      0.0502,
+      0.0378,
+      0.0695
+    ]
+  },
+  {
+    "name": "Costal cartilage of third rib.l",
+    "parent": null,
+    "centre": [
+      0.0341,
+      1.3202,
+      0.08
+    ],
+    "size": [
+      0.0375,
+      0.0195,
+      0.0224
+    ]
+  },
+  {
+    "name": "Costal cartilage of third rib.r",
+    "parent": null,
+    "centre": [
+      -0.0341,
+      1.3202,
+      0.08
+    ],
+    "size": [
+      0.0375,
+      0.0195,
+      0.0224
+    ]
+  },
+  {
+    "name": "Atlas (C1)",
+    "parent": null,
+    "centre": [
+      0,
+      1.5429,
+      -0.0214
+    ],
+    "size": [
+      0.0861,
+      0.0196,
+      0.0491
+    ]
+  },
+  {
+    "name": "Axis (C2)",
+    "parent": null,
+    "centre": [
+      0,
+      1.53,
+      -0.026
+    ],
+    "size": [
+      0.0536,
+      0.0429,
+      0.0527
+    ]
+  },
+  {
+    "name": "Vertebra C3",
+    "parent": null,
+    "centre": [
+      0,
+      1.5064,
+      -0.0269
+    ],
+    "size": [
+      0.0565,
+      0.0267,
+      0.0542
+    ]
+  },
+  {
+    "name": "Vertebra C4",
+    "parent": null,
+    "centre": [
+      0.0001,
+      1.4931,
+      -0.0265
+    ],
+    "size": [
+      0.058,
+      0.025,
+      0.0524
+    ]
+  },
+  {
+    "name": "Vertebra C5",
+    "parent": null,
+    "centre": [
+      0,
+      1.4801,
+      -0.0298
+    ],
+    "size": [
+      0.0614,
+      0.0225,
+      0.0564
+    ]
+  },
+  {
+    "name": "Vertebra C6",
+    "parent": null,
+    "centre": [
+      0,
+      1.466,
+      -0.035
+    ],
+    "size": [
+      0.0613,
+      0.0246,
+      0.0636
+    ]
+  },
+  {
+    "name": "Vertebra C7",
+    "parent": null,
+    "centre": [
+      0,
+      1.452,
+      -0.0421
+    ],
+    "size": [
+      0.0712,
+      0.027,
+      0.0703
+    ]
+  },
+  {
+    "name": "Coccyx",
+    "parent": null,
+    "centre": [
+      0,
+      0.8457,
+      -0.0765
+    ],
+    "size": [
+      0.0335,
+      0.0308,
+      0.0197
+    ]
+  },
+  {
+    "name": "Vertebra L1",
+    "parent": null,
+    "centre": [
+      0,
+      1.1039,
+      -0.0292
+    ],
+    "size": [
+      0.0744,
+      0.0593,
+      0.0831
+    ]
+  },
+  {
+    "name": "Vertebra L2",
+    "parent": null,
+    "centre": [
+      0,
+      1.0749,
+      -0.0241
+    ],
+    "size": [
+      0.0838,
+      0.0497,
+      0.0831
+    ]
+  },
+  {
+    "name": "Vertebra L3",
+    "parent": null,
+    "centre": [
+      0,
+      1.0434,
+      -0.0232
+    ],
+    "size": [
+      0.0835,
+      0.0447,
+      0.0849
+    ]
+  },
+  {
+    "name": "Vertebra L4",
+    "parent": null,
+    "centre": [
+      0,
+      1.015,
+      -0.0241
+    ],
+    "size": [
+      0.0887,
+      0.0429,
+      0.0843
+    ]
+  },
+  {
+    "name": "Vertebra L5",
+    "parent": null,
+    "centre": [
+      0,
+      0.9828,
+      -0.0291
+    ],
+    "size": [
+      0.1058,
+      0.0504,
+      0.0827
+    ]
+  },
+  {
+    "name": "Sacrum",
+    "parent": null,
+    "centre": [
+      0,
+      0.9233,
+      -0.0493
+    ],
+    "size": [
+      0.1229,
+      0.1151,
+      0.0914
+    ]
+  },
+  {
+    "name": "Vertebra T1",
+    "parent": null,
+    "centre": [
+      0,
+      1.438,
+      -0.0474
+    ],
+    "size": [
+      0.0777,
+      0.0308,
+      0.0722
+    ]
+  },
+  {
+    "name": "Vertebra T10",
+    "parent": null,
+    "centre": [
+      0.0001,
+      1.1975,
+      -0.0532
+    ],
+    "size": [
+      0.0752,
+      0.0593,
+      0.0777
+    ]
+  },
+  {
+    "name": "Vertebra T11",
+    "parent": null,
+    "centre": [
+      0,
+      1.1693,
+      -0.0451
+    ],
+    "size": [
+      0.0581,
+      0.055,
+      0.0786
+    ]
+  },
+  {
+    "name": "Vertebra T12",
+    "parent": null,
+    "centre": [
+      0,
+      1.1391,
+      -0.0367
+    ],
+    "size": [
+      0.0467,
+      0.054,
+      0.0807
+    ]
+  },
+  {
+    "name": "Vertebra T2",
+    "parent": null,
+    "centre": [
+      0,
+      1.4201,
+      -0.0528
+    ],
+    "size": [
+      0.0751,
+      0.035,
+      0.073
+    ]
+  },
+  {
+    "name": "Vertebra T3",
+    "parent": null,
+    "centre": [
+      0,
+      1.3988,
+      -0.0615
+    ],
+    "size": [
+      0.0689,
+      0.0413,
+      0.0778
+    ]
+  },
+  {
+    "name": "Vertebra T4",
+    "parent": null,
+    "centre": [
+      0,
+      1.3752,
+      -0.0653
+    ],
+    "size": [
+      0.0709,
+      0.0431,
+      0.0713
+    ]
+  },
+  {
+    "name": "Vertebra T5",
+    "parent": null,
+    "centre": [
+      0,
+      1.3473,
+      -0.0661
+    ],
+    "size": [
+      0.0754,
+      0.0533,
+      0.0666
+    ]
+  },
+  {
+    "name": "Vertebra T6",
+    "parent": null,
+    "centre": [
+      0,
+      1.3142,
+      -0.0668
+    ],
+    "size": [
+      0.0759,
+      0.0621,
+      0.0668
+    ]
+  },
+  {
+    "name": "Vertebra T7",
+    "parent": null,
+    "centre": [
+      0,
+      1.286,
+      -0.065
+    ],
+    "size": [
+      0.0766,
+      0.0618,
+      0.0666
+    ]
+  },
+  {
+    "name": "Vertebra T8",
+    "parent": null,
+    "centre": [
+      0,
+      1.2558,
+      -0.0634
+    ],
+    "size": [
+      0.0702,
+      0.0602,
+      0.0737
+    ]
+  },
+  {
+    "name": "Vertebra T9",
+    "parent": null,
+    "centre": [
+      0,
+      1.2285,
+      -0.0586
+    ],
+    "size": [
+      0.0723,
+      0.0566,
+      0.0757
+    ]
+  }
+]

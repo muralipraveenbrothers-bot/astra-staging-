@@ -1,0 +1,275 @@
+{
+  "pluginId": "trauma-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Trauma Plugin",
+  "version": "1.0.0",
+  "description": "Trauma intake, trauma imaging, fracture analysis, wound assessment, neurovascular safety, compartment syndrome watch.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "medical-vision-dicom",
+      "clinical-reasoning-plugin",
+      "ward-icu-plugin"
+    ],
+    "optional": [
+      "ot-plugin"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "trauma-service",
+      "type": "medical",
+      "endpoint": "/api/trauma",
+      "healthEndpoint": "/api/trauma/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "trauma_agent",
+      "name": "Trauma Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "trauma_imaging_agent",
+      "name": "Trauma Imaging Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "fracture_agent",
+      "name": "Fracture Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "wound_agent",
+      "name": "Wound Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "neurovascular_safety_agent",
+      "name": "Neurovascular Safety Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "orthopaedic_trauma_agent",
+      "name": "Orthopaedic Trauma Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "emergency_trauma_agent",
+      "name": "Emergency Trauma Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "compartment_syndrome_watch",
+      "name": "Compartment Syndrome Watch",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_agent"
+    },
+    {
+      "agentId": "emergency_hod",
+      "name": "Emergency HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "emergency_services_hod",
+      "name": "Emergency Services HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "compartment_syndrome_watch_agent",
+      "name": "Compartment Syndrome Watch Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "open_injury_agent",
+      "name": "Open Injury Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "assess_trauma",
+      "name": "Assess Trauma",
+      "description": "Initial trauma assessment",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "analyze_trauma_image",
+      "name": "Analyze Trauma Image",
+      "description": "Trauma image analysis",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageData": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_neurovascular",
+      "name": "Check Neurovascular",
+      "description": "Neurovascular checklist",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "flag_compartment_risk",
+      "name": "Flag Compartment Risk",
+      "description": "Compartment syndrome risk flag",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "create_trauma_task",
+      "name": "Create Trauma Task",
+      "description": "Trauma workflow task",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:image_analysis",
+        "ai:clinical_reasoning"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "TraumaConsole",
+        "slot": "emergency-console"
+      }
+    ],
+    "icons": [
+      "siren",
+      "ambulance"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "trauma.activated",
+      "trauma.compartment.alert"
+    ],
+    "subscribes": [
+      "ward.deterioration"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Trauma Workflow",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Image Pipeline",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Alert System",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "activationCriteria": {
+        "type": "array",
+        "default": [
+          "MECHANISM",
+          "VITALS",
+          "INJURY"
+        ]
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:trauma-plugin-1.0.0"
+}

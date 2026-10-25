@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BioASQ validity overlay record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "question_id",
+    "bundle_id",
+    "validity_status",
+    "reason",
+    "reviewed_at",
+    "reviewer",
+    "time_anchor_required",
+    "invalid_after",
+    "notes"
+  ],
+  "properties": {
+    "question_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bundle_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validity_status": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "valid",
+        "stale",
+        "invalid"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "time_anchor_required": {
+      "type": "boolean"
+    },
+    "invalid_after": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

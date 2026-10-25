@@ -1,0 +1,2536 @@
+{
+  "at": "2026-10-14T22:53:33.465Z",
+  "hash": "4f9006656db2dea41d3942c3cfaaa1eacc69de1bf8e2f4e95ddf7b3f9d9c1d17",
+  "hashes": {
+    "action_risk_level@1": "af65081aaad8310f71d4a099f78bc555e29e8d76ea10182a62a5dd95487d1b52",
+    "browser.next_action@1": "e67cac4a8f8d366b3f079b11df68ee67200d0c9c67afdbee2d8060669a9dc99f",
+    "clinical.blind_spot.artefact@1": "e351ecad0218de0a1d07690b88f7940b589434f05c2cc95f4f9466bfef31f768",
+    "clinical.blind_spot.atypical@1": "532ab533e63238561fe61fdbe5340a6405f42826b092595334b3cfe336d3d31c",
+    "clinical.blind_spot.dangerous_low_likelihood@1": "16bad023a3558772e903380e1f8e7e70d816a97fbed307e8733018414e12ca4c",
+    "clinical.blind_spot.drug_iatrogenic@1": "b877c9d8aa18f3149acce75a063619bbc97b440f662f42a7a712d9f4ff12d2ba",
+    "clinical.blind_spot.two_conditions@1": "6c662ad19fcafa7cf3868cf58df14d551692e044f90f3bd6fe9a794057f9b60e",
+    "clinical.contradiction.present@1": "7b6cdf0403c81f15e84c3ed0f4ede0b6c420f5ad334bf1b75d0d07047163061d",
+    "clinical.escalate.now@1": "3133e0ff694cca8c9a3bdd77d081cdf50a4b4de2619041a2ca00746a0e88381f",
+    "clinical.explain_all_findings@1": "5fd385cb91784f947e39cabea69abd1699d9b0ee662cabddf267dfc2c83cc1df",
+    "clinical.missing.exam@1": "ec8276fe34e4d97adc41dd6c16ac5ca3af9c7334f555aab5a45d536af87376e8",
+    "clinical.missing.history@1": "dfdb0b8456d69a690dc8876966f996c37c3f08180bd6070f826497516fbcfc43",
+    "clinical.missing.tests@1": "0e269b180fd958187e65822467a14f92b7b0dc8f7e3c1b1c736d3670b6194818",
+    "clinical.must_not_miss.acs@1": "ba6f9c0e171e165884fe427d1e8f904b5f5f32a10eb9c68fe90535414f41166f",
+    "clinical.must_not_miss.aortic_dissection@1": "f881293973a935ac62a92f56a0e588be2aee4e111979acd91c0b164fb8a86e85",
+    "clinical.must_not_miss.dka@1": "62125d2f49189e394182712811ad1b4c47d965c210494c7883f73299095897f3",
+    "clinical.must_not_miss.ectopic_pregnancy@1": "76399c5899686986c6d5fc626fd01cfb1854164c8e81a1a96da1d800693aa142",
+    "clinical.must_not_miss.gi_bleed@1": "aa392ad7f5a0e302a86a39115ba2208fa1f11ca1e49bc8bddf8aa8ade4e4edfa",
+    "clinical.must_not_miss.meningitis@1": "7e3399144cebe2fa2653827b53c6b227034afce08c6c0bc61a4baf6d73039348",
+    "clinical.must_not_miss.pe@1": "2e8afb5a0b357cf81e49966f0b4ab07b60c58df95e94323ac7e12051c4b3aa50",
+    "clinical.must_not_miss.sepsis@1": "efa361ac49edccf0bd3f38aeead61c4926e05f4e1cb5d87fb790cab6416d6056",
+    "clinical.must_not_miss.stroke_tia@1": "e195de5db052bdf35d911365ad84df84a63891ef8d825e7c32172dc3778ca5ab",
+    "clinical.must_not_miss.surgical_abdomen@1": "31f4a6e515e9b1b82fb60eee6a53f4e5677cc8de2fff464b391a17db0e060f60",
+    "clinical.symptom.aggravating_relieving@1": "42337e1b291001aef8c0a3d73f3d730ccc5b1fbd8e2391d6795b17a3e5be6c8f",
+    "clinical.symptom.associated@1": "f8148bf7a8f922f7a32e7818446958088d663d9f99040341ed6d92d74b67dad3",
+    "clinical.symptom.character@1": "c058bd0c05f56cc5b0ab0fc39684bf5cc401201e8372dd737143474fec4288ae",
+    "clinical.symptom.duration@1": "3d5d98daf7f721f9770a88da90db8b7aa036026793b6c08d3cb7a02aab1b9c66",
+    "clinical.symptom.onset@1": "ffd3248125276efdc8da40ebdcb88cf5aa94a4b5549eaad3f67660ba4aca06bf",
+    "clinical.symptom.radiation@1": "abe67fe57ac8432c194d7de2074b5ccd9bce2c811a801784749e0a3073c42aa1",
+    "clinical.symptom.severity@1": "14ff34a6680fc215971cdbc8e11d148aa8be4c101c02484b0b80ae7952bb2d4d",
+    "clinical.symptom.timeline@1": "b1f8ebb8a5dde4bf4e565de8fca1b6d1296c7d5836991c911ad8321a2f36d8ac",
+    "clinical.system.expand@1": "d1d4190f3ececed9cbfb67aa41b1c8635e1a0ae8486a0d000b5a3c524923a3ee",
+    "clinical.temporal.new_med_or_procedure@1": "56a60c4df9147122d8e9c04f0025743db11dec06b3bfc2359eb316eb2542de3e",
+    "clinical.temporal.time_course_consistent@1": "349a0fabe8567619f1b7cde4f18cf6615424543d3fef74b165c33e623cb8d7d2",
+    "clinical.treatment.response@1": "bd5327ce9bc62d31795ba85bd01070fedda20b9dcbf6a04bb48025d4a4548eb5",
+    "command_type@1": "9ffc3f66bd5cb087c476e9b7a151fc0360d215fcc0b13631e6ca665293b2f3b6",
+    "department_routing@1": "5cdd2a17b58053ba9211da7288308f7918eac71180de7806a35c85722e30715b",
+    "document_classification@1": "7f72baf563a23a0132c7ff07113351413531a185f7c75d45baa9af84485fbcd4",
+    "hermes.step_gate@1": "ed83a580b44ec84af5303a460959b880b7dd150998be2f99f5deaddbd120640e",
+    "intent_routing@1": "7147a0fdae95f6405b1aa9e3791696f4478979e6de2e008ff5c83df4fc949545",
+    "knowledge.category@1": "42a68b6ec25394a158667665f2b1c8e9f072995b376b19e7e0132b88212e2eb9",
+    "language_routing@1": "81de9eedb07b771aab22915c700e0c58823cb0bb0677583ed5d30da663b01e84",
+    "message_triage@1": "66e9f68582a3c7d56f212240817e4426a35ae0d2202c25490556bd459fcf2506",
+    "missing_data_flag@1": "ac64ebafd08590a5e33eb136cae895b694576fd6b35c134905cb11bf50da58fa",
+    "needs_human_confirmation@1": "d134d9d8931452c4f5830069a15e7abac60e925d1f20fe453e08a522643cd26a",
+    "note_type@1": "aa3b4e8d2c1eb75d35d02576ddccf593b19db597435bd2e16f0bff02b591006d",
+    "possible_emergency_flag@1": "a69398bd109fdc21d2c8e9c58f59a07e313813786733c15ab54b6affd4f9c84e",
+    "router.delegate_to@1": "46168191d7e1237229db3d27990c531161b26269295ff46d5a7aa2402e9af3d9",
+    "router.parallelizable@1": "7735b1c91082be992bfe96bc337eaae12498e254af43b7d215254ce776f233ba",
+    "urgency_classification@1": "d7e23606bc6153cd447144db3ae747fbc58e0bffdf37bd5eb43462be5c151314",
+    "workflow_priority@1": "c6a7795f600faa09c1f52749e75fc155c6c0ace2f01b28a74224873a2d8a166f"
+  },
+  "schemas": [
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "action_risk_level",
+      "kind": "score",
+      "question": "How risky is this action if executed without clinician review?",
+      "levels": [
+        "read-only",
+        "draft only",
+        "reversible change",
+        "difficult to reverse",
+        "irreversible"
+      ],
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "safety",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en"
+      ],
+      "owner": "astra-reflex-hermes",
+      "createdAt": "2026-09-29T00:00:00.000Z",
+      "id": "browser.next_action",
+      "kind": "choice",
+      "question": "Which bounded browser action should run next?",
+      "options": [
+        {
+          "key": "DONE",
+          "label": "Done",
+          "description": "goal has been reached"
+        },
+        {
+          "key": "WAIT",
+          "label": "Wait",
+          "description": "wait for page update"
+        },
+        {
+          "key": "BACK",
+          "label": "Back",
+          "description": "go browser history back"
+        },
+        {
+          "key": "SCROLL_DOWN",
+          "label": "Scroll down",
+          "description": "scroll page downward"
+        },
+        {
+          "key": "SCROLL_UP",
+          "label": "Scroll up",
+          "description": "scroll page upward"
+        },
+        {
+          "key": "ASK_HUMAN",
+          "label": "Ask human",
+          "description": "needs human decision"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "browser"
+    },
+    {
+      "id": "clinical.blind_spot.artefact",
+      "version": 1,
+      "kind": "choice",
+      "question": "Could an abnormal value be measurement, sampling or artefact?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.blind_spot.atypical",
+      "version": 1,
+      "kind": "choice",
+      "question": "Could this be an atypical presentation for age, sex or comorbidity?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.blind_spot.dangerous_low_likelihood",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is a dangerous low-likelihood alternative not yet addressed?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.blind_spot.drug_iatrogenic",
+      "version": 1,
+      "kind": "choice",
+      "question": "Could this be drug-induced or iatrogenic?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.blind_spot.two_conditions",
+      "version": 1,
+      "kind": "choice",
+      "question": "Could two conditions be present rather than one?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.contradiction.present",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is there a contradiction between history, vitals and results?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.escalate.now",
+      "version": 1,
+      "kind": "score",
+      "question": "Should a senior doctor be alerted now?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.explain_all_findings",
+      "version": 1,
+      "kind": "choice",
+      "question": "Do current hypotheses explain all findings?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "all findings appear explained"
+        },
+        {
+          "key": "partially",
+          "label": "Partially",
+          "description": "some findings remain unexplained"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "findings are not explained"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.missing.exam",
+      "version": 1,
+      "kind": "choice",
+      "question": "Which focused exam or bedside test is missing?",
+      "options": [
+        {
+          "key": "pregnancy_status_missing",
+          "label": "pregnancy status missing",
+          "description": "flag pregnancy status missing"
+        },
+        {
+          "key": "medication_history_missing",
+          "label": "medication history missing",
+          "description": "flag medication history missing"
+        },
+        {
+          "key": "allergy_history_missing",
+          "label": "allergy history missing",
+          "description": "flag allergy history missing"
+        },
+        {
+          "key": "ecg_missing",
+          "label": "ecg missing",
+          "description": "flag ecg missing"
+        },
+        {
+          "key": "glucose_missing",
+          "label": "glucose missing",
+          "description": "flag glucose missing"
+        },
+        {
+          "key": "focused_exam_missing",
+          "label": "focused exam missing",
+          "description": "flag focused exam missing"
+        },
+        {
+          "key": "vital_trend_missing",
+          "label": "vital trend missing",
+          "description": "flag vital trend missing"
+        },
+        {
+          "key": "timeline_missing",
+          "label": "timeline missing",
+          "description": "flag timeline missing"
+        },
+        {
+          "key": "none",
+          "label": "none",
+          "description": "no missing item identified"
+        },
+        {
+          "key": "unknown",
+          "label": "unknown",
+          "description": "available data is insufficient"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.missing.history",
+      "version": 1,
+      "kind": "choice",
+      "question": "Which history item is missing?",
+      "options": [
+        {
+          "key": "pregnancy_status_missing",
+          "label": "pregnancy status missing",
+          "description": "flag pregnancy status missing"
+        },
+        {
+          "key": "medication_history_missing",
+          "label": "medication history missing",
+          "description": "flag medication history missing"
+        },
+        {
+          "key": "allergy_history_missing",
+          "label": "allergy history missing",
+          "description": "flag allergy history missing"
+        },
+        {
+          "key": "ecg_missing",
+          "label": "ecg missing",
+          "description": "flag ecg missing"
+        },
+        {
+          "key": "glucose_missing",
+          "label": "glucose missing",
+          "description": "flag glucose missing"
+        },
+        {
+          "key": "focused_exam_missing",
+          "label": "focused exam missing",
+          "description": "flag focused exam missing"
+        },
+        {
+          "key": "vital_trend_missing",
+          "label": "vital trend missing",
+          "description": "flag vital trend missing"
+        },
+        {
+          "key": "timeline_missing",
+          "label": "timeline missing",
+          "description": "flag timeline missing"
+        },
+        {
+          "key": "none",
+          "label": "none",
+          "description": "no missing item identified"
+        },
+        {
+          "key": "unknown",
+          "label": "unknown",
+          "description": "available data is insufficient"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.missing.tests",
+      "version": 1,
+      "kind": "choice",
+      "question": "Which test information is missing?",
+      "options": [
+        {
+          "key": "pregnancy_status_missing",
+          "label": "pregnancy status missing",
+          "description": "flag pregnancy status missing"
+        },
+        {
+          "key": "medication_history_missing",
+          "label": "medication history missing",
+          "description": "flag medication history missing"
+        },
+        {
+          "key": "allergy_history_missing",
+          "label": "allergy history missing",
+          "description": "flag allergy history missing"
+        },
+        {
+          "key": "ecg_missing",
+          "label": "ecg missing",
+          "description": "flag ecg missing"
+        },
+        {
+          "key": "glucose_missing",
+          "label": "glucose missing",
+          "description": "flag glucose missing"
+        },
+        {
+          "key": "focused_exam_missing",
+          "label": "focused exam missing",
+          "description": "flag focused exam missing"
+        },
+        {
+          "key": "vital_trend_missing",
+          "label": "vital trend missing",
+          "description": "flag vital trend missing"
+        },
+        {
+          "key": "timeline_missing",
+          "label": "timeline missing",
+          "description": "flag timeline missing"
+        },
+        {
+          "key": "none",
+          "label": "none",
+          "description": "no missing item identified"
+        },
+        {
+          "key": "unknown",
+          "label": "unknown",
+          "description": "available data is insufficient"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.acs",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out ACS?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.aortic_dissection",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out aortic dissection?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.dka",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out DKA?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.ectopic_pregnancy",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out ectopic pregnancy?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.gi_bleed",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out GI bleed?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.meningitis",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out meningitis?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.pe",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out PE?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.sepsis",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out sepsis?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.stroke_tia",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out stroke or TIA?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.must_not_miss.surgical_abdomen",
+      "version": 1,
+      "kind": "score",
+      "question": "Should the doctor explicitly rule out surgical abdomen?",
+      "levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.aggravating_relieving",
+      "version": 1,
+      "kind": "choice",
+      "question": "Are aggravating or relieving factors documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.associated",
+      "version": 1,
+      "kind": "choice",
+      "question": "Are associated symptoms documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.character",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is symptom character documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.duration",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is symptom duration documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.onset",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is symptom onset documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.radiation",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is symptom radiation documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.severity",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is symptom severity documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.symptom.timeline",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is the symptom timeline documented?",
+      "options": [
+        {
+          "key": "documented",
+          "label": "Documented",
+          "description": "clearly documented in state"
+        },
+        {
+          "key": "not_documented",
+          "label": "Not documented",
+          "description": "not documented in state"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.system.expand",
+      "version": 1,
+      "kind": "choice",
+      "question": "Which organ system should the doctor expand first?",
+      "options": [
+        {
+          "key": "cardio",
+          "label": "cardio",
+          "description": "consider expanding cardio review"
+        },
+        {
+          "key": "resp",
+          "label": "resp",
+          "description": "consider expanding resp review"
+        },
+        {
+          "key": "neuro",
+          "label": "neuro",
+          "description": "consider expanding neuro review"
+        },
+        {
+          "key": "gi",
+          "label": "gi",
+          "description": "consider expanding gi review"
+        },
+        {
+          "key": "gu_renal",
+          "label": "gu renal",
+          "description": "consider expanding gu renal review"
+        },
+        {
+          "key": "endocrine_metabolic",
+          "label": "endocrine metabolic",
+          "description": "consider expanding endocrine metabolic review"
+        },
+        {
+          "key": "id_sepsis",
+          "label": "id sepsis",
+          "description": "consider expanding id sepsis review"
+        },
+        {
+          "key": "heme",
+          "label": "heme",
+          "description": "consider expanding heme review"
+        },
+        {
+          "key": "msk",
+          "label": "msk",
+          "description": "consider expanding msk review"
+        },
+        {
+          "key": "derm",
+          "label": "derm",
+          "description": "consider expanding derm review"
+        },
+        {
+          "key": "psych",
+          "label": "psych",
+          "description": "consider expanding psych review"
+        },
+        {
+          "key": "obstetric",
+          "label": "obstetric",
+          "description": "consider expanding obstetric review"
+        },
+        {
+          "key": "none",
+          "label": "none",
+          "description": "no organ expansion needed"
+        },
+        {
+          "key": "unknown",
+          "label": "unknown",
+          "description": "available data is insufficient"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.temporal.new_med_or_procedure",
+      "version": 1,
+      "kind": "choice",
+      "question": "Did a new medication or procedure precede the new symptom?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.temporal.time_course_consistent",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is the time course consistent with the working explanation?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "the item appears present"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "the item appears absent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown",
+          "description": "available data is insufficient"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review",
+          "description": "requires direct clinician review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "clinical.treatment.response",
+      "version": 1,
+      "kind": "choice",
+      "question": "Is response to current treatment as expected?",
+      "options": [
+        {
+          "key": "as_expected",
+          "label": "as expected",
+          "description": "response is as expected"
+        },
+        {
+          "key": "partial",
+          "label": "partial",
+          "description": "response is partial"
+        },
+        {
+          "key": "not_as_expected",
+          "label": "not as expected",
+          "description": "response is not as expected"
+        },
+        {
+          "key": "not_applicable",
+          "label": "not applicable",
+          "description": "response is not applicable"
+        },
+        {
+          "key": "unknown",
+          "label": "unknown",
+          "description": "available data is insufficient"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "clinical",
+      "dataClass": "HIGH_RISK_CLINICAL_LOCAL_ONLY",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.99,
+        "assist": 0.65,
+        "minMargin": 0.15
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "clinical-reflex-mesh",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "command_type",
+      "kind": "choice",
+      "question": "Is this a command, question, note or conversation?",
+      "options": [
+        {
+          "key": "command",
+          "label": "Command",
+          "description": "imperative action instruction"
+        },
+        {
+          "key": "question",
+          "label": "Question",
+          "description": "information request question"
+        },
+        {
+          "key": "dictation",
+          "label": "Dictation",
+          "description": "clinical note dictation"
+        },
+        {
+          "key": "conversation",
+          "label": "Conversation",
+          "description": "greeting small talk"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other interaction type"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "department_routing",
+      "kind": "choice",
+      "question": "Which Astra department surface should handle this?",
+      "options": [
+        {
+          "key": "reception",
+          "label": "Reception",
+          "description": "registration appointments movement"
+        },
+        {
+          "key": "lab",
+          "label": "Lab",
+          "description": "laboratory tests results"
+        },
+        {
+          "key": "radiology",
+          "label": "Radiology",
+          "description": "radiology ultrasound imaging"
+        },
+        {
+          "key": "pharmacy",
+          "label": "Pharmacy",
+          "description": "medications dispensing stock"
+        },
+        {
+          "key": "ward",
+          "label": "Ward",
+          "description": "ward nursing beds"
+        },
+        {
+          "key": "ot",
+          "label": "OT",
+          "description": "operation theatre scheduling"
+        },
+        {
+          "key": "billing",
+          "label": "Billing",
+          "description": "payments invoices refunds"
+        },
+        {
+          "key": "cmrf",
+          "label": "CMRF",
+          "description": "medical records documents"
+        },
+        {
+          "key": "command_centre",
+          "label": "Command centre",
+          "description": "whole hospital overview"
+        },
+        {
+          "key": "emergency",
+          "label": "Emergency",
+          "description": "immediate emergency routing"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other department surface"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "document_classification",
+      "kind": "choice",
+      "question": "What kind of hospital document is this?",
+      "options": [
+        {
+          "key": "discharge_summary",
+          "label": "Discharge summary",
+          "description": "patient discharge document"
+        },
+        {
+          "key": "progress_note",
+          "label": "Progress note",
+          "description": "clinical progress note"
+        },
+        {
+          "key": "lab_report",
+          "label": "Lab report",
+          "description": "laboratory report document"
+        },
+        {
+          "key": "radiology_report",
+          "label": "Radiology report",
+          "description": "imaging report document"
+        },
+        {
+          "key": "prescription",
+          "label": "Prescription",
+          "description": "medication prescription chart"
+        },
+        {
+          "key": "consent",
+          "label": "Consent",
+          "description": "procedure consent form"
+        },
+        {
+          "key": "referral",
+          "label": "Referral",
+          "description": "referral letter document"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other document type"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "context",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en"
+      ],
+      "owner": "astra-reflex-hermes",
+      "createdAt": "2026-09-29T00:00:00.000Z",
+      "id": "hermes.step_gate",
+      "kind": "choice",
+      "question": "Should Hermes proceed with this bounded plan step?",
+      "options": [
+        {
+          "key": "proceed",
+          "label": "Proceed",
+          "description": "safe bounded step"
+        },
+        {
+          "key": "ask_human",
+          "label": "Ask human",
+          "description": "needs human input"
+        },
+        {
+          "key": "stop",
+          "label": "Stop",
+          "description": "stop current plan"
+        },
+        {
+          "key": "replan",
+          "label": "Replan",
+          "description": "needs revised plan"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "hermes"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "intent_routing",
+      "kind": "choice",
+      "question": "What does the user want Astra to do?",
+      "options": [
+        {
+          "key": "patient_lookup",
+          "label": "Patient lookup",
+          "description": "find or select patient"
+        },
+        {
+          "key": "lab_query",
+          "label": "Lab query",
+          "description": "retrieve laboratory results"
+        },
+        {
+          "key": "report_query",
+          "label": "Report query",
+          "description": "retrieve radiology reports"
+        },
+        {
+          "key": "medication_query",
+          "label": "Medication query",
+          "description": "medication list question"
+        },
+        {
+          "key": "order_action",
+          "label": "Order action",
+          "description": "place or change order"
+        },
+        {
+          "key": "workflow_task",
+          "label": "Workflow task",
+          "description": "department workflow request"
+        },
+        {
+          "key": "explanation_request",
+          "label": "Explanation",
+          "description": "explain concept or value"
+        },
+        {
+          "key": "emergency",
+          "label": "Emergency",
+          "description": "immediate emergency routing"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other user intent"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "knowledge.category",
+      "version": 1,
+      "kind": "choice",
+      "question": "Which knowledge category should a human confirm for this document?",
+      "options": [
+        {
+          "key": "clinical",
+          "label": "Clinical",
+          "description": "Clinical reference needing doctor review"
+        },
+        {
+          "key": "hospital_policy",
+          "label": "Hospital policy",
+          "description": "Hospital policy or operating manual"
+        },
+        {
+          "key": "equipment",
+          "label": "Equipment",
+          "description": "Equipment manual or maintenance note"
+        },
+        {
+          "key": "legal",
+          "label": "Legal",
+          "description": "Legal or regulatory reference text"
+        },
+        {
+          "key": "templates",
+          "label": "Templates",
+          "description": "Non clinical document template"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "knowledge",
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-knowledge",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "language_routing",
+      "kind": "choice",
+      "question": "Which language is this message written or spoken in?",
+      "options": [
+        {
+          "key": "en",
+          "label": "English",
+          "description": "English language content"
+        },
+        {
+          "key": "te",
+          "label": "Telugu",
+          "description": "Telugu language content"
+        },
+        {
+          "key": "hi",
+          "label": "Hindi",
+          "description": "Hindi language content"
+        },
+        {
+          "key": "te_en",
+          "label": "Telugu mixed English",
+          "description": "Telugu mixed with English"
+        },
+        {
+          "key": "hi_en",
+          "label": "Hindi mixed English",
+          "description": "Hindi mixed with English"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "Other language content"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "message_triage",
+      "kind": "choice",
+      "question": "How should this internal hospital message be triaged?",
+      "options": [
+        {
+          "key": "answer_now",
+          "label": "Answer now",
+          "description": "needs immediate reply"
+        },
+        {
+          "key": "queue",
+          "label": "Queue",
+          "description": "routine queued handling"
+        },
+        {
+          "key": "route_elsewhere",
+          "label": "Route elsewhere",
+          "description": "belongs another department"
+        },
+        {
+          "key": "ignore_noise",
+          "label": "Ignore noise",
+          "description": "no action required"
+        },
+        {
+          "key": "emergency",
+          "label": "Emergency",
+          "description": "immediate emergency routing"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other message triage"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "ops",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "missing_data_flag",
+      "kind": "noul",
+      "question": "Does this request lack information Astra needs before acting?",
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "safety",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "needs_human_confirmation",
+      "kind": "noul",
+      "question": "Does this action need authenticated clinician confirmation first?",
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "safety",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "note_type",
+      "kind": "choice",
+      "question": "Which note type is being dictated?",
+      "options": [
+        {
+          "key": "admission",
+          "label": "Admission",
+          "description": "admission note content"
+        },
+        {
+          "key": "progress",
+          "label": "Progress",
+          "description": "progress note content"
+        },
+        {
+          "key": "procedure",
+          "label": "Procedure",
+          "description": "procedure note content"
+        },
+        {
+          "key": "consultation",
+          "label": "Consultation",
+          "description": "consultation note content"
+        },
+        {
+          "key": "discharge",
+          "label": "Discharge",
+          "description": "discharge summary content"
+        },
+        {
+          "key": "other",
+          "label": "Other",
+          "description": "other note type"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "context",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "possible_emergency_flag",
+      "kind": "noul",
+      "question": "Does this text contain language suggesting an immediate emergency?",
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "safety",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en"
+      ],
+      "owner": "astra-reflex-hermes",
+      "createdAt": "2026-09-29T00:00:00.000Z",
+      "id": "router.delegate_to",
+      "kind": "choice",
+      "question": "Which existing Astra specialist should handle this step?",
+      "options": [
+        {
+          "key": "Scientist",
+          "label": "Scientist",
+          "description": "research reasoning specialist"
+        },
+        {
+          "key": "Astra 7D",
+          "label": "Astra 7D",
+          "description": "clinical draft reasoning"
+        },
+        {
+          "key": "Book skills",
+          "label": "Book skills",
+          "description": "local skill knowledge"
+        },
+        {
+          "key": "Department Ops",
+          "label": "Department Ops",
+          "description": "hospital operations agent"
+        },
+        {
+          "key": "none",
+          "label": "None",
+          "description": "no delegation needed"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en"
+      ],
+      "owner": "astra-reflex-hermes",
+      "createdAt": "2026-09-29T00:00:00.000Z",
+      "id": "router.parallelizable",
+      "kind": "choice",
+      "question": "Can this delegated step run in parallel?",
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "description": "safe concurrent execution"
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "description": "requires serial execution"
+        },
+        {
+          "key": "unknown",
+          "label": "Unknown"
+        },
+        {
+          "key": "human_review",
+          "label": "Human review"
+        }
+      ],
+      "abstainKeys": [
+        "unknown",
+        "human_review"
+      ],
+      "domain": "router"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "urgency_classification",
+      "kind": "score",
+      "question": "How urgent is this request for hospital routing?",
+      "levels": [
+        "routine",
+        "soon",
+        "urgent",
+        "immediately life-threatening"
+      ],
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "safety",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "version": 1,
+      "dataClass": "non_phi_decision_state",
+      "defaultMode": "SHADOW",
+      "thresholds": {
+        "auto": 0.9,
+        "assist": 0.65,
+        "minMargin": 0.25
+      },
+      "languages": [
+        "en",
+        "te",
+        "hi"
+      ],
+      "owner": "astra-reflex",
+      "id": "workflow_priority",
+      "kind": "score",
+      "question": "What priority should this workflow item receive?",
+      "levels": [
+        "background",
+        "low",
+        "normal",
+        "high",
+        "critical"
+      ],
+      "abstainKeys": [
+        "unknown"
+      ],
+      "domain": "ops",
+      "createdAt": "2026-09-29T00:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-03-25",
+  "recommended_public_bundle_id": "hf-public-pre2026",
+  "bundles": [
+    {
+      "id": "hf-public-pre2026",
+      "label": "HF public BioASQ mirror (pre-2026)",
+      "lane": "public_historical",
+      "source": "hf_bioasq_mirror",
+      "source_packaging": "public_mirror",
+      "output_packaging": "derived_normalized_bundle",
+      "source_dataset": "jmhb/BioASQ",
+      "source_ref": "8eb56db5f3f43ce7c4102169b24158ad2dc53a74",
+      "terms_url": "https://bioasq.org/participate",
+      "official": false,
+      "registration_required": false,
+      "recommended_for_regression": true,
+      "expected_question_count": 5399,
+      "raw_dir": "benchmarks/bioasq/datasets/raw/hf-public-pre2026",
+      "splits": [
+        "factoid",
+        "list",
+        "summary",
+        "yesno"
+      ],
+      "output_path": "benchmarks/bioasq/datasets/normalized/hf-public-pre2026.jsonl",
+      "count_note": "Public mirror-derived bundle. This is not labeled as an official participant archive.",
+      "count_mismatch_context": "Research review on 2026-03-25 kept the public mirror-derived count at 5399 while the official participant download count remained 5389."
+    },
+    {
+      "id": "mirage-yesno-2024",
+      "label": "MIRAGE BioASQ yes/no slice",
+      "lane": "public_historical",
+      "source": "mirage_bioasq_yesno",
+      "source_packaging": "public_derived_benchmark",
+      "output_packaging": "derived_normalized_bundle",
+      "source_url": "https://raw.githubusercontent.com/gzxiong/MIRAGE/3490d7b5b5fcb96288860ec74d18c3e398a56703/benchmark.json",
+      "source_ref": "https://raw.githubusercontent.com/gzxiong/MIRAGE/3490d7b5b5fcb96288860ec74d18c3e398a56703/benchmark.json",
+      "official": false,
+      "registration_required": false,
+      "recommended_for_regression": false,
+      "expected_question_count": 618,
+      "raw_path": "benchmarks/bioasq/datasets/raw/mirage-yesno-2024/benchmark.json",
+      "output_path": "benchmarks/bioasq/datasets/normalized/mirage-yesno-2024.jsonl",
+      "count_note": "Public derived yes/no benchmark slice. This is not an official participant download."
+    },
+    {
+      "id": "official-task-b-participant-download",
+      "label": "Official Task B participant download",
+      "lane": "official_competition",
+      "source": "official_participant_download",
+      "source_packaging": "official_download",
+      "output_packaging": null,
+      "source_ref": "https://participants-area.bioasq.org/general_information/Task14b/",
+      "participant_portal_url": "https://participants-area.bioasq.org/general_information/Task14b/",
+      "official": true,
+      "registration_required": true,
+      "output_path": null,
+      "official_training_count": 5389,
+      "official_count_reviewed_on": "2026-03-25",
+      "note": "Only registered users can download the development dataset, and official leaderboard claims come from the participants area rather than from the public mirror. The official participant count reviewed on 2026-03-25 was 5389, compared with the public mirror-derived 5399."
+    }
+  ]
+}

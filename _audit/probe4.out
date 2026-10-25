@@ -1,0 +1,3 @@
+DATAITEM_BUILD<<<OK <class 'uuid.UUID'>
+REMEMBER_DATA_ANN<<<typing.Union[typing.BinaryIO, list[typing.BinaryIO], str, list[str], cognee.tasks.ingestion.data_item.DataItem, list[cognee.tasks.ingestion.data_item.DataItem], ForwardRef('MemoryEntry'), cognee.modules.migration.sources.base.MemorySource, ForwardRef('PresortReport'), dict]
+RECALLRESP<<<None

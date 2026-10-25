@@ -1,0 +1,11 @@
+{
+  "id": "openhands",
+  "role": "APPROVAL_EXECUTOR",
+  "throughAdapter": true,
+  "baseUrl": "http://127.0.0.1:31415/v1",
+  "dashboardUrl": "http://127.0.0.1:31415",
+  "repo": "https://github.com/All-Hands-AI/OpenHands",
+  "keyEnv": "ASTRA_ADAPTER_API_KEY",
+  "approvalRequired": true,
+  "note": "OpenHands acts as the approval-gated executor. All inference is delegated to Astra /v1 (FreeLLMAPI primary, OmniRoute fallback). Mutating steps require human approval — no RBAC bypass."
+}

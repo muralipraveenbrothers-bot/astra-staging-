@@ -1,0 +1,90 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90mD:/astra PM[39m
+
+ [31m❯[39m server/astra/supervisor/stack-contract.spec.ts [2m([22m[2m27 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 777[2mms[22m[39m
+     [32m✓[39m has no duplicate live ports[32m 2[2mms[22m[39m
+     [32m✓[39m keeps the canonical ports frozen[32m 0[2mms[22m[39m
+     [32m✓[39m records the retired FreeLLMAPI port as an alias, never as the live port[32m 0[2mms[22m[39m
+     [32m✓[39m treats every non-core service as optional[32m 1[2mms[22m[39m
+     [32m✓[39m registers no service named gesture (browser-only feature, §12)[32m 1[2mms[22m[39m
+     [32m✓[39m exist and declare at least one app[32m 1[2mms[22m[39m
+     [32m✓[39m never hands a .ts file to Node directly[32m 0[2mms[22m[39m
+     [32m✓[39m never uses the bare `node` interpreter (system Node 20)[32m 0[2mms[22m[39m
+     [32m✓[39m never registers the ts-node hook that produced ERR_UNKNOWN_FILE_EXTENSION[32m 0[2mms[22m[39m
+     [32m✓[39m never uses the interactive `cmd` interpreter[32m 0[2mms[22m[39m
+     [32m✓[39m never targets the retired port 3001[32m 0[2mms[22m[39m
+     [32m✓[39m has no GestureService app[32m 0[2mms[22m[39m
+     [32m✓[39m points every interpreter-driven script at an existing file[32m 1[2mms[22m[39m
+     [32m✓[39m bounds restarts so a broken service is isolated instead of looping (§7)[32m 1[2mms[22m[39m
+     [32m✓[39m declares launchers that exist on disk[32m 1[2mms[22m[39m
+     [32m✓[39m keeps the primary process in the foreground so PM2 owns its PID[32m 2[2mms[22m[39m
+     [32m✓[39m has the bundle, wasm and hand-landmark model on disk[32m 2[2mms[22m[39m
+     [32m✓[39m loads MediaPipe from local paths, not from a CDN at runtime[32m 1[2mms[22m[39m
+     [32m✓[39m declares the canonical gateway base URL[32m 1[2mms[22m[39m
+     [32m✓[39m uses one gateway key everywhere (no 116f… vs 084e… drift)[32m 4[2mms[22m[39m
+[31m     [31m×[31m matches the Claude client settings when they exist on this machine[39m[32m 9[2mms[22m[39m
+     [32m✓[39m contains no gateway key literal in TypeScript[32m 38[2mms[22m[39m
+[31m     [31m×[31m names no retired FreeLLMAPI port anywhere in runtime source[39m[33m 708[2mms[22m[39m
+     [32m✓[39m keeps the health probe pointed at the canonical port[32m 0[2mms[22m[39m
+     [32m✓[39m keeps the gateway definition on the canonical port for API and UI[32m 0[2mms[22m[39m
+     [32m✓[39m keeps the Vite /proxy target on the canonical port[32m 0[2mms[22m[39m
+     [32m✓[39m never lets a config writer hardcode a FreeLLMAPI port (§3)[32m 0[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m server/astra/supervisor/stack-contract.spec.ts[2m > [22mConfiguration source of truth (§9, §8)[2m > [22mmatches the Claude client settings when they exist on this machine
+[31m[1mAssertionError[22m: expected 'freellmapi-116f7442bc75497653bef9371d…' to be 'freellmapi-084e17b0f1c9ad997ee1c25d48…' // Object.is equality[39m
+
+Expected: [32m"freellmapi-[7m084e17b0f1c9ad997ee1c25d48b8b0401e5563e5134c4972[27m"[39m
+Received: [31m"freellmapi-[7m116f7442bc75497653bef9371db56abf66ae150437b4e0ab[27m"[39m
+
+[36m [2m❯[22m server/astra/supervisor/stack-contract.spec.ts:[2m241:46[22m[39m
+    [90m239|[39m     }[33m;[39m
+    [90m240|[39m     expect(parsed.env?.ANTHROPIC_BASE_URL).toBe("http://127.0.0.1:3141…
+    [90m241|[39m     [34mexpect[39m(parsed[33m.[39menv[33m?.[39m[33mANTHROPIC_AUTH_TOKEN[39m)[33m.[39m[34mtoBe[39m(sourceKey)[33m;[39m
+    [90m   |[39m                                              [31m^[39m
+    [90m242|[39m   })[33m;[39m
+    [90m243|[39m })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m server/astra/supervisor/stack-contract.spec.ts[2m > [22mRetired FreeLLMAPI ports are firewalled (§8, §24)[2m > [22mnames no retired FreeLLMAPI port anywhere in runtime source
+[31m[1mAssertionError[22m: expected [ Array(14) ] to deeply equal [][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- [][39m
+[31m+ [[39m
+[31m+   "scripts/install-freellm.ps1",[39m
+[31m+   "scripts/keep-runtimes.ps1",[39m
+[31m+   "scripts/launch-ll-rl-az-oh.cmd",[39m
+[31m+   "scripts/start-astra-brain.ps1",[39m
+[31m+   "scripts/start-ll-rl.ps1",[39m
+[31m+   "scripts/start-routellm.cmd",[39m
+[31m+   "scripts/_http-snap.ps1",[39m
+[31m+   "scripts/_launch_core.ps1",[39m
+[31m+   "scripts/_pclip-health.ps1",[39m
+[31m+   "scripts/_port-ram-snap.ps1",[39m
+[31m+   "scripts/_portcheck.ps1",[39m
+[31m+   "scripts/_stability.ps1",[39m
+[31m+   "scripts/_status.ps1",[39m
+[31m+   "scripts/_wait-missing.ps1",[39m
+[31m+ ][39m
+
+[36m [2m❯[22m server/astra/supervisor/stack-contract.spec.ts:[2m360:31[22m[39m
+    [90m358|[39m
+    [90m359|[39m   it("names no retired FreeLLMAPI port anywhere in runtime source", ()…
+    [90m360|[39m     [34mexpect[39m([34moffendersIn[39m([33mROOT[39m))[33m.[39m[34mtoEqual[39m([])[33m;[39m
+    [90m   |[39m                               [31m^[39m
+    [90m361|[39m   })[33m;[39m
+    [90m362|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m25 passed[39m[22m[90m (27)[39m
+[2m   Start at [22m 13:21:45
+[2m   Duration [22m 1.35s[2m (transform 64ms, setup 0ms, import 93ms, tests 777ms, environment 0ms)[22m
+

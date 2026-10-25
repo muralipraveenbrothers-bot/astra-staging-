@@ -1,0 +1,238 @@
+// Astra KnowledgeSourceRegistry — the single registry of what knowledge is
+// ACTUALLY accessible. Every entry maps to real content in this codebase or a
+// real live backend. Nothing is claimed here that the code cannot prove.
+
+import type { KnowledgeSource } from "./types";
+
+export const CLINICAL_REFERENCES_SOURCE_ID = "src-clinical-references";
+export const CDS_DIFFERENTIALS_SOURCE_ID = "src-cds-differentials";
+export const PHARMACY_MASTER_SOURCE_ID = "src-pharmacy-master";
+export const LAB_SOURCE_ID = "src-lab-panels";
+export const OT_SOURCE_ID = "src-ot-procedures";
+export const BED_DIAGNOSES_SOURCE_ID = "src-bed-diagnoses";
+export const OPERATIONAL_STORE_SOURCE_ID = "store-hospital-data";
+export const OLLAMA_BACKEND_SOURCE_ID = "backend-ollama";
+export const FREELM_BACKEND_SOURCE_ID = "backend-freellmapi";
+export const VOICEBOX_SOURCE_ID = "backend-voicebox";
+export const PUBMED_SOURCE_ID = "source-pubmed";
+export const CLINICAL_TRIALS_SOURCE_ID = "source-clinicaltrials";
+export const WIKIPEDIA_SOURCE_ID = "source-wikipedia";
+export const WEB_SOURCE_ID = "source-web-search";
+export const TEXTBOOK_SOURCE_ID = "source-textbooks";
+export const GITHUB_SOURCE_ID = "source-github-medical";
+
+export const KNOWLEDGE_SOURCES: KnowledgeSource[] = [
+  {
+    id: CLINICAL_REFERENCES_SOURCE_ID,
+    name: "Curated Clinical References",
+    category: "clinical-reference",
+    specialties: ["General Medicine", "Cardiology", "Endocrinology", "Surgery", "Infectious Disease"],
+    local: true,
+    indexed: "indexed",
+    records: 5,
+    recordsMeasured: true,
+    access: "5 curated evidence summaries (pharyngitis, hypertension, inpatient diabetes, surgical ABx prophylaxis, ACS) with source links (UpToDate, ACC/AHA, ADA, WHO, ESC).",
+    lastUpdated: "2024-04-05",
+    freshness: "static",
+  },
+  {
+    id: CDS_DIFFERENTIALS_SOURCE_ID,
+    name: "CDS Differential Diagnosis Knowledge",
+    category: "cds-knowledge",
+    specialties: ["General Medicine", "ENT", "Infectious Disease"],
+    local: true,
+    indexed: "indexed",
+    records: 4,
+    recordsMeasured: true,
+    access: "4 curated differentials (viral pharyngitis, GAS pharyngitis, infectious mononucleosis, peritonsillar abscess) with rulesIn/rulesOut, guidelines, red flags and escalation.",
+    lastUpdated: "2025-01-01",
+    freshness: "static",
+  },
+  {
+    id: PHARMACY_MASTER_SOURCE_ID,
+    name: "Pharmacy Medicine Master",
+    category: "drug-reference",
+    specialties: ["Pharmacology"],
+    local: true,
+    indexed: "indexed",
+    records: 14,
+    recordsMeasured: true,
+    access: "Medicine master + stock seeds (Ceftriaxone, Amoxicillin, Paracetamol, Azithromycin, ORS, Insulin Glargine, DOLO 650 etc.) with price, batch, rack, reorder level.",
+    lastUpdated: "2025-01-01",
+    freshness: "live",
+  },
+  {
+    id: LAB_SOURCE_ID,
+    name: "Laboratory Test Panels",
+    category: "hospital-protocol",
+    specialties: ["Pathology", "Cardiology", "Endocrinology"],
+    local: true,
+    indexed: "indexed",
+    records: 6,
+    recordsMeasured: true,
+    access: "Actual lab orders: CBC + ESR, HbA1c, CRP + Procalcitonin, Troponin-I serial, Lipid profile, glucose panel.",
+    lastUpdated: "2025-01-01",
+    freshness: "live",
+  },
+  {
+    id: OT_SOURCE_ID,
+    name: "OT Procedure Knowledge",
+    category: "hospital-protocol",
+    specialties: ["General Surgery", "Orthopaedics", "OBGYN"],
+    local: true,
+    indexed: "indexed",
+    records: 4,
+    recordsMeasured: true,
+    access: "Actual surgical list: laparoscopic cholecystectomy, inguinal hernia repair, caesarean section, ORIF distal radius.",
+    lastUpdated: "2025-01-01",
+    freshness: "live",
+  },
+  {
+    id: BED_DIAGNOSES_SOURCE_ID,
+    name: "Ward Bed Diagnoses",
+    category: "hospital-protocol",
+    specialties: ["Internal Medicine", "Cardiology", "Infectious Disease"],
+    local: true,
+    indexed: "indexed",
+    records: 4,
+    recordsMeasured: true,
+    access: "Inpatient diagnoses on the bed board: enteric fever, cholelithiasis pre-op, community-acquired pneumonia, post-MI observation.",
+    lastUpdated: "2025-01-01",
+    freshness: "live",
+  },
+  {
+    id: OPERATIONAL_STORE_SOURCE_ID,
+    name: "Hospital Operational Data",
+    category: "operational-data",
+    specialties: [],
+    local: true,
+    indexed: "live-searchable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Live browser store (localStorage): patients, bills, orders, tasks, med doses, vitals, attendance, approvals, audit events. Counted at runtime — LIVE data, not knowledge.",
+    lastUpdated: "runtime",
+    freshness: "live",
+  },
+  {
+    id: OLLAMA_BACKEND_SOURCE_ID,
+    name: "Ollama Local Models",
+    category: "llm-backend",
+    specialties: [],
+    local: true,
+    indexed: "configured-unavailable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Runtime responded but returned 0 models — llama3.2:3b / qwen3:14b configured but not pulled.",
+    lastUpdated: "live-probe",
+    freshness: "live",
+  },
+  {
+    id: FREELM_BACKEND_SOURCE_ID,
+    name: "FreeLLMAPI Unified Router",
+    category: "llm-backend",
+    specialties: [],
+    local: true,
+    indexed: "configured-unavailable",
+    records: 0,
+    recordsMeasured: false,
+    access: "Router responded with HTTP 401 Invalid API key — model catalog NOT MEASURABLE until a valid Unified API Key is set.",
+    lastUpdated: "live-probe",
+    freshness: "live",
+  },
+  {
+    id: VOICEBOX_SOURCE_ID,
+    name: "Voicebox Voice Runtime (Qwen3-TTS + Whisper)",
+    category: "voicebox",
+    specialties: [],
+    local: true,
+    indexed: "configured-unavailable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Not running (port 17493 refused) — speech output unavailable until Voicebox is online.",
+    lastUpdated: "live-probe",
+    freshness: "live",
+  },
+  {
+    id: PUBMED_SOURCE_ID,
+    name: "PubMed / Biomedical Literature",
+    category: "pubmed",
+    specialties: ["General Medicine", "Infectious Disease", "Cardiology", "All"],
+    local: false,
+    indexed: "live-searchable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Live E-utilities connector (esearch → efetch). Query at runtime; points = abstract sentences + MeSH indexing, each traceable to a PMID. Bulk index job: NOT YET RUN.",
+    lastUpdated: "live-connector",
+    freshness: "live",
+  },
+  {
+    id: CLINICAL_TRIALS_SOURCE_ID,
+    name: "ClinicalTrials.gov",
+    category: "clinical-trials",
+    specialties: ["General Medicine", "Pharmacology", "All"],
+    local: false,
+    indexed: "live-searchable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Live v2 API connector. Query at runtime; points = condition × intervention pairs from registered trials, traceable to NCT id.",
+    lastUpdated: "live-connector",
+    freshness: "live",
+  },
+  {
+    id: WIKIPEDIA_SOURCE_ID,
+    name: "Wikipedia (medical articles)",
+    category: "web-search",
+    specialties: ["General Medicine"],
+    local: false,
+    indexed: "live-searchable",
+    records: 0,
+    recordsMeasured: true,
+    access: "Live REST summary connector. Points are labelled SUMMARIES, not verified facts.",
+    lastUpdated: "live-connector",
+    freshness: "live",
+  },
+  {
+    id: WEB_SOURCE_ID,
+    name: "Web Search",
+    category: "web-search",
+    specialties: [],
+    local: false,
+    indexed: "not-connected",
+    records: 0,
+    recordsMeasured: true,
+    access: "No web-search connector configured. Live web content is NOT indexed.",
+    lastUpdated: "never",
+    freshness: "unknown",
+  },
+  {
+    id: TEXTBOOK_SOURCE_ID,
+    name: "Medical Textbooks",
+    category: "textbook",
+    specialties: [],
+    local: false,
+    indexed: "not-connected",
+    records: 0,
+    recordsMeasured: true,
+    access: "No textbook corpus present in the codebase or configured data directories. 0 pages.",
+    lastUpdated: "never",
+    freshness: "unknown",
+  },
+  {
+    id: GITHUB_SOURCE_ID,
+    name: "Medical GitHub Repositories",
+    category: "github",
+    specialties: [],
+    local: false,
+    indexed: "not-connected",
+    records: 0,
+    recordsMeasured: true,
+    access: "No medical GitHub repository is cloned or indexed in this workspace.",
+    lastUpdated: "never",
+    freshness: "unknown",
+  },
+];
+
+/** Deterministic lookup — never return a fabricated source. */
+export function getSource(id: string): KnowledgeSource | undefined {
+  return KNOWLEDGE_SOURCES.find((s) => s.id === id);
+}

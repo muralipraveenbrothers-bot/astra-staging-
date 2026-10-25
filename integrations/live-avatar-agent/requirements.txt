@@ -1,0 +1,1 @@
+google-adk[all]>=2.0.0

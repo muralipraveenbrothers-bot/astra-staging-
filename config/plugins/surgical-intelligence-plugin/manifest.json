@@ -1,0 +1,119 @@
+{
+  "pluginId": "surgical-intelligence-plugin",
+  "tier": "P3",
+  "category": "HOSPITAL",
+  "name": "Surgical Intelligence",
+  "version": "1.0.0",
+  "description": "10-stage surgical roadmap: indication confirmation, differential exclusion, preop workup, risk stratification, planning, intraop danger zones, 3D rehearsal, postop, complication anticipation, follow-up.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "clinical-reasoning-plugin",
+      "ot-plugin"
+    ],
+    "optional": [
+      "medical-vision-dicom"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "surgical-intelligence",
+      "type": "surgical-planning",
+      "endpoint": "/api/surgical-roadmap",
+      "healthEndpoint": "/api/surgical-roadmap/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "surgical_roadmap_agent",
+      "name": "Surgical Roadmap Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "surgical_hod"
+    },
+    {
+      "agentId": "preop_optimizer",
+      "name": "Preop Optimizer",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "surgical_roadmap_agent"
+    },
+    {
+      "agentId": "intraop_danger_zone_agent",
+      "name": "Intraop Danger Zone Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "surgical_roadmap_agent"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "generate_surgical_roadmap",
+      "name": "Generate Surgical Roadmap",
+      "description": "10-stage pathway with failure-prevention flags",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "ao_principles",
+      "type": "surgery",
+      "accessScope": "hospital",
+      "autoIndex": false
+    }
+  ],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "surgery:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "scissors",
+      "route"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "surgery.roadmap.generated"
+    ],
+    "subscribes": [
+      "ot.case.scheduled"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "OT Plugin",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {},
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:surgical-intelligence-plugin-1.0.0",
+  "notes": "Advisory. Surgeon decides. 3D holographic model only when DICOM service configured."
+}

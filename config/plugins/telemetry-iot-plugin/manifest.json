@@ -1,0 +1,205 @@
+{
+  "pluginId": "telemetry-iot-plugin",
+  "tier": "P3",
+  "category": "HOSPITAL",
+  "name": "Telemetry & IoT Plugin",
+  "version": "1.0.0",
+  "description": "Bedside monitor integration, ventilator data, infusion pump alerts, wearable vitals.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "ward-icu-plugin",
+      "hospital-data-connector"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "telemetry-service",
+      "type": "iot",
+      "endpoint": "/api/telemetry",
+      "healthEndpoint": "/api/telemetry/health"
+    },
+    {
+      "serviceId": "telemetry-stream",
+      "type": "iot",
+      "endpoint": "ws://telemetry/stream",
+      "healthEndpoint": "/api/telemetry/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "telemetry_collector",
+      "name": "Telemetry Collector",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "device_alert_agent",
+      "name": "Device Alert Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "telemetry_collector"
+    },
+    {
+      "agentId": "ventilator_monitor",
+      "name": "Ventilator Monitor",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "telemetry_collector"
+    },
+    {
+      "agentId": "infusion_pump_guard",
+      "name": "Infusion Pump Guard",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "telemetry_collector"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "connect_device",
+      "name": "Connect Device",
+      "description": "Connect monitoring device",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "stream_vitals",
+      "name": "Stream Vitals",
+      "description": "Stream device vitals",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "device_alert",
+      "name": "Device Alert",
+      "description": "Device alert handling",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "log_telemetry",
+      "name": "Log Telemetry",
+      "description": "Telemetry log entry",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "NURSE",
+      "claims": [
+        "patient:read_clinical"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "TelemetryPanel",
+        "slot": "ward-monitor"
+      }
+    ],
+    "icons": [
+      "activity",
+      "radio"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "telemetry.alert",
+      "telemetry.disconnected"
+    ],
+    "subscribes": [
+      "ward.vitals.recorded"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Device Connectivity",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Stream Latency",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Alert Pipeline",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "pollIntervalMs": {
+        "type": "number",
+        "default": 1000
+      }
+    },
+    "secrets": [
+      "DEVICE_GATEWAY_KEY"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:telemetry-iot-plugin-1.0.0"
+}

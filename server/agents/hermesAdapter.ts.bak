@@ -1,0 +1,611 @@
+/**
+ * ASTRA AI — HERMES AGENT ADAPTER (SERVER-SIDE)
+ * ============================================================================
+ * Adapter around the REAL Hermes CLI installation on this machine:
+ *   C:\Users\mural\AppData\Local\hermes\hermes-agent  (v0.18.2, Python venv)
+ *
+ * Invocation mechanism (verified by audit, NOT invented):
+ *   hermes --version                       → version probe
+ *   hermes chat -q "<prompt>" -Q --safe-mode --max-turns 1 --provider custom:astra
+ *                                          → one-shot non-interactive task
+ *
+ * CRITICAL — why --provider custom:astra is required on every spawn:
+ *   The frozen hermes.exe (PyInstaller bundle) has intermittently failed to
+ *   resolve model.provider from config.yaml at runtime, silently falling back
+ *   to provider=openrouter (no key) → HTTP 401 "Missing Authentication header".
+ *   Passing --provider custom:astra explicitly bypasses that resolver. Verified:
+ *   without the flag → 401/openrouter; with the flag → LIVE, real responses
+ *   routed Astra adapter (:3000/v1) → FreeLLMAPI → model. DO NOT REMOVE.
+ *
+ * NO fake HTTP server, NO fake dashboard. Health is truth-based:
+ *   LIVE                   → CLI exists + version ok + a REAL execution succeeded
+ *   CONFIGURATION_REQUIRED → CLI exists but not configured (~/.hermes missing)
+ *   ERROR                  → CLI exists but execution fails
+ *   NOT_FOUND              → executable missing
+ */
+
+import { spawn, ChildProcess } from "child_process";
+import fs from "fs";
+import path from "path";
+import os from "os";
+import crypto from "crypto";
+
+// Official Hermes Agent only (NousResearch/hermes-agent — hermes-ai.net quickstart).
+// Do NOT use the npm package named "hermes" (segmentio/hermes) if it appears on PATH.
+const HERMES_CANDIDATES = [
+  path.join(os.homedir(), "AppData", "Local", "hermes", "hermes-agent", "venv", "Scripts", "hermes.exe"),
+  path.join(os.homedir(), "AppData", "Local", "hermes", "hermes-agent", "hermes"),
+];
+
+/**
+ * Real Hermes home on this Windows install (HERMES_HOME). This is the directory
+ * that actually holds config.yaml / context_length_cache.yaml — NOT ~/.hermes,
+ * which does not exist on Windows. Verified against
+ * C:\Users\mural\AppData\Local\hermes.
+ */
+export function hermesHomeDir(): string {
+  return path.join(os.homedir(), "AppData", "Local", "hermes");
+}
+
+/** Hermes Agent's required minimum model context window (from the real runtime error). */
+const REQUIRED_CONTEXT = 64000;
+
+/**
+ * Child-process env for the Hermes CLI. Hermes resolves a custom (non-OpenRouter)
+ * provider's key from the OPENAI_API_KEY environment variable (see hermes-agent
+ * cli.py: `self.api_key = api_key or os.getenv("OPENAI_API_KEY")` for custom base_url).
+ *
+ * Astra routes Hermes through the PRIMARY gateway (FreeLLMAPI) by injecting the
+ * unified key that the backend already loaded from config/ai-gateway.env — so the
+ * credential stays centralized server-side and is never written into a second
+ * Hermes secrets file or exposed to the browser.
+ */
+function hermesChildEnv(): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...process.env };
+  const gatewayKey =
+    process.env.FREELLMAPI_API_KEY ||
+    process.env.ASTRA_FREELLMAPI_API_KEY ||
+    process.env.ASTRA_LLM_GATEWAY_API_KEY ||
+    env.OPENAI_API_KEY ||
+    "";
+  if (gatewayKey) {
+    env.OPENAI_API_KEY = gatewayKey;
+    // Hermes' custom_providers "astra" entry declares key_env: ASTRA_ADAPTER_API_KEY.
+    env.ASTRA_ADAPTER_API_KEY = gatewayKey;
+  }
+  return env;
+}
+
+export interface HermesModelConfig {
+  model: string | null;
+  provider: string | null;
+  baseUrl: string | null;
+  contextLength: number | null;
+  requiredContext: number;
+  /** true when a real context >= required is configured; null when unknown. */
+  compatible: boolean | null;
+}
+
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function readText(file: string): string | null {
+  try {
+    return fs.readFileSync(file, "utf8");
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Truthful model configuration from the REAL Hermes install. Reads config.yaml
+ * and context_length_cache.yaml — never modifies them. This drives the
+ * CONFIGURATION_REQUIRED status when the configured model's context window is
+ * below Hermes' 64K minimum.
+ */
+function yamlScalar(v: string | undefined): string | null {
+  if (!v) return null;
+  const t = v.trim().replace(/['"]/g, "");
+  return t.length ? t : null;
+}
+
+function parseModelBlock(cfg: string): { model: string | null; provider: string | null; baseUrl: string | null; contextLength: number | null } {
+  const block = cfg.match(/^model:\r?\n((?:[ \t]+.+\r?\n)+)/m)?.[1] ?? "";
+  const model = yamlScalar(block.match(/^\s*default:\s*(.+)$/m)?.[1]) ?? yamlScalar(cfg.match(/\bdefault:\s*["']?([^\s#]+)/)?.[1]);
+  const provider = yamlScalar(block.match(/^\s*provider:\s*(.+)$/m)?.[1]) ?? yamlScalar(cfg.match(/\bprovider:\s*["']?([^\s#]+)/)?.[1]);
+  let baseUrl = yamlScalar(block.match(/^\s*base_url:\s*(.+)$/m)?.[1]);
+  const ctxLine = block.match(/^\s*context_length:\s*(\d+)/m);
+  const contextFromConfig = ctxLine ? parseInt(ctxLine[1], 10) : null;
+
+  const providers = [...cfg.matchAll(/^\s*- name:\s*(.+)\r?\n(?:\s{2,}.+\r?\n)*/gm)];
+  for (const p of providers) {
+    const chunk = p[0];
+    const name = yamlScalar(p[1]);
+    const slug = name?.toLowerCase().replace(/\s+/g, "-");
+    const pUrl = yamlScalar(chunk.match(/base_url:\s*(.+)/)?.[1]);
+    if (!baseUrl && provider && (provider === `custom:${slug}` || provider === slug || name === "astra")) {
+      baseUrl = pUrl;
+    }
+    if (!baseUrl && slug === "astra" && provider?.includes("astra")) baseUrl = pUrl;
+  }
+  return { model, provider, baseUrl, contextLength: contextFromConfig };
+}
+
+export function hermesConfig(): HermesModelConfig {
+  const home = hermesHomeDir();
+  const cfg = readText(path.join(home, "config.yaml"));
+  const parsed = cfg ? parseModelBlock(cfg) : { model: null, provider: null, baseUrl: null, contextLength: null };
+  let contextLength = parsed.contextLength;
+  const ctxCache = readText(path.join(home, "context_length_cache.yaml"));
+  if (contextLength == null && ctxCache && parsed.model) {
+    const base = parsed.model.replace(/:latest$/, "").trim();
+    const re = new RegExp(`^\\s*[\\w.:/@\\-]*${escapeRegExp(base)}[\\w.:/@\\-]*:\\s*(\\d+)\\s*$`, "m");
+    const m = ctxCache.match(re);
+    if (m) contextLength = parseInt(m[1], 10);
+  }
+  return {
+    model: parsed.model,
+    provider: parsed.provider,
+    baseUrl: parsed.baseUrl,
+    contextLength,
+    requiredContext: REQUIRED_CONTEXT,
+    compatible: contextLength != null ? contextLength >= REQUIRED_CONTEXT : null,
+  };
+}
+
+/** Message describing the model-context configuration gap (no fabrication, no config change). */
+function modelContextDetail(cfg: HermesModelConfig, lastExecution: HermesTask | null): string {
+  const model = cfg.model ? `"${cfg.model}"` : "the configured model";
+  const ctx = cfg.contextLength != null ? `${cfg.contextLength.toLocaleString("en-US")} tokens` : "an unknown context window";
+  const req = cfg.requiredContext.toLocaleString("en-US");
+  const exec = lastExecution ? ` A real execution failed (exit ${lastExecution.exitCode}).` : "";
+  return (
+    `Hermes installed and verified. Runtime available. Current model ${model} has a context window of ` +
+    `${ctx}, which is below the ${req} minimum required by Hermes Agent.${exec} ` +
+    `No model was changed automatically. Configure a model with >= ${req} context (or raise context_length) to move to LIVE.`
+  );
+}
+
+export type HermesStatus = "LIVE" | "CONFIGURATION_REQUIRED" | "ERROR" | "NOT_FOUND" | "UNKNOWN";
+
+export interface HermesTask {
+  taskId: string;
+  prompt: string;
+  status: "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED" | "TIMEOUT";
+  startedAt: number;
+  finishedAt?: number;
+  exitCode?: number;
+  stdout: string;
+  stderr: string;
+  source: "test" | "task";
+}
+
+const MAX_LOG = 200;
+const tasks = new Map<string, HermesTask>();
+const running = new Map<string, ChildProcess>();
+
+function resolveCli(): string | null {
+  for (const c of HERMES_CANDIDATES) {
+    try {
+      if (c.includes(path.sep) ? fs.existsSync(c) : true) return c;
+    } catch {
+      /* ignore */
+    }
+  }
+  return null;
+}
+
+export function hermesInstallPath(): string | null {
+  const cli = resolveCli();
+  if (!cli) return null;
+  return cli.includes("hermes-agent") ? path.dirname(path.dirname(path.dirname(cli))) : path.dirname(cli);
+}
+
+export async function hermesVersion(timeoutMs = 15000): Promise<string | null> {
+  const cli = resolveCli();
+  if (!cli) return null;
+  return new Promise((resolve) => {
+    let out = "";
+    const child = spawn(cli, ["--version"], { windowsHide: true, shell: cli.endsWith(".cmd"), env: hermesChildEnv() });
+    const timer = setTimeout(() => {
+      child.kill();
+      resolve(null);
+    }, timeoutMs);
+    child.stdout?.on("data", (d) => (out += String(d)));
+    child.on("error", () => {
+      clearTimeout(timer);
+      resolve(null);
+    });
+    child.on("close", () => {
+      clearTimeout(timer);
+      const m = out.match(/Hermes Agent v([0-9.]+)/);
+      resolve(m ? m[1] : out.trim().split("\n")[0] || null);
+    });
+  });
+}
+
+export async function hermesCapabilities() {
+  const installPath = hermesInstallPath();
+  const home = hermesHomeDir();
+  const configPresent = fs.existsSync(path.join(home, "config.yaml"));
+  return {
+    cli: resolveCli(),
+    installPath,
+    configPresent,
+    home,
+    modelConfig: hermesConfig(),
+    runtime: "Native Windows CLI (Python venv)",
+    networkListener: false as const,
+    invocation: 'hermes chat -q "<prompt>" -Q --safe-mode --max-turns 1',
+    streaming: false as const,
+  };
+}
+export function hermesExecute(prompt: string, source: "test" | "task", timeoutMs = 120000): HermesTask {
+  const cli = resolveCli();
+  const taskId = `hermes-${Date.now()}-${crypto.randomBytes(3).toString("hex")}`;
+  const task: HermesTask = {
+    taskId,
+    prompt: prompt.slice(0, 4000),
+    status: "RUNNING",
+    startedAt: Date.now(),
+    stdout: "",
+    stderr: "",
+    source,
+  };
+  if (!cli) {
+    task.status = "FAILED";
+    task.finishedAt = Date.now();
+    task.stderr = "Hermes CLI not found";
+    tasks.set(taskId, task);
+    return task;
+  }
+  tasks.set(taskId, task);
+  if (tasks.size > MAX_LOG) {
+    const oldest = tasks.keys().next().value;
+    if (oldest) tasks.delete(oldest);
+  }
+
+  const child = spawn(
+    cli,
+    [
+      "chat",
+      "-q",
+      task.prompt,
+      "-Q",
+      "--safe-mode",
+      "--max-turns",
+      "1",
+      // Force the named custom provider explicitly. The frozen hermes.exe
+      // config resolver has ignored model.provider in some runs (resolving
+      // to openrouter); the --provider flag bypasses that path entirely.
+      "--provider",
+      "custom:astra",
+    ],
+    { windowsHide: true, shell: cli.endsWith(".cmd"), env: hermesChildEnv() },
+  );
+  running.set(taskId, child);
+
+  const timer = setTimeout(() => {
+    if (task.status === "RUNNING") {
+      task.status = "TIMEOUT";
+      child.kill();
+    }
+  }, timeoutMs);
+
+  child.stdout?.on("data", (d) => {
+    task.stdout = (task.stdout + String(d)).slice(-20000);
+  });
+  child.stderr?.on("data", (d) => {
+    task.stderr = (task.stderr + String(d)).slice(-20000);
+  });
+  child.on("error", (e) => {
+    task.stderr = (task.stderr + String(e)).slice(-20000);
+  });
+  child.on("close", (code) => {
+    clearTimeout(timer);
+    running.delete(taskId);
+    task.exitCode = code ?? -1;
+    if (task.status === "RUNNING") {
+      task.status = code === 0 && task.stdout.trim().length > 0 ? "COMPLETED" : "FAILED";
+    }
+    task.finishedAt = Date.now();
+  });
+  return task;
+}
+
+export function hermesCancel(taskId: string): boolean {
+  const child = running.get(taskId);
+  const task = tasks.get(taskId);
+  if (!child || !task || task.status !== "RUNNING") return false;
+  task.status = "CANCELLED";
+  child.kill();
+  running.delete(taskId);
+  task.finishedAt = Date.now();
+  return true;
+}
+
+export function hermesTaskList(): HermesTask[] {
+  return [...tasks.values()].sort((a, b) => b.startedAt - a.startedAt);
+}
+
+export function hermesTask(taskId: string): HermesTask | undefined {
+  return tasks.get(taskId);
+}
+
+/**
+ * Truth-based health: CLI exists + version succeeds + safe execution test.
+ * Status becomes LIVE only after a REAL execution test succeeds.
+ */
+export interface HermesHealthResult {
+  kind: "CLI" | "SERVER" | "CLI_OR_SERVER";
+  status: "LIVE" | "CONFIGURATION_REQUIRED" | "ERROR" | "NOT_FOUND";
+  version: string | null;
+  mode: "CLI" | "SERVER";
+  supportsServe: boolean;
+  endpoint?: string;
+  transport: string;
+  detail: string;
+  lastCheckedAt: string;
+}
+
+/**
+ * Detect whether the installed Hermes CLI exposes a headless backend
+ * (`hermes serve`). The current hermes-agent (v0.18.2) is CLI-only, so the
+ * health decision MUST NOT assume :9119 is a backend until `hermes serve`
+ * actually exists in this install.
+ */
+export async function detectHermesCapabilities(): Promise<{
+  installed: boolean;
+  version: string | null;
+  supportsServe: boolean;
+  supportsDashboard: boolean;
+  supportsMcp: boolean;
+  supportsSkills: boolean;
+}> {
+  let installed = false;
+  let version: string | null = null;
+  const supports = { serve: false, dashboard: false, mcp: false, skills: false };
+
+  try {
+    version = (await hermesVersion(8000)) ?? null;
+    installed = Boolean(version);
+  } catch {
+    installed = false;
+  }
+
+  try {
+    // Probe each subcommand; a real subcommand exits 0, missing ones exit non-zero
+    const results = await Promise.allSettled(
+      [
+        ["serve"],
+        ["dashboard"],
+        ["mcp"],
+        ["skills"],
+      ].map((args) => runHermes(args, 4000).then(() => true).catch(() => false)),
+    );
+    supports.serve = results[0].status === "fulfilled" && (results[0].value as boolean);
+    supports.dashboard = results[1].status === "fulfilled" && (results[1].value as boolean);
+    supports.mcp = results[2].status === "fulfilled" && (results[2].value as boolean);
+    supports.skills = results[3].status === "fulfilled" && (results[3].value as boolean);
+  } catch {
+    /* leave all false */
+  }
+
+  return {
+    installed,
+    version,
+    supportsServe: supports.serve,
+    supportsDashboard: supports.dashboard,
+    supportsMcp: supports.mcp,
+    supportsSkills: supports.skills,
+  };
+}
+
+async function runHermes(args: string[], timeoutMs: number): Promise<{ code: number; stdout: string; stderr: string }> {
+  const { spawn } = await import("child_process");
+  return new Promise((resolve, reject) => {
+    const exe = resolveCli();
+    if (!exe) return reject(new Error("hermes not installed"));
+    const child = spawn(exe, args, { timeout: timeoutMs, windowsHide: true });
+    let stdout = "";
+    let stderr = "";
+    child.stdout?.on("data", (d) => { stdout += d.toString(); });
+    child.stderr?.on("data", (d) => { stderr += d.toString(); });
+    child.on("error", reject);
+    child.on("close", (code) => resolve({ code: code ?? 1, stdout, stderr }));
+  });
+}
+
+/**
+ * Real Hermes health probe.
+ *
+ * Decision tree:
+ *   1. CLI missing            → NOT_FOUND
+ *   2. CLI ok + serve supported + :9119 responding → SERVER (real backend)
+ *   3. CLI ok + serve supported + :9119 absent    → CONFIGURATION_REQUIRED
+ *      (backend capability exists but isn't running — NOT a failure of Hermes)
+ *   4. CLI ok + serve NOT supported               → CLI
+ *      (current v0.18.2 is CLI-only; this is HEALTHY when version resolves)
+ *
+ * A CLI-only Hermes MUST NOT be reported as DEGRADED/UNREACHABLE just because
+ * there is no HTTP endpoint. That was the original bug.
+ */
+export async function probeHermes(): Promise<HermesHealthResult> {
+  const startedAt = new Date().toISOString();
+  const caps = await detectHermesCapabilities();
+
+  if (!caps.installed || !caps.version) {
+    return {
+      kind: "CLI",
+      status: "NOT_FOUND",
+      version: null,
+      mode: "CLI",
+      supportsServe: false,
+      transport: "CLI",
+      detail: "Hermes executable not found on this machine",
+      lastCheckedAt: startedAt,
+    };
+  }
+
+  const detail2 = await hermesHealth();
+  if (!caps.supportsServe) {
+    const healthy = detail2.status === "LIVE";
+    return {
+      kind: "CLI",
+      status: healthy ? "LIVE" : detail2.status === "CONFIGURATION_REQUIRED" ? "CONFIGURATION_REQUIRED" : "ERROR",
+      version: caps.version,
+      mode: "CLI",
+      supportsServe: false,
+      transport: "CLI",
+      detail: healthy
+        ? `Hermes CLI v${caps.version} operational (CLI-only build; no backend expected). ${detail2.detail}`
+        : detail2.detail,
+      lastCheckedAt: startedAt,
+    };
+  }
+
+  // serve is supported — check the real backend
+  const home = hermesHomeDir();
+  const fs = await import("fs");
+  const backendRunning = fs.existsSync(path.join(home, "config.yaml"));
+  const endpoint = "http://127.0.0.1:9119";
+  let backendUp = false;
+  try {
+    const res = await fetch(endpoint, { signal: AbortSignal.timeout(2000) });
+    backendUp = res.status > 0 && res.status < 500;
+  } catch {
+    backendUp = false;
+  }
+
+  if (backendRunning && backendUp) {
+    return {
+      kind: "CLI_OR_SERVER",
+      status: "LIVE",
+      version: caps.version,
+      mode: "SERVER",
+      supportsServe: true,
+      endpoint,
+      transport: "CLI + HTTP",
+      detail: `Hermes CLI v${caps.version}; hermes serve backend LIVE on ${endpoint}`,
+      lastCheckedAt: startedAt,
+    };
+  }
+
+  return {
+    kind: "CLI_OR_SERVER",
+    status: "CONFIGURATION_REQUIRED",
+    version: caps.version,
+    mode: "CLI",
+    supportsServe: true,
+    endpoint,
+    transport: "CLI",
+    detail: `Hermes CLI v${caps.version} installed, but hermes serve backend is not running on ${endpoint}. Start with: hermes serve --host 127.0.0.1 --port 9119`,
+    lastCheckedAt: startedAt,
+  };
+}
+
+  status: HermesStatus;
+  version: string | null;
+  installPath: string | null;
+  configPresent: boolean;
+  config: HermesModelConfig;
+  lastExecution: HermesTask | null;
+  detail: string;
+export async function hermesHealth(): Promise<{
+  const installPath = hermesInstallPath();
+  const home = hermesHomeDir();
+  const configPresent = fs.existsSync(path.join(home, "config.yaml"));
+  const config = hermesConfig();
+  if (!cli || !installPath) {
+    return {
+      status: "NOT_FOUND",
+      version: null,
+      installPath: null,
+      configPresent,
+      config,
+      lastExecution: hermesTaskList()[0] ?? null,
+      detail: "Hermes executable not found on this machine",
+    };
+  }
+  const version = await hermesVersion();
+  if (!version) {
+    return {
+      status: "ERROR",
+      version: null,
+      installPath,
+      configPresent,
+      config,
+      lastExecution: hermesTaskList()[0] ?? null,
+      detail: "hermes --version failed",
+    };
+  }
+  const lastExecution = hermesTaskList().find((t) => t.status !== "RUNNING") ?? null;
+  if (lastExecution?.status === "COMPLETED" && config.compatible !== false) {
+    return { status: "LIVE", version, installPath, configPresent, config, lastExecution, detail: "CLI verified; real execution test succeeded" };
+  }
+  if (lastExecution && ["FAILED", "TIMEOUT", "CANCELLED"].includes(lastExecution.status)) {
+    const combined = lastExecution.stderr + " " + lastExecution.stdout;
+    const isContextError = /context window/i.test(combined) && /required by Hermes/i.test(combined);
+    if (isContextError) {
+      return {
+        status: "CONFIGURATION_REQUIRED",
+        version,
+        installPath,
+        configPresent,
+        config,
+        lastExecution,
+        detail: modelContextDetail(config, lastExecution),
+      };
+    }
+    return {
+      status: configPresent ? "ERROR" : "CONFIGURATION_REQUIRED",
+      version,
+      installPath,
+      configPresent,
+      config,
+      lastExecution,
+      detail: configPresent
+        ? `Last execution ${lastExecution.status} (exit ${lastExecution.exitCode})`
+        : "CLI verified but Hermes configuration file missing — run `hermes setup` once",
+    };
+  }
+  if (configPresent && config.compatible === false) {
+    let extra = "";
+    const usingOllama = /ollama/i.test(`${config.provider ?? ""} ${config.baseUrl ?? ""}`);
+    if (usingOllama && config.model) {
+      try {
+        const tags = await fetch("http://127.0.0.1:11434/api/tags", { signal: AbortSignal.timeout(2500) });
+        if (tags.ok) {
+          const json = (await tags.json()) as { models?: { name?: string }[] };
+          const names = (json.models ?? []).map((m) => String(m.name ?? ""));
+          if (!names.some((n) => n === config.model || n.startsWith(`${config.model}:`))) {
+            extra = ` Ollama does not currently have "${config.model}" installed (have: ${names.join(", ") || "none"}). Do not invent a 64K window for it.`;
+          }
+        }
+      } catch {
+        extra = " Ollama was not reachable to confirm the model is installed.";
+      }
+    }
+    return {
+      status: "CONFIGURATION_REQUIRED",
+      version,
+      installPath,
+      configPresent,
+      config,
+      lastExecution,
+      detail: modelContextDetail(config, null) + extra,
+    };
+  }
+  return {
+    status: "CONFIGURATION_REQUIRED",
+    version,
+    installPath,
+    configPresent,
+    config,
+    lastExecution,
+    detail: configPresent
+      ? "CLI verified; no execution test recorded yet — run Health Check / Run Test"
+      : "CLI verified but Hermes configuration file missing — run `hermes setup` once",
+  };
+}

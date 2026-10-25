@@ -1,0 +1,31 @@
+{
+  "note": "Illustrative teaching patterns only. Hidden until a doctor approves. Not a diagnosis map.",
+  "entries": [
+    {
+      "id": "kidney-fluid-lung",
+      "from": "kidney",
+      "mechanism": "reduced filtration then fluid retention",
+      "to": "lungs",
+      "expectedFindings": ["dyspnoea", "hypoxia"],
+      "stage": 3,
+      "monitorNext": "weight, oxygen saturation, urine output",
+      "escalationThreshold": "new hypoxia or falling urine output",
+      "reviewStatus": "draft_needs_doctor_review",
+      "approvedBy": null,
+      "evidenceRef": null
+    },
+    {
+      "id": "kidney-k-heart",
+      "from": "kidney",
+      "mechanism": "potassium retention",
+      "to": "heart",
+      "expectedFindings": ["arrhythmia risk"],
+      "stage": 3,
+      "monitorNext": "potassium and rhythm",
+      "escalationThreshold": "potassium rising or new arrhythmia",
+      "reviewStatus": "draft_needs_doctor_review",
+      "approvedBy": null,
+      "evidenceRef": null
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "pluginId": "insurance-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Insurance Plugin",
+  "version": "1.0.0",
+  "description": "PMJAY, ABHA, CMRF, private TPA, pre-auth, claims, settlement, NABH documentation.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "billing-plugin"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "insurance-service",
+      "type": "department",
+      "endpoint": "/api/insurance",
+      "healthEndpoint": "/api/insurance/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "insurance_hod",
+      "name": "Insurance HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "pmjay_agent",
+      "name": "PMJAY Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "cmrf_agent",
+      "name": "CMRF Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "tpa_agent",
+      "name": "TPA Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "preauth_agent",
+      "name": "Preauth Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "claim_documentation_agent",
+      "name": "Claim Documentation Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "settlement_agent",
+      "name": "Settlement Agent",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "insurance_hod"
+    },
+    {
+      "agentId": "insurance_claims_head",
+      "name": "Insurance Claims Head",
+      "level": "EXECUTIVE",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "create_claim",
+      "name": "Create Claim",
+      "description": "Create insurance claim",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "scheme": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "submit_preauth",
+      "name": "Submit Preauth",
+      "description": "Submit pre-authorization",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "track_claim",
+      "name": "Track Claim",
+      "description": "Track claim status",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "claimId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "verify_documents",
+      "name": "Verify Documents",
+      "description": "Verify claim documents",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "claimId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "process_settlement",
+      "name": "Process Settlement",
+      "description": "Process settlement",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "claimId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "link_abha",
+      "name": "Link ABHA",
+      "description": "Link ABHA health record",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "abhaId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "INSURANCE",
+      "claims": [
+        "billing:read",
+        "billing:write"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/insurance",
+        "component": "InsuranceDashboard",
+        "roles": [
+          "INSURANCE"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "shield-check",
+      "file-check"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "insurance.claim.created",
+      "insurance.settlement"
+    ],
+    "subscribes": [
+      "billing.payment.recorded"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Claim DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Document Completeness",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Settlement Status",
+      "endpoint": "command-engine",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "schemeList": {
+        "type": "array",
+        "default": [
+          "PMJAY",
+          "CMRF",
+          "TPA"
+        ]
+      }
+    },
+    "secrets": [
+      "PMJAY_API_KEY",
+      "ABHA_CLIENT_ID",
+      "TPA_ENDPOINTS"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:insurance-plugin-1.0.0",
+  "statusRule": "If government APIs unavailable -> CONFIG_REQUIRED, never fake responses"
+}

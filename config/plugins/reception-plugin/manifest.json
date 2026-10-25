@@ -1,0 +1,276 @@
+{
+  "pluginId": "reception-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Reception Plugin",
+  "version": "1.0.0",
+  "description": "Registration, UHID, token, queue, appointments, patient communication, ABDM/PMJAY optional adapters.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "voicebox"
+    ],
+    "optional": [
+      "medical-knowledge-gateway"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "reception-service",
+      "type": "department",
+      "endpoint": "/api/reception",
+      "healthEndpoint": "/api/reception/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "reception_hod",
+      "name": "Reception HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "registration_manager",
+      "name": "Registration Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "reception_hod"
+    },
+    {
+      "agentId": "queue_manager",
+      "name": "Queue Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "reception_hod"
+    },
+    {
+      "agentId": "token_agent",
+      "name": "Token Agent",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "registration_manager"
+    },
+    {
+      "agentId": "patient_comm_agent",
+      "name": "Patient Communication Agent",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "reception_hod"
+    },
+    {
+      "agentId": "uhid_agent",
+      "name": "UHID Agent",
+      "level": "MANAGER",
+      "autoRegister": true
+    },
+    {
+      "agentId": "print_agent",
+      "name": "Print Agent",
+      "level": "MANAGER",
+      "autoRegister": true
+    },
+    {
+      "agentId": "appointment_agent",
+      "name": "Appointment Agent",
+      "level": "MANAGER",
+      "autoRegister": true
+    },
+    {
+      "agentId": "registration_agent",
+      "name": "Registration Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "queue_agent",
+      "name": "Queue Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "patient_communication_agent",
+      "name": "Patient Communication Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "register_patient",
+      "name": "Register Patient",
+      "description": "Register new patient",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "generate_uhid",
+      "name": "Generate UHID",
+      "description": "Generate UHID",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "issue_token",
+      "name": "Issue Token",
+      "description": "Issue queue token",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "manage_queue",
+      "name": "Manage Queue",
+      "description": "Queue operations",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "schedule_appointment",
+      "name": "Schedule Appointment",
+      "description": "Book appointment",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "doctor": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "RECEPTION",
+      "claims": [
+        "patient:read",
+        "patient:write"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/reception",
+        "component": "EnhancedReceptionDashboard",
+        "roles": [
+          "RECEPTION"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "user-round",
+      "ticket"
+    ]
+  },
+  "database": {
+    "migrations": [
+      "001_create_reception_queue.sql"
+    ],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "reception.patient.registered",
+      "reception.queue.updated"
+    ],
+    "subscribes": [
+      "data.updated"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Registration Throughput",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Queue State",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Printer Connectivity",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "tokenPrefix": {
+        "type": "string",
+        "default": "OP"
+      }
+    },
+    "secrets": [
+      "ABDM_CLIENT_ID",
+      "PMJAY_ENDPOINT"
+    ]
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:reception-plugin-1.0.0"
+}

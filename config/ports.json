@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "description": "ASTRA Stable — single source of truth for ports. No service may invent its own port. Legacy ports are listed in `aliases` and must never be used again.",
+  "services": {
+    "astra-api": {
+      "name": "Astra API",
+      "host": "127.0.0.1",
+      "port": 3000,
+      "tier": "core",
+      "probe": "http",
+      "healthPath": "/api/health",
+      "pm2": "AstraAPI",
+      "launcher": "start-astra-api.cmd",
+      "notes": "Orchestrator front door. ASTRA_API_PORT / ASTRA_ADAPTER_BASE_URL point here."
+    },
+    "astra-ui": {
+      "name": "Astra UI (Vite)",
+      "host": "127.0.0.1",
+      "port": 5173,
+      "tier": "core",
+      "probe": "tcp",
+      "launcher": "start-astra-vite.cmd",
+      "notes": "Browser app. Must render even if every AI/extension service is down."
+    },
+    "freellmapi": {
+      "name": "FreeLLMAPI gateway",
+      "host": "127.0.0.1",
+      "port": 31416,
+      "tier": "ai",
+      "probe": "http",
+      "healthPath": "/v1/models",
+      "pm2": "FreeLLMAPI",
+      "routeGroup": "llm-route",
+      "aliases": [3001],
+      "notes": "CANONICAL 31416 (was 3001 in ecosystem + ai-gateway.env -> that split is the root of the offline/degraded reports)."
+    },
+    "ollama": {
+      "name": "Ollama",
+      "host": "127.0.0.1",
+      "port": 11434,
+      "tier": "ai",
+      "probe": "http",
+      "healthPath": "/api/tags",
+      "routeGroup": "llm-route",
+      "notes": "Local last-resort route. Must be probed by every watchdog."
+    },
+    "voicebox": {
+      "name": "Voicebox",
+      "host": "127.0.0.1",
+      "port": 17493,
+      "tier": "extension",
+      "probe": "tcp",
+      "pm2": "Voicebox",
+      "launcher": "start-voicebox.cmd",
+      "notes": "PM2 must own voicebox-server.exe directly. Never `start /min` (detaches -> unmanaged)."
+    },
+    "hermes": {
+      "name": "Hermes dashboard",
+      "host": "127.0.0.1",
+      "port": 9119,
+      "tier": "extension",
+      "probe": "tcp",
+      "pm2": "Hermes",
+      "launcher": "start-hermes.cmd"
+    },
+    "laya": {
+      "name": "Laya decision nucleus",
+      "host": "127.0.0.1",
+      "port": 8791,
+      "tier": "ai",
+      "probe": "http",
+      "healthPath": "/v1/health",
+      "notes": "Existing loopback. Registered here so the port is not invented a second time."
+    },
+    "voicebox-bridge": {
+      "name": "Voicebox MCP bridge",
+      "host": "127.0.0.1",
+      "port": 17494,
+      "tier": "extension",
+      "probe": "none",
+      "notes": "Optional. Reserved so nothing else claims it."
+    }
+  },
+  "processOnly": [],
+  "notPm2Services": {
+    "gesture": "Saarathi Gesture Vision was removed. Do not register a gesture process with PM2."
+  }
+}

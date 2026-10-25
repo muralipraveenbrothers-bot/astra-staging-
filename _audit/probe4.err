@@ -1,0 +1,29 @@
+
+[2m2026-09-23T05:55:51.807045[0m [[32m[1minfo     [0m] [1mLog file created at: C:\Users\mural\.cognee\logs\2026-09-23_05-55-51.log[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m [36mlog_file[0m=[35mC:\Users\mural\.cognee\logs\2026-09-23_05-55-51.log[0m
+
+[2m2026-09-23T05:55:51.807045[0m [[33m[1mwarning  [0m] [1mCognee 1.0 changes: New API — remember/recall/forget/improve (V1 add/cognify/search still work). Session memory enabled by default (CACHING=false to disable). Multi-user access control on by default (ENABLE_BACKEND_ACCESS_CONTROL=false to disable). Agents (@cognee.agent) auto-verified on registration. See https://docs.cognee.ai/[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m
+
+[2m2026-09-23T05:55:51.852201[0m [[32m[1minfo     [0m] [1mLogging initialized           [0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m [36mcognee_version[0m=[35m1.6.0-local[0m [36mdatabase_path[0m=[35m'D:\\astra PM\\plugins\\cognee\\cognee\\.cognee_system\\databases'[0m [36mos_info[0m=[35m'Windows 10 (10.0.26200)'[0m [36mpython_version[0m=[35m3.11.15[0m [36mstructlog_version[0m=[35m25.5.0[0m
+
+[2m2026-09-23T05:55:51.853455[0m [[32m[1minfo     [0m] [1mDatabase storage: D:\astra PM\plugins\cognee\cognee\.cognee_system\databases[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m
+
+[2m2026-09-23T05:55:58.613454[0m [[32m[1minfo     [0m] [1mauth posture: authentication=required, multi_tenant=enabled (default (no env vars set))[0m [[0m[1m[34mget_authenticated_user[0m][0m
+
+[2m2026-09-23T05:56:00.610794[0m [[31m[1merror    [0m] [1mException                     [0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m [36mexception_message[0m=[35m'object.__new__(X): X is not a type object (_AnnotatedAlias)'[0m [36mexception_type[0m=[35mTypeError[0m [36mtraceback[0m=[35mTrue[0m
+[31m\u250c\u2500[0m[31m\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500[0m[31m [0m[1;31mTraceback [0m[1;2;31m(most recent call last)[0m[31m [0m[31m\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500[0m[31m\u2500\u2510[0m
+[31m\u2502[0m D:\astra PM\_audit\probe4.py:23 in <module>                                 [31m\u2502[0m
+[31m\u2502[0m                                                                             [31m\u2502[0m
+[31m\u2502[0m   [2m20 [0m[2m\u2502   [0m[95mor[0m [96mgetattr[0m(RR, [33m"[0m[33m__annotations__[0m[33m"[0m, [94mNone[0m)                            [31m\u2502[0m
+[31m\u2502[0m   [2m21 [0m)                                                                      [31m\u2502[0m
+[31m\u2502[0m   [2m22 [0m[96mprint[0m([33m"[0m[33mRECALLRESP<<<[0m[33m"[0m + [96mstr[0m(fields))                                   [31m\u2502[0m
+[31m\u2502[0m [31m> [0m23 r = [1;4mRR.[0m[1;4;92m__new__[0m[1;4m(RR)[0m                                                     [31m\u2502[0m
+[31m\u2502[0m   [2m24 [0m[96mprint[0m([33m"[0m[33mRECALLRESP_ATTRS<<<[0m[33m"[0m + [33m"[0m[33m,[0m[33m"[0m.join([96mdir[0m(RR)[:[94m40[0m]))                  [31m\u2502[0m
+[31m\u2502[0m   [2m25 [0m                                                                       [31m\u2502[0m
+[31m\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518[0m
+[1;91mTypeError: [0m[1;35mobject.__new__[0m[1m([0mX[1m)[0m: X is not a type object [1m([0m_AnnotatedAlias[1m)[0m
+
+Traceback (most recent call last):
+  File "D:\astra PM\_audit\probe4.py", line 23, in <module>
+    r = RR.__new__(RR)
+        ^^^^^^^^^^^^^^
+TypeError: object.__new__(X): X is not a type object (_AnnotatedAlias)

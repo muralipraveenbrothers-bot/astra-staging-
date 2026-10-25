@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "referral_name": "Example oncology referral",
+      "international_non_proprietary_name_inn_common_name": "pembrolizumab",
+      "associated_names_centrally_authorised_medicines": "Examplemed",
+      "current_status": "Closed",
+      "safety_referral": "No",
+      "referral_type": "Article 31",
+      "procedure_start_date": "01/02/2020",
+      "prac_recommendation": "",
+      "category": "Human"
+    },
+    {
+      "referral_name": "Veterinary Keytruda review",
+      "international_non_proprietary_name_inn_common_name": "pembrolizumab",
+      "associated_names_centrally_authorised_medicines": "Keytrudavet",
+      "current_status": "Ongoing",
+      "safety_referral": "Yes",
+      "referral_type": "Article 31",
+      "procedure_start_date": "01/01/2025",
+      "prac_recommendation": "",
+      "category": "Veterinary"
+    }
+  ]
+}

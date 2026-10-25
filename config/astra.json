@@ -1,0 +1,36 @@
+{
+  "executors": {
+    "primary": {
+      "name": "FreeLLMAPI",
+      "endpoint": "http://localhost:31415/v1",
+      "note": "Local FreeLLMAPI discovery override — Astra adapter defaults to http://127.0.0.1:31415/v1 (see server/ai/config.ts)."
+    },
+    "agents": []
+  },
+  "local_runtimes": [
+    { "name": "Hermes Agent", "endpoint": "http://127.0.0.1:9119", "start": "start-hermes.cmd", "description": "Planning / reasoning agent — calls Astra /v1 (FreeLLMAPI)" },
+    { "name": "LangGraph Orchestrator", "mode": "in-process", "description": "Orchestration core — DAG workflows, checkpoints, approval gates" },
+    { "name": "Native Astra routing", "mode": "in-process", "description": "Native routing and workflow services." }
+  ],
+  "cleanup": {
+    "removed": [
+      "server/ai/manusClient.ts",
+      "config/agent-adapters/manus-cloud.json",
+      "config/plugins/manus-executor-addon/",
+      "Manus executor + manus.im cloud bindings (all server/ and src/ references)",
+      "Manus Desktop files (never installed — cloud product only)"
+    ]
+  },
+  "routing": {
+    "flow": [
+      "Astra AI → FreeLLMAPI (primary)",
+      "Local runtimes route via FreeLLMAPI"
+    ],
+    "implementation": {
+      "primary_fallback": "server/ai/gatewayAdapter.ts",
+      "policy": "server/ai/policy.ts (allowExternalRoute)",
+      "dispatch": "server/ai/workerDispatch.ts",
+      "adapters": "server/ai/agentBindings.ts + config/agent-adapters/"
+    }
+  }
+}

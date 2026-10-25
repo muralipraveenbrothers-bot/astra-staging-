@@ -1,0 +1,237 @@
+{
+  "pluginId": "freellm-provider",
+  "tier": "P1",
+  "category": "MODEL",
+  "name": "FreeLLM Provider",
+  "version": "1.0.0",
+  "description": "Free/open-source model gateway adapter. Inspects the actual repo; if unavailable marks CONFIG_REQUIRED — never faked.",
+  "license": "MIT",
+  "provider": "FreeLLM",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "omniroute-gateway"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "freellm-adapter",
+      "type": "model-adapter",
+      "endpoint": "/api/providers/freellm",
+      "healthEndpoint": "/api/providers/freellm/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "freellm_adapter",
+      "name": "FreeLLM Adapter",
+      "level": "WORKER",
+      "autoRegister": true,
+      "parentAgent": "model_router"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "list_freellm_models",
+      "name": "List FreeLLM Models",
+      "description": "List available FreeLLM models",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "freellm_chat_completion",
+      "name": "FreeLLM Chat Completion",
+      "description": "Chat completion via FreeLLM",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [
+    {
+      "modelRouteId": "freellm_default",
+      "provider": "freellm",
+      "modelType": "FAST"
+    }
+  ],
+  "knowledge": [],
+  "permissions": [],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "sparkles"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "freellm.available"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "FreeLLM API Reachability",
+      "endpoint": "ollama-local",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Model List Retrieval",
+      "endpoint": "model-router",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "endpoint": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "secrets": [
+      "FREELLM_API_KEY",
+      "FREELLM_ENDPOINT"
+    ]
+  },
+  "riskLevel": "LOW",
+  "checksum": "sha256:freellm-provider-1.0.0",
+  "statusRule": "If repo unavailable -> CONFIG_REQUIRED, do not fake",
+  "freeChatPlatforms": [
+    {
+      "name": "HuggingChat",
+      "url": "https://huggingface.co/chat"
+    },
+    {
+      "name": "Mistral Le Chat",
+      "url": "https://chat.mistral.ai"
+    },
+    {
+      "name": "Poe",
+      "url": "https://poe.com"
+    },
+    {
+      "name": "DeepSeek Chat",
+      "url": "https://chat.deepseek.com"
+    },
+    {
+      "name": "DuckDuckGo AI Chat",
+      "url": "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat"
+    },
+    {
+      "name": "Microsoft Copilot",
+      "url": "https://copilot.microsoft.com"
+    },
+    {
+      "name": "Meta AI",
+      "url": "https://www.meta.ai"
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://www.perplexity.ai"
+    }
+  ],
+  "apiProviders": [
+    {
+      "name": "OpenAI",
+      "url": "https://api.openai.com/v1"
+    },
+    {
+      "name": "Anthropic",
+      "url": "https://api.anthropic.com"
+    },
+    {
+      "name": "Gemini (Google)",
+      "url": "https://generativelanguage.googleapis.com"
+    },
+    {
+      "name": "Cohere",
+      "url": "https://api.cohere.com"
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://api.deepseek.com"
+    },
+    {
+      "name": "Kimi / Moonshot",
+      "url": "https://api.moonshot.cn"
+    },
+    {
+      "name": "Azure OpenAI",
+      "url": "https://YOUR-RESOURCE.openai.azure.com"
+    }
+  ],
+  "localModels": [
+    {
+      "name": "Ollama",
+      "url": "http://127.0.0.1:11434",
+      "models": [
+        "qwen2.5",
+        "llama3"
+      ]
+    },
+    {
+      "name": "BioGPT",
+      "url": "https://huggingface.co/microsoft/biogpt"
+    },
+    {
+      "name": "PubMedBERT",
+      "url": "https://huggingface.co/NeuML/pubmedbert-base-embeddings"
+    },
+    {
+      "name": "ClinicalBERT",
+      "url": "https://huggingface.co/medicalai/ClinicalBERT"
+    },
+    {
+      "name": "MedAlpaca",
+      "url": "https://huggingface.co/medalpaca/medalpaca-7b"
+    }
+  ],
+  "indianMedicalDbs": [
+    {
+      "name": "ICMR",
+      "url": "https://main.icmr.nic.in"
+    },
+    {
+      "name": "MoHFW",
+      "url": "https://mohfw.gov.in"
+    },
+    {
+      "name": "IDSP",
+      "url": "https://idsp.mohfw.gov.in"
+    },
+    {
+      "name": "NHP (National Health Portal)",
+      "url": "https://www.nhp.gov.in"
+    },
+    {
+      "name": "AYUSH Portal",
+      "url": "https://ayush.gov.in"
+    }
+  ],
+  "notes": "No-API chat platforms need no key (session-based). API providers need keys → CONFIG_REQUIRED until provided. Local LLMs via Ollama at 127.0.0.1:11434."
+}

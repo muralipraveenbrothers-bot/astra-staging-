@@ -1,0 +1,367 @@
+{
+  "pluginId": "ward-icu-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Ward & ICU Plugin",
+  "version": "1.0.0",
+  "description": "Bed grid, vitals, EWS, nursing tasks, medication administration, rounds, handover, deterioration alerts.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit"
+    ],
+    "optional": [
+      "medical-knowledge-gateway",
+      "voicebox"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "ward-service",
+      "type": "department",
+      "endpoint": "/api/ward",
+      "healthEndpoint": "/api/ward/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "ward_hod",
+      "name": "Ward HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "bed_manager",
+      "name": "Bed Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "vitals_manager",
+      "name": "Vitals Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "nursing_task_manager",
+      "name": "Nursing Task Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "medication_manager",
+      "name": "Medication Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "rounds_manager",
+      "name": "Rounds Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "handover_manager",
+      "name": "Handover Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "deterioration_agent",
+      "name": "Deterioration Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "ward_hod"
+    },
+    {
+      "agentId": "ward_nursing_hod",
+      "name": "Ward Nursing HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "icu_critical_care_hod",
+      "name": "ICU Critical Care HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "vitals_agent",
+      "name": "Vitals Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "ews_agent",
+      "name": "EWS Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "bed_agent",
+      "name": "Bed Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "nursing_task_agent",
+      "name": "Nursing Task Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "medication_administration_agent",
+      "name": "Medication Administration Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "rounds_agent",
+      "name": "Rounds Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "handover_agent",
+      "name": "Handover Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "fluid_balance_agent",
+      "name": "Fluid Balance Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "assign_bed",
+      "name": "Assign Bed",
+      "description": "Assign patient to bed",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "bedId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "record_vitals",
+      "name": "Record Vitals",
+      "description": "Record vital signs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "vitals": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "calculate_ews",
+      "name": "Calculate EWS",
+      "description": "Early warning score",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "create_nursing_task",
+      "name": "Create Nursing Task",
+      "description": "Create nursing task",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "taskTitle": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "administer_medication",
+      "name": "Administer Medication",
+      "description": "Administer medication",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "medication": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "start_round",
+      "name": "Start Round",
+      "description": "Start ward round",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "doctor": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "handover_patient",
+      "name": "Handover Patient",
+      "description": "Shift handover",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "REVERSIBLE",
+      "readOrWrite": "WRITE"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "NURSE",
+      "claims": [
+        "patient:write",
+        "order:create"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/ward",
+        "component": "WardDashboard",
+        "roles": [
+          "NURSE"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "bed-double",
+      "heart-pulse"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "ward.vitals.recorded",
+      "ward.ews.triggered",
+      "ward.deterioration"
+    ],
+    "subscribes": [
+      "lab.critical.alert"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Bed Occupancy",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Vital Monitors",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "EWS Calculation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Task Queue",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "ewsThreshold": {
+        "type": "number",
+        "default": 5
+      }
+    },
+    "secrets": [
+      "VITAL_MONITOR_INTERFACE"
+    ]
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:ward-icu-plugin-1.0.0"
+}

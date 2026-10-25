@@ -1,0 +1,138 @@
+{
+  "pluginId": "trauma-intelligence-plugin",
+  "tier": "P3",
+  "category": "HOSPITAL",
+  "name": "Trauma Intelligence (Golden Hour)",
+  "version": "1.0.0",
+  "description": "RTT injury map, Vox-Trauma hands-free tagging, ISS auto-calculation, auto-MLC draft, crash protocols (Massive Transfusion / Code Stroke / RSI).",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "trauma-plugin",
+      "hospital-data-connector"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "trauma-intelligence",
+      "type": "trauma",
+      "endpoint": "/api/trauma-intelligence",
+      "healthEndpoint": "/api/trauma-intelligence/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "rtt_mapper",
+      "name": "RTT Mapper",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "trauma_hod"
+    },
+    {
+      "agentId": "vox_trauma",
+      "name": "Vox-Trauma (Voice Tagger)",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "rtt_mapper"
+    },
+    {
+      "agentId": "auto_mlc_engine",
+      "name": "Auto-MLC Engine",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "rtt_mapper"
+    },
+    {
+      "agentId": "golden_hour_coordinator",
+      "name": "Golden Hour Coordinator",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "trauma_hod"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "assess_trauma_iss",
+      "name": "Assess Trauma (ISS)",
+      "description": "Injury Severity Score from tagged injuries + crash protocols",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "draft_mlc",
+      "name": "Draft MLC Report",
+      "description": "Medico-legal case draft from mapped injuries",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "trauma:read"
+      ]
+    },
+    {
+      "role": "MANAGEMENT",
+      "claims": [
+        "trauma:read"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [],
+    "icons": [
+      "siren",
+      "map-pin"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "trauma.iss.calculated",
+      "trauma.mlc.drafted"
+    ],
+    "subscribes": [
+      "patient.emergency.registered"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Trauma Plugin",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {},
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:trauma-intelligence-plugin-1.0.0",
+  "notes": "MLC draft requires medico-legal officer review. ISS is a DERIVED ESTIMATE pending imaging."
+}

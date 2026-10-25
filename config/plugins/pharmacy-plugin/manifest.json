@@ -1,0 +1,299 @@
+{
+  "pluginId": "pharmacy-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Pharmacy Plugin",
+  "version": "1.0.0",
+  "description": "Prescription queue, dispensing, POS, inventory, batch/expiry, purchase, invoice OCR.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "medical-knowledge-gateway"
+    ],
+    "optional": [
+      "medical-vision-dicom"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "pharmacy-service",
+      "type": "department",
+      "endpoint": "/api/pharmacy",
+      "healthEndpoint": "/api/pharmacy/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "pharmacy_hod",
+      "name": "Pharmacy HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "dispensing_manager",
+      "name": "Dispensing Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "pharmacy_hod"
+    },
+    {
+      "agentId": "inventory_manager",
+      "name": "Inventory Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "pharmacy_hod"
+    },
+    {
+      "agentId": "purchase_manager",
+      "name": "Purchase Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "pharmacy_hod"
+    },
+    {
+      "agentId": "expiry_manager",
+      "name": "Expiry Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "pharmacy_hod"
+    },
+    {
+      "agentId": "drug_safety_manager",
+      "name": "Drug Safety Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "pharmacy_hod"
+    },
+    {
+      "agentId": "pharmacy_analytics_manager",
+      "name": "Pharmacy Analytics Manager",
+      "level": "MANAGER",
+      "autoRegister": true
+    },
+    {
+      "agentId": "prescription_agent",
+      "name": "Prescription Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "drug_interaction_agent",
+      "name": "Drug Interaction Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "dose_safety_agent",
+      "name": "Dose Safety Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "dispensing_agent",
+      "name": "Dispensing Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "inventory_agent",
+      "name": "Inventory Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "expiry_agent",
+      "name": "Expiry Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "purchase_agent",
+      "name": "Purchase Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "invoice_ocr_agent",
+      "name": "Invoice OCR Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "consumption_forecast_agent",
+      "name": "Consumption Forecast Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "dispense_medication",
+      "name": "Dispense Medication",
+      "description": "Dispense medication",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prescriptionId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "check_inventory",
+      "name": "Check Inventory",
+      "description": "Check stock levels",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "record_purchase",
+      "name": "Record Purchase",
+      "description": "Record stock purchase",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "scan_invoice_ocr",
+      "name": "Scan Invoice OCR",
+      "description": "OCR supplier invoice",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageData": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "check_expiry",
+      "name": "Check Expiry",
+      "description": "Expiry sweep",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [
+    {
+      "sourceId": "formulary",
+      "type": "internal",
+      "accessScope": "hospital",
+      "autoIndex": true
+    }
+  ],
+  "permissions": [
+    {
+      "role": "PHARMACIST",
+      "claims": [
+        "pharmacy:dispense",
+        "pharmacy:inventory_write"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/pharmacy",
+        "component": "PharmacyDashboard",
+        "roles": [
+          "PHARMACIST"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "pill",
+      "package"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "pharmacy.dispensed",
+      "pharmacy.stock.low"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "Inventory DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Dispensing Queue",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "OCR Service",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": false
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "lowStockThreshold": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "HIGH",
+  "checksum": "sha256:pharmacy-plugin-1.0.0"
+}

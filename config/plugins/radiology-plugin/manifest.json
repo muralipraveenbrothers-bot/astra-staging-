@@ -1,0 +1,354 @@
+{
+  "pluginId": "radiology-plugin",
+  "tier": "P2",
+  "category": "HOSPITAL",
+  "name": "Radiology Plugin",
+  "version": "1.0.0",
+  "description": "X-ray, CT, MRI, USG, PACS, worklist, reporting, annotation, AI assistance.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "hospital-data-connector",
+      "rbac-audit",
+      "medical-vision-dicom"
+    ],
+    "optional": [
+      "medical-knowledge-gateway"
+    ]
+  },
+  "services": [
+    {
+      "serviceId": "radiology-service",
+      "type": "department",
+      "endpoint": "/api/radiology",
+      "healthEndpoint": "/api/radiology/health"
+    },
+    {
+      "serviceId": "pacs-service",
+      "type": "imaging",
+      "endpoint": "/api/pacs",
+      "healthEndpoint": "/api/pacs/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "radiology_hod",
+      "name": "Radiology HOD",
+      "level": "HOD",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "pacs_manager",
+      "name": "PACS Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "radiology_hod"
+    },
+    {
+      "agentId": "dicom_manager",
+      "name": "DICOM Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "radiology_hod"
+    },
+    {
+      "agentId": "imaging_ai_manager",
+      "name": "Imaging AI Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "radiology_hod"
+    },
+    {
+      "agentId": "reporting_manager",
+      "name": "Reporting Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "radiology_hod"
+    },
+    {
+      "agentId": "critical_finding_manager",
+      "name": "Critical Finding Manager",
+      "level": "MANAGER",
+      "autoRegister": true,
+      "parentAgent": "radiology_hod"
+    },
+    {
+      "agentId": "pathology_hod",
+      "name": "Pathology HOD",
+      "level": "HOD",
+      "autoRegister": true
+    },
+    {
+      "agentId": "image_quality_agent",
+      "name": "Image Quality Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "image_enhancement_agent",
+      "name": "Image Enhancement Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "image_classification_agent",
+      "name": "Image Classification Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "anatomy_mapping_agent",
+      "name": "Anatomy Mapping Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "image_annotation_agent",
+      "name": "Image Annotation Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "image_comparison_agent",
+      "name": "Image Comparison Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "xray_agent",
+      "name": "X-Ray Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "ct_agent",
+      "name": "CT Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "mri_agent",
+      "name": "MRI Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "usg_agent",
+      "name": "USG Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "dicom_agent",
+      "name": "DICOM Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    },
+    {
+      "agentId": "radiology_report_agent",
+      "name": "Radiology Report Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "schedule_imaging",
+      "name": "Schedule Imaging",
+      "description": "Schedule imaging study",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string"
+          },
+          "modality": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "retrieve_study",
+      "name": "Retrieve Study",
+      "description": "Retrieve PACS study",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "create_report",
+      "name": "Create Report",
+      "description": "Create radiology report",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "IMPORTANT",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "annotate_study",
+      "name": "Annotate Study",
+      "description": "Annotate study images",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "flag_critical_finding",
+      "name": "Flag Critical Finding",
+      "description": "Flag critical finding",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "HIGH",
+      "readOrWrite": "WRITE"
+    },
+    {
+      "toolId": "compare_studies",
+      "name": "Compare Studies",
+      "description": "Compare serial studies",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "studyA": {
+            "type": "string"
+          },
+          "studyB": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "RADIOLOGIST",
+      "claims": [
+        "radiology:report",
+        "radiology:verify"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [
+      {
+        "path": "/radiology",
+        "component": "Radiology",
+        "roles": [
+          "RADIOLOGIST"
+        ]
+      }
+    ],
+    "components": [],
+    "icons": [
+      "scan-line",
+      "stethoscope"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "radiology.study.completed",
+      "radiology.critical.finding"
+    ],
+    "subscribes": [
+      "command.executed"
+    ]
+  },
+  "healthChecks": [
+    {
+      "name": "PACS Connection",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 3000,
+      "critical": false
+    },
+    {
+      "name": "Worklist State",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Report DB",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "DICOM Storage",
+      "endpoint": "db-connectivity",
+      "timeoutMs": 3000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "autoPriorComparison": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "secrets": [
+      "PACS_HOST",
+      "PACS_PORT",
+      "PACS_AETITLE"
+    ]
+  },
+  "riskLevel": "CRITICAL",
+  "checksum": "sha256:radiology-plugin-1.0.0"
+}

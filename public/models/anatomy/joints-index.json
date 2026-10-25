@@ -1,0 +1,5728 @@
+[
+  {
+    "name": "Interosseous membrane of leg.l",
+    "parent": null,
+    "centre": [
+      0.0992,
+      0.2496,
+      -0.0317
+    ],
+    "size": [
+      0.0225,
+      0.2927,
+      0.0214
+    ]
+  },
+  {
+    "name": "Interosseous membrane of leg.r",
+    "parent": null,
+    "centre": [
+      -0.0992,
+      0.2496,
+      -0.0317
+    ],
+    "size": [
+      0.0225,
+      0.2927,
+      0.0214
+    ]
+  },
+  {
+    "name": "Anterior tibiofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.1021,
+      0.0871,
+      -0.0331
+    ],
+    "size": [
+      0.011,
+      0.0266,
+      0.0166
+    ]
+  },
+  {
+    "name": "Anterior tibiofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1021,
+      0.0871,
+      -0.0331
+    ],
+    "size": [
+      0.011,
+      0.0266,
+      0.0166
+    ]
+  },
+  {
+    "name": "Posterior tibiofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0891,
+      0.0937,
+      -0.0583
+    ],
+    "size": [
+      0.0164,
+      0.0204,
+      0.0159
+    ]
+  },
+  {
+    "name": "Posterior tibiofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0891,
+      0.0937,
+      -0.0583
+    ],
+    "size": [
+      0.0164,
+      0.0204,
+      0.0159
+    ]
+  },
+  {
+    "name": "Transverse tibiofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.076,
+      0.0851,
+      -0.0536
+    ],
+    "size": [
+      0.0392,
+      0.0064,
+      0.0401
+    ]
+  },
+  {
+    "name": "Transverse tibiofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.076,
+      0.0851,
+      -0.0536
+    ],
+    "size": [
+      0.0392,
+      0.0064,
+      0.0401
+    ]
+  },
+  {
+    "name": "Anterior talofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0966,
+      0.0648,
+      -0.0371
+    ],
+    "size": [
+      0.0132,
+      0.0159,
+      0.0153
+    ]
+  },
+  {
+    "name": "Anterior talofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0966,
+      0.0648,
+      -0.0371
+    ],
+    "size": [
+      0.0132,
+      0.0159,
+      0.0153
+    ]
+  },
+  {
+    "name": "Calcaneofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0968,
+      0.0587,
+      -0.0593
+    ],
+    "size": [
+      0.0226,
+      0.0236,
+      0.024
+    ]
+  },
+  {
+    "name": "Calcaneofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0968,
+      0.0587,
+      -0.0593
+    ],
+    "size": [
+      0.0226,
+      0.0236,
+      0.024
+    ]
+  },
+  {
+    "name": "Posterior talofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0945,
+      0.0647,
+      -0.0565
+    ],
+    "size": [
+      0.0189,
+      0.009,
+      0.0193
+    ]
+  },
+  {
+    "name": "Posterior talofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0945,
+      0.0647,
+      -0.0565
+    ],
+    "size": [
+      0.0189,
+      0.009,
+      0.0193
+    ]
+  },
+  {
+    "name": "Posterior tibiotalar ligament.l",
+    "parent": null,
+    "centre": [
+      0.0544,
+      0.0732,
+      -0.0401
+    ],
+    "size": [
+      0.0092,
+      0.0173,
+      0.0184
+    ]
+  },
+  {
+    "name": "Posterior tibiotalar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0544,
+      0.0732,
+      -0.0401
+    ],
+    "size": [
+      0.0092,
+      0.0173,
+      0.0184
+    ]
+  },
+  {
+    "name": "Tibiocalcaneal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0557,
+      0.0677,
+      -0.0333
+    ],
+    "size": [
+      0.0197,
+      0.0334,
+      0.031
+    ]
+  },
+  {
+    "name": "Tibiocalcaneal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0557,
+      0.0677,
+      -0.0333
+    ],
+    "size": [
+      0.0197,
+      0.0334,
+      0.031
+    ]
+  },
+  {
+    "name": "Tibionavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0567,
+      0.0703,
+      -0.0271
+    ],
+    "size": [
+      0.0219,
+      0.0314,
+      0.0256
+    ]
+  },
+  {
+    "name": "Tibionavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0567,
+      0.0703,
+      -0.0271
+    ],
+    "size": [
+      0.0219,
+      0.0314,
+      0.0256
+    ]
+  },
+  {
+    "name": "Acetabular labrum.l",
+    "parent": null,
+    "centre": [
+      0.0845,
+      0.8652,
+      -0.0061
+    ],
+    "size": [
+      0.036,
+      0.0484,
+      0.0582
+    ]
+  },
+  {
+    "name": "Acetabular labrum.r",
+    "parent": null,
+    "centre": [
+      -0.0845,
+      0.8652,
+      -0.0061
+    ],
+    "size": [
+      0.036,
+      0.0484,
+      0.0582
+    ]
+  },
+  {
+    "name": "Articular capsule of hip joint.l",
+    "parent": null,
+    "centre": [
+      0.0936,
+      0.8464,
+      -0.0061
+    ],
+    "size": [
+      0.0543,
+      0.0858,
+      0.0582
+    ]
+  },
+  {
+    "name": "Articular capsule of hip joint.r",
+    "parent": null,
+    "centre": [
+      -0.0936,
+      0.8464,
+      -0.0061
+    ],
+    "size": [
+      0.0543,
+      0.0858,
+      0.0582
+    ]
+  },
+  {
+    "name": "Descending part of iliofemoral ligament.l",
+    "parent": null,
+    "centre": [
+      0.0963,
+      0.8482,
+      0.0053
+    ],
+    "size": [
+      0.0087,
+      0.0752,
+      0.0247
+    ]
+  },
+  {
+    "name": "Descending part of iliofemoral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0963,
+      0.8482,
+      0.0053
+    ],
+    "size": [
+      0.0087,
+      0.0752,
+      0.0247
+    ]
+  },
+  {
+    "name": "Frenula capsulae.l",
+    "parent": null,
+    "centre": [
+      0.1013,
+      0.8294,
+      -0.0055
+    ],
+    "size": [
+      0.0376,
+      0.0417,
+      0.037
+    ]
+  },
+  {
+    "name": "Frenula capsulae.r",
+    "parent": null,
+    "centre": [
+      -0.1013,
+      0.8294,
+      -0.0055
+    ],
+    "size": [
+      0.0376,
+      0.0417,
+      0.037
+    ]
+  },
+  {
+    "name": "Ischiofemoral ligament.l",
+    "parent": null,
+    "centre": [
+      0.098,
+      0.8539,
+      -0.0196
+    ],
+    "size": [
+      0.0446,
+      0.0163,
+      0.0307
+    ]
+  },
+  {
+    "name": "Ischiofemoral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.098,
+      0.8539,
+      -0.0196
+    ],
+    "size": [
+      0.0446,
+      0.0163,
+      0.0307
+    ]
+  },
+  {
+    "name": "Ligament of head of femur.l",
+    "parent": null,
+    "centre": [
+      0.0613,
+      0.8553,
+      -0.0006
+    ],
+    "size": [
+      0.0145,
+      0.0253,
+      0.0326
+    ]
+  },
+  {
+    "name": "Ligament of head of femur.r",
+    "parent": null,
+    "centre": [
+      -0.0613,
+      0.8553,
+      -0.0006
+    ],
+    "size": [
+      0.0145,
+      0.0253,
+      0.0326
+    ]
+  },
+  {
+    "name": "Pubofemoral ligament.l",
+    "parent": null,
+    "centre": [
+      0.076,
+      0.8288,
+      -0.0008
+    ],
+    "size": [
+      0.0349,
+      0.045,
+      0.0344
+    ]
+  },
+  {
+    "name": "Pubofemoral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.076,
+      0.8288,
+      -0.0008
+    ],
+    "size": [
+      0.0349,
+      0.045,
+      0.0344
+    ]
+  },
+  {
+    "name": "Transverse acetabular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0634,
+      0.8493,
+      -0.0021
+    ],
+    "size": [
+      0.0178,
+      0.0133,
+      0.0419
+    ]
+  },
+  {
+    "name": "Transverse acetabular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0634,
+      0.8493,
+      -0.0021
+    ],
+    "size": [
+      0.0178,
+      0.0133,
+      0.0419
+    ]
+  },
+  {
+    "name": "Transverse part of iliofemoral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1063,
+      0.8616,
+      0.0105
+    ],
+    "size": [
+      0.0256,
+      0.0517,
+      0.0131
+    ]
+  },
+  {
+    "name": "Transverse part of iliofemoral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1063,
+      0.8616,
+      0.0105
+    ],
+    "size": [
+      0.0256,
+      0.0517,
+      0.0131
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.096,
+      0.0491,
+      0.0216
+    ],
+    "size": [
+      0.0364,
+      0.0221,
+      0.0316
+    ]
+  },
+  {
+    "name": "Dorsal metatarsal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.096,
+      0.0491,
+      0.0216
+    ],
+    "size": [
+      0.0364,
+      0.0221,
+      0.0316
+    ]
+  },
+  {
+    "name": "Intersesamoid ligament.l",
+    "parent": null,
+    "centre": [
+      0.0766,
+      0.0121,
+      0.0704
+    ],
+    "size": [
+      0.0089,
+      0.0035,
+      0.0082
+    ]
+  },
+  {
+    "name": "Intersesamoid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0766,
+      0.0121,
+      0.0704
+    ],
+    "size": [
+      0.0089,
+      0.0035,
+      0.0082
+    ]
+  },
+  {
+    "name": "Metatarsal interosseous ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0954,
+      0.044,
+      0.0215
+    ],
+    "size": [
+      0.0297,
+      0.0192,
+      0.0242
+    ]
+  },
+  {
+    "name": "Metatarsal interosseous ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0954,
+      0.044,
+      0.0215
+    ],
+    "size": [
+      0.0297,
+      0.0192,
+      0.0242
+    ]
+  },
+  {
+    "name": "Plantar metatarsal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0926,
+      0.0363,
+      0.017
+    ],
+    "size": [
+      0.0245,
+      0.0169,
+      0.0231
+    ]
+  },
+  {
+    "name": "Plantar metatarsal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0926,
+      0.0363,
+      0.017
+    ],
+    "size": [
+      0.0245,
+      0.0169,
+      0.0231
+    ]
+  },
+  {
+    "name": "Articular capsule of interphalangeal joint of great toe.l",
+    "parent": null,
+    "centre": [
+      0.0798,
+      0.0167,
+      0.1095
+    ],
+    "size": [
+      0.0241,
+      0.0152,
+      0.0205
+    ]
+  },
+  {
+    "name": "Articular capsule of interphalangeal joint of great toe.r",
+    "parent": null,
+    "centre": [
+      -0.0798,
+      0.0167,
+      0.1095
+    ],
+    "size": [
+      0.0241,
+      0.0152,
+      0.0205
+    ]
+  },
+  {
+    "name": "Articular capsules of distal interphalangeal joints of foot.l",
+    "parent": null,
+    "centre": [
+      0.1219,
+      0.0132,
+      0.1064
+    ],
+    "size": [
+      0.0508,
+      0.01,
+      0.046
+    ]
+  },
+  {
+    "name": "Articular capsules of distal interphalangeal joints of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1219,
+      0.0132,
+      0.1064
+    ],
+    "size": [
+      0.0508,
+      0.01,
+      0.046
+    ]
+  },
+  {
+    "name": "Articular capsules of proximal interphalangeal joints of foot.l",
+    "parent": null,
+    "centre": [
+      0.1191,
+      0.0157,
+      0.0949
+    ],
+    "size": [
+      0.054,
+      0.0137,
+      0.0414
+    ]
+  },
+  {
+    "name": "Articular capsules of proximal interphalangeal joints of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1191,
+      0.0157,
+      0.0949
+    ],
+    "size": [
+      0.054,
+      0.0137,
+      0.0414
+    ]
+  },
+  {
+    "name": "Collateral interphalangeal ligaments of foot.l",
+    "parent": null,
+    "centre": [
+      0.1075,
+      0.0148,
+      0.1014
+    ],
+    "size": [
+      0.0782,
+      0.0093,
+      0.0543
+    ]
+  },
+  {
+    "name": "Collateral interphalangeal ligaments of foot.r",
+    "parent": null,
+    "centre": [
+      -0.1075,
+      0.0148,
+      0.1014
+    ],
+    "size": [
+      0.0782,
+      0.0093,
+      0.0543
+    ]
+  },
+  {
+    "name": "Plantar interphalangeal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.1072,
+      0.0128,
+      0.1014
+    ],
+    "size": [
+      0.0735,
+      0.0089,
+      0.0544
+    ]
+  },
+  {
+    "name": "Plantar interphalangeal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.1072,
+      0.0128,
+      0.1014
+    ],
+    "size": [
+      0.0735,
+      0.0089,
+      0.0544
+    ]
+  },
+  {
+    "name": "Anterior talocalcaneal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0893,
+      0.0616,
+      -0.0272
+    ],
+    "size": [
+      0.0076,
+      0.0153,
+      0.0184
+    ]
+  },
+  {
+    "name": "Anterior talocalcaneal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0893,
+      0.0616,
+      -0.0272
+    ],
+    "size": [
+      0.0076,
+      0.0153,
+      0.0184
+    ]
+  },
+  {
+    "name": "Calcaneocuboid ligament.l",
+    "parent": null,
+    "centre": [
+      0.093,
+      0.0576,
+      -0.0182
+    ],
+    "size": [
+      0.0084,
+      0.0015,
+      0.0074
+    ]
+  },
+  {
+    "name": "Calcaneocuboid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.093,
+      0.0576,
+      -0.0182
+    ],
+    "size": [
+      0.0084,
+      0.0015,
+      0.0074
+    ]
+  },
+  {
+    "name": "Calcaneonavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0881,
+      0.0603,
+      -0.0157
+    ],
+    "size": [
+      0.0096,
+      0.0082,
+      0.0116
+    ]
+  },
+  {
+    "name": "Calcaneonavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0881,
+      0.0603,
+      -0.0157
+    ],
+    "size": [
+      0.0096,
+      0.0082,
+      0.0116
+    ]
+  },
+  {
+    "name": "Cuneocuboid interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.0934,
+      0.047,
+      0.0032
+    ],
+    "size": [
+      0.0047,
+      0.0045,
+      0.003
+    ]
+  },
+  {
+    "name": "Cuneocuboid interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0934,
+      0.047,
+      0.0032
+    ],
+    "size": [
+      0.0047,
+      0.0045,
+      0.003
+    ]
+  },
+  {
+    "name": "Dorsal calcaneocuboid ligament.l",
+    "parent": null,
+    "centre": [
+      0.1024,
+      0.0492,
+      -0.0261
+    ],
+    "size": [
+      0.0031,
+      0.0073,
+      0.0106
+    ]
+  },
+  {
+    "name": "Dorsal calcaneocuboid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1024,
+      0.0492,
+      -0.0261
+    ],
+    "size": [
+      0.0031,
+      0.0073,
+      0.0106
+    ]
+  },
+  {
+    "name": "Dorsal cuboideonavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0926,
+      0.0602,
+      -0.0126
+    ],
+    "size": [
+      0.0068,
+      0.0063,
+      0.009
+    ]
+  },
+  {
+    "name": "Dorsal cuboideonavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0926,
+      0.0602,
+      -0.0126
+    ],
+    "size": [
+      0.0068,
+      0.0063,
+      0.009
+    ]
+  },
+  {
+    "name": "Dorsal cuneocuboid ligament.l",
+    "parent": null,
+    "centre": [
+      0.1015,
+      0.0566,
+      0.0004
+    ],
+    "size": [
+      0.0063,
+      0.0094,
+      0.0122
+    ]
+  },
+  {
+    "name": "Dorsal cuneocuboid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1015,
+      0.0566,
+      0.0004
+    ],
+    "size": [
+      0.0063,
+      0.0094,
+      0.0122
+    ]
+  },
+  {
+    "name": "Dorsal cuneonavicular ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0808,
+      0.0682,
+      0.0026
+    ],
+    "size": [
+      0.0308,
+      0.0101,
+      0.0209
+    ]
+  },
+  {
+    "name": "Dorsal cuneonavicular ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0808,
+      0.0682,
+      0.0026
+    ],
+    "size": [
+      0.0308,
+      0.0101,
+      0.0209
+    ]
+  },
+  {
+    "name": "Dorsal intercuneiform ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0853,
+      0.0657,
+      0.0127
+    ],
+    "size": [
+      0.022,
+      0.0059,
+      0.0157
+    ]
+  },
+  {
+    "name": "Dorsal intercuneiform ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0853,
+      0.0657,
+      0.0127
+    ],
+    "size": [
+      0.022,
+      0.0059,
+      0.0157
+    ]
+  },
+  {
+    "name": "Intercuneiform interosseous ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0836,
+      0.0574,
+      0.0126
+    ],
+    "size": [
+      0.0177,
+      0.0113,
+      0.0119
+    ]
+  },
+  {
+    "name": "Intercuneiform interosseous ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0836,
+      0.0574,
+      0.0126
+    ],
+    "size": [
+      0.0177,
+      0.0113,
+      0.0119
+    ]
+  },
+  {
+    "name": "Lateral talocalcaneal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0935,
+      0.0516,
+      -0.0521
+    ],
+    "size": [
+      0.0034,
+      0.0131,
+      0.016
+    ]
+  },
+  {
+    "name": "Lateral talocalcaneal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0935,
+      0.0516,
+      -0.0521
+    ],
+    "size": [
+      0.0034,
+      0.0131,
+      0.016
+    ]
+  },
+  {
+    "name": "Long plantar ligament.l",
+    "parent": null,
+    "centre": [
+      0.0899,
+      0.0318,
+      -0.0173
+    ],
+    "size": [
+      0.0508,
+      0.0254,
+      0.0998
+    ]
+  },
+  {
+    "name": "Long plantar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0899,
+      0.0318,
+      -0.0173
+    ],
+    "size": [
+      0.0508,
+      0.0254,
+      0.0998
+    ]
+  },
+  {
+    "name": "Medial talocalcaneal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0567,
+      0.0573,
+      -0.0454
+    ],
+    "size": [
+      0.0047,
+      0.0103,
+      0.0143
+    ]
+  },
+  {
+    "name": "Medial talocalcaneal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0567,
+      0.0573,
+      -0.0454
+    ],
+    "size": [
+      0.0047,
+      0.0103,
+      0.0143
+    ]
+  },
+  {
+    "name": "Plantar calcaneocuboid ligament.l",
+    "parent": null,
+    "centre": [
+      0.0883,
+      0.031,
+      -0.0243
+    ],
+    "size": [
+      0.0165,
+      0.0055,
+      0.0146
+    ]
+  },
+  {
+    "name": "Plantar calcaneocuboid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0883,
+      0.031,
+      -0.0243
+    ],
+    "size": [
+      0.0165,
+      0.0055,
+      0.0146
+    ]
+  },
+  {
+    "name": "Plantar cuneocuboid ligament.l",
+    "parent": null,
+    "centre": [
+      0.0896,
+      0.0398,
+      0.0056
+    ],
+    "size": [
+      0.0062,
+      0.0022,
+      0.0084
+    ]
+  },
+  {
+    "name": "Plantar cuneocuboid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0896,
+      0.0398,
+      0.0056
+    ],
+    "size": [
+      0.0062,
+      0.0022,
+      0.0084
+    ]
+  },
+  {
+    "name": "Plantar cuneonavicular ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0736,
+      0.0479,
+      -0.0007
+    ],
+    "size": [
+      0.0225,
+      0.0116,
+      0.0098
+    ]
+  },
+  {
+    "name": "Plantar cuneonavicular ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0736,
+      0.0479,
+      -0.0007
+    ],
+    "size": [
+      0.0225,
+      0.0116,
+      0.0098
+    ]
+  },
+  {
+    "name": "Plantar intercuneiform ligaments.l",
+    "parent": null,
+    "centre": [
+      0.08,
+      0.0468,
+      0.01
+    ],
+    "size": [
+      0.0121,
+      0.0053,
+      0.0072
+    ]
+  },
+  {
+    "name": "Plantar intercuneiform ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.08,
+      0.0468,
+      0.01
+    ],
+    "size": [
+      0.0121,
+      0.0053,
+      0.0072
+    ]
+  },
+  {
+    "name": "Posterior talocalcaneal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0616,
+      0.0533,
+      -0.0586
+    ],
+    "size": [
+      0.0082,
+      0.0138,
+      0.009
+    ]
+  },
+  {
+    "name": "Posterior talocalcaneal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0616,
+      0.0533,
+      -0.0586
+    ],
+    "size": [
+      0.0082,
+      0.0138,
+      0.009
+    ]
+  },
+  {
+    "name": "Plantar calcaneonavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0666,
+      0.051,
+      -0.0197
+    ],
+    "size": [
+      0.0093,
+      0.0043,
+      0.0208
+    ]
+  },
+  {
+    "name": "Plantar calcaneonavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0666,
+      0.051,
+      -0.0197
+    ],
+    "size": [
+      0.0093,
+      0.0043,
+      0.0208
+    ]
+  },
+  {
+    "name": "Plantar cuboideonavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0791,
+      0.0504,
+      -0.0085
+    ],
+    "size": [
+      0.0066,
+      0.0058,
+      0.0074
+    ]
+  },
+  {
+    "name": "Plantar cuboideonavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0791,
+      0.0504,
+      -0.0085
+    ],
+    "size": [
+      0.0066,
+      0.0058,
+      0.0074
+    ]
+  },
+  {
+    "name": "Talocalcaneal interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.0743,
+      0.0554,
+      -0.0366
+    ],
+    "size": [
+      0.0207,
+      0.013,
+      0.0112
+    ]
+  },
+  {
+    "name": "Talocalcaneal interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0743,
+      0.0554,
+      -0.0366
+    ],
+    "size": [
+      0.0207,
+      0.013,
+      0.0112
+    ]
+  },
+  {
+    "name": "Talonavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0729,
+      0.0743,
+      -0.0087
+    ],
+    "size": [
+      0.0144,
+      0.008,
+      0.0111
+    ]
+  },
+  {
+    "name": "Talonavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0729,
+      0.0743,
+      -0.0087
+    ],
+    "size": [
+      0.0144,
+      0.008,
+      0.0111
+    ]
+  },
+  {
+    "name": "Articular capsules of metatarsophalangeal joints.l",
+    "parent": null,
+    "centre": [
+      0.1003,
+      0.0215,
+      0.069
+    ],
+    "size": [
+      0.0827,
+      0.0274,
+      0.0463
+    ]
+  },
+  {
+    "name": "Articular capsules of metatarsophalangeal joints.r",
+    "parent": null,
+    "centre": [
+      -0.1003,
+      0.0215,
+      0.069
+    ],
+    "size": [
+      0.0827,
+      0.0274,
+      0.0463
+    ]
+  },
+  {
+    "name": "Collateral metatarsophalangeal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.1003,
+      0.0216,
+      0.0685
+    ],
+    "size": [
+      0.0827,
+      0.019,
+      0.0424
+    ]
+  },
+  {
+    "name": "Collateral metatarsophalangeal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.1003,
+      0.0216,
+      0.0685
+    ],
+    "size": [
+      0.0827,
+      0.019,
+      0.0424
+    ]
+  },
+  {
+    "name": "Deep transverse metatarsal ligament.l",
+    "parent": null,
+    "centre": [
+      0.1049,
+      0.0127,
+      0.0706
+    ],
+    "size": [
+      0.0539,
+      0.0065,
+      0.0287
+    ]
+  },
+  {
+    "name": "Deep transverse metatarsal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1049,
+      0.0127,
+      0.0706
+    ],
+    "size": [
+      0.0539,
+      0.0065,
+      0.0287
+    ]
+  },
+  {
+    "name": "Plantar metatarsophalangeal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.1021,
+      0.0155,
+      0.0655
+    ],
+    "size": [
+      0.0682,
+      0.0153,
+      0.0435
+    ]
+  },
+  {
+    "name": "Plantar metatarsophalangeal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.1021,
+      0.0155,
+      0.0655
+    ],
+    "size": [
+      0.0682,
+      0.0153,
+      0.0435
+    ]
+  },
+  {
+    "name": "Cuneometatarsal interosseous ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0835,
+      0.0503,
+      0.0211
+    ],
+    "size": [
+      0.0248,
+      0.0102,
+      0.0119
+    ]
+  },
+  {
+    "name": "Cuneometatarsal interosseous ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0835,
+      0.0503,
+      0.0211
+    ],
+    "size": [
+      0.0248,
+      0.0102,
+      0.0119
+    ]
+  },
+  {
+    "name": "Dorsal tarsometatarsal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0924,
+      0.0501,
+      0.0149
+    ],
+    "size": [
+      0.0441,
+      0.0299,
+      0.0408
+    ]
+  },
+  {
+    "name": "Dorsal tarsometatarsal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0924,
+      0.0501,
+      0.0149
+    ],
+    "size": [
+      0.0441,
+      0.0299,
+      0.0408
+    ]
+  },
+  {
+    "name": "Plantar tarsometatarsal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.0882,
+      0.0374,
+      0.0091
+    ],
+    "size": [
+      0.0397,
+      0.0219,
+      0.0327
+    ]
+  },
+  {
+    "name": "Plantar tarsometatarsal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.0882,
+      0.0374,
+      0.0091
+    ],
+    "size": [
+      0.0397,
+      0.0219,
+      0.0327
+    ]
+  },
+  {
+    "name": "Anterior cruciate ligament.l",
+    "parent": null,
+    "centre": [
+      0.0775,
+      0.4417,
+      -0.034
+    ],
+    "size": [
+      0.0212,
+      0.0297,
+      0.0246
+    ]
+  },
+  {
+    "name": "Anterior cruciate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0775,
+      0.4417,
+      -0.034
+    ],
+    "size": [
+      0.0212,
+      0.0297,
+      0.0246
+    ]
+  },
+  {
+    "name": "Anterior meniscotibial ligament (Lateral meniscus).l",
+    "parent": null,
+    "centre": [
+      0.077,
+      0.4307,
+      -0.0281
+    ],
+    "size": [
+      0.0059,
+      0.0034,
+      0.0118
+    ]
+  },
+  {
+    "name": "Anterior meniscotibial ligament (Lateral meniscus).r",
+    "parent": null,
+    "centre": [
+      -0.077,
+      0.4307,
+      -0.0281
+    ],
+    "size": [
+      0.0059,
+      0.0034,
+      0.0118
+    ]
+  },
+  {
+    "name": "Anterior meniscotibial ligament (Medial meniscus).l",
+    "parent": null,
+    "centre": [
+      0.0659,
+      0.4324,
+      -0.0209
+    ],
+    "size": [
+      0.0099,
+      0.0053,
+      0.0093
+    ]
+  },
+  {
+    "name": "Anterior meniscotibial ligament (Medial meniscus).r",
+    "parent": null,
+    "centre": [
+      -0.0659,
+      0.4324,
+      -0.0209
+    ],
+    "size": [
+      0.0099,
+      0.0053,
+      0.0093
+    ]
+  },
+  {
+    "name": "Arcuate popliteal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0928,
+      0.4431,
+      -0.0496
+    ],
+    "size": [
+      0.0494,
+      0.0738,
+      0.0238
+    ]
+  },
+  {
+    "name": "Arcuate popliteal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0928,
+      0.4431,
+      -0.0496
+    ],
+    "size": [
+      0.0494,
+      0.0738,
+      0.0238
+    ]
+  },
+  {
+    "name": "Articular capsule of knee joint.l",
+    "parent": null,
+    "centre": [
+      0.0755,
+      0.4562,
+      -0.0266
+    ],
+    "size": [
+      0.0803,
+      0.0877,
+      0.078
+    ]
+  },
+  {
+    "name": "Articular capsule of knee joint.r",
+    "parent": null,
+    "centre": [
+      -0.0755,
+      0.4562,
+      -0.0266
+    ],
+    "size": [
+      0.0803,
+      0.0877,
+      0.078
+    ]
+  },
+  {
+    "name": "Deep part of tibial collateral ligament.l",
+    "parent": null,
+    "centre": [
+      0.0498,
+      0.423,
+      -0.0259
+    ],
+    "size": [
+      0.0339,
+      0.0626,
+      0.0259
+    ]
+  },
+  {
+    "name": "Deep part of tibial collateral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0498,
+      0.423,
+      -0.0259
+    ],
+    "size": [
+      0.0339,
+      0.0626,
+      0.0259
+    ]
+  },
+  {
+    "name": "Fibular collateral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1162,
+      0.4335,
+      -0.0398
+    ],
+    "size": [
+      0.0088,
+      0.0525,
+      0.0082
+    ]
+  },
+  {
+    "name": "Fibular collateral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1162,
+      0.4335,
+      -0.0398
+    ],
+    "size": [
+      0.0088,
+      0.0525,
+      0.0082
+    ]
+  },
+  {
+    "name": "Infrapatellar fat pad.l",
+    "parent": null,
+    "centre": [
+      0.0813,
+      0.4338,
+      -0.0128
+    ],
+    "size": [
+      0.0234,
+      0.0248,
+      0.0346
+    ]
+  },
+  {
+    "name": "Infrapatellar fat pad.r",
+    "parent": null,
+    "centre": [
+      -0.0809,
+      0.4336,
+      -0.0128
+    ],
+    "size": [
+      0.0221,
+      0.0218,
+      0.0332
+    ]
+  },
+  {
+    "name": "Lateral meniscus.l",
+    "parent": null,
+    "centre": [
+      0.093,
+      0.4319,
+      -0.0294
+    ],
+    "size": [
+      0.0348,
+      0.016,
+      0.0398
+    ]
+  },
+  {
+    "name": "Lateral meniscus.r",
+    "parent": null,
+    "centre": [
+      -0.093,
+      0.4319,
+      -0.0294
+    ],
+    "size": [
+      0.0348,
+      0.016,
+      0.0398
+    ]
+  },
+  {
+    "name": "Medial meniscus.l",
+    "parent": null,
+    "centre": [
+      0.0547,
+      0.4269,
+      -0.0389
+    ],
+    "size": [
+      0.0266,
+      0.0157,
+      0.0458
+    ]
+  },
+  {
+    "name": "Medial meniscus.r",
+    "parent": null,
+    "centre": [
+      -0.0547,
+      0.4269,
+      -0.0389
+    ],
+    "size": [
+      0.0266,
+      0.0157,
+      0.0458
+    ]
+  },
+  {
+    "name": "Meniscopatellar ligament.l",
+    "parent": null,
+    "centre": [
+      0.0829,
+      0.4375,
+      -0.0042
+    ],
+    "size": [
+      0.0485,
+      0.0126,
+      0.0288
+    ]
+  },
+  {
+    "name": "Meniscopatellar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0829,
+      0.4375,
+      -0.0042
+    ],
+    "size": [
+      0.0485,
+      0.0126,
+      0.0288
+    ]
+  },
+  {
+    "name": "Oblique popliteal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0751,
+      0.4467,
+      -0.0514
+    ],
+    "size": [
+      0.0456,
+      0.0715,
+      0.0342
+    ]
+  },
+  {
+    "name": "Oblique popliteal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0751,
+      0.4467,
+      -0.0514
+    ],
+    "size": [
+      0.0456,
+      0.0715,
+      0.0342
+    ]
+  },
+  {
+    "name": "Popliteofibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.104,
+      0.4224,
+      -0.0558
+    ],
+    "size": [
+      0.0283,
+      0.0307,
+      0.0148
+    ]
+  },
+  {
+    "name": "Popliteofibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.104,
+      0.4224,
+      -0.0558
+    ],
+    "size": [
+      0.0283,
+      0.0307,
+      0.0148
+    ]
+  },
+  {
+    "name": "Posterior cruciate ligament.l",
+    "parent": null,
+    "centre": [
+      0.0729,
+      0.4333,
+      -0.0456
+    ],
+    "size": [
+      0.0233,
+      0.0379,
+      0.0186
+    ]
+  },
+  {
+    "name": "Posterior cruciate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0729,
+      0.4333,
+      -0.0456
+    ],
+    "size": [
+      0.0233,
+      0.0379,
+      0.0186
+    ]
+  },
+  {
+    "name": "Posterior meniscotibial ligament (Lateral meniscus).l",
+    "parent": null,
+    "centre": [
+      0.0813,
+      0.432,
+      -0.0383
+    ],
+    "size": [
+      0.0124,
+      0.0042,
+      0.0106
+    ]
+  },
+  {
+    "name": "Posterior meniscotibial ligament (Lateral meniscus).r",
+    "parent": null,
+    "centre": [
+      -0.0813,
+      0.432,
+      -0.0383
+    ],
+    "size": [
+      0.0124,
+      0.0042,
+      0.0106
+    ]
+  },
+  {
+    "name": "Posterior meniscotibial ligament (Medial meniscus).l",
+    "parent": null,
+    "centre": [
+      0.0676,
+      0.4284,
+      -0.0486
+    ],
+    "size": [
+      0.0164,
+      0.0103,
+      0.0214
+    ]
+  },
+  {
+    "name": "Posterior meniscotibial ligament (Medial meniscus).r",
+    "parent": null,
+    "centre": [
+      -0.0676,
+      0.4284,
+      -0.0486
+    ],
+    "size": [
+      0.0164,
+      0.0103,
+      0.0214
+    ]
+  },
+  {
+    "name": "Superficial part of tibial collateral ligament.l",
+    "parent": null,
+    "centre": [
+      0.0489,
+      0.4236,
+      -0.0242
+    ],
+    "size": [
+      0.0326,
+      0.0616,
+      0.0225
+    ]
+  },
+  {
+    "name": "Superficial part of tibial collateral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0489,
+      0.4236,
+      -0.0242
+    ],
+    "size": [
+      0.0326,
+      0.0616,
+      0.0225
+    ]
+  },
+  {
+    "name": "Transverse ligament of knee.l",
+    "parent": null,
+    "centre": [
+      0.0706,
+      0.4315,
+      -0.0167
+    ],
+    "size": [
+      0.0284,
+      0.0062,
+      0.012
+    ]
+  },
+  {
+    "name": "Transverse ligament of knee.r",
+    "parent": null,
+    "centre": [
+      -0.0706,
+      0.4315,
+      -0.0167
+    ],
+    "size": [
+      0.0284,
+      0.0062,
+      0.012
+    ]
+  },
+  {
+    "name": "Anterior ligament of fibular head.l",
+    "parent": null,
+    "centre": [
+      0.1123,
+      0.4039,
+      -0.0291
+    ],
+    "size": [
+      0.016,
+      0.0198,
+      0.0112
+    ]
+  },
+  {
+    "name": "Anterior ligament of fibular head.r",
+    "parent": null,
+    "centre": [
+      -0.1123,
+      0.4039,
+      -0.0291
+    ],
+    "size": [
+      0.016,
+      0.0198,
+      0.0112
+    ]
+  },
+  {
+    "name": "Articular capsule of superior tibiofibular joint.l",
+    "parent": null,
+    "centre": [
+      0.1086,
+      0.4053,
+      -0.0369
+    ],
+    "size": [
+      0.0232,
+      0.0279,
+      0.0258
+    ]
+  },
+  {
+    "name": "Articular capsule of superior tibiofibular joint.r",
+    "parent": null,
+    "centre": [
+      -0.1086,
+      0.4053,
+      -0.0369
+    ],
+    "size": [
+      0.0232,
+      0.0279,
+      0.0258
+    ]
+  },
+  {
+    "name": "Posterior ligament of fibular head.l",
+    "parent": null,
+    "centre": [
+      0.106,
+      0.4079,
+      -0.0445
+    ],
+    "size": [
+      0.0212,
+      0.0218,
+      0.0114
+    ]
+  },
+  {
+    "name": "Posterior ligament of fibular head.r",
+    "parent": null,
+    "centre": [
+      -0.106,
+      0.4079,
+      -0.0445
+    ],
+    "size": [
+      0.0212,
+      0.0218,
+      0.0114
+    ]
+  },
+  {
+    "name": "Inferior pubic ligament",
+    "parent": "Pubic symphysis",
+    "centre": [
+      0,
+      0.8381,
+      0.0463
+    ],
+    "size": [
+      0.033,
+      0.0057,
+      0.0112
+    ]
+  },
+  {
+    "name": "Interpubic disc",
+    "parent": "Pubic symphysis",
+    "centre": [
+      0,
+      0.8441,
+      0.0426
+    ],
+    "size": [
+      0.0093,
+      0.015,
+      0.0193
+    ]
+  },
+  {
+    "name": "Superior pubic ligament",
+    "parent": "Pubic symphysis",
+    "centre": [
+      0,
+      0.8533,
+      0.0487
+    ],
+    "size": [
+      0.031,
+      0.0024,
+      0.0126
+    ]
+  },
+  {
+    "name": "Pubic symphysis",
+    "parent": null,
+    "centre": [
+      0,
+      0.8445,
+      0.0428
+    ],
+    "size": [
+      0.0349,
+      0.0201,
+      0.0268
+    ]
+  },
+  {
+    "name": "Triradiate cartilage.l",
+    "parent": null,
+    "centre": [
+      0.0685,
+      0.8663,
+      -0.01
+    ],
+    "size": [
+      0.038,
+      0.0354,
+      0.0685
+    ]
+  },
+  {
+    "name": "Triradiate cartilage.r",
+    "parent": null,
+    "centre": [
+      -0.0685,
+      0.8663,
+      -0.01
+    ],
+    "size": [
+      0.038,
+      0.0354,
+      0.0685
+    ]
+  },
+  {
+    "name": "Iliolumbar ligament.l",
+    "parent": null,
+    "centre": [
+      0.0612,
+      1.0077,
+      -0.037
+    ],
+    "size": [
+      0.0472,
+      0.0272,
+      0.0207
+    ]
+  },
+  {
+    "name": "Iliolumbar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0612,
+      1.0077,
+      -0.037
+    ],
+    "size": [
+      0.0472,
+      0.0272,
+      0.0207
+    ]
+  },
+  {
+    "name": "Obturator membrane.l",
+    "parent": null,
+    "centre": [
+      0.0388,
+      0.8358,
+      -0.0021
+    ],
+    "size": [
+      0.028,
+      0.0332,
+      0.0483
+    ]
+  },
+  {
+    "name": "Obturator membrane.r",
+    "parent": null,
+    "centre": [
+      -0.0388,
+      0.8358,
+      -0.0021
+    ],
+    "size": [
+      0.028,
+      0.0332,
+      0.0483
+    ]
+  },
+  {
+    "name": "Sacrospinous ligament.l",
+    "parent": null,
+    "centre": [
+      0.0291,
+      0.8796,
+      -0.0618
+    ],
+    "size": [
+      0.0627,
+      0.0618,
+      0.0479
+    ]
+  },
+  {
+    "name": "Sacrospinous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0299,
+      0.8797,
+      -0.0612
+    ],
+    "size": [
+      0.0647,
+      0.0619,
+      0.0402
+    ]
+  },
+  {
+    "name": "Sacrotuberous ligament.l",
+    "parent": null,
+    "centre": [
+      0.0395,
+      0.8553,
+      -0.0611
+    ],
+    "size": [
+      0.0793,
+      0.096,
+      0.0727
+    ]
+  },
+  {
+    "name": "Sacrotuberous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0397,
+      0.8555,
+      -0.0617
+    ],
+    "size": [
+      0.0814,
+      0.0947,
+      0.07
+    ]
+  },
+  {
+    "name": "Anterior sacro-iliac ligament.l",
+    "parent": null,
+    "centre": [
+      0.0564,
+      0.9444,
+      -0.0212
+    ],
+    "size": [
+      0.0434,
+      0.0657,
+      0.0365
+    ]
+  },
+  {
+    "name": "Anterior sacro-iliac ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0564,
+      0.9444,
+      -0.0212
+    ],
+    "size": [
+      0.0434,
+      0.0657,
+      0.0365
+    ]
+  },
+  {
+    "name": "Interosseous sacro-iliac ligament.l",
+    "parent": null,
+    "centre": [
+      0.0434,
+      0.9417,
+      -0.0622
+    ],
+    "size": [
+      0.0152,
+      0.054,
+      0.0244
+    ]
+  },
+  {
+    "name": "Interosseous sacro-iliac ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0434,
+      0.9417,
+      -0.0622
+    ],
+    "size": [
+      0.0152,
+      0.054,
+      0.0244
+    ]
+  },
+  {
+    "name": "Posterior sacro-iliac ligament.l",
+    "parent": null,
+    "centre": [
+      0.0357,
+      0.927,
+      -0.0699
+    ],
+    "size": [
+      0.051,
+      0.0969,
+      0.0469
+    ]
+  },
+  {
+    "name": "Posterior sacro-iliac ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0357,
+      0.927,
+      -0.0699
+    ],
+    "size": [
+      0.051,
+      0.0969,
+      0.0469
+    ]
+  },
+  {
+    "name": "Pterygospinous ligament.l",
+    "parent": null,
+    "centre": [
+      0.0295,
+      1.5669,
+      0.0155
+    ],
+    "size": [
+      0.0027,
+      0.005,
+      0.0132
+    ]
+  },
+  {
+    "name": "Pterygospinous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0295,
+      1.5669,
+      0.0155
+    ],
+    "size": [
+      0.0027,
+      0.005,
+      0.0132
+    ]
+  },
+  {
+    "name": "Sphenomandibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0369,
+      1.5567,
+      0.0153
+    ],
+    "size": [
+      0.0105,
+      0.0259,
+      0.0147
+    ]
+  },
+  {
+    "name": "Sphenomandibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0369,
+      1.5567,
+      0.0153
+    ],
+    "size": [
+      0.0105,
+      0.0259,
+      0.0147
+    ]
+  },
+  {
+    "name": "Stylohyoid ligament.l",
+    "parent": null,
+    "centre": [
+      0.0271,
+      1.5276,
+      0.0159
+    ],
+    "size": [
+      0.0265,
+      0.0483,
+      0.0339
+    ]
+  },
+  {
+    "name": "Stylohyoid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0271,
+      1.5276,
+      0.0159
+    ],
+    "size": [
+      0.0265,
+      0.0483,
+      0.0339
+    ]
+  },
+  {
+    "name": "Stylomandibular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0388,
+      1.543,
+      0.0052
+    ],
+    "size": [
+      0.0029,
+      0.029,
+      0.0113
+    ]
+  },
+  {
+    "name": "Stylomandibular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0388,
+      1.543,
+      0.0052
+    ],
+    "size": [
+      0.0029,
+      0.029,
+      0.0113
+    ]
+  },
+  {
+    "name": "Articular capsule of temporomandibular joint.l",
+    "parent": null,
+    "centre": [
+      0.0461,
+      1.5733,
+      0.0083
+    ],
+    "size": [
+      0.023,
+      0.0132,
+      0.0148
+    ]
+  },
+  {
+    "name": "Articular capsule of temporomandibular joint.r",
+    "parent": null,
+    "centre": [
+      -0.0461,
+      1.5733,
+      0.0083
+    ],
+    "size": [
+      0.023,
+      0.0132,
+      0.0148
+    ]
+  },
+  {
+    "name": "Articular disc of temporomandibular joint.l",
+    "parent": null,
+    "centre": [
+      0.0448,
+      1.5749,
+      0.008
+    ],
+    "size": [
+      0.0193,
+      0.0135,
+      0.0139
+    ]
+  },
+  {
+    "name": "Articular disc of temporomandibular joint.r",
+    "parent": null,
+    "centre": [
+      -0.0448,
+      1.5749,
+      0.008
+    ],
+    "size": [
+      0.0193,
+      0.0135,
+      0.0139
+    ]
+  },
+  {
+    "name": "Lateral temporomandibular ligament.l",
+    "parent": null,
+    "centre": [
+      -0.0532,
+      1.5683,
+      0.0137
+    ],
+    "size": [
+      0.0131,
+      0.0213,
+      0.0126
+    ]
+  },
+  {
+    "name": "Lateral temporomandibular ligament.r",
+    "parent": null,
+    "centre": [
+      0.0532,
+      1.5683,
+      0.0137
+    ],
+    "size": [
+      0.0131,
+      0.0213,
+      0.0126
+    ]
+  },
+  {
+    "name": "Interosseous membrane of forearm.l",
+    "parent": null,
+    "centre": [
+      0.2477,
+      0.9533,
+      -0.0076
+    ],
+    "size": [
+      0.0225,
+      0.1615,
+      0.0497
+    ]
+  },
+  {
+    "name": "Interosseous membrane of forearm.r",
+    "parent": null,
+    "centre": [
+      -0.2477,
+      0.9533,
+      -0.0076
+    ],
+    "size": [
+      0.0225,
+      0.1615,
+      0.0497
+    ]
+  },
+  {
+    "name": "Oblique cord.l",
+    "parent": null,
+    "centre": [
+      0.2306,
+      1.0561,
+      -0.0264
+    ],
+    "size": [
+      0.0113,
+      0.0281,
+      0.0065
+    ]
+  },
+  {
+    "name": "Oblique cord.r",
+    "parent": null,
+    "centre": [
+      -0.2306,
+      1.0561,
+      -0.0264
+    ],
+    "size": [
+      0.0113,
+      0.0281,
+      0.0065
+    ]
+  },
+  {
+    "name": "Articular disc of distal radio-ulnar joint.l",
+    "parent": null,
+    "centre": [
+      0.2514,
+      0.8625,
+      0.0156
+    ],
+    "size": [
+      0.0143,
+      0.0059,
+      0.0117
+    ]
+  },
+  {
+    "name": "Articular disc of distal radio-ulnar joint.r",
+    "parent": null,
+    "centre": [
+      -0.2514,
+      0.8625,
+      0.0156
+    ],
+    "size": [
+      0.0143,
+      0.0059,
+      0.0117
+    ]
+  },
+  {
+    "name": "Dorsal radio-ulnar ligament.l",
+    "parent": null,
+    "centre": [
+      0.2545,
+      0.8679,
+      0.0085
+    ],
+    "size": [
+      0.0111,
+      0.0095,
+      0.0028
+    ]
+  },
+  {
+    "name": "Dorsal radio-ulnar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2545,
+      0.8679,
+      0.0085
+    ],
+    "size": [
+      0.0111,
+      0.0095,
+      0.0028
+    ]
+  },
+  {
+    "name": "Palmar radio-ulnar ligament.l",
+    "parent": null,
+    "centre": [
+      0.2489,
+      0.8706,
+      0.0205
+    ],
+    "size": [
+      0.0231,
+      0.0242,
+      0.014
+    ]
+  },
+  {
+    "name": "Palmar radio-ulnar ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2489,
+      0.8706,
+      0.0209
+    ],
+    "size": [
+      0.0242,
+      0.0232,
+      0.0126
+    ]
+  },
+  {
+    "name": "Annular ligament of radius.l",
+    "parent": null,
+    "centre": [
+      0.2386,
+      1.0819,
+      -0.0295
+    ],
+    "size": [
+      0.0263,
+      0.0201,
+      0.0281
+    ]
+  },
+  {
+    "name": "Annular ligament of radius.r",
+    "parent": null,
+    "centre": [
+      -0.2385,
+      1.0819,
+      -0.0295
+    ],
+    "size": [
+      0.0271,
+      0.0199,
+      0.0283
+    ]
+  },
+  {
+    "name": "Articular capsule of elbow joint.l",
+    "parent": null,
+    "centre": [
+      0.2195,
+      1.1069,
+      -0.037
+    ],
+    "size": [
+      0.0611,
+      0.0532,
+      0.0423
+    ]
+  },
+  {
+    "name": "Articular capsule of elbow joint.r",
+    "parent": null,
+    "centre": [
+      -0.2195,
+      1.1069,
+      -0.037
+    ],
+    "size": [
+      0.0611,
+      0.0532,
+      0.0423
+    ]
+  },
+  {
+    "name": "Quadrate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2294,
+      1.0735,
+      -0.0329
+    ],
+    "size": [
+      0.0063,
+      0.0102,
+      0.0054
+    ]
+  },
+  {
+    "name": "Quadrate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2294,
+      1.0735,
+      -0.033
+    ],
+    "size": [
+      0.0062,
+      0.0101,
+      0.0054
+    ]
+  },
+  {
+    "name": "Radial collateral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2486,
+      1.1006,
+      -0.0332
+    ],
+    "size": [
+      0.0045,
+      0.0282,
+      0.0187
+    ]
+  },
+  {
+    "name": "Radial collateral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2486,
+      1.1006,
+      -0.0332
+    ],
+    "size": [
+      0.0045,
+      0.0282,
+      0.0187
+    ]
+  },
+  {
+    "name": "Ulnar collateral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2123,
+      1.091,
+      -0.0233
+    ],
+    "size": [
+      0.0465,
+      0.0235,
+      0.0185
+    ]
+  },
+  {
+    "name": "Ulnar collateral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2123,
+      1.091,
+      -0.0233
+    ],
+    "size": [
+      0.0465,
+      0.0235,
+      0.0185
+    ]
+  },
+  {
+    "name": "Articular capsule of glenohumeral joint.l",
+    "parent": null,
+    "centre": [
+      0.163,
+      1.3788,
+      -0.0283
+    ],
+    "size": [
+      0.0473,
+      0.0606,
+      0.0466
+    ]
+  },
+  {
+    "name": "Articular capsule of glenohumeral joint.r",
+    "parent": null,
+    "centre": [
+      -0.163,
+      1.3788,
+      -0.0283
+    ],
+    "size": [
+      0.0473,
+      0.0606,
+      0.0466
+    ]
+  },
+  {
+    "name": "Coracohumeral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1615,
+      1.4001,
+      -0.0121
+    ],
+    "size": [
+      0.0462,
+      0.018,
+      0.0203
+    ]
+  },
+  {
+    "name": "Coracohumeral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1615,
+      1.4001,
+      -0.0121
+    ],
+    "size": [
+      0.0462,
+      0.018,
+      0.0203
+    ]
+  },
+  {
+    "name": "Glenoid labrum.l",
+    "parent": null,
+    "centre": [
+      0.149,
+      1.3779,
+      -0.0361
+    ],
+    "size": [
+      0.0194,
+      0.036,
+      0.026
+    ]
+  },
+  {
+    "name": "Glenoid labrum.r",
+    "parent": null,
+    "centre": [
+      -0.149,
+      1.3779,
+      -0.0361
+    ],
+    "size": [
+      0.0194,
+      0.036,
+      0.026
+    ]
+  },
+  {
+    "name": "Inferior glenohumeral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1511,
+      1.3762,
+      -0.0176
+    ],
+    "size": [
+      0.0243,
+      0.0197,
+      0.0171
+    ]
+  },
+  {
+    "name": "Inferior glenohumeral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1511,
+      1.3762,
+      -0.0176
+    ],
+    "size": [
+      0.0243,
+      0.0197,
+      0.0171
+    ]
+  },
+  {
+    "name": "Middle glenohumeral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1513,
+      1.3888,
+      -0.0166
+    ],
+    "size": [
+      0.0285,
+      0.0165,
+      0.0238
+    ]
+  },
+  {
+    "name": "Middle glenohumeral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1513,
+      1.3888,
+      -0.0166
+    ],
+    "size": [
+      0.0285,
+      0.0165,
+      0.0238
+    ]
+  },
+  {
+    "name": "Superior glenohumeral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1548,
+      1.396,
+      -0.0199
+    ],
+    "size": [
+      0.0292,
+      0.0167,
+      0.0278
+    ]
+  },
+  {
+    "name": "Superior glenohumeral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1548,
+      1.396,
+      -0.0199
+    ],
+    "size": [
+      0.0292,
+      0.0167,
+      0.0278
+    ]
+  },
+  {
+    "name": "Transverse humeral ligament.l",
+    "parent": null,
+    "centre": [
+      0.1815,
+      1.3889,
+      -0.0073
+    ],
+    "size": [
+      0.0138,
+      0.0204,
+      0.0129
+    ]
+  },
+  {
+    "name": "Transverse humeral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1814,
+      1.3889,
+      -0.0074
+    ],
+    "size": [
+      0.0131,
+      0.0201,
+      0.0127
+    ]
+  },
+  {
+    "name": "Dorsal carpometacarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2689,
+      0.8379,
+      0.0186
+    ],
+    "size": [
+      0.0497,
+      0.0475,
+      0.0155
+    ]
+  },
+  {
+    "name": "Dorsal carpometacarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2689,
+      0.8379,
+      0.0186
+    ],
+    "size": [
+      0.0497,
+      0.0475,
+      0.0155
+    ]
+  },
+  {
+    "name": "Palmar carpometacarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2701,
+      0.8412,
+      0.029
+    ],
+    "size": [
+      0.0439,
+      0.0417,
+      0.0129
+    ]
+  },
+  {
+    "name": "Palmar carpometacarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2701,
+      0.8412,
+      0.029
+    ],
+    "size": [
+      0.0439,
+      0.0417,
+      0.0129
+    ]
+  },
+  {
+    "name": "Capitohamate interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.2588,
+      0.8424,
+      0.0145
+    ],
+    "size": [
+      0.0024,
+      0.0001,
+      0.0046
+    ]
+  },
+  {
+    "name": "Capitohamate interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2588,
+      0.8424,
+      0.0145
+    ],
+    "size": [
+      0.0024,
+      0.0001,
+      0.0046
+    ]
+  },
+  {
+    "name": "Dorsal scaphotriquetral ligament.l",
+    "parent": "Dorsal intercarpal ligaments.l",
+    "centre": [
+      0.2566,
+      0.8492,
+      0.0124
+    ],
+    "size": [
+      0.0209,
+      0.0159,
+      0.0062
+    ]
+  },
+  {
+    "name": "Dorsal intercarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2635,
+      0.8442,
+      0.0142
+    ],
+    "size": [
+      0.0389,
+      0.0172,
+      0.0115
+    ]
+  },
+  {
+    "name": "Dorsal scaphotriquetral ligament.r",
+    "parent": "Dorsal intercarpal ligaments.r",
+    "centre": [
+      -0.2566,
+      0.8492,
+      0.0124
+    ],
+    "size": [
+      0.0209,
+      0.0159,
+      0.0062
+    ]
+  },
+  {
+    "name": "Dorsal intercarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2635,
+      0.8442,
+      0.0142
+    ],
+    "size": [
+      0.0389,
+      0.0172,
+      0.0115
+    ]
+  },
+  {
+    "name": "Dorsal ulnocarpal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2506,
+      0.8532,
+      0.0115
+    ],
+    "size": [
+      0.0169,
+      0.0112,
+      0.0046
+    ]
+  },
+  {
+    "name": "Dorsal ulnocarpal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2506,
+      0.8532,
+      0.0115
+    ],
+    "size": [
+      0.0169,
+      0.0112,
+      0.0046
+    ]
+  },
+  {
+    "name": "Lunotriquetral interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.2488,
+      0.8512,
+      0.0197
+    ],
+    "size": [
+      0.0018,
+      0.0019,
+      0.0025
+    ]
+  },
+  {
+    "name": "Lunotriquetral interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2488,
+      0.8512,
+      0.0197
+    ],
+    "size": [
+      0.0018,
+      0.0019,
+      0.0025
+    ]
+  },
+  {
+    "name": "Palmar capitohamate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2608,
+      0.8397,
+      0.0221
+    ],
+    "size": [
+      0.0049,
+      0.0054,
+      0.0007
+    ]
+  },
+  {
+    "name": "Palmar capitohamate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2608,
+      0.8397,
+      0.0221
+    ],
+    "size": [
+      0.0049,
+      0.0054,
+      0.0007
+    ]
+  },
+  {
+    "name": "Palmar lunotriquetral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2459,
+      0.8538,
+      0.0217
+    ],
+    "size": [
+      0.0042,
+      0.0031,
+      0.003
+    ]
+  },
+  {
+    "name": "Palmar lunotriquetral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2459,
+      0.8538,
+      0.0217
+    ],
+    "size": [
+      0.0042,
+      0.0031,
+      0.003
+    ]
+  },
+  {
+    "name": "Palmar scaphotriquetral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2569,
+      0.854,
+      0.0243
+    ],
+    "size": [
+      0.0197,
+      0.0071,
+      0.0075
+    ]
+  },
+  {
+    "name": "Palmar scaphotriquetral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2569,
+      0.854,
+      0.0243
+    ],
+    "size": [
+      0.0197,
+      0.0071,
+      0.0075
+    ]
+  },
+  {
+    "name": "Palmar trapezoideocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2707,
+      0.841,
+      0.0261
+    ],
+    "size": [
+      0.0049,
+      0.0048,
+      0.0011
+    ]
+  },
+  {
+    "name": "Palmar trapezoideocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2707,
+      0.841,
+      0.0261
+    ],
+    "size": [
+      0.0049,
+      0.0048,
+      0.0011
+    ]
+  },
+  {
+    "name": "Pisohamate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2488,
+      0.843,
+      0.0301
+    ],
+    "size": [
+      0.005,
+      0.003,
+      0.0007
+    ]
+  },
+  {
+    "name": "Pisohamate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2488,
+      0.843,
+      0.0301
+    ],
+    "size": [
+      0.005,
+      0.003,
+      0.0007
+    ]
+  },
+  {
+    "name": "Pisometacarpal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2448,
+      0.8383,
+      0.028
+    ],
+    "size": [
+      0.0083,
+      0.0091,
+      0.0062
+    ]
+  },
+  {
+    "name": "Pisometacarpal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2447,
+      0.8382,
+      0.0279
+    ],
+    "size": [
+      0.0078,
+      0.0093,
+      0.0061
+    ]
+  },
+  {
+    "name": "Pisotriquetral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2438,
+      0.8454,
+      0.0282
+    ],
+    "size": [
+      0.0071,
+      0.0098,
+      0.0043
+    ]
+  },
+  {
+    "name": "Pisotriquetral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2438,
+      0.8454,
+      0.0282
+    ],
+    "size": [
+      0.0071,
+      0.0098,
+      0.0043
+    ]
+  },
+  {
+    "name": "Radial collateral ligament of wrist joint.r",
+    "parent": null,
+    "centre": [
+      -0.2838,
+      0.8551,
+      0.0205
+    ],
+    "size": [
+      0.0054,
+      0.0097,
+      0.0075
+    ]
+  },
+  {
+    "name": "Radiate carpal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2651,
+      0.845,
+      0.0256
+    ],
+    "size": [
+      0.0204,
+      0.0251,
+      0.0093
+    ]
+  },
+  {
+    "name": "Radiate carpal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2651,
+      0.845,
+      0.0256
+    ],
+    "size": [
+      0.0204,
+      0.0251,
+      0.0093
+    ]
+  },
+  {
+    "name": "Scaphocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2668,
+      0.8557,
+      0.0229
+    ],
+    "size": [
+      0.0076,
+      0.008,
+      0.0039
+    ]
+  },
+  {
+    "name": "Scaphocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2668,
+      0.8557,
+      0.0228
+    ],
+    "size": [
+      0.0079,
+      0.0079,
+      0.0033
+    ]
+  },
+  {
+    "name": "Scaphotrapeziotrapezoidal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2731,
+      0.8482,
+      0.0256
+    ],
+    "size": [
+      0.0038,
+      0.0086,
+      0.0047
+    ]
+  },
+  {
+    "name": "Scaphotrapeziotrapezoidal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2731,
+      0.8482,
+      0.0256
+    ],
+    "size": [
+      0.0038,
+      0.0086,
+      0.0047
+    ]
+  },
+  {
+    "name": "Scapholunate interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.2577,
+      0.8574,
+      0.0139
+    ],
+    "size": [
+      0.002,
+      0.0024,
+      0.0029
+    ]
+  },
+  {
+    "name": "Scapholunate interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2577,
+      0.8574,
+      0.0139
+    ],
+    "size": [
+      0.002,
+      0.0024,
+      0.0029
+    ]
+  },
+  {
+    "name": "Trapeziotrapezoidal interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.2775,
+      0.8446,
+      0.0236
+    ],
+    "size": [
+      0.0028,
+      0.0018,
+      0.0038
+    ]
+  },
+  {
+    "name": "Trapeziotrapezoidal interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2775,
+      0.8446,
+      0.0236
+    ],
+    "size": [
+      0.0028,
+      0.0018,
+      0.0038
+    ]
+  },
+  {
+    "name": "Trapezoideocapitate interosseous ligament.l",
+    "parent": null,
+    "centre": [
+      0.2718,
+      0.839,
+      0.0184
+    ],
+    "size": [
+      0.0036,
+      0.0002,
+      0.0051
+    ]
+  },
+  {
+    "name": "Trapezoideocapitate interosseous ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2718,
+      0.839,
+      0.0184
+    ],
+    "size": [
+      0.0036,
+      0.0002,
+      0.0051
+    ]
+  },
+  {
+    "name": "Triquetrocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2546,
+      0.8465,
+      0.0235
+    ],
+    "size": [
+      0.0135,
+      0.0072,
+      0.0027
+    ]
+  },
+  {
+    "name": "Triquetrocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2546,
+      0.8465,
+      0.0235
+    ],
+    "size": [
+      0.0135,
+      0.0072,
+      0.0027
+    ]
+  },
+  {
+    "name": "Triquetrohamate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2495,
+      0.8427,
+      0.0258
+    ],
+    "size": [
+      0.0059,
+      0.0057,
+      0.0029
+    ]
+  },
+  {
+    "name": "Triquetrohamate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2495,
+      0.8427,
+      0.0258
+    ],
+    "size": [
+      0.0059,
+      0.0057,
+      0.0029
+    ]
+  },
+  {
+    "name": "Ulnar collateral ligament of wrist joint.r",
+    "parent": null,
+    "centre": [
+      -0.2422,
+      0.8516,
+      0.0207
+    ],
+    "size": [
+      0.0051,
+      0.0158,
+      0.0189
+    ]
+  },
+  {
+    "name": "Dorsal metacarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2687,
+      0.8321,
+      0.0194
+    ],
+    "size": [
+      0.0423,
+      0.0408,
+      0.0108
+    ]
+  },
+  {
+    "name": "Dorsal metacarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2687,
+      0.8321,
+      0.0194
+    ],
+    "size": [
+      0.0423,
+      0.0408,
+      0.0108
+    ]
+  },
+  {
+    "name": "Interosseous metacarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2685,
+      0.8316,
+      0.0239
+    ],
+    "size": [
+      0.0361,
+      0.0345,
+      0.0093
+    ]
+  },
+  {
+    "name": "Interosseous metacarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2685,
+      0.8316,
+      0.0239
+    ],
+    "size": [
+      0.0361,
+      0.0345,
+      0.0093
+    ]
+  },
+  {
+    "name": "Palmar metacarpal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2681,
+      0.8327,
+      0.0279
+    ],
+    "size": [
+      0.036,
+      0.0348,
+      0.0081
+    ]
+  },
+  {
+    "name": "Palmar metacarpal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2681,
+      0.8327,
+      0.0279
+    ],
+    "size": [
+      0.036,
+      0.0348,
+      0.0081
+    ]
+  },
+  {
+    "name": "Articular capsules of distal interphalangeal joints.l",
+    "parent": null,
+    "centre": [
+      0.2791,
+      0.7517,
+      0.068
+    ],
+    "size": [
+      0.1084,
+      0.0929,
+      0.0364
+    ]
+  },
+  {
+    "name": "Articular capsules of distal interphalangeal joints.r",
+    "parent": null,
+    "centre": [
+      -0.2791,
+      0.7517,
+      0.068
+    ],
+    "size": [
+      0.1084,
+      0.0929,
+      0.0364
+    ]
+  },
+  {
+    "name": "Articular capsules of proximal interphalangeal joints.l",
+    "parent": null,
+    "centre": [
+      0.2715,
+      0.7412,
+      0.0572
+    ],
+    "size": [
+      0.0914,
+      0.035,
+      0.0226
+    ]
+  },
+  {
+    "name": "Articular capsules of proximal interphalangeal joints.r",
+    "parent": null,
+    "centre": [
+      -0.2715,
+      0.7412,
+      0.0572
+    ],
+    "size": [
+      0.0914,
+      0.035,
+      0.0226
+    ]
+  },
+  {
+    "name": "Collateral interphalangeal ligaments of hand.l",
+    "parent": null,
+    "centre": [
+      0.2779,
+      0.7521,
+      0.0665
+    ],
+    "size": [
+      0.1045,
+      0.0913,
+      0.038
+    ]
+  },
+  {
+    "name": "Collateral interphalangeal ligaments of hand.r",
+    "parent": null,
+    "centre": [
+      -0.2779,
+      0.7521,
+      0.0665
+    ],
+    "size": [
+      0.1045,
+      0.0913,
+      0.038
+    ]
+  },
+  {
+    "name": "Palmar interphalangeal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2753,
+      0.7534,
+      0.0694
+    ],
+    "size": [
+      0.0964,
+      0.0849,
+      0.0337
+    ]
+  },
+  {
+    "name": "Palmar interphalangeal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2753,
+      0.7534,
+      0.0694
+    ],
+    "size": [
+      0.0964,
+      0.0849,
+      0.0337
+    ]
+  },
+  {
+    "name": "Articular capsules of metacarpophalangeal joints.l",
+    "parent": null,
+    "centre": [
+      0.277,
+      0.7938,
+      0.0408
+    ],
+    "size": [
+      0.0943,
+      0.0631,
+      0.0337
+    ]
+  },
+  {
+    "name": "Articular capsules of metacarpophalangeal joints.r",
+    "parent": null,
+    "centre": [
+      -0.277,
+      0.7938,
+      0.0408
+    ],
+    "size": [
+      0.0943,
+      0.0631,
+      0.0337
+    ]
+  },
+  {
+    "name": "Collateral metacarpophalangeal ligaments.l",
+    "parent": null,
+    "centre": [
+      0.2772,
+      0.7948,
+      0.0431
+    ],
+    "size": [
+      0.094,
+      0.061,
+      0.0247
+    ]
+  },
+  {
+    "name": "Collateral metacarpophalangeal ligaments.r",
+    "parent": null,
+    "centre": [
+      -0.2772,
+      0.7948,
+      0.0431
+    ],
+    "size": [
+      0.094,
+      0.061,
+      0.0247
+    ]
+  },
+  {
+    "name": "Deep transverse metacarpal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2665,
+      0.7794,
+      0.0436
+    ],
+    "size": [
+      0.0456,
+      0.0164,
+      0.0045
+    ]
+  },
+  {
+    "name": "Deep transverse metacarpal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2665,
+      0.7794,
+      0.0436
+    ],
+    "size": [
+      0.0456,
+      0.0164,
+      0.0045
+    ]
+  },
+  {
+    "name": "Articular capsule of radiocarpal joint.l",
+    "parent": null,
+    "centre": [
+      0.2649,
+      0.8516,
+      0.0221
+    ],
+    "size": [
+      0.0575,
+      0.0621,
+      0.0327
+    ]
+  },
+  {
+    "name": "Articular capsule of radiocarpal joint.r",
+    "parent": null,
+    "centre": [
+      -0.2649,
+      0.8516,
+      0.0221
+    ],
+    "size": [
+      0.0575,
+      0.0621,
+      0.0327
+    ]
+  },
+  {
+    "name": "Dorsal radiocarpal ligament.l",
+    "parent": null,
+    "centre": [
+      0.2611,
+      0.8543,
+      0.0118
+    ],
+    "size": [
+      0.0333,
+      0.0142,
+      0.0064
+    ]
+  },
+  {
+    "name": "Dorsal radiocarpal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2611,
+      0.8543,
+      0.0118
+    ],
+    "size": [
+      0.0333,
+      0.0142,
+      0.0064
+    ]
+  },
+  {
+    "name": "Radial collateral ligament of wrist joint.l",
+    "parent": null,
+    "centre": [
+      0.2838,
+      0.8551,
+      0.0205
+    ],
+    "size": [
+      0.0054,
+      0.0097,
+      0.0075
+    ]
+  },
+  {
+    "name": "Radioscaphocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2728,
+      0.8592,
+      0.0226
+    ],
+    "size": [
+      0.013,
+      0.0152,
+      0.0017
+    ]
+  },
+  {
+    "name": "Radioscaphocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2728,
+      0.8592,
+      0.0226
+    ],
+    "size": [
+      0.013,
+      0.0152,
+      0.0017
+    ]
+  },
+  {
+    "name": "Radiocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.27,
+      0.8551,
+      0.0246
+    ],
+    "size": [
+      0.0121,
+      0.0231,
+      0.0025
+    ]
+  },
+  {
+    "name": "Radiocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.27,
+      0.8551,
+      0.0246
+    ],
+    "size": [
+      0.0121,
+      0.0231,
+      0.0025
+    ]
+  },
+  {
+    "name": "Ulnar collateral ligament of wrist joint.l",
+    "parent": null,
+    "centre": [
+      0.2422,
+      0.8516,
+      0.0207
+    ],
+    "size": [
+      0.0051,
+      0.0158,
+      0.0189
+    ]
+  },
+  {
+    "name": "Ulnocapitate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2547,
+      0.8589,
+      0.0212
+    ],
+    "size": [
+      0.0345,
+      0.0408,
+      0.0215
+    ]
+  },
+  {
+    "name": "Ulnocapitate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2548,
+      0.8588,
+      0.0229
+    ],
+    "size": [
+      0.037,
+      0.039,
+      0.0172
+    ]
+  },
+  {
+    "name": "Ulnolunate ligament.l",
+    "parent": null,
+    "centre": [
+      0.2521,
+      0.8653,
+      0.0208
+    ],
+    "size": [
+      0.0234,
+      0.0274,
+      0.0137
+    ]
+  },
+  {
+    "name": "Ulnolunate ligament.r",
+    "parent": null,
+    "centre": [
+      -0.252,
+      0.8655,
+      0.0213
+    ],
+    "size": [
+      0.025,
+      0.0264,
+      0.0109
+    ]
+  },
+  {
+    "name": "Ulnopisiform ligament",
+    "parent": null,
+    "centre": [
+      -0.2406,
+      0.8601,
+      0.0225
+    ],
+    "size": [
+      0.0235,
+      0.0221,
+      0.0181
+    ]
+  },
+  {
+    "name": "Ulnopisiform ligament.l",
+    "parent": null,
+    "centre": [
+      0.2407,
+      0.86,
+      0.0228
+    ],
+    "size": [
+      0.021,
+      0.0246,
+      0.0196
+    ]
+  },
+  {
+    "name": "Ulnotriquetral ligament.l",
+    "parent": null,
+    "centre": [
+      0.2415,
+      0.8583,
+      0.0165
+    ],
+    "size": [
+      0.0146,
+      0.0169,
+      0.0119
+    ]
+  },
+  {
+    "name": "Ulnotriquetral ligament.r",
+    "parent": null,
+    "centre": [
+      -0.2414,
+      0.8584,
+      0.0163
+    ],
+    "size": [
+      0.016,
+      0.0155,
+      0.0107
+    ]
+  },
+  {
+    "name": "Coraco-acromial ligament.l",
+    "parent": null,
+    "centre": [
+      0.1478,
+      1.4076,
+      -0.0186
+    ],
+    "size": [
+      0.0321,
+      0.0154,
+      0.0242
+    ]
+  },
+  {
+    "name": "Coraco-acromial ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1478,
+      1.4076,
+      -0.0186
+    ],
+    "size": [
+      0.0321,
+      0.0154,
+      0.0242
+    ]
+  },
+  {
+    "name": "Inferior transverse scapular ligament.l",
+    "parent": null,
+    "centre": [
+      0.1461,
+      1.3826,
+      -0.0556
+    ],
+    "size": [
+      0.013,
+      0.0074,
+      0.0147
+    ]
+  },
+  {
+    "name": "Inferior transverse scapular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1461,
+      1.3826,
+      -0.0556
+    ],
+    "size": [
+      0.013,
+      0.0074,
+      0.0147
+    ]
+  },
+  {
+    "name": "Superior transverse scapular ligament.l",
+    "parent": null,
+    "centre": [
+      0.1083,
+      1.3952,
+      -0.0464
+    ],
+    "size": [
+      0.0102,
+      0.0072,
+      0.0158
+    ]
+  },
+  {
+    "name": "Superior transverse scapular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1083,
+      1.3952,
+      -0.0464
+    ],
+    "size": [
+      0.0102,
+      0.0072,
+      0.0158
+    ]
+  },
+  {
+    "name": "Acromioclavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.1494,
+      1.4198,
+      -0.0405
+    ],
+    "size": [
+      0.0279,
+      0.0105,
+      0.0189
+    ]
+  },
+  {
+    "name": "Acromioclavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1494,
+      1.4198,
+      -0.0405
+    ],
+    "size": [
+      0.0279,
+      0.0105,
+      0.0189
+    ]
+  },
+  {
+    "name": "Articular capsule of acromioclavicular joint.l",
+    "parent": null,
+    "centre": [
+      0.1482,
+      1.414,
+      -0.0381
+    ],
+    "size": [
+      0.028,
+      0.0212,
+      0.0325
+    ]
+  },
+  {
+    "name": "Articular capsule of acromioclavicular joint.r",
+    "parent": null,
+    "centre": [
+      -0.1482,
+      1.414,
+      -0.0381
+    ],
+    "size": [
+      0.028,
+      0.0212,
+      0.0325
+    ]
+  },
+  {
+    "name": "Articular disc of acromioclavicular joint.l",
+    "parent": null,
+    "centre": [
+      0.1501,
+      1.4143,
+      -0.0378
+    ],
+    "size": [
+      0.0153,
+      0.0185,
+      0.0305
+    ]
+  },
+  {
+    "name": "Articular disc of acromioclavicular joint.r",
+    "parent": null,
+    "centre": [
+      -0.1501,
+      1.4143,
+      -0.0378
+    ],
+    "size": [
+      0.0153,
+      0.0185,
+      0.0305
+    ]
+  },
+  {
+    "name": "Conoid ligament.l",
+    "parent": null,
+    "centre": [
+      0.1083,
+      1.404,
+      -0.0267
+    ],
+    "size": [
+      0.0134,
+      0.0222,
+      0.0173
+    ]
+  },
+  {
+    "name": "Conoid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1083,
+      1.404,
+      -0.0267
+    ],
+    "size": [
+      0.0134,
+      0.0222,
+      0.0173
+    ]
+  },
+  {
+    "name": "Trapezoid ligament.l",
+    "parent": null,
+    "centre": [
+      0.1244,
+      1.4083,
+      -0.0183
+    ],
+    "size": [
+      0.0165,
+      0.0225,
+      0.0146
+    ]
+  },
+  {
+    "name": "Trapezoid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.1244,
+      1.4083,
+      -0.0183
+    ],
+    "size": [
+      0.0165,
+      0.0225,
+      0.0146
+    ]
+  },
+  {
+    "name": "Anterior sternoclavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0194,
+      1.403,
+      0.0506
+    ],
+    "size": [
+      0.0161,
+      0.0218,
+      0.0116
+    ]
+  },
+  {
+    "name": "Anterior sternoclavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0194,
+      1.403,
+      0.0506
+    ],
+    "size": [
+      0.0161,
+      0.0218,
+      0.0116
+    ]
+  },
+  {
+    "name": "Articular capsule of sternoclavicular joint.l",
+    "parent": null,
+    "centre": [
+      0.0181,
+      1.4003,
+      0.036
+    ],
+    "size": [
+      0.0254,
+      0.0343,
+      0.042
+    ]
+  },
+  {
+    "name": "Articular capsule of sternoclavicular joint.r",
+    "parent": null,
+    "centre": [
+      -0.0181,
+      1.4003,
+      0.036
+    ],
+    "size": [
+      0.0254,
+      0.0343,
+      0.042
+    ]
+  },
+  {
+    "name": "Articular disc of sternoclavicular joint.l",
+    "parent": null,
+    "centre": [
+      0.0175,
+      1.401,
+      0.0372
+    ],
+    "size": [
+      0.0189,
+      0.0238,
+      0.0394
+    ]
+  },
+  {
+    "name": "Articular disc of sternoclavicular joint.r",
+    "parent": null,
+    "centre": [
+      -0.0175,
+      1.401,
+      0.0372
+    ],
+    "size": [
+      0.0189,
+      0.0238,
+      0.0394
+    ]
+  },
+  {
+    "name": "Costoclavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0311,
+      1.3953,
+      0.0384
+    ],
+    "size": [
+      0.0181,
+      0.0163,
+      0.0174
+    ]
+  },
+  {
+    "name": "Costoclavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0299,
+      1.3948,
+      0.0386
+    ],
+    "size": [
+      0.0181,
+      0.0205,
+      0.016
+    ]
+  },
+  {
+    "name": "Interclavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0081,
+      1.4037,
+      0.0355
+    ],
+    "size": [
+      0.0162,
+      0.011,
+      0.0139
+    ]
+  },
+  {
+    "name": "Interclavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0081,
+      1.4037,
+      0.0355
+    ],
+    "size": [
+      0.0162,
+      0.011,
+      0.0139
+    ]
+  },
+  {
+    "name": "Posterior sternoclavicular ligament.l",
+    "parent": null,
+    "centre": [
+      0.0217,
+      1.3935,
+      0.0322
+    ],
+    "size": [
+      0.0161,
+      0.0249,
+      0.0263
+    ]
+  },
+  {
+    "name": "Posterior sternoclavicular ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0217,
+      1.3935,
+      0.0328
+    ],
+    "size": [
+      0.0261,
+      0.0254,
+      0.0187
+    ]
+  },
+  {
+    "name": "Intervertebral disc C2-C3",
+    "parent": null,
+    "centre": [
+      0,
+      1.5183,
+      -0.0088
+    ],
+    "size": [
+      0.0239,
+      0.0081,
+      0.0176
+    ]
+  },
+  {
+    "name": "Intervertebral disc C3-C4",
+    "parent": null,
+    "centre": [
+      0,
+      1.5029,
+      -0.008
+    ],
+    "size": [
+      0.0242,
+      0.0086,
+      0.0159
+    ]
+  },
+  {
+    "name": "Intervertebral disc C4-C5",
+    "parent": null,
+    "centre": [
+      0,
+      1.4862,
+      -0.0085
+    ],
+    "size": [
+      0.0273,
+      0.0116,
+      0.015
+    ]
+  },
+  {
+    "name": "Intervertebral disc C5-C6",
+    "parent": null,
+    "centre": [
+      0,
+      1.4704,
+      -0.0104
+    ],
+    "size": [
+      0.0313,
+      0.0118,
+      0.0149
+    ]
+  },
+  {
+    "name": "Intervertebral disc C6-C7",
+    "parent": null,
+    "centre": [
+      0,
+      1.4558,
+      -0.0144
+    ],
+    "size": [
+      0.0305,
+      0.0113,
+      0.0166
+    ]
+  },
+  {
+    "name": "Intervertebral disc C7-T1",
+    "parent": null,
+    "centre": [
+      0,
+      1.4422,
+      -0.0194
+    ],
+    "size": [
+      0.034,
+      0.0123,
+      0.0177
+    ]
+  },
+  {
+    "name": "Intervertebral disc L1-L2",
+    "parent": null,
+    "centre": [
+      0,
+      1.1005,
+      -0.0048
+    ],
+    "size": [
+      0.0432,
+      0.0153,
+      0.0381
+    ]
+  },
+  {
+    "name": "Intervertebral disc L2-L3",
+    "parent": null,
+    "centre": [
+      0,
+      1.0664,
+      -0.0006
+    ],
+    "size": [
+      0.0459,
+      0.0102,
+      0.0383
+    ]
+  },
+  {
+    "name": "Intervertebral disc L3-L4",
+    "parent": null,
+    "centre": [
+      0,
+      1.03,
+      -0.0002
+    ],
+    "size": [
+      0.0461,
+      0.0128,
+      0.0376
+    ]
+  },
+  {
+    "name": "Intervertebral disc L4-L5",
+    "parent": null,
+    "centre": [
+      0,
+      0.9963,
+      -0.0052
+    ],
+    "size": [
+      0.0507,
+      0.0196,
+      0.0388
+    ]
+  },
+  {
+    "name": "Intervertebral disc L5-S1",
+    "parent": null,
+    "centre": [
+      0,
+      0.9618,
+      -0.0152
+    ],
+    "size": [
+      0.0507,
+      0.0293,
+      0.0405
+    ]
+  },
+  {
+    "name": "Intervertebral disc T1-T2",
+    "parent": null,
+    "centre": [
+      0,
+      1.4248,
+      -0.0258
+    ],
+    "size": [
+      0.0336,
+      0.0109,
+      0.0201
+    ]
+  },
+  {
+    "name": "Intervertebral disc T10-T11",
+    "parent": null,
+    "centre": [
+      0,
+      1.196,
+      -0.0304
+    ],
+    "size": [
+      0.0406,
+      0.0159,
+      0.0367
+    ]
+  },
+  {
+    "name": "Intervertebral disc T11-T12",
+    "parent": null,
+    "centre": [
+      0,
+      1.1651,
+      -0.0216
+    ],
+    "size": [
+      0.0423,
+      0.018,
+      0.0403
+    ]
+  },
+  {
+    "name": "Intervertebral disc T12-L1",
+    "parent": null,
+    "centre": [
+      0,
+      1.1324,
+      -0.0129
+    ],
+    "size": [
+      0.0445,
+      0.0182,
+      0.0397
+    ]
+  },
+  {
+    "name": "Intervertebral disc T2-T3",
+    "parent": null,
+    "centre": [
+      0,
+      1.4048,
+      -0.0327
+    ],
+    "size": [
+      0.0344,
+      0.0133,
+      0.0226
+    ]
+  },
+  {
+    "name": "Intervertebral disc T3-T4",
+    "parent": null,
+    "centre": [
+      0,
+      1.3838,
+      -0.041
+    ],
+    "size": [
+      0.0333,
+      0.0127,
+      0.0261
+    ]
+  },
+  {
+    "name": "Intervertebral disc T4-T5",
+    "parent": null,
+    "centre": [
+      0,
+      1.3611,
+      -0.0475
+    ],
+    "size": [
+      0.0321,
+      0.0133,
+      0.0297
+    ]
+  },
+  {
+    "name": "Intervertebral disc T5-T6",
+    "parent": null,
+    "centre": [
+      0,
+      1.3355,
+      -0.0498
+    ],
+    "size": [
+      0.0321,
+      0.0107,
+      0.0315
+    ]
+  },
+  {
+    "name": "Intervertebral disc T6-T7",
+    "parent": null,
+    "centre": [
+      0,
+      1.3085,
+      -0.0509
+    ],
+    "size": [
+      0.0339,
+      0.0094,
+      0.0351
+    ]
+  },
+  {
+    "name": "Intervertebral disc T7-T8",
+    "parent": null,
+    "centre": [
+      0,
+      1.2805,
+      -0.0482
+    ],
+    "size": [
+      0.0358,
+      0.013,
+      0.0367
+    ]
+  },
+  {
+    "name": "Intervertebral disc T8-T9",
+    "parent": null,
+    "centre": [
+      0,
+      1.2535,
+      -0.0439
+    ],
+    "size": [
+      0.0382,
+      0.0134,
+      0.0354
+    ]
+  },
+  {
+    "name": "Intervertebral disc T9-T10",
+    "parent": null,
+    "centre": [
+      0,
+      1.2247,
+      -0.038
+    ],
+    "size": [
+      0.037,
+      0.015,
+      0.0346
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C2-C3",
+    "parent": null,
+    "centre": [
+      0,
+      1.5181,
+      -0.0101
+    ],
+    "size": [
+      0.0042,
+      0.0042,
+      0.0042
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C3-C4",
+    "parent": null,
+    "centre": [
+      0,
+      1.5015,
+      -0.0097
+    ],
+    "size": [
+      0.003,
+      0.003,
+      0.003
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C4-C5",
+    "parent": null,
+    "centre": [
+      0,
+      1.4857,
+      -0.0082
+    ],
+    "size": [
+      0.0031,
+      0.0031,
+      0.0031
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C5-C6",
+    "parent": null,
+    "centre": [
+      0,
+      1.4698,
+      -0.0101
+    ],
+    "size": [
+      0.005,
+      0.005,
+      0.005
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C6-C7",
+    "parent": null,
+    "centre": [
+      0,
+      1.4556,
+      -0.016
+    ],
+    "size": [
+      0.0035,
+      0.0035,
+      0.0035
+    ]
+  },
+  {
+    "name": "Nucleus pulposus C7-T1",
+    "parent": null,
+    "centre": [
+      0,
+      1.4408,
+      -0.0212
+    ],
+    "size": [
+      0.0025,
+      0.0025,
+      0.0025
+    ]
+  },
+  {
+    "name": "Nucleus pulposus L1-L2",
+    "parent": null,
+    "centre": [
+      0,
+      1.0989,
+      -0.0072
+    ],
+    "size": [
+      0.008,
+      0.008,
+      0.008
+    ]
+  },
+  {
+    "name": "Nucleus pulposus L2-L3",
+    "parent": null,
+    "centre": [
+      0,
+      1.0661,
+      -0.0024
+    ],
+    "size": [
+      0.0094,
+      0.0094,
+      0.0094
+    ]
+  },
+  {
+    "name": "Nucleus pulposus L3-L4",
+    "parent": null,
+    "centre": [
+      0,
+      1.0309,
+      -0.0011
+    ],
+    "size": [
+      0.0063,
+      0.0063,
+      0.0063
+    ]
+  },
+  {
+    "name": "Nucleus pulposus L4-L5",
+    "parent": null,
+    "centre": [
+      0,
+      0.9981,
+      -0.0043
+    ],
+    "size": [
+      0.0124,
+      0.0124,
+      0.0124
+    ]
+  },
+  {
+    "name": "Nucleus pulposus L5-S1",
+    "parent": null,
+    "centre": [
+      0,
+      0.9632,
+      -0.0178
+    ],
+    "size": [
+      0.014,
+      0.014,
+      0.014
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T1-T2",
+    "parent": null,
+    "centre": [
+      0,
+      1.4254,
+      -0.0278
+    ],
+    "size": [
+      0.0038,
+      0.0038,
+      0.0038
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T10-T11",
+    "parent": null,
+    "centre": [
+      0,
+      1.1959,
+      -0.0327
+    ],
+    "size": [
+      0.0068,
+      0.0068,
+      0.0068
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T11-T12",
+    "parent": null,
+    "centre": [
+      0,
+      1.165,
+      -0.024
+    ],
+    "size": [
+      0.007,
+      0.007,
+      0.007
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T12-L1",
+    "parent": null,
+    "centre": [
+      0,
+      1.1323,
+      -0.0163
+    ],
+    "size": [
+      0.0089,
+      0.0089,
+      0.0089
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T2-T3",
+    "parent": null,
+    "centre": [
+      0,
+      1.4062,
+      -0.0355
+    ],
+    "size": [
+      0.0062,
+      0.0062,
+      0.0062
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T3-T4",
+    "parent": null,
+    "centre": [
+      0,
+      1.3841,
+      -0.0438
+    ],
+    "size": [
+      0.0046,
+      0.0046,
+      0.0046
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T4-T5",
+    "parent": null,
+    "centre": [
+      0,
+      1.3615,
+      -0.0508
+    ],
+    "size": [
+      0.0064,
+      0.0064,
+      0.0064
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T5-T6",
+    "parent": null,
+    "centre": [
+      0,
+      1.3349,
+      -0.0529
+    ],
+    "size": [
+      0.0055,
+      0.0055,
+      0.0055
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T6-T7",
+    "parent": null,
+    "centre": [
+      0,
+      1.3078,
+      -0.0545
+    ],
+    "size": [
+      0.0062,
+      0.0062,
+      0.0062
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T7-T8",
+    "parent": null,
+    "centre": [
+      0,
+      1.2808,
+      -0.0501
+    ],
+    "size": [
+      0.0076,
+      0.0076,
+      0.0076
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T8-T9",
+    "parent": null,
+    "centre": [
+      0,
+      1.2528,
+      -0.046
+    ],
+    "size": [
+      0.0072,
+      0.0072,
+      0.0072
+    ]
+  },
+  {
+    "name": "Nucleus pulposus T9-T10",
+    "parent": null,
+    "centre": [
+      0,
+      1.2242,
+      -0.0395
+    ],
+    "size": [
+      0.0065,
+      0.0065,
+      0.0065
+    ]
+  },
+  {
+    "name": "Sacrococcygeal symphysis",
+    "parent": null,
+    "centre": [
+      0,
+      0.8636,
+      -0.0801
+    ],
+    "size": [
+      0.0215,
+      0.0054,
+      0.0107
+    ]
+  },
+  {
+    "name": "Anterior longitudinal ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.235,
+      -0.0128
+    ],
+    "size": [
+      0.0421,
+      0.6115,
+      0.0665
+    ]
+  },
+  {
+    "name": "Intercornual ligament.l",
+    "parent": null,
+    "centre": [
+      0.0112,
+      0.8653,
+      -0.0866
+    ],
+    "size": [
+      0.0039,
+      0.0211,
+      0.0068
+    ]
+  },
+  {
+    "name": "Intercornual ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0112,
+      0.8653,
+      -0.0866
+    ],
+    "size": [
+      0.0039,
+      0.0211,
+      0.0068
+    ]
+  },
+  {
+    "name": "Interspinous ligaments",
+    "parent": null,
+    "centre": [
+      0,
+      1.2478,
+      -0.0674
+    ],
+    "size": [
+      0,
+      0.5812,
+      0.0699
+    ]
+  },
+  {
+    "name": "Ligamenta flava",
+    "parent": null,
+    "centre": [
+      -0.0002,
+      1.2586,
+      -0.0533
+    ],
+    "size": [
+      0.0297,
+      0.5585,
+      0.0591
+    ]
+  },
+  {
+    "name": "Nuchal ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.518,
+      -0.0704
+    ],
+    "size": [
+      0,
+      0.1385,
+      0.0508
+    ]
+  },
+  {
+    "name": "Posterior longitudinal ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.2432,
+      -0.042
+    ],
+    "size": [
+      0.0281,
+      0.5699,
+      0.0549
+    ]
+  },
+  {
+    "name": "Supraspinous ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.2274,
+      -0.084
+    ],
+    "size": [
+      0.0078,
+      0.4462,
+      0.0374
+    ]
+  },
+  {
+    "name": "Quadrangular membrane.l",
+    "parent": null,
+    "centre": [
+      0.0136,
+      1.497,
+      0.0171
+    ],
+    "size": [
+      0.0172,
+      0.0239,
+      0.0285
+    ]
+  },
+  {
+    "name": "Quadrangular membrane.r",
+    "parent": null,
+    "centre": [
+      -0.0136,
+      1.497,
+      0.0171
+    ],
+    "size": [
+      0.0172,
+      0.0239,
+      0.0285
+    ]
+  },
+  {
+    "name": "Median cricothyroid ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.4678,
+      0.0228
+    ],
+    "size": [
+      0.0053,
+      0.0129,
+      0.0078
+    ]
+  },
+  {
+    "name": "Lateral thyrohyoid ligament.l",
+    "parent": null,
+    "centre": [
+      0.0182,
+      1.5083,
+      -0.003
+    ],
+    "size": [
+      0.0045,
+      0.0109,
+      0.0045
+    ]
+  },
+  {
+    "name": "Lateral thyrohyoid ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0182,
+      1.5083,
+      -0.003
+    ],
+    "size": [
+      0.0045,
+      0.0109,
+      0.0045
+    ]
+  },
+  {
+    "name": "Median thyrohyoid ligament",
+    "parent": null,
+    "centre": [
+      0,
+      1.4844,
+      0.0315
+    ],
+    "size": [
+      0.0183,
+      0.0176,
+      0.0075
+    ]
+  },
+  {
+    "name": "Cricopharyngeal ligament.l",
+    "parent": null,
+    "centre": [
+      0.0051,
+      1.4679,
+      0.016
+    ],
+    "size": [
+      0.0087,
+      0.0128,
+      0.0181
+    ]
+  },
+  {
+    "name": "Cricopharyngeal ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0051,
+      1.4679,
+      0.016
+    ],
+    "size": [
+      0.0087,
+      0.0128,
+      0.0181
+    ]
+  },
+  {
+    "name": "External intercostal membrane.l",
+    "parent": null,
+    "centre": [
+      0.0742,
+      1.2168,
+      0.0656
+    ],
+    "size": [
+      0.1143,
+      0.2775,
+      0.0955
+    ]
+  },
+  {
+    "name": "External intercostal membrane.r",
+    "parent": null,
+    "centre": [
+      -0.0742,
+      1.2168,
+      0.0656
+    ],
+    "size": [
+      0.1143,
+      0.2775,
+      0.0955
+    ]
+  },
+  {
+    "name": "Internal intercostal membrane.l",
+    "parent": null,
+    "centre": [
+      0.0612,
+      1.2837,
+      -0.0598
+    ],
+    "size": [
+      0.0668,
+      0.2807,
+      0.0656
+    ]
+  },
+  {
+    "name": "Internal intercostal membrane.r",
+    "parent": null,
+    "centre": [
+      -0.0612,
+      1.2837,
+      -0.0598
+    ],
+    "size": [
+      0.0668,
+      0.2807,
+      0.0656
+    ]
+  },
+  {
+    "name": "Costotransverse ligament.l",
+    "parent": null,
+    "centre": [
+      0.0235,
+      1.3112,
+      -0.0533
+    ],
+    "size": [
+      0.02,
+      0.2668,
+      0.0529
+    ]
+  },
+  {
+    "name": "Costotransverse ligament.r",
+    "parent": null,
+    "centre": [
+      -0.0235,
+      1.3112,
+      -0.0533
+    ],
+    "size": [
+      0.02,
+      0.2668,
+      0.0529
+    ]
+  },
+  {
+    "name": "Intra-articular ligament of head of rib",
+    "parent": null,
+    "centre": [
+      0.0168,
+      1.3242,
+      -0.0477
+    ],
+    "size": [
+      0.0074,
+      0.2034,
+      0.039
+    ]
+  },
+  {
+    "name": "Intra-articular ligament of head of rib.r",
+    "parent": null,
+    "centre": [
+      -0.0168,
+      1.3242,
+      -0.0477
+    ],
+    "size": [
+      0.0074,
+      0.2034,
+      0.039
+    ]
+  },
+  {
+    "name": "Radiate ligament of head of rib.l",
+    "parent": null,
+    "centre": [
+      0.0185,
+      1.2906,
+      -0.0396
+    ],
+    "size": [
+      0.0126,
+      0.3048,
+      0.0485
+    ]
+  },
+  {
+    "name": "Radiate ligament of head of rib.r",
+    "parent": null,
+    "centre": [
+      -0.0185,
+      1.2906,
+      -0.0396
+    ],
+    "size": [
+      0.0126,
+      0.3048,
+      0.0485
+    ]
+  }
+]

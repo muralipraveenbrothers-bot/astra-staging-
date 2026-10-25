@@ -1,0 +1,17 @@
+{
+  "schema": "biomcp-cli-surface-contract-exceptions-v1",
+  "entries": [
+    {
+      "command": "biomcp --json list",
+      "exception": "command_reference_payload",
+      "reason": "The list command is a command-reference surface, so its JSON shape is a reference payload rather than an entity result with follow-up next commands.",
+      "owner_test": "tests/test_cli_surface_contract_ratchet.py::test_cli_surface_contract_exception_registry_names_initial_exceptions"
+    },
+    {
+      "command": "biomcp --json version",
+      "exception": "release_identity_payload",
+      "reason": "Version JSON reports release identity and build metadata, not an entity/helper result that can suggest next commands.",
+      "owner_test": "tests/test_cli_surface_contract_ratchet.py::test_cli_surface_contract_exception_registry_names_initial_exceptions"
+    }
+  ]
+}

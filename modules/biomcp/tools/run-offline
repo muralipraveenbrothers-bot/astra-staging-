@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if [[ "$(uname -s)" != Linux ]]; then
+  echo "offline routine-gate enforcement is unsupported on this platform; Linux CI is authoritative" >&2
+  exit 2
+fi
+if ! command -v bwrap >/dev/null 2>&1; then
+  echo "offline routine gates require bubblewrap; refusing to run without network isolation" >&2
+  exit 2
+fi
+if [[ "${1:-}" == -- ]]; then
+  shift
+fi
+if (($# == 0)); then
+  echo "usage: tools/run-offline -- COMMAND [ARG ...]" >&2
+  exit 2
+fi
+
+if [[ "${BIOMCP_OFFLINE_NETWORK:-0}" == 1 ]]; then
+  echo "offline network isolation: reusing the verified enclosing namespace"
+  exec "$ROOT/tools/check-offline-network" "$@"
+fi
+
+host_uid="$(id -u)"
+host_gid="$(id -g)"
+sentinel_dir="$(mktemp -d "${TMPDIR:-/tmp}/biomcp-offline-ownership.XXXXXX")"
+sentinel="$sentinel_dir/created"
+sentinel_token="$$.$RANDOM.$RANDOM"
+cleanup() {
+  rm -f -- "$sentinel" 2>/dev/null || true
+  rmdir -- "$sentinel" 2>/dev/null || true
+  rmdir -- "$sentinel_dir" 2>/dev/null || true
+}
+trap cleanup EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+set +e
+bwrap \
+  --unshare-user \
+  --uid 0 \
+  --gid 0 \
+  --unshare-net \
+  --dev-bind / / \
+  --proc /proc \
+  --die-with-parent \
+  --setenv BIOMCP_OFFLINE_NETWORK 1 \
+  --setenv BIOMCP_OFFLINE_OWNERSHIP_SENTINEL "$sentinel" \
+  --setenv BIOMCP_OFFLINE_OWNERSHIP_TOKEN "$sentinel_token" \
+  --chdir "$PWD" \
+  -- "$ROOT/tools/check-offline-network" "$@"
+child_status=$?
+set -e
+
+if [[ ! -f "$sentinel" || -L "$sentinel" ]]; then
+  echo "offline sandbox bootstrap failed: verifier did not start" >&2
+  if ((child_status == 0)); then
+    exit 2
+  fi
+  exit "$child_status"
+fi
+if [[ "$(stat -c %u "$sentinel")" != "$host_uid" ]] \
+  || [[ "$(stat -c %g "$sentinel")" != "$host_gid" ]]; then
+  echo "offline ownership isolation failed: sandbox sentinel does not map to the invoking user" >&2
+  exit 2
+fi
+sentinel_state="$(<"$sentinel")"
+if [[ "$sentinel_state" == "started:$sentinel_token" ]]; then
+  echo "offline sandbox verification failed before isolation completed" >&2
+  if ((child_status == 0)); then
+    exit 2
+  fi
+  exit "$child_status"
+fi
+if [[ "$sentinel_state" != "verified:$sentinel_token" ]]; then
+  echo "offline ownership isolation failed: sandbox sentinel content is invalid" >&2
+  exit 2
+fi
+echo "offline ownership mapping: host uid/gid $host_uid/$host_gid verified"
+exit "$child_status"

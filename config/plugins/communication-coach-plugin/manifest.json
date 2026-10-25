@@ -1,0 +1,189 @@
+{
+  "pluginId": "communication-coach-plugin",
+  "tier": "P3",
+  "category": "MEDICAL",
+  "name": "Communication Coach Plugin",
+  "version": "1.0.0",
+  "description": "Breaking bad news, anxiety management, informed consent scripts, health literacy adaptation, de-escalation.",
+  "license": "MIT",
+  "provider": "ASTRA",
+  "runtime": "nodejs",
+  "dependencies": {
+    "required": [
+      "astra-brain-core",
+      "voicebox",
+      "patient-experience-plugin"
+    ],
+    "optional": []
+  },
+  "services": [
+    {
+      "serviceId": "communication-service",
+      "type": "medical",
+      "endpoint": "/api/communication",
+      "healthEndpoint": "/api/communication/health"
+    }
+  ],
+  "agents": [
+    {
+      "agentId": "communication_agent",
+      "name": "Communication Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "hermes_brain"
+    },
+    {
+      "agentId": "bad_news_coach",
+      "name": "Bad News Coach",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "communication_agent"
+    },
+    {
+      "agentId": "consent_helper",
+      "name": "Consent Helper",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "communication_agent"
+    },
+    {
+      "agentId": "de_escalation_agent",
+      "name": "De-escalation Agent",
+      "level": "SPECIALIST",
+      "autoRegister": true,
+      "parentAgent": "communication_agent"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "generate_counseling_script",
+      "name": "Generate Counseling Script",
+      "description": "Counseling script generation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "adapt_health_literacy",
+      "name": "Adapt Health Literacy",
+      "description": "Simplify medical explanation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "simulate_conversation",
+      "name": "Simulate Conversation",
+      "description": "Practice conversation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    },
+    {
+      "toolId": "suggest_de_escalation",
+      "name": "Suggest De-escalation",
+      "description": "De-escalation guidance",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "situation": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object"
+      },
+      "riskLevel": "INFO",
+      "readOrWrite": "READ"
+    }
+  ],
+  "models": [],
+  "knowledge": [],
+  "permissions": [
+    {
+      "role": "DOCTOR",
+      "claims": [
+        "ai:clinical_reasoning"
+      ]
+    }
+  ],
+  "ui": {
+    "routes": [],
+    "components": [
+      {
+        "name": "CommunicationCoachPanel",
+        "slot": "clinical-workspace"
+      }
+    ],
+    "icons": [
+      "message-circle-heart",
+      "heart"
+    ]
+  },
+  "database": {
+    "migrations": [],
+    "seeds": []
+  },
+  "events": {
+    "publishes": [
+      "communication.script.ready"
+    ],
+    "subscribes": []
+  },
+  "healthChecks": [
+    {
+      "name": "Script Generation",
+      "endpoint": "tool-registry",
+      "timeoutMs": 3000,
+      "critical": true
+    },
+    {
+      "name": "Voice Synthesis",
+      "endpoint": "voicebox-local",
+      "timeoutMs": 5000,
+      "critical": true
+    }
+  ],
+  "configurationSchema": {
+    "properties": {
+      "defaultLanguage": {
+        "type": "string",
+        "default": "en"
+      }
+    },
+    "secrets": []
+  },
+  "riskLevel": "MEDIUM",
+  "checksum": "sha256:communication-coach-plugin-1.0.0"
+}
